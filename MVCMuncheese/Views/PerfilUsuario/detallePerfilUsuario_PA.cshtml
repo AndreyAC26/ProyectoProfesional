@@ -1,0 +1,42 @@
+﻿@model MVCMuncheese.Models.modeloPerfilUsuario
+
+@{
+    ViewBag.Title = "detallePerfilUsuario_PA";
+}
+
+<h2>Detalle</h2>
+<br />
+<div>
+    <h4>Perfil de Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_PerfilUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_PerfilUsuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "modificarPerfilUsuario_PA", new { pId = Model.Id_PerfilUsuario }) |
+    @Html.ActionLink("Atras", "listarPerfilUsuario_PA")
+</p>

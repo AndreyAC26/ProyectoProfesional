@@ -1,0 +1,904 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MuncheeseModelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Telefono" />
+    </Key>
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido_1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido_2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Clientes" FromRole="Clientes" ToRole="Facturas" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="Id_Estado" />
+    </Key>
+    <Property Name="Id_Estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estado1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Mesas" Relationship="Self.FK_Mesas_Estado" FromRole="Estado" ToRole="Mesas" />
+    <NavigationProperty Name="Ordenes" Relationship="Self.FK_Ordenes_Estado" FromRole="Estado" ToRole="Ordenes" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Estado" FromRole="Estado" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Facturas">
+    <Key>
+      <PropertyRef Name="Id_Factura" />
+    </Key>
+    <Property Name="Id_Factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="Id_Orden" Type="Int32" />
+    <Property Name="Tel_Cliente" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_Facturas_Clientes" FromRole="Facturas" ToRole="Clientes" />
+    <NavigationProperty Name="Ordenes" Relationship="Self.FK_Facturas_Ordenes" FromRole="Facturas" ToRole="Ordenes" />
+  </EntityType>
+  <EntityType Name="Ingredientes">
+    <Key>
+      <PropertyRef Name="Id_Ingrediente" />
+    </Key>
+    <Property Name="Id_Ingrediente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_Ingrediente" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ingredientes_X_Producto" Relationship="Self.FK_Ingredientes_X_Producto_Ingredientes" FromRole="Ingredientes" ToRole="Ingredientes_X_Producto" />
+    <NavigationProperty Name="Inventario" Relationship="Self.FK_Inventario_Ingredientes" FromRole="Ingredientes" ToRole="Inventario" />
+  </EntityType>
+  <EntityType Name="Ingredientes_X_Producto">
+    <Key>
+      <PropertyRef Name="Id_ingredienteXproducto" />
+      <PropertyRef Name="Id_producto" />
+    </Key>
+    <Property Name="Id_ingredienteXproducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_producto" Type="Int32" Nullable="false" />
+    <Property Name="Id_Ingrediente" Type="Int32" />
+    <NavigationProperty Name="Ingredientes" Relationship="Self.FK_Ingredientes_X_Producto_Ingredientes" FromRole="Ingredientes_X_Producto" ToRole="Ingredientes" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Ingredientes_X_Producto_Productos" FromRole="Ingredientes_X_Producto" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Inventario">
+    <Key>
+      <PropertyRef Name="Id_inventario" />
+    </Key>
+    <Property Name="Id_inventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_Producto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Id_Producto" Type="Int32" />
+    <Property Name="Id_Ingrediente" Type="Int32" />
+    <NavigationProperty Name="Ingredientes" Relationship="Self.FK_Inventario_Ingredientes" FromRole="Inventario" ToRole="Ingredientes" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Inventario_Productos" FromRole="Inventario" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Mesas">
+    <Key>
+      <PropertyRef Name="Id_Mesa" />
+    </Key>
+    <Property Name="Id_Mesa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreMesa" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Int32" />
+    <NavigationProperty Name="Estado1" Relationship="Self.FK_Mesas_Estado" FromRole="Mesas" ToRole="Estado" />
+    <NavigationProperty Name="Ordenes" Relationship="Self.FK_Ordenes_Mesas" FromRole="Mesas" ToRole="Ordenes" />
+  </EntityType>
+  <EntityType Name="Ordenes">
+    <Key>
+      <PropertyRef Name="Id_Orden" />
+    </Key>
+    <Property Name="Id_Orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Descipcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Mesa" Type="Int32" />
+    <Property Name="Precio" Type="Int32" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="Id_producto" Type="Int32" />
+    <Property Name="Tipo_orden" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Estado1" Relationship="Self.FK_Ordenes_Estado" FromRole="Ordenes" ToRole="Estado" />
+    <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Ordenes" FromRole="Ordenes" ToRole="Facturas" />
+    <NavigationProperty Name="Mesas" Relationship="Self.FK_Ordenes_Mesas" FromRole="Ordenes" ToRole="Mesas" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Ordenes_Productos" FromRole="Ordenes" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Perfiles">
+    <Key>
+      <PropertyRef Name="Perfil_Id" />
+    </Key>
+    <Property Name="Perfil_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_perfil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PerfilUsuario" Relationship="Self.FK_PerfilUsuario_Perfiles" FromRole="Perfiles" ToRole="PerfilUsuario" />
+  </EntityType>
+  <EntityType Name="PerfilUsuario">
+    <Key>
+      <PropertyRef Name="Id_PerfilUsuario" />
+    </Key>
+    <Property Name="Perfil_Id" Type="Int32" />
+    <Property Name="Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Id_PerfilUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Perfiles" Relationship="Self.FK_PerfilUsuario_Perfiles" FromRole="PerfilUsuario" ToRole="Perfiles" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_PerfilUsuario_Usuarios" FromRole="PerfilUsuario" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="Id_producto" />
+    </Key>
+    <Property Name="Id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo_producto" Type="Int32" />
+    <Property Name="Precio" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ingredientes_X_Producto" Relationship="Self.FK_Ingredientes_X_Producto_Productos" FromRole="Productos" ToRole="Ingredientes_X_Producto" />
+    <NavigationProperty Name="Inventario" Relationship="Self.FK_Inventario_Productos" FromRole="Productos" ToRole="Inventario" />
+    <NavigationProperty Name="Ordenes" Relationship="Self.FK_Ordenes_Productos" FromRole="Productos" ToRole="Ordenes" />
+    <NavigationProperty Name="Tipo_Producto1" Relationship="Self.FK_Productos_Tipo_Producto" FromRole="Productos" ToRole="Tipo_Producto" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="Id_Proveedor" />
+    </Key>
+    <Property Name="Id_Proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido_1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido_2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Producto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Producto">
+    <Key>
+      <PropertyRef Name="Id_tipo_Producto" />
+    </Key>
+    <Property Name="Id_tipo_Producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_tipo_pro" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Tipo_Producto" FromRole="Tipo_Producto" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Usuario" />
+    </Key>
+    <Property Name="Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Int32" />
+    <NavigationProperty Name="Estado1" Relationship="Self.FK_Usuarios_Estado" FromRole="Usuarios" ToRole="Estado" />
+    <NavigationProperty Name="PerfilUsuario" Relationship="Self.FK_PerfilUsuario_Usuarios" FromRole="Usuarios" ToRole="PerfilUsuario" />
+  </EntityType>
+  <Association Name="FK_Facturas_Clientes">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Telefono" />
+      </Principal>
+      <Dependent Role="Facturas">
+        <PropertyRef Name="Tel_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mesas_Estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="Mesas" Type="Self.Mesas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="Id_Estado" />
+      </Principal>
+      <Dependent Role="Mesas">
+        <PropertyRef Name="Estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ordenes_Estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="Id_Estado" />
+      </Principal>
+      <Dependent Role="Ordenes">
+        <PropertyRef Name="Estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="Id_Estado" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facturas_Ordenes">
+    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="0..1" />
+    <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ordenes">
+        <PropertyRef Name="Id_Orden" />
+      </Principal>
+      <Dependent Role="Facturas">
+        <PropertyRef Name="Id_Orden" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredientes_X_Producto_Ingredientes">
+    <End Role="Ingredientes" Type="Self.Ingredientes" Multiplicity="0..1" />
+    <End Role="Ingredientes_X_Producto" Type="Self.Ingredientes_X_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredientes">
+        <PropertyRef Name="Id_Ingrediente" />
+      </Principal>
+      <Dependent Role="Ingredientes_X_Producto">
+        <PropertyRef Name="Id_Ingrediente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventario_Ingredientes">
+    <End Role="Ingredientes" Type="Self.Ingredientes" Multiplicity="0..1" />
+    <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredientes">
+        <PropertyRef Name="Id_Ingrediente" />
+      </Principal>
+      <Dependent Role="Inventario">
+        <PropertyRef Name="Id_Ingrediente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredientes_X_Producto_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+    <End Role="Ingredientes_X_Producto" Type="Self.Ingredientes_X_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_producto" />
+      </Principal>
+      <Dependent Role="Ingredientes_X_Producto">
+        <PropertyRef Name="Id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventario_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_producto" />
+      </Principal>
+      <Dependent Role="Inventario">
+        <PropertyRef Name="Id_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ordenes_Mesas">
+    <End Role="Mesas" Type="Self.Mesas" Multiplicity="0..1" />
+    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mesas">
+        <PropertyRef Name="Id_Mesa" />
+      </Principal>
+      <Dependent Role="Ordenes">
+        <PropertyRef Name="Mesa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ordenes_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_producto" />
+      </Principal>
+      <Dependent Role="Ordenes">
+        <PropertyRef Name="Id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerfilUsuario_Perfiles">
+    <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="0..1" />
+    <End Role="PerfilUsuario" Type="Self.PerfilUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perfiles">
+        <PropertyRef Name="Perfil_Id" />
+      </Principal>
+      <Dependent Role="PerfilUsuario">
+        <PropertyRef Name="Perfil_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerfilUsuario_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="PerfilUsuario" Type="Self.PerfilUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Usuario" />
+      </Principal>
+      <Dependent Role="PerfilUsuario">
+        <PropertyRef Name="Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Tipo_Producto">
+    <End Role="Tipo_Producto" Type="Self.Tipo_Producto" Multiplicity="0..1" />
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Producto">
+        <PropertyRef Name="Id_tipo_Producto" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="Tipo_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MuncheeseEntidades" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="Estado" EntityType="Self.Estado" />
+    <EntitySet Name="Facturas" EntityType="Self.Facturas" />
+    <EntitySet Name="Ingredientes" EntityType="Self.Ingredientes" />
+    <EntitySet Name="Ingredientes_X_Producto" EntityType="Self.Ingredientes_X_Producto" />
+    <EntitySet Name="Inventario" EntityType="Self.Inventario" />
+    <EntitySet Name="Mesas" EntityType="Self.Mesas" />
+    <EntitySet Name="Ordenes" EntityType="Self.Ordenes" />
+    <EntitySet Name="Perfiles" EntityType="Self.Perfiles" />
+    <EntitySet Name="PerfilUsuario" EntityType="Self.PerfilUsuario" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" />
+    <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tipo_Producto" EntityType="Self.Tipo_Producto" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK_Facturas_Clientes" Association="Self.FK_Facturas_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Facturas" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mesas_Estado" Association="Self.FK_Mesas_Estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Mesas" EntitySet="Mesas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ordenes_Estado" Association="Self.FK_Ordenes_Estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Ordenes" EntitySet="Ordenes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Estado" Association="Self.FK_Usuarios_Estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facturas_Ordenes" Association="Self.FK_Facturas_Ordenes">
+      <End Role="Ordenes" EntitySet="Ordenes" />
+      <End Role="Facturas" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredientes_X_Producto_Ingredientes" Association="Self.FK_Ingredientes_X_Producto_Ingredientes">
+      <End Role="Ingredientes" EntitySet="Ingredientes" />
+      <End Role="Ingredientes_X_Producto" EntitySet="Ingredientes_X_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventario_Ingredientes" Association="Self.FK_Inventario_Ingredientes">
+      <End Role="Ingredientes" EntitySet="Ingredientes" />
+      <End Role="Inventario" EntitySet="Inventario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredientes_X_Producto_Productos" Association="Self.FK_Ingredientes_X_Producto_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Ingredientes_X_Producto" EntitySet="Ingredientes_X_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventario_Productos" Association="Self.FK_Inventario_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Inventario" EntitySet="Inventario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ordenes_Mesas" Association="Self.FK_Ordenes_Mesas">
+      <End Role="Mesas" EntitySet="Mesas" />
+      <End Role="Ordenes" EntitySet="Ordenes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ordenes_Productos" Association="Self.FK_Ordenes_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Ordenes" EntitySet="Ordenes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerfilUsuario_Perfiles" Association="Self.FK_PerfilUsuario_Perfiles">
+      <End Role="Perfiles" EntitySet="Perfiles" />
+      <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerfilUsuario_Usuarios" Association="Self.FK_PerfilUsuario_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Tipo_Producto" Association="Self.FK_Productos_Tipo_Producto">
+      <End Role="Tipo_Producto" EntitySet="Tipo_Producto" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <FunctionImport Name="DELCliente">
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="delCombo">
+      <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delEstado">
+      <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delFactura">
+      <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delIngrediente">
+      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delIngredienteXproducto">
+      <Parameter Name="Id_IngredienteXproducto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delInventario">
+      <Parameter Name="Id_inventario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delMesa">
+      <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delOrden">
+      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delPerfil">
+      <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delPerfilUsuario">
+      <Parameter Name="Id_PerfilUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delproducto">
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delProductosXcombo">
+      <Parameter Name="Id_ProducXcombo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DELProveedor">
+      <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delTipo_Combo">
+      <Parameter Name="Id_tipo_combo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delTipo_Producto">
+      <Parameter Name="Id_tipo_Producto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delUsuario">
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insCliente">
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido_1" Mode="In" Type="String" />
+      <Parameter Name="Apellido_2" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insCombo">
+      <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Tipo_combo" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertarTipoProducto" ReturnType="Collection(MuncheeseModelo.InsertarTipoProducto_Result)">
+      <Parameter Name="Nombre_tipo_pro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertProducto">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Tipo_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insEstado">
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insFactura">
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+      <Parameter Name="Tel_Cliente" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insIngrediente">
+      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre_Ingrediente" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insIngredienteXProducto">
+      <Parameter Name="Id_IngredienteXproducto" Mode="In" Type="Int32" />
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insInventario">
+      <Parameter Name="Nombre_Producto" Mode="In" Type="String" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insMesa">
+      <Parameter Name="NombreMesa" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insOrden">
+      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Mesa" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insPerfil">
+      <Parameter Name="nombre_perfil" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insPerfilUsuario">
+      <Parameter Name="Perfil_id" Mode="In" Type="Int32" />
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insProducto">
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Tipo_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insProductosXcombo">
+      <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insProveedor">
+      <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido_1" Mode="In" Type="String" />
+      <Parameter Name="Apellido_2" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Producto" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insTipo_Combo">
+      <Parameter Name="Id_tipo_combo" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre_tipo_com" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insTipo_Producto">
+      <Parameter Name="Id_tipo_Producto" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre_tipo_pro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insUsuario">
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="modCliente">
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido_1" Mode="In" Type="String" />
+      <Parameter Name="Apellido_2" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modCombos">
+      <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Tipo_combo" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modEstado">
+      <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modFactura">
+      <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+      <Parameter Name="Tel_Cliente" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modIngrediente">
+      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre_Ingrediente" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modIngredientesXProducto">
+      <Parameter Name="Id_IngredienteXproducto" Mode="In" Type="Int32" />
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="modInventario">
+      <Parameter Name="Id_inventario" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre_Producto" Mode="In" Type="String" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="modMesa">
+      <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
+      <Parameter Name="NombreMesa" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="modOrdenes">
+      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Mesa" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="modPerfil">
+      <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre_perfil" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modPerfilUsuario">
+      <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="Id_PerfilUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="modProductos">
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Tipo_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modProductosXcombo">
+      <Parameter Name="Id_ProducXcombo" Mode="In" Type="Int32" />
+      <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="modProveedor">
+      <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido_1" Mode="In" Type="String" />
+      <Parameter Name="Apellido_2" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Producto" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modTipo_Combo">
+      <Parameter Name="Id_tipo_combo" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre_tipo_com" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modTipo_Producto">
+      <Parameter Name="Id_tipo_Producto" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre_tipo_pro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="modUsuario">
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recCliente" ReturnType="Collection(MuncheeseModelo.recCliente_Result)" />
+    <FunctionImport Name="recClientexId" ReturnType="Collection(MuncheeseModelo.recClientexId_Result)">
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="recCombos" />
+    <FunctionImport Name="recCombosxId">
+      <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recEstados" ReturnType="Collection(MuncheeseModelo.recEstados_Result)" />
+    <FunctionImport Name="recEstadoxId" ReturnType="Collection(MuncheeseModelo.recEstadoxId_Result)">
+      <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recFacturas" ReturnType="Collection(MuncheeseModelo.recFacturas_Result)" />
+    <FunctionImport Name="recFacturaxId" ReturnType="Collection(MuncheeseModelo.recFacturaxId_Result)">
+      <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recIngredientes" ReturnType="Collection(MuncheeseModelo.recIngredientes_Result)" />
+    <FunctionImport Name="recIngredientesXProducto" ReturnType="Collection(MuncheeseModelo.recIngredientesXProducto_Result)" />
+    <FunctionImport Name="recIngredientexId" ReturnType="Collection(MuncheeseModelo.recIngredientexId_Result)">
+      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recIngredienteXProductoxId" ReturnType="Collection(MuncheeseModelo.recIngredienteXProductoxId_Result)">
+      <Parameter Name="Id_ingredienteXproducto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recInventario" ReturnType="Collection(MuncheeseModelo.recInventario_Result)" />
+    <FunctionImport Name="recInventarioxId" ReturnType="Collection(MuncheeseModelo.recInventarioxId_Result)">
+      <Parameter Name="Id_inventario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recMesaPerfilxId" ReturnType="Collection(MuncheeseModelo.recMesaPerfilxId_Result)">
+      <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recMesas" ReturnType="Collection(MuncheeseModelo.recMesas_Result)" />
+    <FunctionImport Name="recMesaxId" ReturnType="Collection(MuncheeseModelo.recMesaxId_Result)">
+      <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recOrdenes" />
+    <FunctionImport Name="recOrdenxId">
+      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recPerfiles" ReturnType="Collection(MuncheeseModelo.recPerfiles_Result)" />
+    <FunctionImport Name="recPerfilUsuario" ReturnType="Collection(MuncheeseModelo.recPerfilUsuario_Result)" />
+    <FunctionImport Name="recPerfilUsuarioxId" ReturnType="Collection(MuncheeseModelo.recPerfilUsuarioxId_Result)">
+      <Parameter Name="Id_PerfilUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recProductos" ReturnType="Collection(MuncheeseModelo.recProductos_Result)" />
+    <FunctionImport Name="recProductosXcombo" />
+    <FunctionImport Name="recProductosXcomboxId">
+      <Parameter Name="Id_ProducXcombo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recProductosxId" ReturnType="Collection(MuncheeseModelo.recProductosxId_Result)">
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recProveedor" ReturnType="Collection(MuncheeseModelo.recProveedor_Result)" />
+    <FunctionImport Name="recProveedorxId" ReturnType="Collection(MuncheeseModelo.recProveedorxId_Result)">
+      <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recTipo_Combo" />
+    <FunctionImport Name="recTipo_ComboxId">
+      <Parameter Name="Id_tipo_combo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recTipo_Producto" ReturnType="Collection(MuncheeseModelo.recTipo_Producto_Result)" />
+    <FunctionImport Name="recTipo_ProductoxId" ReturnType="Collection(MuncheeseModelo.recTipo_ProductoxId_Result)">
+      <Parameter Name="Id_tipo_Producto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recUsuarios" ReturnType="Collection(MuncheeseModelo.recUsuarios_Result)" />
+    <FunctionImport Name="recUsuarioxId" ReturnType="Collection(MuncheeseModelo.recUsuarioxId_Result)">
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MuncheeseModelo.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MuncheeseModelo.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="InsertarTipoProducto_Result">
+    <Property Type="Int32" Name="Column1" Nullable="true" />
+    <Property Type="String" Name="Column2" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recCliente_Result">
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Apellido_1" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Apellido_2" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="recClientexId_Result">
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Apellido_1" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Apellido_2" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="recEstados_Result">
+    <Property Type="Int32" Name="Id_Estado" Nullable="false" />
+    <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="recEstadoxId_Result">
+    <Property Type="Int32" Name="Id_Estado" Nullable="false" />
+    <Property Type="String" Name="Estado" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="recFacturas_Result">
+    <Property Type="Int32" Name="Id_Factura" Nullable="false" />
+    <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Id_Orden" Nullable="true" />
+    <Property Type="String" Name="Tel_Cliente" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recFacturaxId_Result">
+    <Property Type="Int32" Name="Id_Factura" Nullable="false" />
+    <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Id_Orden" Nullable="true" />
+    <Property Type="String" Name="Tel_Cliente" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recIngredientes_Result">
+    <Property Type="Int32" Name="Id_Ingrediente" Nullable="false" />
+    <Property Type="String" Name="Nombre_Ingrediente" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recIngredientesXProducto_Result">
+    <Property Type="Int32" Name="Id_ingredienteXproducto" Nullable="false" />
+    <Property Type="Int32" Name="Id_producto" Nullable="false" />
+    <Property Type="Int32" Name="Id_Ingrediente" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="recIngredientexId_Result">
+    <Property Type="Int32" Name="Id_Ingrediente" Nullable="false" />
+    <Property Type="String" Name="Nombre_Ingrediente" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recIngredienteXProductoxId_Result">
+    <Property Type="Int32" Name="Id_ingredienteXproducto" Nullable="false" />
+    <Property Type="Int32" Name="Id_producto" Nullable="false" />
+    <Property Type="Int32" Name="Id_Ingrediente" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="recInventario_Result">
+    <Property Type="Int32" Name="Id_inventario" Nullable="false" />
+    <Property Type="String" Name="Nombre_Producto" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="Int32" Name="Id_Producto" Nullable="true" />
+    <Property Type="Int32" Name="Id_Ingrediente" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="recInventarioxId_Result">
+    <Property Type="Int32" Name="Id_inventario" Nullable="false" />
+    <Property Type="String" Name="Nombre_Producto" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="Int32" Name="Id_Producto" Nullable="true" />
+    <Property Type="Int32" Name="Id_Ingrediente" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="recMesaPerfilxId_Result">
+    <Property Type="Int32" Name="Perfil_Id" Nullable="false" />
+    <Property Type="String" Name="nombre_perfil" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="recMesas_Result">
+    <Property Type="Int32" Name="Id_Mesa" Nullable="false" />
+    <Property Type="String" Name="NombreMesa" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Estado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="recMesaxId_Result">
+    <Property Type="Int32" Name="Id_Mesa" Nullable="false" />
+    <Property Type="String" Name="NombreMesa" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Estado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="recPerfiles_Result">
+    <Property Type="Int32" Name="Perfil_Id" Nullable="false" />
+    <Property Type="String" Name="nombre_perfil" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="recPerfilUsuario_Result">
+    <Property Type="Int32" Name="Perfil_Id" Nullable="true" />
+    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Id_PerfilUsuario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="recPerfilUsuarioxId_Result">
+    <Property Type="Int32" Name="Perfil_Id" Nullable="true" />
+    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Id_PerfilUsuario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="recProductos_Result">
+    <Property Type="Int32" Name="Id_producto" Nullable="false" />
+    <Property Type="String" Name="Tipo_producto" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="Precio" Nullable="true" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="recProductosxId_Result">
+    <Property Type="Int32" Name="Id_producto" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="Precio" Nullable="true" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="recProveedor_Result">
+    <Property Type="Int32" Name="Id_Proveedor" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Apellido_1" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Apellido_2" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Producto" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recProveedorxId_Result">
+    <Property Type="Int32" Name="Id_Proveedor" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Apellido_1" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Apellido_2" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Producto" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recTipo_Producto_Result">
+    <Property Type="Int32" Name="Id_tipo_Producto" Nullable="false" />
+    <Property Type="String" Name="Nombre_tipo_pro" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recTipo_ProductoxId_Result">
+    <Property Type="Int32" Name="Id_tipo_Producto" Nullable="false" />
+    <Property Type="String" Name="Nombre_tipo_pro" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="recUsuarios_Result">
+    <Property Type="String" Name="Usuario" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Contraseña" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Estado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="recUsuarioxId_Result">
+    <Property Type="String" Name="Usuario" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Contraseña" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Estado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

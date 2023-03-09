@@ -1,0 +1,17 @@
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\NLog.config
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\LogicaNegocio.dll
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\LogicaNegocio.pdb
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\AccesoDatos.dll
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\Entidades.dll
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\EntityFramework.dll
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\NLog.dll
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\AccesoDatos.pdb
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\AccesoDatos.dll.config
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\Entidades.pdb
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\EntityFramework.xml
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\bin\Debug\NLog.xml
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\obj\Debug\LogicaNegocio.csproj.AssemblyReference.cache
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\obj\Debug\LogicaNegocio.csproj.CoreCompileInputs.cache
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\obj\Debug\LogicaNegocio.csproj.CopyComplete
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\obj\Debug\LogicaNegocio.dll
+C:\Proyecto Profesional Muncheese\Muncheese\LogicaNegocio\obj\Debug\LogicaNegocio.pdb

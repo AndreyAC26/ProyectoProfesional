@@ -1,0 +1,66 @@
+﻿@model MVCMuncheese.Models.modeloProveedores
+
+@{
+    ViewBag.Title = "detalleProveedores_PA";
+}
+
+<h2>Detalle</h2>
+<br />
+<div>
+    <h4>Proveedor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Proveedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Proveedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido_1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido_1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido_2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido_2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "modificarProveedores_PA", new { pId = Model.Id_Proveedor }) |
+    @Html.ActionLink("atras", "listarProveedores_PA")
+</p>

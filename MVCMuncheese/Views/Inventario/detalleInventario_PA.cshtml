@@ -1,0 +1,58 @@
+﻿@model MVCMuncheese.Models.modeloInventario
+
+@{
+    ViewBag.Title = "detalleInventario_PA";
+}
+
+<h2>Detalle</h2>
+<br />
+<div>
+    <h4>Inventario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_inventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_inventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Ingrediente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Ingrediente)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "modificarInventario_PA", new { pId = Model.Id_inventario }) |
+    @Html.ActionLink("Atras", "listarInventario_PA")
+</p>

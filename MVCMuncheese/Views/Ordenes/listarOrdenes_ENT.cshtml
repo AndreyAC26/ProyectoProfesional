@@ -1,0 +1,85 @@
+﻿@model IEnumerable<MVCMuncheese.Models.modeloOrdenes>
+
+@{
+    ViewBag.Title = "listarOrdenes_ENT";
+}
+
+<h2>Ordenes</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "agregarOrdenes_ENT")
+</p>
+<p>
+    @Html.ActionLink("Orden", "Ordenes")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Id_Orden)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_producto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descipcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mesa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Id_producto)
+        </th>*@        
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_orden)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Id_Orden)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_producto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descipcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mesa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Id_producto)
+        </td>*@
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_orden)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "modificarOrdenes_ENT", new { pId = item.Id_Orden }) |
+            @Html.ActionLink("Detalle", "detalleOrdenes_ENT", new { pId = item.Id_Orden }) |
+            @Html.ActionLink("Borrar", "eliminarOrdenes_ENT", new { pId = item.Id_Orden })
+
+        </td>
+    </tr>
+}
+
+</table>

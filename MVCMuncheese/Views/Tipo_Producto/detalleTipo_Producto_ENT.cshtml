@@ -1,0 +1,34 @@
+﻿@model MVCMuncheese.Models.modeloTipo_Producto
+
+@{
+    ViewBag.Title = "detalleTipo_Producto_ENT";
+}
+
+<h2>Detalle </h2>
+<br />
+<div>
+    <h4>Tipo de Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_tipo_Producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_tipo_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_tipo_pro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_tipo_pro)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "modificarTipo_Producto_ENT", new { pId = Model.Id_tipo_Producto }) |
+    @Html.ActionLink("Regresar", "listarTipo_Producto_ENT")
+</p>

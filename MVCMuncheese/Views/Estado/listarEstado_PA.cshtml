@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Entidades.recEstados_Result>
+
+@{
+    ViewBag.Title = "listarEstado_PA";
+}
+
+<h2>Estados</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "agregarEstado_PA")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "modificarEstado_PA", new { pId=item.Id_Estado }) |
+            @Html.ActionLink("Detalle", "detalleEstado_PA", new { pId = item.Id_Estado }) |
+            @Html.ActionLink("Borrar", "eliminarEstado_PA", new { pId = item.Id_Estado })
+        </td>
+    </tr>
+}
+
+</table>

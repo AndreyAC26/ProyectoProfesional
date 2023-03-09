@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Entidades.recPerfilUsuario_Result>
+
+@{
+    ViewBag.Title = "listarPerfilUsuario_PA";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "agregarPerfilUsuario_PA")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Perfil_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Id_PerfilUsuario)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Perfil_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Id_PerfilUsuario)
+        </td>*@
+        <td>
+            @Html.ActionLink("Editar", "modificarPerfilUsuario_PA", new { pId=item.Id_PerfilUsuario }) |
+            @Html.ActionLink("Detalle", "detallePerfilUsuario_PA", new { pId = item.Id_PerfilUsuario }) |
+            @Html.ActionLink("Borrar", "eliminarPerfilUsuario_PA", new { pId = item.Id_PerfilUsuario })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,47 @@
+﻿@model MVCMuncheese.Models.modeloPerfiles
+
+@{
+    ViewBag.Title = "eliminarPerfiles_PA";
+}
+
+<h2>Borrar</h2>
+<br />
+<h4>Perfil</h4>
+<br />
+<h3>Estas seguro de querer borrar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_perfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_perfil)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("accionesPA", "Perfiles", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Perfil_Id)
+
+        <div class="form-actions no-color">
+            <button type="submit" name="enviarAccion" value="Eliminar"
+                    class="btn btn-primary" title="Eliminar registro"
+                    data-toggle="tooltip" data-container="body" data-placement="right">
+                Eliminar
+            </button> |
+            @Html.ActionLink("Atras", "lisatrPerfiles_PA")
+        </div>
+    }
+</div>

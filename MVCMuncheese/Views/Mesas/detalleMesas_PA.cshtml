@@ -1,0 +1,42 @@
+﻿@model MVCMuncheese.Models.modeloMesas
+
+@{
+    ViewBag.Title = "detalleMesas_PA";
+}
+
+<h2>Detalle de</h2>
+<br />
+<div>
+    <h4>Mesa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Mesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Mesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreMesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreMesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "modificarMesas_PA", new { pId = Model.Id_Mesa }) |
+    @Html.ActionLink("Atras", "listarMesas_PA")
+</p>

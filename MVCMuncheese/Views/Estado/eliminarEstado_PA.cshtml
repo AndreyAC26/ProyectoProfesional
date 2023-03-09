@@ -1,0 +1,46 @@
+﻿@model MVCMuncheese.Models.modeloEstado
+@{
+    ViewBag.Title = "eliminarEstado_PA";
+}
+
+<h2>Borrar</h2>
+<br />
+<h4>Estado</h4>
+<br />
+<h3>Estas seguro de borrar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("accionesPA", "Estado", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id_Estado)
+
+        <div class="form-actions no-color">
+            <button type="submit" name="enviarAccion" value="Eliminar"
+                    class="btn btn-primary" title="Eliminar registro"
+                    data-toggle="tooltip" data-container="body" data-placement="right">
+                Eliminar
+            </button> |
+            @Html.ActionLink("Atras", "listarEstado_PA")
+        </div>
+    }
+</div>

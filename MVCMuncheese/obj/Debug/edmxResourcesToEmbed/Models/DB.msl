@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TablaModeloStoreContainer" CdmEntityContainer="CapaEntidades">
+    <EntitySetMapping Name="Tipo_Producto">
+      <EntityTypeMapping TypeName="TablaModelo.Tipo_Producto">
+        <MappingFragment StoreEntitySet="Tipo_Producto">
+          <ScalarProperty Name="Id_tipo_Producto" ColumnName="Id_tipo_Producto" />
+          <ScalarProperty Name="Nombre_tipo_pro" ColumnName="Nombre_tipo_pro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

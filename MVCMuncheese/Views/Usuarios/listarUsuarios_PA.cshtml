@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Entidades.recUsuarios_Result>
+
+@{
+    ViewBag.Title = "listarUsuarios_PA";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "agregarUsuarios_PA")
+</p>
+<table class="table">
+    <tr>
+        <th class="col-md-4">
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Contraseña)
+        </th>*@
+        <th class="col-md-4">
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Contraseña)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td class="col-md-3">
+            @Html.ActionLink("Editar", "modificarUsuarios_PA", new { pId=item.Usuario }) |
+            @Html.ActionLink("Detalle", "detalleUsuarios_PA", new { pId = item.Usuario }) |
+            @Html.ActionLink("Borrar", "eliminarUsuarios_PA", new { pId = item.Usuario })
+        </td>
+    </tr>
+}
+
+</table>

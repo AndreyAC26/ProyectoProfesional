@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Error Contraseña";
+}
+
+<h2>Error de ingreso al sistema</h2>
+
+@using (Html.BeginForm("retornarLogin", "Login", FormMethod.Post, new { @id = "frmErrorPass" }))
+{
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Sistema ABCD</h1>
+            </div>
+            <span style="color: black; font-size:14px; margin-left:10px;">
+                <img class="manImg" src="~/Img/oops.jpg" height="50" width="50">
+                La contraseña es incorrecta, por favor verifique.
+            </span>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" type="submit">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+}

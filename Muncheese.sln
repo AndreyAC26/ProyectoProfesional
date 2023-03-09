@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{9A87DFF6-1A0E-4028-A616-4EC0C9105612}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{4A28F303-7C39-4876-A0A5-03C6282565AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaNegocio", "LogicaNegocio\LogicaNegocio.csproj", "{ADA5FC0A-E4D8-439B-9B1E-CE63558AFD50}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "wcfMuncheese", "wcfMuncheese\", "{58D4000F-F429-403A-996E-0C808FC73368}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		ProjectReferences = "{ada5fc0a-e4d8-439b-9b1e-ce63558afd50}|LogicaNegocio.dll;{9A87DFF6-1A0E-4028-A616-4EC0C9105612}|AccesoDatos.dll;{4A28F303-7C39-4876-A0A5-03C6282565AB}|Entidades.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49538"
+		Debug.AspNetCompiler.PhysicalPath = "wcfMuncheese\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49538\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49538"
+		Release.AspNetCompiler.PhysicalPath = "wcfMuncheese\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49538\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49538"
+		SlnRelativePath = "wcfMuncheese\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCMuncheese", "MVCMuncheese\MVCMuncheese.csproj", "{E6A8B553-3B9E-4BB5-BFF6-C8CB56037BCE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{58D4000F-F429-403A-996E-0C808FC73368} = {58D4000F-F429-403A-996E-0C808FC73368}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A87DFF6-1A0E-4028-A616-4EC0C9105612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A87DFF6-1A0E-4028-A616-4EC0C9105612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A87DFF6-1A0E-4028-A616-4EC0C9105612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A87DFF6-1A0E-4028-A616-4EC0C9105612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A28F303-7C39-4876-A0A5-03C6282565AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A28F303-7C39-4876-A0A5-03C6282565AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A28F303-7C39-4876-A0A5-03C6282565AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A28F303-7C39-4876-A0A5-03C6282565AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA5FC0A-E4D8-439B-9B1E-CE63558AFD50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA5FC0A-E4D8-439B-9B1E-CE63558AFD50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA5FC0A-E4D8-439B-9B1E-CE63558AFD50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA5FC0A-E4D8-439B-9B1E-CE63558AFD50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D4000F-F429-403A-996E-0C808FC73368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D4000F-F429-403A-996E-0C808FC73368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D4000F-F429-403A-996E-0C808FC73368}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D4000F-F429-403A-996E-0C808FC73368}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E6A8B553-3B9E-4BB5-BFF6-C8CB56037BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6A8B553-3B9E-4BB5-BFF6-C8CB56037BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6A8B553-3B9E-4BB5-BFF6-C8CB56037BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6A8B553-3B9E-4BB5-BFF6-C8CB56037BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {256DAC7B-9088-45E7-BA2A-3B0A3C9B3728}
+	EndGlobalSection
+EndGlobal

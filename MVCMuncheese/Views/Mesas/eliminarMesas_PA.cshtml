@@ -1,0 +1,53 @@
+﻿@model MVCMuncheese.Models.modeloMesas
+@{
+    ViewBag.Title = "eliminarMesas_PA";
+}
+
+<h2>Borrar</h2>
+
+<h3>Estas seguro de querer borrar esto?</h3>
+<div>
+    <h4>Mesas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Mesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Mesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreMesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreMesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("accionesPA", "Mesas", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id_Mesa)
+
+        <div class="form-actions no-color">
+            <button type="submit" name="enviarAccion" value="Eliminar"
+                    class="btn btn-primary" title="Eliminar registro"
+                    data-toggle="tooltip" data-container="body" data-placement="right">
+                Eliminar
+            </button> |
+            @Html.ActionLink("Atras", "listarMesas_PA")
+        </div>
+    }
+</div>

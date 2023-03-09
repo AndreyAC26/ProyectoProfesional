@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4A28F303-7C39-4876-A0A5-03C6282565AB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entidades</RootNamespace>
+    <AssemblyName>Entidades</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clientes.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Estado.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Facturas.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ingredientes.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ingredientes_X_Producto.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InsertarTipoProducto_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mesas.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Muncheese.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ordenes.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perfiles.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilUsuario.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Productos.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recClientexId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recCliente_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recEstados_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recEstadoxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recFacturas_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recFacturaxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recIngredientesXProducto_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recIngredientes_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recIngredientexId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recIngredienteXProductoxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recInventarioxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recInventario_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recMesaPerfilxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recMesas_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recMesaxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recPerfiles_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recPerfilUsuarioxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recPerfilUsuario_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recProductosxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recProductos_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recProveedorxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recProveedor_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recTipo_ProductoxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recTipo_Producto_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recUsuarios_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recUsuarioxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipo_Producto.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Muncheese.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Muncheese.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

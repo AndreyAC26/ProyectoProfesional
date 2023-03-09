@@ -1,0 +1,50 @@
+﻿@model MVCMuncheese.Models.modeloFacturas
+
+@{
+    ViewBag.Title = "detalleFacturas_PA";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Factura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel_Cliente)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "modificarFacturas_PA", new { pId = Model.Id_Factura }) |
+    @Html.ActionLink("Atras", "listarFacturas_PA")
+</p>

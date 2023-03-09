@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Entidades.recFacturas_Result>
+
+@{
+    ViewBag.Title = "listarFacturas_PA";
+}
+
+<h2>Facturas</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "agregarFacturas_PA")
+</p>
+
+<p>
+    @Html.ActionLink("Factura", "Factura")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Factura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Orden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tel_Cliente)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Factura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Orden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tel_Cliente)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "modificarFacturas_PA", new { pId = item.Id_Factura }) |
+                @Html.ActionLink("Detalle", "detalleFacturas_PA", new { pId = item.Id_Factura }) |
+                @Html.ActionLink("Borrar", "eliminarFacturas_PA", new { pId = item.Id_Factura })
+            </td>
+        </tr>
+
+    }
+
+</table>

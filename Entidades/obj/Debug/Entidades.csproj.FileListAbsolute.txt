@@ -1,0 +1,6 @@
+C:\Proyecto Profesional Muncheese\Muncheese\Entidades\bin\Debug\Entidades.dll
+C:\Proyecto Profesional Muncheese\Muncheese\Entidades\bin\Debug\Entidades.pdb
+C:\Proyecto Profesional Muncheese\Muncheese\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Proyecto Profesional Muncheese\Muncheese\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Proyecto Profesional Muncheese\Muncheese\Entidades\obj\Debug\Entidades.dll
+C:\Proyecto Profesional Muncheese\Muncheese\Entidades\obj\Debug\Entidades.pdb

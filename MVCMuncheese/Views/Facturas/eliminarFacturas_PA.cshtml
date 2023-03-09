@@ -1,0 +1,63 @@
+﻿@model MVCMuncheese.Models.modeloFacturas
+
+@{
+    ViewBag.Title = "eliminarFacturas_PA";
+}
+
+<h2>Borrar</h2>
+<br />
+<h4>Factura</h4>
+<br />
+<h3>Estas seguro de querer borrar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Factura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel_Cliente)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("accionesPA", "Facturas", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id_Factura)
+
+        <div class="form-actions no-color">
+            <button type="submit" name="enviarAccion" value="Eliminar"
+                    class="btn btn-primary" title="Eliminar registro"
+                    data-toggle="tooltip" data-container="body" data-placement="right">
+                Eliminar
+            </button> |
+            @Html.ActionLink("Atras", "listarFacturas_PA")
+        </div>
+    }
+</div>

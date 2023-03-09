@@ -1,0 +1,57 @@
+﻿@model MVCMuncheese.Models.modeloClientes
+@{
+    ViewBag.Title = "detalleClientes_ENT";
+}
+
+<h2>Detalle</h2>
+<br />
+<div>
+    <h4>Clientes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido_1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido_1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido_2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido_2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "modificarClientes_ENT", new { pId = Model.Telefono }) |
+    @Html.ActionLink("Atras", "listarClientes_ENT")
+</p>

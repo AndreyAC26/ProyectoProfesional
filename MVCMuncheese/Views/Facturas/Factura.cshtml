@@ -1,0 +1,186 @@
+﻿@model MVCMuncheese.Models.modeloFacturas
+
+@{
+    ViewBag.Title = "Factura";
+    
+}
+
+
+<div>
+    <h3 style="text-align:center;">
+        Factura
+    </h3>
+</div>
+
+<nav class="navbar navbar-default col-md-12" style="padding-top:10px;">
+    <div class="container-fluid col-md-6" style="text-align:center">
+        <h4 class="info" style="font-size:12px;">Muncheese Street Food</h4>
+        <h4 class="info" style="font-size:10px;">Sarchi Centro Comercial Valverde Vega</h4>
+        <h4 class="info" style="font-size:10px;">Local #19 o donde nos inviten con el FoodTruck, Alajuela, Costa Rica</h4>
+
+    </div>
+
+    <div class="container-fluid col-md-6" style="text-align:center">
+        <br />
+        <div class="col-md-11">
+            <div class="form-group" style="float: right;">
+                <label for="codFactura" class="col-md-6 control-label" style="font-size:12px">Factura: </label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="codFactura" placeholder="" style="width:90px; height:20px">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group" style="float: right;">
+                <label for="fecha" class="col-md-3 control-label" style="font-size:12px;">Fecha:   </label>
+                <div class="col-md-5">
+                    <input type="date" class="form-control" id="fecha" placeholder="" style="width: 90px; height: 20px; font-size: 9px">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group" style="float: right;">
+                <label for="telefono" class="col-md-4 control-label" style="font-size:12px">Tel Cliente: </label>
+                <div class="col-lg-7">
+                    <input type="tel" class="form-control" id="telefono" placeholder="" style="width: 85px; height: 20px; font-size: 9px">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="col-md-12" style="text-align:center;">
+   
+
+    <table class="table table-striped table-hover ">
+        <thead>
+        </thead>
+        <tr>
+            <th></th>
+            <th>Cantidad</th>
+            <th>Descripción</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Orden</th>
+            <th>Estado</th>
+            <th>Total</th>
+
+        </tr>
+        <tbody>
+            <tr class="active">
+                <th>
+
+                </th>
+                <th>
+                    1
+                </th>
+                <th>
+                    Sin mostaza
+                </th>
+                <th>
+                    1
+                </th>
+                <th>
+                    4500
+                </th>
+                <th>
+                    2
+                </th>
+                <th>
+                    Comer aqui
+                </th>
+                <th>
+                    4500
+                </th>
+            </tr>
+            <tr class="active">
+                <th>
+
+                </th>
+                <th>
+                    3
+                </th>
+                <th>
+                    N/A
+                </th>
+                <th>
+                    3
+                </th>
+                <th>
+                    5000
+                </th>
+                <th>
+                    2
+                </th>
+                <th>
+                    Comer aqui
+                </th>
+                <th>
+                    15000
+                </th>
+            </tr>
+            <tr class="active">
+                <th>
+
+                </th>
+                <th>
+                    1
+                </th>
+                <th>
+                    Con muchas salsas
+                </th>
+                <th>
+                    1
+                </th>
+                <th>
+                    6500
+                </th>
+                <th>
+                    2
+                </th>
+                <th>
+                    Comer aqui
+                </th>
+                <th>
+                    6500
+                </th>
+            </tr>
+            <tr class="active">
+                <th>
+
+                </th>
+                <th>
+                     
+                </th>
+                <th>
+                     
+                </th>
+                <th>
+                     
+                </th>
+                <th>
+                     
+                </th>
+                <th>
+                     
+                </th>
+                <th style="text-align:right;">
+                    Total:
+                </th>
+                <th>
+                    26000
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-group col-md-12" style="text-align:right">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" class="btn btn-primary">Facturar</button>
+        </div>
+    </div>
+
+</div>
+

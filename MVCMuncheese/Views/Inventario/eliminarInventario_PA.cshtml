@@ -1,0 +1,71 @@
+﻿@model MVCMuncheese.Models.modeloInventario
+
+@{
+    ViewBag.Title = "eliminarInventario_PA";
+}
+
+<h2>Borrar</h2>
+<br />
+<h4>Inventario</h4>
+<br />
+<h3>Estas seguro de querer borrar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_inventario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_inventario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Ingrediente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Ingrediente)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("accionesPA", "Inventario", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id_inventario)
+
+        <div class="form-actions no-color">
+            <button type="submit" name="enviarAccion" value="Eliminar"
+                    class="btn btn-primary" title="Eliminar registro"
+                    data-toggle="tooltip" data-container="body" data-placement="right">
+                Eliminar
+            </button> |
+            @Html.ActionLink("Atras", "listarInventario_PA")
+        </div>
+    }
+</div>

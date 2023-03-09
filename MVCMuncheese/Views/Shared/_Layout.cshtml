@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+
+        footer {
+            position: absolute;
+            bottom: 0;
+/*            width: 100%;
+*/            height: 60px;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("<img src='/Img/Muncheese.png' alt='MuncheeseLogo' style='border-radius: 50%; height: 63px; width: 75px;' /> ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
+                @if (Convert.ToBoolean(Session["Logueado"]))
+                {
+                    @Html.ActionLink(" ", "Index", "Home", new { area = " " }, new { @class = "navbar-brand" })
+                    <a href="https://localhost:44354/Home/Index">
+                        <img style="border-radius: 50%;" src="~/Img/Muncheese.png" alt="MuncheeseLogo" height="63" width="75" />
+                    </a>
+                }
+                else
+                {
+                    @Html.ActionLink(" ", "cerrarSesion", "Home", new { area = " " }, new { @class = "navbar-brand" })
+                    <a href="@Url.Action("cerrarSesion", "Home")">
+                        <img style="border-radius: 50%;" src="@Url.Content("~/Img/Muncheese.png")" alt="MuncheeseLogo" height="63" width="75" />
+                    </a>
+                }
+
+                @*<a href="https://localhost:44354/Home/Index">
+            <img style="border-radius: 50%;" src="~/Img/Muncheese.png" alt="MuncheeseLogo" height="63" width="75" />
+        </a>*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+
+                    @if (Convert.ToBoolean(Session["Logueado"]))
+                    {
+                        @*<li>@Html.ActionLink(" ", "Index", "Home")</li>*@
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Caja", "TotalDia", "Home")</li>
+
+                    }
+                    else
+                    {
+                        @*<li>@Html.ActionLink(" ", "Index", "Home")</li>*@
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+
+                    }
+
+
+
+
+                    @if (Convert.ToBoolean(Session["blnMantenimiento"]))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mantenimiento <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Ingredientes", "listarIngredientes_PA", "Ingredientes")</li>
+                                <li>@Html.ActionLink("Tipo de Producto", "listarTipo_Producto_ENT", "Tipo_Producto")</li>
+                                <li>@Html.ActionLink("Productos", "listarProductos_ENT", "Productos")</li>
+                                <li>@Html.ActionLink("Ingredientes por Producto", "listarIngredienteXProducto_PA", "IngredienteXProducto")</li>
+                                <li>@Html.ActionLink("Estados", "listarEstado_PA", "Estado")</li>
+                                <li>@Html.ActionLink("Mesas", "listarMesas_PA", "Mesas")</li>
+                                <li>@Html.ActionLink("Ordenes", "listarOrdenes_ENT", "Ordenes")</li>
+                                <li>@Html.ActionLink("Clientes", "listarClientes_ENT", "Clientes")</li>
+                                <li>@Html.ActionLink("Proveedores", "listarProveedores_PA", "Proveedores")</li>
+                                <li>@Html.ActionLink("Perfiles", "listarPerfiles_PA", "Perfiles")</li>
+                                <li>@Html.ActionLink("Usuarios", "listarUsuarios_PA", "Usuarios")</li>
+                                <li>@Html.ActionLink("Perfil de Usuario", "listarPerfilUsuario_PA", "PerfilUsuario")</li>
+                                <li>@Html.ActionLink("Inventario", "listarInventario_PA", "Inventario")</li>
+                                <li>@Html.ActionLink("Facturas", "listarFacturas_PA", "Facturas")</li>
+                            </ul>
+                        </li>
+                    }
+
+
+                    @if (Convert.ToBoolean(Session["Logueado"]))
+                    {
+                        <li>@Html.ActionLink("Salir", "cerrarSesion", "Home")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>Creado por Andrey Arias &copy; UTC @DateTime.Now.Year - Muncheese Food Truck</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

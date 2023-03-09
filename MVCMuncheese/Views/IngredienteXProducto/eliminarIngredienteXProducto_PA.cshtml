@@ -1,0 +1,55 @@
+﻿@model MVCMuncheese.Models.modeloIngredienteXProducto
+
+@{
+    ViewBag.Title = "eliminarIngredienteXProducto_PA";
+}
+
+<h2>Borrar</h2>
+
+<h3>Estas seguro de borrar esto?</h3>
+<div>
+    <h4>Ingrediente por Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_ingredienteXproducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_ingredienteXproducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Ingrediente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Ingrediente)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("accionesPA", "IngredienteXProducto", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id_ingredienteXproducto)
+
+
+        <div class="form-actions no-color">
+            <button type="submit" name="enviarAccion" value="Eliminar"
+                    class="btn btn-primary" title="Eliminar registro"
+                    data-toggle="tooltip" data-container="body" data-placement="right">
+                Eliminar
+            </button> |
+            @Html.ActionLink("Atras", "listarIngredienteXProducto_PA")
+        </div>
+    }
+</div>

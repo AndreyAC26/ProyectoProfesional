@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Entidades.recTipo_Producto_Result>
+
+@{
+    ViewBag.Title = "listarTipo_Producto_PA";
+}
+
+<h2>listarTipo_Producto_PA</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "agregarTipo_Producto_PA")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_tipo_Producto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_tipo_pro)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_tipo_Producto)
+        </td>
+        <td>
+            <a href="~/Entidades.recProductos_Result.datasource">~/Entidades.recProductos_Result.datasource</a>
+            @Html.DisplayFor(modelItem => item.Nombre_tipo_pro)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "modificarTipo_Producto_PA", new { pId = item.Id_tipo_Producto }) |
+            @Html.ActionLink("Detalle", "detalleTipo_Producto_PA", new { pId = item.Id_tipo_Producto }) |
+            @Html.ActionLink("Borrar", "eliminarTipo_Producto_PA", new { pId = item.Id_tipo_Producto })
+        </td>
+    </tr>
+}
+
+</table>
