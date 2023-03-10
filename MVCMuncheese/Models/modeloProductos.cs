@@ -17,6 +17,7 @@ namespace MVCMuncheese.Models
 
         [Display(Name = "Tipo de producto")]
         public Nullable<int> Tipo_producto { get; set; }
+        public string Nombre_tipo_producto { get; set; } // propiedad para agregar el nombre del tipo producto
 
         [Display(Name = "Precio")]
         public Nullable<int> Precio { get; set; }

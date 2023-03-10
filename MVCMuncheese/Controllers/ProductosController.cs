@@ -46,9 +46,6 @@ namespace MVCMuncheese.Controllers
         }
 
 
-
-
-
         //*********ENTIDADES*********//
         public ActionResult listarProductos_ENT()
         {
@@ -70,6 +67,16 @@ namespace MVCMuncheese.Controllers
                             objModeloProductos.Tipo_producto = lcr.Tipo_producto;
                             objModeloProductos.Precio = lcr.Precio;
                             objModeloProductos.Descripcion = lcr.Descripcion;
+                           // Cambiamos el id de tipo producto por el nombre del tipo producto
+                            var tipoProducto = srvWCF_CR.recTipo_Producto_ENT().FirstOrDefault(t => t.Id_tipo_Producto == lcr.Tipo_producto);
+                            if (tipoProducto != null)
+                            {
+                                objModeloProductos.Nombre_tipo_producto = tipoProducto.Nombre_tipo_pro;
+                            }
+                            else
+                            {
+                                objModeloProductos.Nombre_tipo_producto = "Desconocido";
+                            }
                             lobjRespuestaModelo.Add(objModeloProductos);
                         }
                     }
@@ -82,6 +89,7 @@ namespace MVCMuncheese.Controllers
             }
             return View(lobjRespuestaModelo);
         }
+
         public ActionResult agregarProducto_ENT()
         {
             List<TablaViewModel> lst = null;
@@ -257,7 +265,7 @@ namespace MVCMuncheese.Controllers
                 gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
                     " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
             }
-            return View("listarProductos_ENT", lobjRespuestaModelo);
+            return RedirectToAction("listarProductos_ENT");
         }
 
         public ActionResult modificarPro_ENT(Productos pProductos)
@@ -298,7 +306,7 @@ namespace MVCMuncheese.Controllers
                 gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
                     " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
             }
-            return View("listarProductos_ENT", lobjRespuestaModelo);
+            return RedirectToAction("listarProductos_ENT");
         }
 
         public ActionResult eliminarPro_ENT(Productos pProductos)
@@ -339,7 +347,7 @@ namespace MVCMuncheese.Controllers
                 gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
                     " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
             }
-            return View("listarProductos_ENT", lobjRespuestaModelo);
+            return RedirectToAction("listarProductos_ENT");
         }
 
 

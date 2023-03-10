@@ -2,27 +2,27 @@
 
 @{
     ViewBag.Title = "agregarProductos_ENT";
-
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
 }
 
 <h2>Nuevo Producto</h2>
 
-
-@using (Html.BeginForm("accionesEntidades", "Productos", FormMethod.Post)) 
+@using MVCMuncheese.Models.ViewModels
+@using (Html.BeginForm("accionesEntidades", "Productos", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Productos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="form-group">
-            @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_producto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Id_producto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -35,8 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Tipo_producto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Tipo_producto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tipo_producto, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Tipo_producto, items, "Selecciona un tipo de producto", new { @class = "form-control" })
             </div>
         </div>
 

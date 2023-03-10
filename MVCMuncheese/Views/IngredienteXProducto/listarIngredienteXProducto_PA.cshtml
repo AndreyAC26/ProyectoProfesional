@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "listarIngredienteXProducto_PA";
 }
-
 <h2>Ingredientes por Producto</h2>
 
 <p>
@@ -11,9 +10,9 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_ingredienteXproducto)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Id_ingredienteXproducto)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Id_producto)
         </th>
@@ -23,23 +22,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_ingredienteXproducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_producto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Ingrediente)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "modificarIngredienteXProducto_PA", new { pId=item.Id_ingredienteXproducto }) |
-            @Html.ActionLink("Detalle", "detalleIngredienteXProducto_PA", new { pId = item.Id_ingredienteXproducto }) |
-            @Html.ActionLink("Borrar", "eliminarIngredienteXProducto_PA", new { pId = item.Id_ingredienteXproducto })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Id_ingredienteXproducto)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Ingrediente)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "modificarIngredienteXProducto_PA", new { pId = item.Id_ingredienteXproducto }) |
+                @Html.ActionLink("Detalle", "detalleIngredienteXProducto_PA", new { pId = item.Id_ingredienteXproducto }) |
+                @Html.ActionLink("Borrar", "eliminarIngredienteXProducto_PA", new { pId = item.Id_ingredienteXproducto })
+            </td>
+        </tr>
+    }
 
 </table>

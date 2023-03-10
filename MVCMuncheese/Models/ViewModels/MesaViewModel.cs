@@ -9,6 +9,7 @@ namespace MVCMuncheese.Models.ViewModels
     {
         public int NumeroMesa { get; set; }
         public Nullable<int> Estado { get; set; }
+        public string EstadoMesa { get; set; } // Nueva propiedad agregada
 
     }
 }

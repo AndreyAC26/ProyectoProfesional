@@ -6,7 +6,7 @@
 
 }
 
-<h2>agregarProducto_ENT</h2>
+<h2>Nuevo</h2>
 @using MVCMuncheese.Models.ViewModels 
 @using (Html.BeginForm("accionesEntidades", "Productos", FormMethod.Post)) 
 {
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Tipo_producto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Tipo_producto, items, "Selecciona un tipo de producto", new { @class = "dropdown-toggle" })
+                @Html.DropDownListFor(model => model.Tipo_producto, items, "Selecciona un tipo de producto", new { @class = "form-control" })
             </div>
         </div>
 

@@ -21,18 +21,36 @@
     }*@
 
 @*@foreach (var mesa in Model)
-{
-    <div class="col-md-3">
-        <button class="btn @((mesa.Estado == 6) ? "btn-danger" : "btn-success")" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
-            Mesa @mesa.NumeroMesa
-        </button>
-    </div>
-}*@
+    {
+        <div class="col-md-3">
+            <button class="btn @((mesa.Estado == 6) ? "btn-danger" : "btn-success")" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
+                Mesa @mesa.NumeroMesa
+            </button>
+        </div>
+    }*@
+
+@*@foreach (var mesa in Model)
+    {
+        <div class="col-md-3">
+            @if (mesa.Estado == "Ocupado")
+            {
+                <button class="btn-danger" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
+                    Mesa @mesa.NumeroMesa
+                </button>
+            }
+            else
+            {
+                <button class="btn-info" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
+                    Mesa @mesa.NumeroMesa
+                </button>
+            }
+        </div>
+    }*@
 
 @foreach (var mesa in Model)
 {
     <div class="col-md-3">
-        @if (mesa.Estado == "Ocupado")
+        @if (mesa.EstadoMesa == "Ocupado")
         {
             <button class="btn-danger" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
                 Mesa @mesa.NumeroMesa
@@ -40,7 +58,7 @@
         }
         else
         {
-            <button class="btn-info" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
+            <button class="btn-success" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
                 Mesa @mesa.NumeroMesa
             </button>
         }
@@ -49,7 +67,7 @@
 
 
 <div class="btn btn-default" style="float: right;">
-    @Html.ActionLink("Atras", "listarMesas_PA")
+    @Html.ActionLink("Atras", "listarMesas_PA", null, new { style = "color:white;" })
 </div>
 
 

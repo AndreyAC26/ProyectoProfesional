@@ -230,7 +230,7 @@ namespace MVCMuncheese.Controllers
                 gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
                     " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
             }
-            return View("listarOrdenes_ENT", lobjRespuestaModelo);
+            return RedirectToAction("listarOrdenes_ENT");
         }
 
         public ActionResult modificarOrd_ENT(Ordenes pOrdenes)
@@ -319,7 +319,7 @@ namespace MVCMuncheese.Controllers
                 gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
                     " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
             }
-            return View("listarOrdenes_ENT", lobjRespuestaModelo);
+            return RedirectToAction("listarOrdenes_ENT");
         }
 
 

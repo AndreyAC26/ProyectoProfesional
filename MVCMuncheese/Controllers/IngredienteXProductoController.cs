@@ -30,6 +30,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
+
             return View(lobjRespuesta);
         }
 

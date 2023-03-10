@@ -26,7 +26,9 @@ namespace MVCMuncheese.Controllers
                     lobjRespuesta = srvWCF_CR.recMesas_PA();
                     foreach (var mesa in lobjRespuesta)
                     {
-                        mesas.Add(new MesaViewModel { NumeroMesa = mesa.Id_Mesa});
+                        var estado = mesa.Estado == 1 ? "Activo" : "Ocupado"; // Nuevo código agregado
+                        mesas.Add(new MesaViewModel { NumeroMesa = mesa.Id_Mesa, Estado = mesa.Estado, EstadoMesa = estado });
+                        //mesas.Add(new MesaViewModel { NumeroMesa = mesa.Id_Mesa});
                     }
                 }
             }

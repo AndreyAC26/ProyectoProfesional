@@ -6,20 +6,18 @@
 
 <h2>Productos</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Nuevo", "agregarProductos_ENT")
-</p>
+</p>*@
 <p>
-    @Html.ActionLink("Crear", "agregarProducto_ENT")
+    @Html.ActionLink("Nuevo", "agregarProducto_ENT")
 </p>
-<p>
-    @Html.ActionLink("Index", "Index")
-</p>
+
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Id_producto)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
@@ -37,15 +35,18 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Id_producto)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tipo_producto)
+            @Html.DisplayFor(modelItem => item.Nombre_tipo_producto) <!-- Mostrar el nombre del Tipo_producto -->
         </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Tipo_producto)
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Precio)
         </td>
