@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entidades.recIngredientesXProducto_Result>
+﻿@model IEnumerable<MVCMuncheese.Models.modeloIngredienteXProducto>
 
 @{
     ViewBag.Title = "listarIngredienteXProducto_PA";
@@ -14,10 +14,10 @@
                 @Html.DisplayNameFor(model => model.Id_ingredienteXproducto)
             </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Id_producto)
+            @Html.DisplayNameFor(model => model.Nombre_Producto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Ingrediente)
+            @Html.DisplayNameFor(model => model.Nombre_Ingrediente)
         </th>
         <th></th>
     </tr>
@@ -29,10 +29,10 @@
                     @Html.DisplayFor(modelItem => item.Id_ingredienteXproducto)
                 </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.Id_producto)
+                @Html.DisplayFor(modelItem => item.Nombre_Producto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Id_Ingrediente)
+                @Html.DisplayFor(modelItem => item.Nombre_Ingrediente)
             </td>
             <td>
                 @Html.ActionLink("Editar", "modificarIngredienteXProducto_PA", new { pId = item.Id_ingredienteXproducto }) |

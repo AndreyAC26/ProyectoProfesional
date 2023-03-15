@@ -11,19 +11,36 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Ingrediente por Producto</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_ingredienteXproducto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_ingredienteXproducto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_ingredienteXproducto, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    <h4>Ingrediente por Producto</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id_ingredienteXproducto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Id_ingredienteXproducto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Id_ingredienteXproducto, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Id_producto, (SelectList)ViewBag.Productos, "-- Seleccione un producto --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id_Ingrediente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Id_Ingrediente, (SelectList)ViewBag.Ingredientes, "-- Seleccione un ingrediente --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id_Ingrediente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
             @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Id_producto, new { htmlAttributes = new { @class = "form-control" } })
@@ -37,18 +54,18 @@
                 @Html.EditorFor(model => model.Id_Ingrediente, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Id_Ingrediente, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" name="enviarAccion" value="Modificar"
-                        class="btn btn-primary" title="Modificar registro"
-                        data-toggle="tooltip" data-container="body" data-placement="right">
-                    Modificar
-                </button>
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" name="enviarAccion" value="Modificar"
+                    class="btn btn-primary" title="Modificar registro"
+                    data-toggle="tooltip" data-container="body" data-placement="right">
+                Modificar
+            </button>
         </div>
     </div>
+</div>
 }
 
 <div>
