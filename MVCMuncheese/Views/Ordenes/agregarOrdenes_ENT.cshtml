@@ -91,16 +91,20 @@
             <button type="submit" name="enviarAccion" value="Agregar"
                     class="btn btn-primary" title="Agregar nuevo registro"
                     data-toggle="tooltip" data-container="body" data-placement="right">
-                Agregar
+                Agregar |
+                @Html.ActionLink("Atras", "listarOrdenes_ENT")
             </button>
         </div>
+        @*<div>
+            @Html.ActionLink("Atras", "listarOrdenes_ENT")
+        </div>*@
     </div>
 </div>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Atras", "listarOrdenes_ENT")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
