@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entidades.recMesas_Result>
+﻿@model IEnumerable<MVCMuncheese.Models.modeloMesas>
 
 @{
     ViewBag.Title = "listarMesas_PA";
@@ -22,7 +22,7 @@
             @Html.DisplayNameFor(model => model.NombreMesa)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayNameFor(model => model.Estados)
         </th>
         <th></th>
     </tr>
@@ -36,7 +36,7 @@
             @Html.DisplayFor(modelItem => item.NombreMesa)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Estado)
+            @Html.DisplayFor(modelItem => item.Estados)
         </td>
         <td>
             @Html.ActionLink("Editar", "modificarMesas_PA", new { pId=item.Id_Mesa }) |

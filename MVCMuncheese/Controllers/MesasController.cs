@@ -39,10 +39,12 @@ namespace MVCMuncheese.Controllers
             return View(mesas);
         }
 
+
         //*********Procedimientos almacenados*********//
         public ActionResult listarMesas_PA()
         {
             List<recMesas_Result> lobjRespuesta = new List<recMesas_Result>();
+
             try
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
@@ -54,8 +56,36 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View(lobjRespuesta);
+
+            // Obtenemos la lista de estados
+            List<recEstados_Result> lobjEstados = new List<recEstados_Result>();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    lobjEstados = srvWCF_CR.recEstado_PA();
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+
+            // Unimos las dos listas mediante un join y seleccionamos los campos que nos interesan
+            var listaMesas = from mesa in lobjRespuesta
+                             join estado in lobjEstados
+                             on mesa.Estado equals estado.Id_Estado
+                             select new modeloMesas
+                             {
+                                 Id_Mesa = mesa.Id_Mesa,
+                                 NombreMesa = mesa.NombreMesa,
+                                 Estados = estado.Estado
+                             };
+
+            ViewBag.Estados = lobjEstados;
+            return View(listaMesas);
         }
+
 
         public ActionResult agregarMesas_PA()
         {

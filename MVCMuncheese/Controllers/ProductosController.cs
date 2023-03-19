@@ -146,6 +146,33 @@ namespace MVCMuncheese.Controllers
 
                 throw lEx;
             }
+            // Obtener la lista de tipos de producto y crear una lista de elementos SelectListItem
+            List<Entidades.Tipo_Producto> tiposProducto = new List<Entidades.Tipo_Producto>();
+            List<SelectListItem> items = new List<SelectListItem>();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    tiposProducto = srvWCF_CR.recTipo_Producto_ENT().ToList();
+                }
+
+                foreach (var tipo in tiposProducto)
+                {
+                    items.Add(new SelectListItem
+                    {
+                        Value = tipo.Id_tipo_Producto.ToString(),
+                        Text = tipo.Nombre_tipo_pro
+                    });
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+
+            // Agregar la lista de elementos SelectListItem al ViewBag
+            ViewBag.items = items;
+
             return View(lobjModeloProductos);
         }
 

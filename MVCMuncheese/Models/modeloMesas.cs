@@ -17,6 +17,7 @@ namespace MVCMuncheese.Models
 
         [Display(Name = "Estado")]
         public Nullable<int> Estado { get; set; }
+        public string Estados { get; set; }
 
     }
 }

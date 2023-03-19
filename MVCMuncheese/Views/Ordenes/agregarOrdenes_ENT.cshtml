@@ -91,9 +91,9 @@
             <button type="submit" name="enviarAccion" value="Agregar"
                     class="btn btn-primary" title="Agregar nuevo registro"
                     data-toggle="tooltip" data-container="body" data-placement="right">
-                Agregar |
-                @Html.ActionLink("Atras", "listarOrdenes_ENT")
+                Agregar
             </button>
+            <div class="btn btn-primary">@Html.ActionLink("Atras", "listarOrdenes_ENT", null, new { style = "color:white;" })</div>
         </div>
         @*<div>
             @Html.ActionLink("Atras", "listarOrdenes_ENT")
