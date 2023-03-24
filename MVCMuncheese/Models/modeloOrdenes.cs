@@ -36,5 +36,7 @@ namespace MVCMuncheese.Models
         [Display(Name = "Orden")]
         public string Tipo_orden { get; set; }
 
+        [Display(Name = "Categoria")]
+        public int Tipo_Producto { get; set; }
     }
 }

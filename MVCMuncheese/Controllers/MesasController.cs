@@ -89,8 +89,11 @@ namespace MVCMuncheese.Controllers
 
         public ActionResult agregarMesas_PA()
         {
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            ViewBag.Estado = new SelectList(db.recEstado_PA().ToList(), "Id_Estado", "Estado");
             return View();
         }
+
 
         public ActionResult modificarMesas_PA(int pId)
         {
@@ -114,6 +117,8 @@ namespace MVCMuncheese.Controllers
 
                 throw lEx;
             }
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            ViewBag.Estados = new SelectList(db.recEstado_PA(), "Id_Estado", "Estado", lobjRespuesta.Estado);
             return View(lobjRespuesta);
         }
 
@@ -209,6 +214,9 @@ namespace MVCMuncheese.Controllers
                     }
                     else
                     {
+
+                    }
+                    {
                         //enviar mensaje negativo
                     }
                     lobjRespuesta = srvWCF_CR.recMesas_PA();
@@ -218,7 +226,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarMesas_PA", lobjRespuesta);
+            return RedirectToAction("listarMesas_PA");
         }
 
         public ActionResult modificarMesa_PA(Mesas pMesas)

@@ -1,6 +1,7 @@
 ﻿@model MVCMuncheese.Models.modeloOrdenes
 @{
     ViewBag.Title = "Ordenes";
+    
 }
 
 <nav class="navbar navbar-default">
@@ -12,31 +13,50 @@
 <div class="jumbotron">
     <h3>Orden</h3>
     <form class="form-horizontal">
+        <script type="text/javascript">
+    function cargarProductos() {
+        var tipoProducto = $("#Tipo_Producto").val();
+        $.ajax({
+            url: '@Url.Action("obtenerProductosPorTipo", "OrdenesController")',
+            type: 'GET',
+            dataType: 'json',
+            data: { idTipoProducto: tipoProducto },
+            success: function (data) {
+                var productos = "<option value=''>- Productos -</option>";
+                $.each(data, function (i, item) {
+                    productos += "<option value='" + item.Id_producto + "'>" + item.Nombre + "</option>";
+                });
+                $("#Id_producto").html(productos);
+            }
+        });
+    }
+        </script>
+        
+
         <fieldset>
             <div class="col-md-12">
                 <div class="form-group col-md-4">
-                    @*<label for="inputEmail" class="col-lg-2 control-label">Email</label>*@
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Tipo de producto">
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, "- Categorias -", new { @class = "form-control", onchange = "cargarProductos()" })
+                        @Html.ValidationMessageFor(model => model.Tipo_Producto, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group col-md-4">
-                    @*<label for="inputPassword" class="col-lg-2 control-label">Password</label>*@
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputPassword" placeholder="Producto">
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Id_producto, Enumerable.Empty<SelectListItem>(), "- Productos -", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group col-md-4">
-                    @*<label for="inputPassword" class="col-lg-2 control-label">Password</label>*@
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputPassword" placeholder="Precio">
+                        <input type="number" class="form-control" id="inputPassword" placeholder="Precio">
                     </div>
                 </div>
 
             </div>
-         
+
         </fieldset>
     </form>
 
@@ -44,20 +64,22 @@
         <fieldset>
             <div class="col-md-12">
                 <div class="form-group col-md-4">
-                    @*<label for="inputEmail" class="col-lg-2 control-label">Email</label>*@
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Cantidad">
+                        <input type="number" class="form-control" id="Cantidad" placeholder="Cantidad">
                     </div>
                 </div>
 
                 <div class="form-group col-md-4">
-                    @*<label for="inputPassword" class="col-lg-2 control-label">Password</label>*@
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Tipo de Orden">
+                        <input type="text" class="form-control" id="TipoOrden" placeholder="Tipo de Orden">
                     </div>
                 </div>
 
-               
+                <div class="form-group col-md-4">
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="Mesa" placeholder="Mesa">
+                    </div>
+                </div>
 
             </div>
 
@@ -91,21 +113,19 @@
     </tr>
     <tbody>
         <tr class="active">
-            
         </tr>
         <tr class="active">
-            
         </tr>
         <tr class="active">
-           
         </tr>
         <tr class="active">
-            
         </tr>
     </tbody>
 </table>
 <div class="form-group col-md-12" style="text-align:right">
     <div class="col-lg-10 col-lg-offset-2">
         <button type="submit" class="btn btn-primary">Agregar</button>
+        <div class="btn btn-primary">@Html.ActionLink("Atras", "listarOrdenes_ENT", null, new { style = "color:white;" })</div>
     </div>
 </div>
+

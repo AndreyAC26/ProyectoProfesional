@@ -1,4 +1,6 @@
-﻿using Entidades;
+﻿using AccesoDatos.Implementacion;
+using AccesoDatos.Interfaces;
+using Entidades;
 using MVCMuncheese.Models;
 using NLog;
 using System;
@@ -18,8 +20,29 @@ namespace MVCMuncheese.Controllers
 
         public ActionResult Ordenes()
         {
+
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            ViewBag.Tipo_Producto = new SelectList(db.recTipo_Producto_PA().ToList(), "Id_tipo_producto", "Nombre_tipo_pro");
+            ViewBag.Producto = new SelectList(db.recProductos_ENT().ToList(), "Id_producto", "Nombre");
             return View();
         }
+
+        public JsonResult obtenerProductosPorTipo(int Id_tipo_producto)
+        {
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            var productos = db.recTipo_Producto_PA().ToList();
+            return Json(productos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult recProductosPorTipo(int id_tipo_producto)
+        {
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            var productos = db.recTipo_Producto_PA().ToList();
+            return Json(productos, JsonRequestBehavior.AllowGet);
+        }
+
+        
 
         //*********ENTIDADES*********//
         public ActionResult listarOrdenes_ENT()
