@@ -285,6 +285,7 @@
     <None Include="Connected Services\srvMuncheese\srvMuncheese2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Entidades.ObtenerProductosPorCategoria_Result.datasource" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

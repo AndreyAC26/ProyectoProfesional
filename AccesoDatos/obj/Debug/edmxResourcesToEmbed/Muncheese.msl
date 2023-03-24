@@ -209,6 +209,15 @@
     <FunctionImportMapping FunctionImportName="modTipo_Combo" FunctionName="MuncheeseModelo.Store.modTipo_Combo" />
     <FunctionImportMapping FunctionImportName="modTipo_Producto" FunctionName="MuncheeseModelo.Store.modTipo_Producto" />
     <FunctionImportMapping FunctionImportName="modUsuario" FunctionName="MuncheeseModelo.Store.modUsuario" />
+    <FunctionImportMapping FunctionImportName="ObtenerProductosPorCategoria" FunctionName="MuncheeseModelo.Store.ObtenerProductosPorCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MuncheeseModelo.ObtenerProductosPorCategoria_Result">
+          <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="recCliente" FunctionName="MuncheeseModelo.Store.recCliente">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.recCliente_Result">

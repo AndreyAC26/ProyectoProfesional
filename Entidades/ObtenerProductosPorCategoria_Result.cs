@@ -11,11 +11,12 @@ namespace Entidades
 {
     using System;
     
-    public partial class recFacturas_Result
+    public partial class ObtenerProductosPorCategoria_Result
     {
-        public int Id_Factura { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<int> Id_Orden { get; set; }
-        public string Tel_Cliente { get; set; }
+        public int Id_producto { get; set; }
+        public string Nombre { get; set; }
+        public Nullable<int> Precio { get; set; }
+
+ 
     }
 }

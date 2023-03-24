@@ -10,14 +10,10 @@
 namespace Entidades
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class recEstados_Result
     {
-        [Display(Name = "Codigo")]
         public int Id_Estado { get; set; }
-
-        [Display(Name = "Estado")]
         public string Estado { get; set; }
     }
 }

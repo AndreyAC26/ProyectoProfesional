@@ -9,7 +9,7 @@ namespace MVCMuncheese.Models
 {
     public class modeloOrdenes
     {
-        [Display(Name = "Codigo")]
+        [Display(Name = "Num. Orden")]
         public int Id_Orden { get; set; }
 
         [Display(Name = "Cantidad")]

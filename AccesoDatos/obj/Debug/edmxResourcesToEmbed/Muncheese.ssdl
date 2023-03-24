@@ -548,6 +548,9 @@
     <Parameter Name="Contraseña" Type="varchar" Mode="In" />
     <Parameter Name="Estado" Type="int" Mode="In" />
   </Function>
+  <Function Name="ObtenerProductosPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tipo_producto" Type="int" Mode="In" />
+  </Function>
   <Function Name="recCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="recClientexId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Telefono" Type="varchar" Mode="In" />

@@ -9,6 +9,7 @@ namespace LogicaNegocio.Interfaces
 {
     public interface IOrdenesLN
     {
+        ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId);
         List<Ordenes> recOrdenes_ENT();
         Ordenes recOrdenesXId_ENT(int pId);
         bool insOrdenes_ENT(Ordenes pOrdenes);

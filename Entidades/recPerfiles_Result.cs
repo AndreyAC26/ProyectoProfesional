@@ -10,14 +10,10 @@
 namespace Entidades
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class recPerfiles_Result
     {
-        [Display(Name = "Codigo")]
         public int Perfil_Id { get; set; }
-
-        [Display(Name = "Perfil")]
         public string nombre_perfil { get; set; }
     }
 }

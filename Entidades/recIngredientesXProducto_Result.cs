@@ -10,20 +10,11 @@
 namespace Entidades
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class recIngredientesXProducto_Result
     {
-        [Display(Name = "Codigo")]
         public int Id_ingredienteXproducto { get; set; }
-
-        [Display(Name = "Producto")]
         public int Id_producto { get; set; }
-        public string Nombre_Producto { get; set; }
-
-        [Display(Name = "Ingrediente")]
         public Nullable<int> Id_Ingrediente { get; set; }
-        public string Nombre_Ingrediente { get; set; }
-
     }
 }

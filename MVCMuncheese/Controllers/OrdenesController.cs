@@ -27,22 +27,17 @@ namespace MVCMuncheese.Controllers
             return View();
         }
 
-        public JsonResult obtenerProductosPorTipo(int Id_tipo_producto)
-        {
-            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
-            var productos = db.recTipo_Producto_PA().ToList();
-            return Json(productos, JsonRequestBehavior.AllowGet);
-        }
+        
 
         [HttpGet]
-        public JsonResult recProductosPorTipo(int id_tipo_producto)
+        public JsonResult obtenerProductosPorTipo(int idTipoProducto)
         {
             srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
-            var productos = db.recTipo_Producto_PA().ToList();
+            var productos = db.recProductos_ENT().Where(p => p.Tipo_producto == idTipoProducto).ToList();
+
             return Json(productos, JsonRequestBehavior.AllowGet);
         }
 
-        
 
         //*********ENTIDADES*********//
         public ActionResult listarOrdenes_ENT()

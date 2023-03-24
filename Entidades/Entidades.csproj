@@ -71,6 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
+    <Compile Include="ObtenerProductosPorCategoria_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
     <Compile Include="Ordenes.cs">
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>

@@ -49,6 +49,7 @@ namespace AccesoDatos.Implementacion
             }
             return lobjRespuesta;
         }
+
         public bool insIngredientes_PA(Ingredientes pIngredientes)
         {
             bool lobjRespuesta = false;

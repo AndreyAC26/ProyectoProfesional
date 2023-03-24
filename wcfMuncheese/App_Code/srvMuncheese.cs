@@ -808,6 +808,7 @@ public class srvMuncheese : IsrvMuncheese
         }
         return lobjRespuesta;
     }
+
     public bool insMesas_PA(Mesas pMesas)
     {
         bool lobjRespuesta = false;
@@ -852,6 +853,22 @@ public class srvMuncheese : IsrvMuncheese
 
 
     //**************ENTIDADES Ordenes**************//
+
+    //Productos por categoria
+    public ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId)
+    {
+        ObtenerProductosPorCategoria_Result lobjRespuesta = new ObtenerProductosPorCategoria_Result();
+        try
+        {
+            lobjRespuesta = gobjOrdenesLN.recObtenerProductosPorCategoria_ResultXId_PA(pId);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
     //Lista de Ordenes
     public List<Ordenes> recOrdenes_ENT()
     {

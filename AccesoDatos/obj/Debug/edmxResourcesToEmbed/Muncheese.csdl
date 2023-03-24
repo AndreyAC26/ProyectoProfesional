@@ -647,6 +647,9 @@
       <Parameter Name="Contraseña" Mode="In" Type="String" />
       <Parameter Name="Estado" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="ObtenerProductosPorCategoria" ReturnType="Collection(MuncheeseModelo.ObtenerProductosPorCategoria_Result)">
+      <Parameter Name="Tipo_producto" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="recCliente" ReturnType="Collection(MuncheeseModelo.recCliente_Result)" />
     <FunctionImport Name="recClientexId" ReturnType="Collection(MuncheeseModelo.recClientexId_Result)">
       <Parameter Name="Telefono" Mode="In" Type="String" />
@@ -749,6 +752,11 @@
   <ComplexType Name="InsertarTipoProducto_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />
     <Property Type="String" Name="Column2" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="ObtenerProductosPorCategoria_Result">
+    <Property Type="Int32" Name="Id_producto" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="Precio" Nullable="true" />
   </ComplexType>
   <ComplexType Name="recCliente_Result">
     <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />

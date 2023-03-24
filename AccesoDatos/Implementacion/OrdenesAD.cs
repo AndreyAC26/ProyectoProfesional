@@ -21,10 +21,28 @@ namespace AccesoDatos.Implementacion
             gObjConexionAW = lObjConexionAW;
         }
 
-        //**************ENTIDADES**************//
+      
+        //**************PROCEDIMIENTOS ALMACENADOS**************//
 
-        //Lista de todos los Ordenes
-        public List<Ordenes> recOrdenes_ENT()
+     
+        public ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultsXId_PA(int pId)
+        {
+          ObtenerProductosPorCategoria_Result lobjRespuesta = new ObtenerProductosPorCategoria_Result();
+            try
+            {
+               lobjRespuesta = gObjConexionAW.ObtenerProductosPorCategoria(pId).FirstOrDefault();
+            }
+            catch (Exception lEx)
+            {
+               throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+            //Entidades
+
+            //Lista de todos los Ordenes
+            public List<Ordenes> recOrdenes_ENT()
         {
             List<Ordenes> lobjRespuesta = new List<Ordenes>();
             try

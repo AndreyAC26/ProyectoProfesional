@@ -369,6 +369,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="recMesaxId_Result" nillable="true" type="tns:recMesaxId_Result" />
+  <xs:complexType name="ObtenerProductosPorCategoria_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id_producto" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Precio" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObtenerProductosPorCategoria_Result" nillable="true" type="tns:ObtenerProductosPorCategoria_Result" />
   <xs:complexType name="ArrayOfrecPerfiles_Result">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="recPerfiles_Result" nillable="true" type="tns:recPerfiles_Result" />

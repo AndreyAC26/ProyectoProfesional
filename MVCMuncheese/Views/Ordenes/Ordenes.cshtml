@@ -1,6 +1,7 @@
 ﻿@model MVCMuncheese.Models.modeloOrdenes
 @{
     ViewBag.Title = "Ordenes";
+
     
 }
 
@@ -17,7 +18,7 @@
     function cargarProductos() {
         var tipoProducto = $("#Tipo_Producto").val();
         $.ajax({
-            url: '@Url.Action("obtenerProductosPorTipo", "OrdenesController")',
+            url: '@Url.Action("obtenerProductosPorTipo", "Ordenes")',
             type: 'GET',
             dataType: 'json',
             data: { idTipoProducto: tipoProducto },
@@ -26,32 +27,39 @@
                 $.each(data, function (i, item) {
                     productos += "<option value='" + item.Id_producto + "'>" + item.Nombre + "</option>";
                 });
-                $("#Id_producto").html(productos);
+                $("#Id_producto").html(productos).removeAttr("disabled");
+            },
+            error: function () {
+                alert("Ocurrió un error al cargar los productos");
             }
         });
     }
         </script>
-        
-
         <fieldset>
             <div class="col-md-12">
                 <div class="form-group col-md-4">
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, "- Categorias -", new { @class = "form-control", onchange = "cargarProductos()" })
+                        @Html.LabelFor(model => model.Tipo_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, null, new
+                        {@*@style = "color: white;",*@ @id = "Tipo_Producto",
+                        @onchange = "cargarProductos();",
+                        @class = "form-control"
+                    })
                         @Html.ValidationMessageFor(model => model.Tipo_Producto, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group col-md-4">
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.Id_producto, Enumerable.Empty<SelectListItem>(), "- Productos -", new { @class = "form-control" })
+                        @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownListFor(model => model.Id_producto, new SelectList(string.Empty, "Id_producto", "Nombre"), "- Productos -", new { @id = "Id_producto", @disabled = "disabled", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
+                        @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
                         @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
                     </div>

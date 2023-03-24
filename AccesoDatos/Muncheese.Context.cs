@@ -15,6 +15,7 @@ namespace AccesoDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     using Entidades;
+    
     public partial class MuncheeseEntidades : DbContext
     {
         public MuncheeseEntidades()
@@ -862,6 +863,15 @@ namespace AccesoDatos
                 new ObjectParameter("Estado", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modUsuario", usuarioParameter, contraseñaParameter, estadoParameter);
+        }
+    
+        public virtual ObjectResult<ObtenerProductosPorCategoria_Result> ObtenerProductosPorCategoria(Nullable<int> tipo_producto)
+        {
+            var tipo_productoParameter = tipo_producto.HasValue ?
+                new ObjectParameter("Tipo_producto", tipo_producto) :
+                new ObjectParameter("Tipo_producto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerProductosPorCategoria_Result>("ObtenerProductosPorCategoria", tipo_productoParameter);
         }
     
         public virtual ObjectResult<recCliente_Result> recCliente()

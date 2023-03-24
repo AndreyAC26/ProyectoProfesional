@@ -315,6 +315,14 @@ namespace MVCMuncheese.srvMuncheese {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delMesas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delMesas_PAResponse")]
         System.Threading.Tasks.Task<bool> delMesas_PAAsync(Entidades.Mesas pMesas);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PAResp" +
+            "onse")]
+        Entidades.ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PAResp" +
+            "onse")]
+        System.Threading.Tasks.Task<Entidades.ObtenerProductosPorCategoria_Result> recObtenerProductosPorCategoria_ResultXId_PAAsync(int pId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recOrdenes_ENT", ReplyAction="http://tempuri.org/IsrvMuncheese/recOrdenes_ENTResponse")]
         System.Collections.Generic.List<Entidades.Ordenes> recOrdenes_ENT();
         
@@ -927,6 +935,14 @@ namespace MVCMuncheese.srvMuncheese {
         
         public System.Threading.Tasks.Task<bool> delMesas_PAAsync(Entidades.Mesas pMesas) {
             return base.Channel.delMesas_PAAsync(pMesas);
+        }
+        
+        public Entidades.ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId) {
+            return base.Channel.recObtenerProductosPorCategoria_ResultXId_PA(pId);
+        }
+        
+        public System.Threading.Tasks.Task<Entidades.ObtenerProductosPorCategoria_Result> recObtenerProductosPorCategoria_ResultXId_PAAsync(int pId) {
+            return base.Channel.recObtenerProductosPorCategoria_ResultXId_PAAsync(pId);
         }
         
         public System.Collections.Generic.List<Entidades.Ordenes> recOrdenes_ENT() {

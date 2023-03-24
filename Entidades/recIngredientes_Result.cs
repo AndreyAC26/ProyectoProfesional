@@ -10,14 +10,10 @@
 namespace Entidades
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class recIngredientes_Result
     {
-        [Display(Name = "Codigo")]
         public int Id_Ingrediente { get; set; }
-
-        [Display(Name = "Nombre")]
         public string Nombre_Ingrediente { get; set; }
     }
 }

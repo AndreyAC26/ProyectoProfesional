@@ -307,6 +307,12 @@
   <wsdl:message name="IsrvMuncheese_delMesas_PA_OutputMessage">
     <wsdl:part name="parameters" element="tns:delMesas_PAResponse" />
   </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recObtenerProductosPorCategoria_ResultXId_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recObtenerProductosPorCategoria_ResultXId_PAResponse" />
+  </wsdl:message>
   <wsdl:message name="IsrvMuncheese_recOrdenes_ENT_InputMessage">
     <wsdl:part name="parameters" element="tns:recOrdenes_ENT" />
   </wsdl:message>
@@ -693,6 +699,10 @@
     <wsdl:operation name="delMesas_PA">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delMesas_PA" message="tns:IsrvMuncheese_delMesas_PA_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delMesas_PAResponse" message="tns:IsrvMuncheese_delMesas_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recObtenerProductosPorCategoria_ResultXId_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA" message="tns:IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PAResponse" message="tns:IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="recOrdenes_ENT">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recOrdenes_ENT" message="tns:IsrvMuncheese_recOrdenes_ENT_InputMessage" />
@@ -1264,6 +1274,15 @@
     </wsdl:operation>
     <wsdl:operation name="delMesas_PA">
       <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delMesas_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recObtenerProductosPorCategoria_ResultXId_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

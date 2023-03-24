@@ -10,17 +10,11 @@
 namespace Entidades
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class recMesas_Result
     {
-        [Display(Name = "Codigo")]
         public int Id_Mesa { get; set; }
-
-        [Display(Name = "Mesa")]
         public string NombreMesa { get; set; }
-
-        [Display(Name = "Estado")]
         public Nullable<int> Estado { get; set; }
     }
 }

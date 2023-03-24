@@ -19,6 +19,23 @@ namespace LogicaNegocio.Implementacion
 
         private readonly IOrdenesAD gobjOrdenesAD = new OrdenesAD(_objContextoAW);
 
+        //**************PROCEDIMIENTOS ALMACENADOS**************//
+        
+        public ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId)
+        {
+            ObtenerProductosPorCategoria_Result lobjRespuesta = new ObtenerProductosPorCategoria_Result();
+            try
+            {
+                lobjRespuesta = gobjOrdenesAD.recObtenerProductosPorCategoria_ResultsXId_PA(pId);
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+
         //**************ENTIDADES**************//
 
         //Lista de Ordenes

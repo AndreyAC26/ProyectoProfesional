@@ -10,23 +10,13 @@
 namespace Entidades
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class recInventario_Result
     {
-        [Display(Name = "Codigo")]
         public int Id_inventario { get; set; }
-
-        [Display(Name = "Producto")]
         public string Nombre_Producto { get; set; }
-
-        [Display(Name = "Cantidad")]
         public Nullable<int> Cantidad { get; set; }
-
-        [Display(Name = "Codigo Producto")]
         public Nullable<int> Id_Producto { get; set; }
-
-        [Display(Name = "Codigo Ingrediente")]
         public Nullable<int> Id_Ingrediente { get; set; }
     }
 }

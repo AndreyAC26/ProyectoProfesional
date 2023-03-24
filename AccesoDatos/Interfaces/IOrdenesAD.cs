@@ -9,6 +9,7 @@ namespace AccesoDatos.Interfaces
 {
     public interface IOrdenesAD
     {
+       ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultsXId_PA(int pId);
         List<Ordenes> recOrdenes_ENT();
         Ordenes recOrdenesXId_ENT(int pId);
         bool insOrdenes_ENT(Ordenes pOrdenes);
