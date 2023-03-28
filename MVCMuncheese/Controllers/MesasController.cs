@@ -28,7 +28,6 @@ namespace MVCMuncheese.Controllers
                     {
                         var estado = mesa.Estado == 1 ? "Activo" : "Ocupado"; // Nuevo código agregado
                         mesas.Add(new MesaViewModel { NumeroMesa = mesa.Id_Mesa, Estado = mesa.Estado, EstadoMesa = estado });
-                        //mesas.Add(new MesaViewModel { NumeroMesa = mesa.Id_Mesa});
                     }
                 }
             }
@@ -37,6 +36,18 @@ namespace MVCMuncheese.Controllers
                 throw lEx;
             }
             return View(mesas);
+        }
+
+        private modeloMesas ConvertirAModeloMesas(recMesas_Result mesa, List<recEstados_Result> estados)
+        {
+            var estado = estados.FirstOrDefault(e => e.Id_Estado == mesa.Estado);
+            return new modeloMesas
+            {
+                Id_Mesa = mesa.Id_Mesa,
+                NombreMesa = mesa.NombreMesa,
+                Estado = mesa.Estado,
+                Estados = estado != null ? estado.Estado : ""
+            };
         }
 
 
@@ -71,16 +82,23 @@ namespace MVCMuncheese.Controllers
                 throw lEx;
             }
 
-            // Unimos las dos listas mediante un join y seleccionamos los campos que nos interesan
-            var listaMesas = from mesa in lobjRespuesta
-                             join estado in lobjEstados
-                             on mesa.Estado equals estado.Id_Estado
-                             select new modeloMesas
-                             {
-                                 Id_Mesa = mesa.Id_Mesa,
-                                 NombreMesa = mesa.NombreMesa,
-                                 Estados = estado.Estado
-                             };
+            //// Unimos las dos listas mediante un join y seleccionamos los campos que nos interesan
+            //var listaMesas = from mesa in lobjRespuesta
+            //                 join estado in lobjEstados
+            //                 on mesa.Estado equals estado.Id_Estado
+            //                 select new modeloMesas
+            //                 {
+            //                     Id_Mesa = mesa.Id_Mesa,
+            //                     NombreMesa = mesa.NombreMesa,
+            //                     Estados = estado.Estado
+            //                 };
+
+            // Convertir cada objeto recMesas_Result a modeloMesas
+            var listaMesas = new List<modeloMesas>();
+            foreach (var mesa in lobjRespuesta)
+            {
+                listaMesas.Add(ConvertirAModeloMesas(mesa, lobjEstados));
+            }
 
             ViewBag.Estados = lobjEstados;
             return View(listaMesas);
@@ -236,6 +254,7 @@ namespace MVCMuncheese.Controllers
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
+
                     if (srvWCF_CR.modMesas_PA(pMesas))
                     {
                         //enviar mensaje positivo
@@ -251,7 +270,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarMesas_PA", lobjRespuesta);
+            return RedirectToAction("listarMesas_PA");
         }
 
         public ActionResult eliminarMesa_PA(Mesas pMesas)
@@ -276,7 +295,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarMesas_PA", lobjRespuesta);
+            return RedirectToAction("listarMesas_PA");
         }
 
     }

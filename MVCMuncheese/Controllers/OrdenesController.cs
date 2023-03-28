@@ -2,6 +2,7 @@
 using AccesoDatos.Interfaces;
 using Entidades;
 using MVCMuncheese.Models;
+using MVCMuncheese.Models.ViewModels;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,26 @@ namespace MVCMuncheese.Controllers
 
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
-        public ActionResult Ordenes()
+        public ActionResult Ordenes(int mesa)
         {
+            // Obtener información de la mesa seleccionada usando el número de mesa recibido como parámetro
+            MesaViewModel mesaSeleccionada = null;
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    var resultado = srvWCF_CR.recMesaXId_PA(mesa);
+                    var estado = resultado.Estado == 1 ? "Activo" : "Ocupado";
+                    mesaSeleccionada = new MesaViewModel { NumeroMesa = resultado.Id_Mesa, Estado = resultado.Estado, EstadoMesa = estado };
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+
+            // Crear un nuevo modelo de vista de orden con la información de la mesa seleccionada
+            var modeloOrdenes = new modeloOrdenes { Mesa = mesa };
 
             srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
             ViewBag.Tipo_Producto = new SelectList(db.recTipo_Producto_PA().ToList(), "Id_tipo_producto", "Nombre_tipo_pro");
@@ -37,6 +56,20 @@ namespace MVCMuncheese.Controllers
 
             return Json(productos, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public JsonResult obtenerPrecioPorProducto(int idProducto)
+        {
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            var producto = db.recProductos_ENT().FirstOrDefault(p => p.Id_producto == idProducto);
+            if (producto != null)
+            {
+                return Json(producto.Precio, JsonRequestBehavior.AllowGet);
+            }
+            return Json(0, JsonRequestBehavior.AllowGet);
+        }
+
 
 
         //*********ENTIDADES*********//
@@ -206,6 +239,7 @@ namespace MVCMuncheese.Controllers
                     return RedirectToAction("listarOrdenes_ENT");
             }
         }
+   
 
         public ActionResult insertarOrd_ENT(Ordenes pOrdenes)
         {

@@ -1,8 +1,6 @@
 ﻿@model MVCMuncheese.Models.modeloOrdenes
 @{
     ViewBag.Title = "Ordenes";
-
-    
 }
 
 <nav class="navbar navbar-default">
@@ -12,7 +10,9 @@
 </nav>
 
 <div class="jumbotron">
-    <h3>Orden</h3>
+    <div>
+        <h3>Orden</h3>
+    </div>
     <form class="form-horizontal">
         <script type="text/javascript">
     function cargarProductos() {
@@ -28,12 +28,31 @@
                     productos += "<option value='" + item.Id_producto + "'>" + item.Nombre + "</option>";
                 });
                 $("#Id_producto").html(productos).removeAttr("disabled");
+
             },
             error: function () {
                 alert("Ocurrió un error al cargar los productos");
             }
         });
+            }
+
+            function cargarPrecio() {
+    var producto = $("#Id_producto").val();
+    if (producto != null && producto != "") {
+        $.ajax({
+            url: '@Url.Action("obtenerPrecioPorProducto", "Ordenes")',
+            type: 'GET',
+            dataType: 'json',
+            data: { idProducto: producto },
+            success: function (data) {
+                $("#Precio").val(data);
+            },
+            error: function () {
+                alert("Ocurrió un error al cargar el precio");
+            }
+        });
     }
+}
         </script>
         <fieldset>
             <div class="col-md-12">
@@ -41,7 +60,7 @@
                     <div class="col-md-10">
                         @Html.LabelFor(model => model.Tipo_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
                         @Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, null, new
-                        {@*@style = "color: white;",*@ @id = "Tipo_Producto",
+                        { @id = "Tipo_Producto",
                         @onchange = "cargarProductos();",
                         @class = "form-control"
                     })
@@ -52,7 +71,8 @@
                 <div class="form-group col-md-4">
                     <div class="col-md-10">
                         @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.DropDownListFor(model => model.Id_producto, new SelectList(string.Empty, "Id_producto", "Nombre"), "- Productos -", new { @id = "Id_producto", @disabled = "disabled", @class = "form-control" })
+                        @Html.DropDownListFor(model => model.Id_producto, new SelectList(string.Empty, "Id_producto", "Nombre"), "- Productos -", new { @id = "Id_producto", @disabled = "disabled", @class = "form-control", @onChange = "cargarPrecio();" })
+                        @*@Html.DropDownListFor(model => model.Id_producto, new SelectList(string.Empty, "Id_producto", "Nombre"), "- Productos -", new { @id = "Id_producto", @disabled = "disabled", @class = "form-control" })*@
                         @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -74,14 +94,19 @@
         <fieldset>
             <div class="col-md-12">
                 <div class="form-group col-md-4">
-                    <div class="col-lg-10">
-                        <input type="number" class="form-control" id="Cantidad" placeholder="Cantidad">
-                    </div>
-                </div>
+            <div class="col-lg-10">
+                <input type="number" class="form-control" id="Cantidad" placeholder="Selecciona una Cantidad" min="1" max="10" step="1">
+            </div>
+        </div>
+               
 
                 <div class="form-group col-md-4">
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="TipoOrden" placeholder="Tipo de Orden">
+                        <select class="form-control" id="TipoOrden">
+                            <option value="">Tipo de Orden</option>
+                            <option value="Para llevar">Para llevar</option>
+                            <option value="Comer aquí">Comer aquí</option>
+                        </select>
                     </div>
                 </div>
 
@@ -135,7 +160,7 @@
 <div class="form-group col-md-12" style="text-align:right">
     <div class="col-lg-10 col-lg-offset-2">
         <button type="submit" class="btn btn-primary">Agregar</button>
-        <div class="btn btn-primary">@Html.ActionLink("Atras", "listarOrdenes_ENT", null, new { style = "color:white;" })</div>
+        <div class="btn btn-primary">@Html.ActionLink("Atras", "Mesas", "Mesas", null, new { style = "color:white;" })</div>
     </div>
 </div>
 

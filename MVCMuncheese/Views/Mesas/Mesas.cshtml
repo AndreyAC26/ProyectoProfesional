@@ -11,64 +11,46 @@
 
 <br />
 
-@*@foreach (var mesa in Model)
-    {
-        <div class="col-md-3">
-            <button class="btn-success" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
-                Mesa @mesa.NumeroMesa
-            </button>
-        </div>
-    }*@
+<style>
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+</style>
 
-@*@foreach (var mesa in Model)
-    {
-        <div class="col-md-3">
-            <button class="btn @((mesa.Estado == 6) ? "btn-danger" : "btn-success")" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
-                Mesa @mesa.NumeroMesa
-            </button>
-        </div>
-    }*@
-
-@*@foreach (var mesa in Model)
-    {
-        <div class="col-md-3">
-            @if (mesa.Estado == "Ocupado")
-            {
-                <button class="btn-danger" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
-                    Mesa @mesa.NumeroMesa
-                </button>
-            }
-            else
-            {
-                <button class="btn-info" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
-                    Mesa @mesa.NumeroMesa
-                </button>
-            }
-        </div>
-    }*@
+<script>
+    $(function () {
+        $('.link button').click(function () {
+            var mesaId = $(this).data('id');
+            $('.link[data-id="' + mesaId + '"] .hidden-link')[0].click();
+        });
+    });
+</script>
 
 @foreach (var mesa in Model)
 {
     <div class="col-md-3">
-        @if (mesa.EstadoMesa == "Ocupado")
-        {
-            <button class="btn-danger" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
-                Mesa @mesa.NumeroMesa
-            </button>
-        }
-        else
-        {
-            <button class="btn-success" style="height: 150px; width: 285px; border-radius:5%; margin-bottom:4px">
-                Mesa @mesa.NumeroMesa
-            </button>
-        }
+        <div class="link">
+            @if (mesa.EstadoMesa == "Ocupado")
+            {
+                <a href="@Url.Action("Ordenes", "Ordenes", new { mesa = mesa.NumeroMesa })" class="btn btn-danger" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;">
+                    Mesa @mesa.NumeroMesa
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Ordenes", "Ordenes", new { mesa = mesa.NumeroMesa })" class="btn btn-success" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px; ">
+                    Mesa @mesa.NumeroMesa
+                </a>
+            }
+        </div>
+       
     </div>
-}
 
+}
 
 <div class="btn btn-default" style="float: right;">
     @Html.ActionLink("Atras", "listarMesas_PA", null, new { style = "color:white;" })
 </div>
-
-
-
