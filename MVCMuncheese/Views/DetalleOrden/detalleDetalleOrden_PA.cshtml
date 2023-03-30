@@ -1,0 +1,81 @@
+﻿@model MVCMuncheese.Models.modeloDetalleOrden
+
+@{
+    ViewBag.Title = "detalleDetalleOrden_PA";
+}
+
+
+<div>
+    <h4>Detalle de Orden</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "modificarDetalleOrden_PA", new { pId = Model.Id_Detalle }) |
+    @Html.ActionLink("Atras", "listarDetalleOrden_PA")
+</p>

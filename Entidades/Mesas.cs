@@ -14,18 +14,10 @@ namespace Entidades
     
     public partial class Mesas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Mesas()
-        {
-            this.Ordenes = new HashSet<Ordenes>();
-        }
-    
         public int Id_Mesa { get; set; }
         public string NombreMesa { get; set; }
         public Nullable<int> Estado { get; set; }
     
         public virtual Estado Estado1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ordenes> Ordenes { get; set; }
     }
 }

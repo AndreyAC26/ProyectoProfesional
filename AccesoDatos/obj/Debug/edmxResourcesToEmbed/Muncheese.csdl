@@ -11,6 +11,22 @@
     <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Clientes" FromRole="Clientes" ToRole="Facturas" />
   </EntityType>
+  <EntityType Name="DetalleOrden">
+    <Key>
+      <PropertyRef Name="Id_Detalle" />
+      <PropertyRef Name="Id_Orden" />
+    </Key>
+    <Property Name="Id_Detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Orden" Type="Int32" Nullable="false" />
+    <Property Name="Id_producto" Type="Int32" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Mesa" Type="Int32" />
+    <Property Name="Precio" Type="Int32" />
+    <Property Name="Tipo_orden" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ordenes" Relationship="Self.FK_DetalleOrden_Ordenes" FromRole="DetalleOrden" ToRole="Ordenes" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_DetalleOrden_Productos" FromRole="DetalleOrden" ToRole="Productos" />
+  </EntityType>
   <EntityType Name="Estado">
     <Key>
       <PropertyRef Name="Id_Estado" />
@@ -72,24 +88,17 @@
     <Property Name="NombreMesa" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
     <Property Name="Estado" Type="Int32" />
     <NavigationProperty Name="Estado1" Relationship="Self.FK_Mesas_Estado" FromRole="Mesas" ToRole="Estado" />
-    <NavigationProperty Name="Ordenes" Relationship="Self.FK_Ordenes_Mesas" FromRole="Mesas" ToRole="Ordenes" />
   </EntityType>
   <EntityType Name="Ordenes">
     <Key>
       <PropertyRef Name="Id_Orden" />
     </Key>
     <Property Name="Id_Orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Cantidad" Type="Int32" />
-    <Property Name="Descipcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Mesa" Type="Int32" />
-    <Property Name="Precio" Type="Int32" />
     <Property Name="Estado" Type="Int32" />
-    <Property Name="Id_producto" Type="Int32" />
-    <Property Name="Tipo_orden" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DetalleOrden" Relationship="Self.FK_DetalleOrden_Ordenes" FromRole="Ordenes" ToRole="DetalleOrden" />
     <NavigationProperty Name="Estado1" Relationship="Self.FK_Ordenes_Estado" FromRole="Ordenes" ToRole="Estado" />
     <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Ordenes" FromRole="Ordenes" ToRole="Facturas" />
-    <NavigationProperty Name="Mesas" Relationship="Self.FK_Ordenes_Mesas" FromRole="Ordenes" ToRole="Mesas" />
-    <NavigationProperty Name="Productos" Relationship="Self.FK_Ordenes_Productos" FromRole="Ordenes" ToRole="Productos" />
   </EntityType>
   <EntityType Name="Perfiles">
     <Key>
@@ -118,9 +127,9 @@
     <Property Name="Tipo_producto" Type="Int32" />
     <Property Name="Precio" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DetalleOrden" Relationship="Self.FK_DetalleOrden_Productos" FromRole="Productos" ToRole="DetalleOrden" />
     <NavigationProperty Name="Ingredientes_X_Producto" Relationship="Self.FK_Ingredientes_X_Producto_Productos" FromRole="Productos" ToRole="Ingredientes_X_Producto" />
     <NavigationProperty Name="Inventario" Relationship="Self.FK_Inventario_Productos" FromRole="Productos" ToRole="Inventario" />
-    <NavigationProperty Name="Ordenes" Relationship="Self.FK_Ordenes_Productos" FromRole="Productos" ToRole="Ordenes" />
     <NavigationProperty Name="Tipo_Producto1" Relationship="Self.FK_Productos_Tipo_Producto" FromRole="Productos" ToRole="Tipo_Producto" />
   </EntityType>
   <EntityType Name="Proveedor">
@@ -171,6 +180,30 @@
       </Principal>
       <Dependent Role="Facturas">
         <PropertyRef Name="Tel_Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleOrden_Ordenes">
+    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="1" />
+    <End Role="DetalleOrden" Type="Self.DetalleOrden" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ordenes">
+        <PropertyRef Name="Id_Orden" />
+      </Principal>
+      <Dependent Role="DetalleOrden">
+        <PropertyRef Name="Id_Orden" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleOrden_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="DetalleOrden" Type="Self.DetalleOrden" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_producto" />
+      </Principal>
+      <Dependent Role="DetalleOrden">
+        <PropertyRef Name="Id_producto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -270,30 +303,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Ordenes_Mesas">
-    <End Role="Mesas" Type="Self.Mesas" Multiplicity="0..1" />
-    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Mesas">
-        <PropertyRef Name="Id_Mesa" />
-      </Principal>
-      <Dependent Role="Ordenes">
-        <PropertyRef Name="Mesa" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Ordenes_Productos">
-    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
-    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Productos">
-        <PropertyRef Name="Id_producto" />
-      </Principal>
-      <Dependent Role="Ordenes">
-        <PropertyRef Name="Id_producto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PerfilUsuario_Perfiles">
     <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="0..1" />
     <End Role="PerfilUsuario" Type="Self.PerfilUsuario" Multiplicity="*" />
@@ -332,6 +341,7 @@
   </Association>
   <EntityContainer Name="MuncheeseEntidades" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="DetalleOrden" EntityType="Self.DetalleOrden" />
     <EntitySet Name="Estado" EntityType="Self.Estado" />
     <EntitySet Name="Facturas" EntityType="Self.Facturas" />
     <EntitySet Name="Ingredientes" EntityType="Self.Ingredientes" />
@@ -349,6 +359,14 @@
     <AssociationSet Name="FK_Facturas_Clientes" Association="Self.FK_Facturas_Clientes">
       <End Role="Clientes" EntitySet="Clientes" />
       <End Role="Facturas" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleOrden_Ordenes" Association="Self.FK_DetalleOrden_Ordenes">
+      <End Role="Ordenes" EntitySet="Ordenes" />
+      <End Role="DetalleOrden" EntitySet="DetalleOrden" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleOrden_Productos" Association="Self.FK_DetalleOrden_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleOrden" EntitySet="DetalleOrden" />
     </AssociationSet>
     <AssociationSet Name="FK_Mesas_Estado" Association="Self.FK_Mesas_Estado">
       <End Role="Estado" EntitySet="Estado" />
@@ -382,14 +400,6 @@
       <End Role="Productos" EntitySet="Productos" />
       <End Role="Inventario" EntitySet="Inventario" />
     </AssociationSet>
-    <AssociationSet Name="FK_Ordenes_Mesas" Association="Self.FK_Ordenes_Mesas">
-      <End Role="Mesas" EntitySet="Mesas" />
-      <End Role="Ordenes" EntitySet="Ordenes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Ordenes_Productos" Association="Self.FK_Ordenes_Productos">
-      <End Role="Productos" EntitySet="Productos" />
-      <End Role="Ordenes" EntitySet="Ordenes" />
-    </AssociationSet>
     <AssociationSet Name="FK_PerfilUsuario_Perfiles" Association="Self.FK_PerfilUsuario_Perfiles">
       <End Role="Perfiles" EntitySet="Perfiles" />
       <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
@@ -407,6 +417,9 @@
     </FunctionImport>
     <FunctionImport Name="delCombo">
       <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delDetalleOrden">
+      <Parameter Name="Id_Detalle" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="delEstado">
       <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
@@ -465,6 +478,15 @@
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="Tipo_combo" Mode="In" Type="Int32" />
       <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insDetalleOrden">
+      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Mesa" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Tipo_orden" Mode="In" Type="String" />
       <Parameter Name="Descripcion" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="InsertarTipoProducto" ReturnType="Collection(MuncheeseModelo.InsertarTipoProducto_Result)">
@@ -565,6 +587,16 @@
       <Parameter Name="Precio" Mode="In" Type="Int32" />
       <Parameter Name="Descripcion" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="modDetalleOrden">
+      <Parameter Name="Id_Detalle" Mode="In" Type="Int32" />
+      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+      <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Mesa" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Tipo_orden" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="modEstado">
       <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
       <Parameter Name="Estado" Mode="In" Type="String" />
@@ -657,6 +689,10 @@
     <FunctionImport Name="recCombos" />
     <FunctionImport Name="recCombosxId">
       <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="recDetalleOrden" ReturnType="Collection(MuncheeseModelo.recDetalleOrden_Result)" />
+    <FunctionImport Name="recDetalleOrdenxId" ReturnType="Collection(MuncheeseModelo.recDetalleOrdenxId_Result)">
+      <Parameter Name="Id_Detalle" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="recEstados" ReturnType="Collection(MuncheeseModelo.recEstados_Result)" />
     <FunctionImport Name="recEstadoxId" ReturnType="Collection(MuncheeseModelo.recEstadoxId_Result)">
@@ -771,6 +807,26 @@
     <Property Type="String" Name="Apellido_1" Nullable="true" MaxLength="15" />
     <Property Type="String" Name="Apellido_2" Nullable="true" MaxLength="15" />
     <Property Type="String" Name="Direccion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="recDetalleOrden_Result">
+    <Property Type="Int32" Name="Id_Detalle" Nullable="false" />
+    <Property Type="Int32" Name="Id_Orden" Nullable="false" />
+    <Property Type="Int32" Name="Id_producto" Nullable="true" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="Int32" Name="Mesa" Nullable="true" />
+    <Property Type="Int32" Name="Precio" Nullable="true" />
+    <Property Type="String" Name="Tipo_orden" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="recDetalleOrdenxId_Result">
+    <Property Type="Int32" Name="Id_Detalle" Nullable="false" />
+    <Property Type="Int32" Name="Id_Orden" Nullable="false" />
+    <Property Type="Int32" Name="Id_producto" Nullable="true" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="Int32" Name="Mesa" Nullable="true" />
+    <Property Type="Int32" Name="Precio" Nullable="true" />
+    <Property Type="String" Name="Tipo_orden" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
   </ComplexType>
   <ComplexType Name="recEstados_Result">
     <Property Type="Int32" Name="Id_Estado" Nullable="false" />

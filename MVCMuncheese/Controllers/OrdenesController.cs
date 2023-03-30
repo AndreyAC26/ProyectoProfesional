@@ -89,23 +89,8 @@ namespace MVCMuncheese.Controllers
                         {
                             objModeloOrdenes = new modeloOrdenes();
                             objModeloOrdenes.Id_Orden = lcr.Id_Orden;
-                            objModeloOrdenes.Cantidad = lcr.Cantidad;
-                            objModeloOrdenes.Descipcion = lcr.Descipcion;
-                            objModeloOrdenes.Mesa = lcr.Mesa;
-                            objModeloOrdenes.Precio = lcr.Precio;
                             objModeloOrdenes.Estado = lcr.Estado;
-                            objModeloOrdenes.Id_producto = lcr.Id_producto;
-                            objModeloOrdenes.Tipo_orden = lcr.Tipo_orden;
-
-                            // Obtener el nombre del producto
-                            using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR2 = new srvMuncheese.IsrvMuncheeseClient())
-                            {
-                                Productos producto = srvWCF_CR2.recProductos_ENT().Where(x => x.Id_producto == lcr.Id_producto).FirstOrDefault();
-                                if (producto != null)
-                                {
-                                    objModeloOrdenes.Nombre_producto = producto.Nombre;
-                                }
-                            }
+                            objModeloOrdenes.Fecha = (DateTime)lcr.Fecha;
 
                             lobjRespuestaModelo.Add(objModeloOrdenes);
                         }
@@ -136,13 +121,9 @@ namespace MVCMuncheese.Controllers
                     lobjRespuesta = srvWCF_CR.recOrdenesXId_ENT(pId);
                     lobjModeloOrdenes = new modeloOrdenes();
                     lobjModeloOrdenes.Id_Orden = lobjRespuesta.Id_Orden;
-                    lobjModeloOrdenes.Cantidad = lobjRespuesta.Cantidad;
-                    lobjModeloOrdenes.Descipcion = lobjRespuesta.Descipcion;
-                    lobjModeloOrdenes.Mesa = lobjRespuesta.Mesa;
-                    lobjModeloOrdenes.Precio = lobjRespuesta.Precio;
+                    lobjModeloOrdenes.Id_Orden = lobjRespuesta.Id_Orden;
                     lobjModeloOrdenes.Estado = lobjRespuesta.Estado;
-                    lobjModeloOrdenes.Id_producto = lobjRespuesta.Id_producto;
-                    lobjModeloOrdenes.Tipo_orden = lobjRespuesta.Tipo_orden;
+                    lobjModeloOrdenes.Fecha = (DateTime)lobjRespuesta.Fecha;
                 }
             }
             catch (Exception lEx)
@@ -164,13 +145,8 @@ namespace MVCMuncheese.Controllers
                     lobjRespuesta = srvWCF_CR.recOrdenesXId_ENT(pId);
                     lobjModeloOrdenes = new modeloOrdenes();
                     lobjModeloOrdenes.Id_Orden = lobjRespuesta.Id_Orden;
-                    lobjModeloOrdenes.Cantidad = lobjRespuesta.Cantidad;
-                    lobjModeloOrdenes.Descipcion = lobjRespuesta.Descipcion;
-                    lobjModeloOrdenes.Mesa = lobjRespuesta.Mesa;
-                    lobjModeloOrdenes.Precio = lobjRespuesta.Precio;
                     lobjModeloOrdenes.Estado = lobjRespuesta.Estado;
-                    lobjModeloOrdenes.Id_producto = lobjRespuesta.Id_producto; 
-                    lobjModeloOrdenes.Tipo_orden = lobjRespuesta.Tipo_orden;
+                    lobjModeloOrdenes.Fecha = (DateTime)lobjRespuesta.Fecha;
 
                 }
             }
@@ -193,13 +169,8 @@ namespace MVCMuncheese.Controllers
                     lobjRespuesta = srvWCF_CR.recOrdenesXId_ENT(pId);
                     lobjModeloOrdenes = new modeloOrdenes();
                     lobjModeloOrdenes.Id_Orden = lobjRespuesta.Id_Orden;
-                    lobjModeloOrdenes.Cantidad = lobjRespuesta.Cantidad;
-                    lobjModeloOrdenes.Descipcion = lobjRespuesta.Descipcion;
-                    lobjModeloOrdenes.Mesa = lobjRespuesta.Mesa;
-                    lobjModeloOrdenes.Precio = lobjRespuesta.Precio;
                     lobjModeloOrdenes.Estado = lobjRespuesta.Estado;
-                    lobjModeloOrdenes.Id_producto = lobjRespuesta.Id_producto;
-                    lobjModeloOrdenes.Tipo_orden = lobjRespuesta.Tipo_orden;
+                    lobjModeloOrdenes.Fecha = (DateTime)lobjRespuesta.Fecha;
 
                 }
             }
@@ -217,13 +188,8 @@ namespace MVCMuncheese.Controllers
         {
             Ordenes pOrdenes = new Ordenes();
             pOrdenes.Id_Orden = pModeloOrdenes.Id_Orden;
-            pOrdenes.Cantidad = pModeloOrdenes.Cantidad;
-            pOrdenes.Descipcion = pModeloOrdenes.Descipcion;
-            pOrdenes.Mesa = pModeloOrdenes.Mesa;
-            pOrdenes.Precio = pModeloOrdenes.Precio;
             pOrdenes.Estado = pModeloOrdenes.Estado;
-            pOrdenes.Id_producto = pModeloOrdenes.Id_producto;
-            pOrdenes.Tipo_orden = pModeloOrdenes.Tipo_orden;
+            pOrdenes.Fecha = pModeloOrdenes.Fecha;
 
 
 
@@ -239,7 +205,24 @@ namespace MVCMuncheese.Controllers
                     return RedirectToAction("listarOrdenes_ENT");
             }
         }
-   
+
+            [HttpPost]
+            public JsonResult insertarOrde_ENT(Ordenes pOrden)
+            {
+                try
+                {
+                    using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                    {
+                        srvWCF_CR.insOrdenes_ENT(pOrden);
+                    }
+                    return Json(new { success = true });
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, errorMessage = ex.Message });
+                }
+            }
+
 
         public ActionResult insertarOrd_ENT(Ordenes pOrdenes)
         {
@@ -249,6 +232,7 @@ namespace MVCMuncheese.Controllers
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
+                   
                     if (srvWCF_CR.insOrdenes_ENT(pOrdenes))
                     {
                         //enviar mensaje positivo
@@ -265,13 +249,8 @@ namespace MVCMuncheese.Controllers
                         {
                             objModeloOrdenes = new modeloOrdenes();
                             objModeloOrdenes.Id_Orden = lcr.Id_Orden;
-                            objModeloOrdenes.Cantidad = lcr.Cantidad;
-                            objModeloOrdenes.Descipcion = lcr.Descipcion;
-                            objModeloOrdenes.Mesa = lcr.Mesa;
-                            objModeloOrdenes.Precio = lcr.Precio;
                             objModeloOrdenes.Estado = lcr.Estado;
-                            objModeloOrdenes.Id_producto = lcr.Id_producto;
-                            objModeloOrdenes.Tipo_orden = lcr.Tipo_orden;
+                            objModeloOrdenes.Fecha = (DateTime)lcr.Fecha;
                             lobjRespuestaModelo.Add(objModeloOrdenes);
                         }
                     }
@@ -309,13 +288,8 @@ namespace MVCMuncheese.Controllers
                         {
                             objModeloOrdenes = new modeloOrdenes();
                             objModeloOrdenes.Id_Orden = lcr.Id_Orden;
-                            objModeloOrdenes.Cantidad = lcr.Cantidad;
-                            objModeloOrdenes.Descipcion = lcr.Descipcion;
-                            objModeloOrdenes.Mesa = lcr.Mesa;
-                            objModeloOrdenes.Precio = lcr.Precio;
                             objModeloOrdenes.Estado = lcr.Estado;
-                            objModeloOrdenes.Id_producto = lcr.Id_producto;
-                            objModeloOrdenes.Tipo_orden = lcr.Tipo_orden;
+                            objModeloOrdenes.Fecha = (DateTime)lcr.Fecha;
                             lobjRespuestaModelo.Add(objModeloOrdenes);
                         }
                     }
@@ -354,13 +328,8 @@ namespace MVCMuncheese.Controllers
                         {
                             objModeloOrdenes = new modeloOrdenes();
                             objModeloOrdenes.Id_Orden = lcr.Id_Orden;
-                            objModeloOrdenes.Cantidad = lcr.Cantidad;
-                            objModeloOrdenes.Descipcion = lcr.Descipcion;
-                            objModeloOrdenes.Mesa = lcr.Mesa;
-                            objModeloOrdenes.Precio = lcr.Precio;
                             objModeloOrdenes.Estado = lcr.Estado;
-                            objModeloOrdenes.Id_producto = lcr.Id_producto;
-                            objModeloOrdenes.Tipo_orden = lcr.Tipo_orden;
+                            objModeloOrdenes.Fecha = (DateTime)lcr.Fecha;
                             lobjRespuestaModelo.Add(objModeloOrdenes);
                         }
                     }

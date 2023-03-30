@@ -215,6 +215,42 @@ public interface IsrvMuncheese
     [OperationContract]
     bool delOrdenes_ENT(Ordenes pOrdenes);
 
+    //**************PROCEDIMIENTOS ALMACENADOS DetalleOrden**************//
+
+    [OperationContract]
+    List<recDetalleOrden_Result> recDetalleOrden_PA();
+
+    [OperationContract]
+    recDetalleOrdenxId_Result recDetalleOrdenXId_PA(int pId);
+
+    [OperationContract]
+    bool insDetalleOrden_PA(DetalleOrden pDetalleOrden);
+
+    [OperationContract]
+    bool modDetalleOrden_PA(DetalleOrden pDetalleOrden);
+
+    [OperationContract]
+    bool delDetalleOrden_PA(DetalleOrden pDetalleOrden);
+
+
+    //**************ENTIDADES DetalleOrden**************//
+    [OperationContract]
+    List<DetalleOrden> recDetalleOrden_ENT();
+
+    [OperationContract]
+    DetalleOrden recDetalleOrdenXId_ENT(int pId);
+
+    [OperationContract]
+    bool insDetalleOrden_ENT(DetalleOrden pDetalleOrden);
+
+    [OperationContract]
+    bool modDetalleOrden_ENT(DetalleOrden pDetalleOrden);
+
+    [OperationContract]
+    bool delDetalleOrden_ENT(DetalleOrden pDetalleOrden);
+
+
+
 
     //**************PROCEDIMIENTOS ALMACENADOS Perfiles**************//
 

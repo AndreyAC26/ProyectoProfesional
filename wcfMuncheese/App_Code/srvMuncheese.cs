@@ -21,6 +21,7 @@ public class srvMuncheese : IsrvMuncheese
     private readonly IEstadoLN gobjEstadoLN = new EstadoLN();
     private readonly IMesasLN gobjMesasLN = new MesasLN();
     private readonly IOrdenesLN gobjOrdenesLN = new OrdenesLN();
+    private readonly IDetalleOrdenLN gobjDetalleOrdenLN = new DetalleOrdenLN();
     private readonly IPerfilesLN gobjPerfilesLN = new PerfilesLN();
     private readonly IUsuariosLN gobjUsuariosLN = new UsuariosLN();
     private readonly IPerfilUsuarioLN gobjPerfilUsuarioLN = new PerfilUsuarioLN();
@@ -326,90 +327,6 @@ public class srvMuncheese : IsrvMuncheese
         }
         return lobjRespuesta;
     }
-
-    //**************PROCEDIMIENTOS ALMACENADOS Productos**************//
-    //public List<recProductos_Result> recProductos_PA()
-    //{
-    //    List<recProductos_Result> lobjRespuesta = new List<recProductos_Result>();
-    //    try
-    //    {
-    //        lobjRespuesta = gobjProductosLN.recProductos_PA();
-    //    }
-    //    catch (Exception lEx)
-    //    {
-    //        throw lEx;
-    //    }
-    //    return lobjRespuesta;
-    //}
-
-    //public recProductosxId_Result recProductosXId_PA(int pId)
-    //{
-    //    recProductosxId_Result lobjRespuesta = new recProductosxId_Result();
-    //    try
-    //    {
-    //        lobjRespuesta = gobjProductosLN.recProductosXId_PA(pId);
-    //    }
-    //    catch (Exception lEx)
-    //    {
-    //        throw lEx;
-    //    }
-    //    return lobjRespuesta;
-    //}
-    //public bool insProductos_PA(Productos pProductos)
-    //{
-    //    bool lobjRespuesta = false;
-    //    try
-    //    {
-    //        lobjRespuesta = gobjProductosLN.insProductos_PA(pProductos);
-    //    }
-    //    catch (Exception lEx)
-    //    {
-    //        throw lEx;
-    //    }
-    //    return lobjRespuesta;
-    //}
-
-    //public bool insertProductos_PA(Productos pProductos)
-    //{
-    //    bool lobjRespuesta = false;
-    //    try
-    //    {
-    //        lobjRespuesta = gobjProductosLN.insertProductos_PA(pProductos);
-    //    }
-    //    catch (Exception lEx)
-    //    {
-    //        throw lEx;
-    //    }
-    //    return lobjRespuesta;
-    //}
-
-    //public bool modProductos_PA(Productos pProductos)
-    //{
-    //    bool lobjRespuesta = false;
-    //    try
-    //    {
-    //        lobjRespuesta = gobjProductosLN.modProductos_PA(pProductos);
-    //    }
-    //    catch (Exception lEx)
-    //    {
-    //        throw lEx;
-    //    }
-    //    return lobjRespuesta;
-    //}
-
-    //public bool delProductos_PA(Productos pProductos)
-    //{
-    //    bool lobjRespuesta = false;
-    //    try
-    //    {
-    //        lobjRespuesta = gobjProductosLN.delProductos_PA(pProductos);
-    //    }
-    //    catch (Exception lEx)
-    //    {
-    //        throw lEx;
-    //    }
-    //    return lobjRespuesta;
-    //}
 
 
     //**************ENTIDADES Productos**************//
@@ -943,6 +860,158 @@ public class srvMuncheese : IsrvMuncheese
         }
         return lobjRespuesta;
     }
+
+
+    //**************PROCEDIMIENTOS ALMACENADOS DetalleOrden**************//
+    public List<recDetalleOrden_Result> recDetalleOrden_PA()
+    {
+        List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.recDetalleOrden_PA();
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    public recDetalleOrdenxId_Result recDetalleOrdenXId_PA(int pId)
+    {
+        recDetalleOrdenxId_Result lobjRespuesta = new recDetalleOrdenxId_Result();
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.recDetalleOrdenXId_PA(pId);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+    public bool insDetalleOrden_PA(DetalleOrden pDetalleOrden)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.insDetalleOrden_PA(pDetalleOrden);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    public bool modDetalleOrden_PA(DetalleOrden pDetalleOrden)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.modDetalleOrden_PA(pDetalleOrden);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    public bool delDetalleOrden_PA(DetalleOrden pDetalleOrden)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.delDetalleOrden_PA(pDetalleOrden);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+
+    //**************ENTIDADES DetalleOrden**************//
+
+
+
+    //Lista de DetalleOrden
+    public List<DetalleOrden> recDetalleOrden_ENT()
+    {
+        List<DetalleOrden> lobjRespuesta = new List<DetalleOrden>();
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.recDetalleOrden_ENT();
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    //DetalleOrden por ID
+    public DetalleOrden recDetalleOrdenXId_ENT(int pId)
+    {
+        DetalleOrden lobjRespuesta = new DetalleOrden();
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.recDetalleOrdenXId_ENT(pId);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    //Insertar DetalleOrden
+    public bool insDetalleOrden_ENT(DetalleOrden pDetalleOrden)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.insDetalleOrden_ENT(pDetalleOrden);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    //Modificar DetalleOrden
+    public bool modDetalleOrden_ENT(DetalleOrden pDetalleOrden)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.modDetalleOrden_ENT(pDetalleOrden);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    //Borrar DetalleOrden
+    public bool delDetalleOrden_ENT(DetalleOrden pDetalleOrden)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.insDetalleOrden_ENT(pDetalleOrden);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
 
     //**************PROCEDIMIENTOS ALMACENADOS Perfiles**************//
     public List<recPerfiles_Result> recPerfiles_PA()

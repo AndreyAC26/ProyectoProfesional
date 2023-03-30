@@ -45,6 +45,9 @@
     <Compile Include="Clientes.cs">
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
+    <Compile Include="DetalleOrden.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
     <Compile Include="Estado.cs">
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
@@ -94,6 +97,12 @@
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
     <Compile Include="recCliente_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recDetalleOrdenxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recDetalleOrden_Result.cs">
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
     <Compile Include="recEstados_Result.cs">

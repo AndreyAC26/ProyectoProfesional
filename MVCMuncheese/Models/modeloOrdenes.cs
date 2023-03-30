@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +13,12 @@ namespace MVCMuncheese.Models
         [Display(Name = "Num. Orden")]
         public int Id_Orden { get; set; }
 
+        [Display(Name = "Estado")]
+        public Nullable<int> Estado { get; set; }
+
+        [Display(Name = "Fecha")]
+        public DateTime Fecha { get; set; }
+
         [Display(Name = "Cantidad")]
         public Nullable<int> Cantidad { get; set; }
 
@@ -24,8 +31,6 @@ namespace MVCMuncheese.Models
         [Display(Name = "Precio")]
         public Nullable<int> Precio { get; set; }
 
-        [Display(Name = "Estado")]
-        public Nullable<int> Estado { get; set; }
 
         [Display(Name = "Producto")]
         public Nullable<int> Id_producto { get; set; }
@@ -38,5 +43,15 @@ namespace MVCMuncheese.Models
 
         [Display(Name = "Categoria")]
         public int Tipo_Producto { get; set; }
+
+        public List<Orden> Ordenes { get; set; }
+    }
+
+    public class Orden
+    {
+        public int Tipo_Producto { get; set; }
+        public int Id_producto { get; set; }
+        public int Cantidad { get; set; }
+        public decimal Precio { get; set; }
     }
 }

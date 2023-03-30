@@ -15,7 +15,6 @@ namespace AccesoDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     using Entidades;
-    
     public partial class MuncheeseEntidades : DbContext
     {
         public MuncheeseEntidades()
@@ -29,6 +28,7 @@ namespace AccesoDatos
         }
     
         public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<DetalleOrden> DetalleOrden { get; set; }
         public virtual DbSet<Estado> Estado { get; set; }
         public virtual DbSet<Facturas> Facturas { get; set; }
         public virtual DbSet<Ingredientes> Ingredientes { get; set; }
@@ -60,6 +60,15 @@ namespace AccesoDatos
                 new ObjectParameter("Id_combo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("delCombo", id_comboParameter);
+        }
+    
+        public virtual int delDetalleOrden(Nullable<int> id_Detalle)
+        {
+            var id_DetalleParameter = id_Detalle.HasValue ?
+                new ObjectParameter("Id_Detalle", id_Detalle) :
+                new ObjectParameter("Id_Detalle", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("delDetalleOrden", id_DetalleParameter);
         }
     
         public virtual int delEstado(Nullable<int> id_Estado)
@@ -245,6 +254,39 @@ namespace AccesoDatos
                 new ObjectParameter("Descripcion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insCombo", id_comboParameter, nombreParameter, tipo_comboParameter, precioParameter, descripcionParameter);
+        }
+    
+        public virtual int insDetalleOrden(Nullable<int> id_Orden, Nullable<int> id_producto, Nullable<int> cantidad, Nullable<int> mesa, Nullable<int> precio, string tipo_orden, string descripcion)
+        {
+            var id_OrdenParameter = id_Orden.HasValue ?
+                new ObjectParameter("Id_Orden", id_Orden) :
+                new ObjectParameter("Id_Orden", typeof(int));
+    
+            var id_productoParameter = id_producto.HasValue ?
+                new ObjectParameter("Id_producto", id_producto) :
+                new ObjectParameter("Id_producto", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            var mesaParameter = mesa.HasValue ?
+                new ObjectParameter("Mesa", mesa) :
+                new ObjectParameter("Mesa", typeof(int));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(int));
+    
+            var tipo_ordenParameter = tipo_orden != null ?
+                new ObjectParameter("Tipo_orden", tipo_orden) :
+                new ObjectParameter("Tipo_orden", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insDetalleOrden", id_OrdenParameter, id_productoParameter, cantidadParameter, mesaParameter, precioParameter, tipo_ordenParameter, descripcionParameter);
         }
     
         public virtual ObjectResult<InsertarTipoProducto_Result> InsertarTipoProducto(string nombre_tipo_pro)
@@ -582,6 +624,43 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modCombos", id_comboParameter, nombreParameter, tipo_comboParameter, precioParameter, descripcionParameter);
         }
     
+        public virtual int modDetalleOrden(Nullable<int> id_Detalle, Nullable<int> id_Orden, Nullable<int> id_producto, Nullable<int> cantidad, Nullable<int> mesa, Nullable<int> precio, string tipo_orden, string descripcion)
+        {
+            var id_DetalleParameter = id_Detalle.HasValue ?
+                new ObjectParameter("Id_Detalle", id_Detalle) :
+                new ObjectParameter("Id_Detalle", typeof(int));
+    
+            var id_OrdenParameter = id_Orden.HasValue ?
+                new ObjectParameter("Id_Orden", id_Orden) :
+                new ObjectParameter("Id_Orden", typeof(int));
+    
+            var id_productoParameter = id_producto.HasValue ?
+                new ObjectParameter("Id_producto", id_producto) :
+                new ObjectParameter("Id_producto", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            var mesaParameter = mesa.HasValue ?
+                new ObjectParameter("Mesa", mesa) :
+                new ObjectParameter("Mesa", typeof(int));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(int));
+    
+            var tipo_ordenParameter = tipo_orden != null ?
+                new ObjectParameter("Tipo_orden", tipo_orden) :
+                new ObjectParameter("Tipo_orden", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modDetalleOrden", id_DetalleParameter, id_OrdenParameter, id_productoParameter, cantidadParameter, mesaParameter, precioParameter, tipo_ordenParameter, descripcionParameter);
+        }
+    
         public virtual int modEstado(Nullable<int> id_Estado, string estado)
         {
             var id_EstadoParameter = id_Estado.HasValue ?
@@ -900,6 +979,20 @@ namespace AccesoDatos
                 new ObjectParameter("Id_combo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("recCombosxId", id_comboParameter);
+        }
+    
+        public virtual ObjectResult<recDetalleOrden_Result> recDetalleOrden()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recDetalleOrden_Result>("recDetalleOrden");
+        }
+    
+        public virtual ObjectResult<recDetalleOrdenxId_Result> recDetalleOrdenxId(Nullable<int> id_Detalle)
+        {
+            var id_DetalleParameter = id_Detalle.HasValue ?
+                new ObjectParameter("Id_Detalle", id_Detalle) :
+                new ObjectParameter("Id_Detalle", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recDetalleOrdenxId_Result>("recDetalleOrdenxId", id_DetalleParameter);
         }
     
         public virtual ObjectResult<recEstados_Result> recEstados()

@@ -12,6 +12,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DetalleOrden">
+      <EntityTypeMapping TypeName="MuncheeseModelo.DetalleOrden">
+        <MappingFragment StoreEntitySet="DetalleOrden">
+          <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+          <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+          <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Mesa" ColumnName="Mesa" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Tipo_orden" ColumnName="Tipo_orden" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Estado">
       <EntityTypeMapping TypeName="MuncheeseModelo.Estado">
         <MappingFragment StoreEntitySet="Estado">
@@ -71,13 +85,8 @@
       <EntityTypeMapping TypeName="MuncheeseModelo.Ordenes">
         <MappingFragment StoreEntitySet="Ordenes">
           <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
-          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-          <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
-          <ScalarProperty Name="Mesa" ColumnName="Mesa" />
-          <ScalarProperty Name="Precio" ColumnName="Precio" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
-          <ScalarProperty Name="Tipo_orden" ColumnName="Tipo_orden" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -151,6 +160,7 @@
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="DELCliente" FunctionName="MuncheeseModelo.Store.DELCliente" />
     <FunctionImportMapping FunctionImportName="delCombo" FunctionName="MuncheeseModelo.Store.delCombo" />
+    <FunctionImportMapping FunctionImportName="delDetalleOrden" FunctionName="MuncheeseModelo.Store.delDetalleOrden" />
     <FunctionImportMapping FunctionImportName="delEstado" FunctionName="MuncheeseModelo.Store.delEstado" />
     <FunctionImportMapping FunctionImportName="delFactura" FunctionName="MuncheeseModelo.Store.delFactura" />
     <FunctionImportMapping FunctionImportName="delIngrediente" FunctionName="MuncheeseModelo.Store.delIngrediente" />
@@ -168,6 +178,7 @@
     <FunctionImportMapping FunctionImportName="delUsuario" FunctionName="MuncheeseModelo.Store.delUsuario" />
     <FunctionImportMapping FunctionImportName="insCliente" FunctionName="MuncheeseModelo.Store.insCliente" />
     <FunctionImportMapping FunctionImportName="insCombo" FunctionName="MuncheeseModelo.Store.insCombo" />
+    <FunctionImportMapping FunctionImportName="insDetalleOrden" FunctionName="MuncheeseModelo.Store.insDetalleOrden" />
     <FunctionImportMapping FunctionImportName="InsertarTipoProducto" FunctionName="MuncheeseModelo.Store.InsertarTipoProducto">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.InsertarTipoProducto_Result">
@@ -194,6 +205,7 @@
     <FunctionImportMapping FunctionImportName="insUsuario" FunctionName="MuncheeseModelo.Store.insUsuario" />
     <FunctionImportMapping FunctionImportName="modCliente" FunctionName="MuncheeseModelo.Store.modCliente" />
     <FunctionImportMapping FunctionImportName="modCombos" FunctionName="MuncheeseModelo.Store.modCombos" />
+    <FunctionImportMapping FunctionImportName="modDetalleOrden" FunctionName="MuncheeseModelo.Store.modDetalleOrden" />
     <FunctionImportMapping FunctionImportName="modEstado" FunctionName="MuncheeseModelo.Store.modEstado" />
     <FunctionImportMapping FunctionImportName="modFactura" FunctionName="MuncheeseModelo.Store.modFactura" />
     <FunctionImportMapping FunctionImportName="modIngrediente" FunctionName="MuncheeseModelo.Store.modIngrediente" />
@@ -242,6 +254,34 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="recCombos" FunctionName="MuncheeseModelo.Store.recCombos" />
     <FunctionImportMapping FunctionImportName="recCombosxId" FunctionName="MuncheeseModelo.Store.recCombosxId" />
+    <FunctionImportMapping FunctionImportName="recDetalleOrden" FunctionName="MuncheeseModelo.Store.recDetalleOrden">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MuncheeseModelo.recDetalleOrden_Result">
+          <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+          <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+          <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Mesa" ColumnName="Mesa" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Tipo_orden" ColumnName="Tipo_orden" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="recDetalleOrdenxId" FunctionName="MuncheeseModelo.Store.recDetalleOrdenxId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MuncheeseModelo.recDetalleOrdenxId_Result">
+          <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+          <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+          <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Mesa" ColumnName="Mesa" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Tipo_orden" ColumnName="Tipo_orden" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="recEstados" FunctionName="MuncheeseModelo.Store.recEstados">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.recEstados_Result">

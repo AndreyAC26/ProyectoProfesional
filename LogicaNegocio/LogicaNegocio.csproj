@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementacion\ClientesLN.cs" />
+    <Compile Include="Implementacion\DetalleOrdenLN.cs" />
     <Compile Include="Implementacion\EstadoLN.cs" />
     <Compile Include="Implementacion\FacturasLN.cs" />
     <Compile Include="Implementacion\IngredientesLN.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Implementacion\Tipo_ProductoLN.cs" />
     <Compile Include="Implementacion\UsuariosLN.cs" />
     <Compile Include="Interfaces\IClientesLN.cs" />
+    <Compile Include="Interfaces\IDetalleOrdenLN.cs" />
     <Compile Include="Interfaces\IEstadoLN.cs" />
     <Compile Include="Interfaces\IFacturasLN.cs" />
     <Compile Include="Interfaces\IIngredienteLN.cs" />

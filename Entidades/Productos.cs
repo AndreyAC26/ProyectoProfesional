@@ -17,9 +17,9 @@ namespace Entidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Productos()
         {
+            this.DetalleOrden = new HashSet<DetalleOrden>();
             this.Ingredientes_X_Producto = new HashSet<Ingredientes_X_Producto>();
             this.Inventario = new HashSet<Inventario>();
-            this.Ordenes = new HashSet<Ordenes>();
         }
     
         public int Id_producto { get; set; }
@@ -29,11 +29,11 @@ namespace Entidades
         public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetalleOrden> DetalleOrden { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ingredientes_X_Producto> Ingredientes_X_Producto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventario> Inventario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ordenes> Ordenes { get; set; }
         public virtual Tipo_Producto Tipo_Producto1 { get; set; }
     }
 }

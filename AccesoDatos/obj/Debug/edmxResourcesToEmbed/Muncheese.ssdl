@@ -10,6 +10,20 @@
     <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="Direccion" Type="varchar" MaxLength="500" />
   </EntityType>
+  <EntityType Name="DetalleOrden">
+    <Key>
+      <PropertyRef Name="Id_Detalle" />
+      <PropertyRef Name="Id_Orden" />
+    </Key>
+    <Property Name="Id_Detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Orden" Type="int" Nullable="false" />
+    <Property Name="Id_producto" Type="int" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="Mesa" Type="int" />
+    <Property Name="Precio" Type="int" />
+    <Property Name="Tipo_orden" Type="varchar" MaxLength="15" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+  </EntityType>
   <EntityType Name="Estado">
     <Key>
       <PropertyRef Name="Id_Estado" />
@@ -65,13 +79,8 @@
       <PropertyRef Name="Id_Orden" />
     </Key>
     <Property Name="Id_Orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Cantidad" Type="int" />
-    <Property Name="Descipcion" Type="varchar" MaxLength="200" />
-    <Property Name="Mesa" Type="int" />
-    <Property Name="Precio" Type="int" />
     <Property Name="Estado" Type="int" />
-    <Property Name="Id_producto" Type="int" />
-    <Property Name="Tipo_orden" Type="varchar" MaxLength="15" />
+    <Property Name="Fecha" Type="datetime" />
   </EntityType>
   <EntityType Name="Perfiles">
     <Key>
@@ -134,6 +143,30 @@
     <Property Name="Contraseña" Type="varchar" MaxLength="20" />
     <Property Name="Estado" Type="int" />
   </EntityType>
+  <Association Name="FK_DetalleOrden_Ordenes">
+    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="1" />
+    <End Role="DetalleOrden" Type="Self.DetalleOrden" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ordenes">
+        <PropertyRef Name="Id_Orden" />
+      </Principal>
+      <Dependent Role="DetalleOrden">
+        <PropertyRef Name="Id_Orden" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleOrden_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="DetalleOrden" Type="Self.DetalleOrden" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_producto" />
+      </Principal>
+      <Dependent Role="DetalleOrden">
+        <PropertyRef Name="Id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Facturas_Clientes">
     <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
     <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
@@ -230,30 +263,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Ordenes_Mesas">
-    <End Role="Mesas" Type="Self.Mesas" Multiplicity="0..1" />
-    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Mesas">
-        <PropertyRef Name="Id_Mesa" />
-      </Principal>
-      <Dependent Role="Ordenes">
-        <PropertyRef Name="Mesa" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Ordenes_Productos">
-    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
-    <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Productos">
-        <PropertyRef Name="Id_producto" />
-      </Principal>
-      <Dependent Role="Ordenes">
-        <PropertyRef Name="Id_producto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PerfilUsuario_Perfiles">
     <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="0..1" />
     <End Role="PerfilUsuario" Type="Self.PerfilUsuario" Multiplicity="*" />
@@ -307,6 +316,9 @@
   </Function>
   <Function Name="delCombo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_combo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="delDetalleOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Detalle" Type="int" Mode="In" />
   </Function>
   <Function Name="delEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Estado" Type="int" Mode="In" />
@@ -366,6 +378,15 @@
     <Parameter Name="Nombre" Type="varchar" Mode="In" />
     <Parameter Name="Tipo_combo" Type="int" Mode="In" />
     <Parameter Name="Precio" Type="int" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="insDetalleOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Orden" Type="int" Mode="In" />
+    <Parameter Name="Id_producto" Type="int" Mode="In" />
+    <Parameter Name="Cantidad" Type="int" Mode="In" />
+    <Parameter Name="Mesa" Type="int" Mode="In" />
+    <Parameter Name="Precio" Type="int" Mode="In" />
+    <Parameter Name="Tipo_orden" Type="varchar" Mode="In" />
     <Parameter Name="Descripcion" Type="varchar" Mode="In" />
   </Function>
   <Function Name="InsertarTipoProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -466,6 +487,16 @@
     <Parameter Name="Precio" Type="int" Mode="In" />
     <Parameter Name="Descripcion" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="modDetalleOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Detalle" Type="int" Mode="In" />
+    <Parameter Name="Id_Orden" Type="int" Mode="In" />
+    <Parameter Name="Id_producto" Type="int" Mode="In" />
+    <Parameter Name="Cantidad" Type="int" Mode="In" />
+    <Parameter Name="Mesa" Type="int" Mode="In" />
+    <Parameter Name="Precio" Type="int" Mode="In" />
+    <Parameter Name="Tipo_orden" Type="varchar" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="modEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Estado" Type="int" Mode="In" />
     <Parameter Name="Estado" Type="varchar" Mode="In" />
@@ -559,6 +590,10 @@
   <Function Name="recCombosxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_combo" Type="int" Mode="In" />
   </Function>
+  <Function Name="recDetalleOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="recDetalleOrdenxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Detalle" Type="int" Mode="In" />
+  </Function>
   <Function Name="recEstados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="recEstadoxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Estado" Type="int" Mode="In" />
@@ -651,6 +686,7 @@
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="MuncheeseModeloStoreContainer">
     <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleOrden" EntityType="Self.DetalleOrden" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ingredientes" EntityType="Self.Ingredientes" Schema="dbo" store:Type="Tables" />
@@ -665,6 +701,14 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tipo_Producto" EntityType="Self.Tipo_Producto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DetalleOrden_Ordenes" Association="Self.FK_DetalleOrden_Ordenes">
+      <End Role="Ordenes" EntitySet="Ordenes" />
+      <End Role="DetalleOrden" EntitySet="DetalleOrden" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleOrden_Productos" Association="Self.FK_DetalleOrden_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleOrden" EntitySet="DetalleOrden" />
+    </AssociationSet>
     <AssociationSet Name="FK_Facturas_Clientes" Association="Self.FK_Facturas_Clientes">
       <End Role="Clientes" EntitySet="Clientes" />
       <End Role="Facturas" EntitySet="Facturas" />
@@ -695,14 +739,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Ordenes_Estado" Association="Self.FK_Ordenes_Estado">
       <End Role="Estado" EntitySet="Estado" />
-      <End Role="Ordenes" EntitySet="Ordenes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Ordenes_Mesas" Association="Self.FK_Ordenes_Mesas">
-      <End Role="Mesas" EntitySet="Mesas" />
-      <End Role="Ordenes" EntitySet="Ordenes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Ordenes_Productos" Association="Self.FK_Ordenes_Productos">
-      <End Role="Productos" EntitySet="Productos" />
       <End Role="Ordenes" EntitySet="Ordenes" />
     </AssociationSet>
     <AssociationSet Name="FK_PerfilUsuario_Perfiles" Association="Self.FK_PerfilUsuario_Perfiles">

@@ -17,22 +17,18 @@ namespace Entidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ordenes()
         {
+            this.DetalleOrden = new HashSet<DetalleOrden>();
             this.Facturas = new HashSet<Facturas>();
         }
     
         public int Id_Orden { get; set; }
-        public Nullable<int> Cantidad { get; set; }
-        public string Descipcion { get; set; }
-        public Nullable<int> Mesa { get; set; }
-        public Nullable<int> Precio { get; set; }
         public Nullable<int> Estado { get; set; }
-        public Nullable<int> Id_producto { get; set; }
-        public string Tipo_orden { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetalleOrden> DetalleOrden { get; set; }
         public virtual Estado Estado1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Facturas> Facturas { get; set; }
-        public virtual Mesas Mesas { get; set; }
-        public virtual Productos Productos { get; set; }
     }
 }

@@ -7,6 +7,48 @@
       <xsd:import schemaLocation="http://localhost:49538/srvMuncheese.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Entidades" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IsrvMuncheese_delInventario_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:delInventario_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delInventario_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:delInventario_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recFacturas_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recFacturas_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recFacturas_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recFacturas_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recFacturasXId_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recFacturasXId_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recFacturasXId_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recFacturasXId_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insFacturas_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:insFacturas_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insFacturas_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insFacturas_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modFacturas_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:modFacturas_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modFacturas_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:modFacturas_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delFacturas_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:delFacturas_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delFacturas_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:delFacturas_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:recUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recUsuarioResponse" />
+  </wsdl:message>
   <wsdl:message name="IsrvMuncheese_recClientes_ENT_InputMessage">
     <wsdl:part name="parameters" element="tns:recClientes_ENT" />
   </wsdl:message>
@@ -343,6 +385,66 @@
   <wsdl:message name="IsrvMuncheese_delOrdenes_ENT_OutputMessage">
     <wsdl:part name="parameters" element="tns:delOrdenes_ENTResponse" />
   </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recDetalleOrden_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recDetalleOrden_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recDetalleOrden_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recDetalleOrden_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recDetalleOrdenXId_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recDetalleOrdenXId_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recDetalleOrdenXId_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recDetalleOrdenXId_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insDetalleOrden_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:insDetalleOrden_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insDetalleOrden_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insDetalleOrden_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modDetalleOrden_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:modDetalleOrden_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modDetalleOrden_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:modDetalleOrden_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delDetalleOrden_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:delDetalleOrden_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delDetalleOrden_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:delDetalleOrden_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recDetalleOrden_ENT_InputMessage">
+    <wsdl:part name="parameters" element="tns:recDetalleOrden_ENT" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recDetalleOrden_ENT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recDetalleOrden_ENTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recDetalleOrdenXId_ENT_InputMessage">
+    <wsdl:part name="parameters" element="tns:recDetalleOrdenXId_ENT" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recDetalleOrdenXId_ENT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recDetalleOrdenXId_ENTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insDetalleOrden_ENT_InputMessage">
+    <wsdl:part name="parameters" element="tns:insDetalleOrden_ENT" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insDetalleOrden_ENT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insDetalleOrden_ENTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modDetalleOrden_ENT_InputMessage">
+    <wsdl:part name="parameters" element="tns:modDetalleOrden_ENT" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modDetalleOrden_ENT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:modDetalleOrden_ENTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delDetalleOrden_ENT_InputMessage">
+    <wsdl:part name="parameters" element="tns:delDetalleOrden_ENT" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delDetalleOrden_ENT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:delDetalleOrden_ENTResponse" />
+  </wsdl:message>
   <wsdl:message name="IsrvMuncheese_recPerfiles_PA_InputMessage">
     <wsdl:part name="parameters" element="tns:recPerfiles_PA" />
   </wsdl:message>
@@ -457,49 +559,35 @@
   <wsdl:message name="IsrvMuncheese_modInventario_PA_OutputMessage">
     <wsdl:part name="parameters" element="tns:modInventario_PAResponse" />
   </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_delInventario_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:delInventario_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_delInventario_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:delInventario_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recFacturas_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:recFacturas_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recFacturas_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:recFacturas_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recFacturasXId_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:recFacturasXId_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recFacturasXId_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:recFacturasXId_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_insFacturas_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:insFacturas_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_insFacturas_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:insFacturas_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_modFacturas_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:modFacturas_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_modFacturas_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:modFacturas_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_delFacturas_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:delFacturas_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_delFacturas_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:delFacturas_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recUsuario_InputMessage">
-    <wsdl:part name="parameters" element="tns:recUsuario" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recUsuario_OutputMessage">
-    <wsdl:part name="parameters" element="tns:recUsuarioResponse" />
-  </wsdl:message>
   <wsdl:portType name="IsrvMuncheese">
+    <wsdl:operation name="delInventario_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delInventario_PA" message="tns:IsrvMuncheese_delInventario_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delInventario_PAResponse" message="tns:IsrvMuncheese_delInventario_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recFacturas_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recFacturas_PA" message="tns:IsrvMuncheese_recFacturas_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recFacturas_PAResponse" message="tns:IsrvMuncheese_recFacturas_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recFacturasXId_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recFacturasXId_PA" message="tns:IsrvMuncheese_recFacturasXId_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recFacturasXId_PAResponse" message="tns:IsrvMuncheese_recFacturasXId_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insFacturas_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/insFacturas_PA" message="tns:IsrvMuncheese_insFacturas_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/insFacturas_PAResponse" message="tns:IsrvMuncheese_insFacturas_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="modFacturas_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/modFacturas_PA" message="tns:IsrvMuncheese_modFacturas_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/modFacturas_PAResponse" message="tns:IsrvMuncheese_modFacturas_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="delFacturas_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delFacturas_PA" message="tns:IsrvMuncheese_delFacturas_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delFacturas_PAResponse" message="tns:IsrvMuncheese_delFacturas_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recUsuario" message="tns:IsrvMuncheese_recUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recUsuarioResponse" message="tns:IsrvMuncheese_recUsuario_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="recClientes_ENT">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recClientes_ENT" message="tns:IsrvMuncheese_recClientes_ENT_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recClientes_ENTResponse" message="tns:IsrvMuncheese_recClientes_ENT_OutputMessage" />
@@ -724,6 +812,46 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delOrdenes_ENT" message="tns:IsrvMuncheese_delOrdenes_ENT_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delOrdenes_ENTResponse" message="tns:IsrvMuncheese_delOrdenes_ENT_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="recDetalleOrden_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recDetalleOrden_PA" message="tns:IsrvMuncheese_recDetalleOrden_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recDetalleOrden_PAResponse" message="tns:IsrvMuncheese_recDetalleOrden_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recDetalleOrdenXId_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recDetalleOrdenXId_PA" message="tns:IsrvMuncheese_recDetalleOrdenXId_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recDetalleOrdenXId_PAResponse" message="tns:IsrvMuncheese_recDetalleOrdenXId_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insDetalleOrden_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/insDetalleOrden_PA" message="tns:IsrvMuncheese_insDetalleOrden_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/insDetalleOrden_PAResponse" message="tns:IsrvMuncheese_insDetalleOrden_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="modDetalleOrden_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/modDetalleOrden_PA" message="tns:IsrvMuncheese_modDetalleOrden_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/modDetalleOrden_PAResponse" message="tns:IsrvMuncheese_modDetalleOrden_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="delDetalleOrden_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delDetalleOrden_PA" message="tns:IsrvMuncheese_delDetalleOrden_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delDetalleOrden_PAResponse" message="tns:IsrvMuncheese_delDetalleOrden_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recDetalleOrden_ENT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recDetalleOrden_ENT" message="tns:IsrvMuncheese_recDetalleOrden_ENT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recDetalleOrden_ENTResponse" message="tns:IsrvMuncheese_recDetalleOrden_ENT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recDetalleOrdenXId_ENT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recDetalleOrdenXId_ENT" message="tns:IsrvMuncheese_recDetalleOrdenXId_ENT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recDetalleOrdenXId_ENTResponse" message="tns:IsrvMuncheese_recDetalleOrdenXId_ENT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insDetalleOrden_ENT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/insDetalleOrden_ENT" message="tns:IsrvMuncheese_insDetalleOrden_ENT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/insDetalleOrden_ENTResponse" message="tns:IsrvMuncheese_insDetalleOrden_ENT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="modDetalleOrden_ENT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/modDetalleOrden_ENT" message="tns:IsrvMuncheese_modDetalleOrden_ENT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/modDetalleOrden_ENTResponse" message="tns:IsrvMuncheese_modDetalleOrden_ENT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="delDetalleOrden_ENT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delDetalleOrden_ENT" message="tns:IsrvMuncheese_delDetalleOrden_ENT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delDetalleOrden_ENTResponse" message="tns:IsrvMuncheese_delDetalleOrden_ENT_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="recPerfiles_PA">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recPerfiles_PA" message="tns:IsrvMuncheese_recPerfiles_PA_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recPerfiles_PAResponse" message="tns:IsrvMuncheese_recPerfiles_PA_OutputMessage" />
@@ -800,37 +928,72 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/modInventario_PA" message="tns:IsrvMuncheese_modInventario_PA_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse" message="tns:IsrvMuncheese_modInventario_PA_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="delInventario_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delInventario_PA" message="tns:IsrvMuncheese_delInventario_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delInventario_PAResponse" message="tns:IsrvMuncheese_delInventario_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="recFacturas_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recFacturas_PA" message="tns:IsrvMuncheese_recFacturas_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recFacturas_PAResponse" message="tns:IsrvMuncheese_recFacturas_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="recFacturasXId_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recFacturasXId_PA" message="tns:IsrvMuncheese_recFacturasXId_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recFacturasXId_PAResponse" message="tns:IsrvMuncheese_recFacturasXId_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="insFacturas_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/insFacturas_PA" message="tns:IsrvMuncheese_insFacturas_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/insFacturas_PAResponse" message="tns:IsrvMuncheese_insFacturas_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="modFacturas_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/modFacturas_PA" message="tns:IsrvMuncheese_modFacturas_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/modFacturas_PAResponse" message="tns:IsrvMuncheese_modFacturas_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="delFacturas_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delFacturas_PA" message="tns:IsrvMuncheese_delFacturas_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delFacturas_PAResponse" message="tns:IsrvMuncheese_delFacturas_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="recUsuario">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recUsuario" message="tns:IsrvMuncheese_recUsuario_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recUsuarioResponse" message="tns:IsrvMuncheese_recUsuario_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IsrvMuncheese" type="tns:IsrvMuncheese">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="delInventario_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delInventario_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recFacturas_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recFacturas_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recFacturasXId_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recFacturasXId_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insFacturas_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/insFacturas_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modFacturas_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/modFacturas_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delFacturas_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delFacturas_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recUsuario">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="recClientes_ENT">
       <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recClientes_ENT" style="document" />
       <wsdl:input>
@@ -1335,6 +1498,96 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="recDetalleOrden_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recDetalleOrden_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recDetalleOrdenXId_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recDetalleOrdenXId_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insDetalleOrden_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/insDetalleOrden_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modDetalleOrden_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/modDetalleOrden_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delDetalleOrden_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delDetalleOrden_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recDetalleOrden_ENT">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recDetalleOrden_ENT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recDetalleOrdenXId_ENT">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recDetalleOrdenXId_ENT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insDetalleOrden_ENT">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/insDetalleOrden_ENT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modDetalleOrden_ENT">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/modDetalleOrden_ENT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delDetalleOrden_ENT">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delDetalleOrden_ENT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="recPerfiles_PA">
       <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recPerfiles_PA" style="document" />
       <wsdl:input>
@@ -1499,69 +1752,6 @@
     </wsdl:operation>
     <wsdl:operation name="modInventario_PA">
       <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/modInventario_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="delInventario_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delInventario_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="recFacturas_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recFacturas_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="recFacturasXId_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recFacturasXId_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="insFacturas_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/insFacturas_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="modFacturas_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/modFacturas_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="delFacturas_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delFacturas_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="recUsuario">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

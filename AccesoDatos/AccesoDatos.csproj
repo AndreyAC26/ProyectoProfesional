@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementacion\ClientesAD.cs" />
+    <Compile Include="Implementacion\DetalleOrdenAD.cs" />
     <Compile Include="Implementacion\EstadoAD.cs" />
     <Compile Include="Implementacion\FacturasAD.cs" />
     <Compile Include="Implementacion\IngredientesAD.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Implementacion\Tipo_ProductoAD.cs" />
     <Compile Include="Implementacion\UsuariosAD.cs" />
     <Compile Include="Interfaces\IClientesAD.cs" />
+    <Compile Include="Interfaces\IDetalleOrdenAD.cs" />
     <Compile Include="Interfaces\IEstadoAD.cs" />
     <Compile Include="Interfaces\IFacturasAD.cs" />
     <Compile Include="Interfaces\IIngredientesAD.cs" />

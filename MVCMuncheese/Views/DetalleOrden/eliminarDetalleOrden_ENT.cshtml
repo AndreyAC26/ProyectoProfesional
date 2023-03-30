@@ -1,0 +1,95 @@
+﻿@model MVCMuncheese.Models.modeloDetalleOrden
+
+@{
+    ViewBag.Title = "eliminarDetalleOrden_ENT";
+}
+
+<h2>Borrar</h2>
+
+<h3>Estas seguro de querer borrar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("accionesEntidades", "DetalleOrden", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id_Detalle)
+
+<div class="form-actions no-color">
+    <button type="submit" name="enviarAccion" value="Eliminar"
+            class="btn btn-primary" title="Eliminar registro"
+            data-toggle="tooltip" data-container="body" data-placement="right">
+        Eliminar
+    </button>
+    <div class="btn btn-primary">
+        @Html.ActionLink("Atras", "listarOrdenes_ENT", null, new { style = "color:white;" })
+    </div>
+</div>
+    }
+</div>
