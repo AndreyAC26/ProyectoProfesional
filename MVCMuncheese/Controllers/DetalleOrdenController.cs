@@ -16,6 +16,62 @@ namespace MVCMuncheese.Controllers
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
 
+        
+        public ActionResult DetalleOrden(int mesa)
+        {
+            // Obtener información de la mesa seleccionada usando el número de mesa recibido como parámetro
+            MesaViewModel mesaSeleccionada = null;
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    var resultado = srvWCF_CR.recMesaXId_PA(mesa);
+                    var estado = resultado.Estado == 1 ? "Activo" : "Ocupado";
+                    mesaSeleccionada = new MesaViewModel { NumeroMesa = resultado.Id_Mesa, Estado = resultado.Estado, EstadoMesa = estado };
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+
+            // Crear un nuevo modelo de vista de orden con la información de la mesa seleccionada
+            var modeloDetalleOrden = new modeloDetalleOrden { Mesa = mesa };
+
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            ViewBag.Tipo_Producto = new SelectList(db.recTipo_Producto_PA().ToList(), "Id_tipo_producto", "Nombre_tipo_pro");
+            var productos = db.recProductos_ENT().ToList();
+            modeloDetalleOrden.Productos = productos;
+            return View(modeloDetalleOrden);
+        }
+
+
+        public JsonResult ObtenerProductosPorTipo(int pTipo_Producto)
+        {
+            using (srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient())
+            {
+                var productos = db.recProductos_ENT()
+                    .Where(p => p.Tipo_producto == pTipo_Producto)
+                    .Select(p => new { Id_producto = p.Id_producto, Nombre = p.Nombre })
+                    .ToList();
+                return Json(productos, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpGet]
+        public JsonResult obtenerPrecioPorProducto(int Id_tipo_Producto)
+        {
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            var producto = db.recProductos_ENT().FirstOrDefault(p => p.Id_producto == Id_tipo_Producto);
+            if (producto != null)
+            {
+                return Json(producto.Precio, JsonRequestBehavior.AllowGet);
+            }
+            return Json(0, JsonRequestBehavior.AllowGet);
+        }
+
+
         //*********ENTIDADES*********//
         public ActionResult listarDetalleOrden_ENT()
         {
@@ -466,43 +522,6 @@ namespace MVCMuncheese.Controllers
             }
         }
 
-        //public ActionResult insertarDeta_PA(DetalleOrden pDetalleOrden)
-        //{
-        //    List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
-        //    int idOrden = 0;
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            // Obtenemos el id de la orden
-        //            idOrden = srvWCF_CR.recOrdenesXId_ENT(pDetalleOrden);
-
-        //            // Iteramos sobre la lista de DetalleOrden
-        //            listaDetalleOrden.ForEach(detalle =>
-        //            {
-        //                // Actualizamos el Id_Orden del detalle
-        //                detalle.Id_Orden = idOrden;
-
-        //                if (srvWCF_CR.insDetalleOrden_PA(detalle))
-        //                {
-        //                    //enviar mensaje positivo
-        //                }
-        //                else
-        //                {
-        //                    //enviar mensaje negativo
-        //                }
-        //            });
-
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrden_PA();
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        throw lEx;
-        //    }
-
-        //    return RedirectToAction("listarDetalleOrden_PA");
-        //}
 
         public ActionResult insertarDeta_PA(DetalleOrden pDetalleOrden)
         {

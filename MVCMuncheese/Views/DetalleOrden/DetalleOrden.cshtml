@@ -1,0 +1,174 @@
+﻿
+    @{
+        ViewBag.Title = "DetalleOrden";
+    }
+
+    @model MVCMuncheese.Models.modeloDetalleOrden
+    @{
+        ViewBag.Title = "Orden";
+    }
+
+    <div class="jumbotron">
+        @*<div class="form-group col-md-12">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Id_Orden, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        <div>
+            <h3 class="container-fluid" style="text-align:center">Orden</h3>
+        </div>
+        <form class="form-horizontal">
+
+            @section scripts {
+                        <script type="text/javascript">
+
+                      function CargarProductos() {
+                var pTipo_Producto = $("#tipoProducto").val();
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("ObtenerProductosPorTipo", "DetalleOrden")?pTipo_Producto=" + pTipo_Producto,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var productos = $("#productos");
+                        productos.empty();
+                        productos.append('<option value="">- Productos -</option>');
+                        $.each(data, function (index, item) {
+                            productos.append('<option value="' + item.Id_producto + '">' + item.Nombre + '</option>');
+                        });
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert("Error al cargar los productos.");
+                    }
+                });
+            }
+
+                $("#productos").change(function () {
+                    var pId_Producto = $(this).val();
+                    if (pId_Producto !== "") {
+                        $.ajax({
+                            type: "GET",
+                            url: "@Url.Action("obtenerPrecioPorProducto", "DetalleOrden")?Id_tipo_Producto=" + pId_Producto,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                $("#Precio").val(data);
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                alert("Error al cargar el precio del producto.");
+                            }
+                        });
+                    } else {
+                        $("#Precio").val("");
+                    }
+                });
+
+                        </script>
+            }
+
+
+            <fieldset>
+                <div class="col-md-12">
+
+
+                    <div class="form-group col-md-4">
+                        <div class="col-md-10">
+                            @Html.LabelFor(model => model.Tipo_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, "- Categoria -", new { @class = "form-control", id = "tipoProducto", onchange = "CargarProductos();" })
+                            @Html.ValidationMessageFor(model => model.Tipo_Producto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <div class="col-md-10">
+                            @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownListFor(model => model.Id_producto, new SelectList(new List<Entidades.Productos>(), "Id_producto", "Nombre"), "- Productos -", new { @class = "form-control", id = "productos" })
+                            @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <div class="col-md-10">
+                            @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", id = "Precio" } })
+                            @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="col-md-10">
+                            @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control", min = "0", max = "10" } })
+                            @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-4">
+                        <div class="col-lg-10">
+                            <label>Tipo de Orden</label>
+                            <select class="form-control" id="TipoOrden">
+                                <option value="">-- Seleccione uno --</option>
+                                <option value="Para llevar">Para llevar</option>
+                                <option value="Comer aquí">Comer aquí</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <div class="col-md-10">
+                            @Html.LabelFor(model => model.Mesa, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Mesa, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Mesa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <div class="col-md-10">
+                            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group col-md-4">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="reset" class="btn btn-primary">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="agregarFila();">Agregar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+
+    <table class="table" id="tablaOrdenes">
+        <thead>
+            <tr>
+                <th>Tipo de Producto</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Tipo de Orden</th>
+                <th>Mesa</th>
+                <th>Descripcion</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="detalleOrden">
+        </tbody>
+    </table>
+
+
+    <div class="form-group col-md-12" style="text-align:right">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button type="button" class="btn btn-primary" id="finalizar-btn" onclick="enviarDetalleOrden()">Finalizar</button>
+            <div class="btn btn-primary">@Html.ActionLink("Atras", "Mesas", "Mesas", null, new { style = "color:white;" })</div>
+        </div>
+    </div>

@@ -19,6 +19,35 @@ namespace MVCMuncheese.Controllers
 
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
+
+
+        //public ActionResult Ordenes(int mesa)
+        //{
+        //    // Obtener información de la mesa seleccionada usando el número de mesa recibido como parámetro
+        //    MesaViewModel mesaSeleccionada = null;
+        //    try
+        //    {
+        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+        //        {
+        //            var resultado = srvWCF_CR.recMesaXId_PA(mesa);
+        //            var estado = resultado.Estado == 1 ? "Activo" : "Ocupado";
+        //            mesaSeleccionada = new MesaViewModel { NumeroMesa = resultado.Id_Mesa, Estado = resultado.Estado, EstadoMesa = estado };
+        //        }
+        //    }
+        //    catch (Exception lEx)
+        //    {
+        //        throw lEx;
+        //    }
+
+        //    // Crear un nuevo modelo de vista de orden con la información de la mesa seleccionada
+        //    var modeloOrdenes = new modeloOrdenes { Mesa = mesa };
+
+        //    srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+        //    ViewBag.Tipo_Producto = new SelectList(db.recTipo_Producto_PA().ToList(), "Id_tipo_producto", "Nombre_tipo_pro");
+        //    ViewBag.Producto = new SelectList(db.recProductos_ENT().ToList(), "Id_producto", "Nombre");
+        //    return View();
+        //}
+
         public ActionResult Ordenes(int mesa)
         {
             // Obtener información de la mesa seleccionada usando el número de mesa recibido como parámetro
@@ -43,26 +72,35 @@ namespace MVCMuncheese.Controllers
             srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
             ViewBag.Tipo_Producto = new SelectList(db.recTipo_Producto_PA().ToList(), "Id_tipo_producto", "Nombre_tipo_pro");
             ViewBag.Producto = new SelectList(db.recProductos_ENT().ToList(), "Id_producto", "Nombre");
-            return View();
+            return View(modeloOrdenes);
         }
 
-        
-
-        [HttpGet]
-        public JsonResult obtenerProductosPorTipo(int idTipoProducto)
+        public JsonResult ObtenerProductosPorTipo(int idTipoProducto)
         {
             srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
-            var productos = db.recProductos_ENT().Where(p => p.Tipo_producto == idTipoProducto).ToList();
-
+            var productos = db.recObtenerProductosPorCategoria_ResultXId_PA(idTipoProducto);
             return Json(productos, JsonRequestBehavior.AllowGet);
         }
 
 
+
         [HttpGet]
-        public JsonResult obtenerPrecioPorProducto(int idProducto)
+        public JsonResult obtenerProductosPorTipo(int Id_tipo_Producto)
+        {
+            using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+            {
+                var productos = srvWCF_CR.recObtenerProductosPorCategoria_ResultXId_PA(Id_tipo_Producto);
+                return Json(productos, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+        [HttpGet]
+        public JsonResult obtenerPrecioPorProducto(int Id_tipo_Producto)
         {
             srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
-            var producto = db.recProductos_ENT().FirstOrDefault(p => p.Id_producto == idProducto);
+            var producto = db.recProductos_ENT().FirstOrDefault(p => p.Id_producto == Id_tipo_Producto);
             if (producto != null)
             {
                 return Json(producto.Precio, JsonRequestBehavior.AllowGet);
@@ -206,22 +244,47 @@ namespace MVCMuncheese.Controllers
             }
         }
 
-            [HttpPost]
-            public JsonResult insertarOrde_ENT(Ordenes pOrden)
+
+        [HttpPost]
+        public JsonResult insertarOrde_ENT(int Id_Orden, int Id_Mesa, int Id_Estado, string Estado, DateTime Fecha)
+        {
+            try
             {
-                try
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
-                    using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                    srvWCF_CR.insOrdenes_ENT(new Ordenes
                     {
-                        srvWCF_CR.insOrdenes_ENT(pOrden);
-                    }
-                    return Json(new { success = true });
+                        Id_Orden = Id_Orden,
+                        Mesa = Id_Mesa,
+                        Estado = Id_Estado,
+                        Estados = Estado,
+                        Fecha = Fecha
+                    });
                 }
-                catch (Exception ex)
-                {
-                    return Json(new { success = false, errorMessage = ex.Message });
-                }
+                return Json(new { exito = true });
             }
+            catch (Exception ex)
+            {
+                return Json(new { exito = false, errorMessage = ex.Message });
+            }
+        }
+
+        //[HttpPost]
+        //public JsonResult insertarOrde_ENT(Ordenes pOrden)
+        //{
+        //    try
+        //    {
+        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+        //        {
+        //            srvWCF_CR.insOrdenes_ENT(pOrden);
+        //        }
+        //        return Json(new { success = true });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { success = false, errorMessage = ex.Message });
+        //    }
+        //}
 
 
         public ActionResult insertarOrd_ENT(Ordenes pOrdenes)

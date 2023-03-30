@@ -1,6 +1,7 @@
 ﻿@model MVCMuncheese.Models.modeloOrdenes
 @{
     ViewBag.Title = "Ordenes";
+   
 }
 
 <div class="jumbotron">
@@ -10,7 +11,38 @@
     <form class="form-horizontal">
         <script type="text/javascript">
 
-          function enviarDetalleOrden() {
+            @*$(document).ready(function () {
+
+   // Agregar controlador de eventos para el cambio de selección del primer dropdownlist
+    $('#Tipo_Producto').change(function () {
+        var Id_tipo_Producto = $(this).val();
+
+        // Limpiar el segundo dropdownlist
+        $('#Id_producto').empty();
+
+        // Cargar el segundo dropdownlist con los productos correspondientes al tipo de producto seleccionado
+        if (Id_tipo_Producto != '') {
+            $.getJSON('@Url.Action("obtenerProductosPorTipo", "Ordenes")', { Id_tipo_Producto: Id_tipo_Producto }, function (productos) {
+                $.each(productos, function (index, producto) {
+                    $('#Id_producto').append($('<option/>', {
+                        value: producto.Id_producto,
+                        text: producto.Nombre
+                    }));
+                });
+
+                // Habilitar el segundo dropdownlist
+                $('#Id_producto').prop('disabled', false);
+            });
+        }
+        else {
+            // Deshabilitar el segundo dropdownlist si no se seleccionó un tipo de producto
+            $('#Id_producto').prop('disabled', true);
+        }
+    });
+            });*@
+
+
+          @*function enviarDetalleOrden() {
   var detalleOrden = [];
   $('#detalleOrden tr').each(function (index, element) {
     var detalle = {
@@ -27,7 +59,7 @@
     detalleOrden.push(detalle);
   });
   $.ajax({
-    url: '@Url.Action("InsertarDetalleOrden", "Controlador")',
+    url: '@Url.Action("InsertarDetalleOrden", "Ordenes")',
     type: 'POST',
     data: JSON.stringify(detalleOrden),
     contentType: 'application/json; charset=utf-8',
@@ -43,33 +75,12 @@
     window.location.href = '@Url.Action("Mesas", "Mesas")';
 }
 
-    @*// Redirigir al usuario a la vista Mesas
+    // Redirigir al usuario a la vista Mesas
     window.location.href = '@Url.Action("Mesas", "Mesas")';*@
 
 
 
-            function cargarProductos() {
-                var tipoProducto = $("#Tipo_Producto").val();
-                $.ajax({
-                    url: '@Url.Action("obtenerProductosPorTipo", "Ordenes")',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: { idTipoProducto: tipoProducto },
-                    success: function (data) {
-                        var productos = "<option value=''>- Productos -</option>";
-                        $.each(data, function (i, item) {
-                            productos += "<option value='" + item.Id_producto + "'>" + item.Nombre + "</option>";
-                        });
-                        $("#Id_producto").html(productos).removeAttr("disabled");
-
-                    },
-                    error: function () {
-                        alert("Ocurrió un error al cargar los productos");
-                }
-                    });
-            }
-
-                    function cargarPrecio() {
+                   @*function cargarPrecio() {
             var producto = $("#Id_producto").val();
             if (producto != null && producto != "") {
                 $.ajax({
@@ -85,83 +96,42 @@
                     }
                 });
                 }
-            }
+            }*@
 
-            function agregarFila() {
-                // Obtener los valores del formulario
-                var tipoProducto = $("#Tipo_Producto option:selected").text();
-                var producto = $("#Id_producto option:selected").text();
-                var precio = $("#Precio").val();
-                var cantidad = $("#Cantidad").val();
-                var tipoOrden = $("#TipoOrden").val();
-                var mesa = $("#Mesa").val();
-                var descipcion = $("#Descipcion").val();
-                var subtotal = precio * cantidad;
+            //function agregarFila() {
+            //    // Obtener los valores del formulario
+            //    var tipoProducto = $("#Tipo_Producto option:selected").text();
+            //    var producto = $("#Id_producto option:selected").text();
+            //    var precio = $("#Precio").val();
+            //    var cantidad = $("#Cantidad").val();
+            //    var tipoOrden = $("#TipoOrden").val();
+            //    var mesa = $("#Mesa").val();
+            //    var descipcion = $("#Descipcion").val();
+            //    var subtotal = precio * cantidad;
 
-                // Crear una fila con los valores
-                var fila = "<tr>" +
-                    "<td>" + tipoProducto + "</td>" +
-                    "<td>" + producto + "</td>" +
-                    "<td>" + precio + "</td>" +
-                    "<td>" + cantidad + "</td>" +
-                    "<td>" + tipoOrden + "</td>" +
-                    "<td>" + mesa + "</td>" +
-                    "<td>" + descipcion + "</td>" +
-                    "<td>" + subtotal + "</td>" +
-                    "</tr>";
+            //    // Crear una fila con los valores
+            //    var fila = "<tr>" +
+            //        "<td>" + tipoProducto + "</td>" +
+            //        "<td>" + producto + "</td>" +
+            //        "<td>" + precio + "</td>" +
+            //        "<td>" + cantidad + "</td>" +
+            //        "<td>" + tipoOrden + "</td>" +
+            //        "<td>" + mesa + "</td>" +
+            //        "<td>" + descipcion + "</td>" +
+            //        "<td>" + subtotal + "</td>" +
+            //        "</tr>";
 
-                // Agregar la fila a la tabla
-                $("#tablaOrdenes tbody").append(fila);
+            //    // Agregar la fila a la tabla
+            //    $("#tablaOrdenes tbody").append(fila);
 
-                // Limpiar el formulario
-                $("#Tipo_Producto").val("");
-                $("#Id_producto").val("");
-                $("#Precio").val("");
-                $("#Cantidad").val("");
-                $("#TipoOrden").val();
-                $("#Descipcion").val();
-                $("#Mesa").val();
-            }
-
-
-            // Obtener las filas de la tabla de ordenes
-        var filas = $("#tablaOrdenes tbody tr");
-
-        // Recorrer las filas y agregar las órdenes a la base de datos
-        filas.each(function () {
-          // Obtener los datos de la fila
-          var tipoProducto = $(this).find("td:eq(0)").text();
-          var producto = $(this).find("td:eq(1)").text();
-          var precio = $(this).find("td:eq(2)").text();
-          var cantidad = $(this).find("td:eq(3)").text();
-          var tipoOrden = $(this).find("td:eq(4)").text();
-          var mesa = $(this).find("td:eq(5)").text();
-          var descripcion = $(this).find("td:eq(6)").text();
-          var subtotal = $(this).find("td:eq(7)").text();
-
-          // Llamar al método para agregar la orden a la base de datos
-          $.ajax({
-            url: '@Url.Action("insertarOrde_ENT", "Ordenes")',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-              TipoProducto: tipoProducto,
-              Producto: producto,
-              Precio: precio,
-              Cantidad: cantidad,
-              TipoOrden: tipoOrden,
-              Mesa: mesa,
-              Descripcion: descripcion,
-              Subtotal: subtotal
-            },
-            success: function (data) {
-              console.log("Orden agregada a la base de datos.");
-            },
-            error: function () {
-              console.log("Ocurrió un error al agregar la orden a la base de datos.");
-            }
-          });
-        });
+            //    // Limpiar el formulario
+            //    $("#Tipo_Producto").val("");
+            //    $("#Id_producto").val("");
+            //    $("#Precio").val("");
+            //    $("#Cantidad").val("");
+            //    $("#TipoOrden").val();
+            //    $("#Descipcion").val();
+            //    $("#Mesa").val();
 
 
         </script>
@@ -169,23 +139,22 @@
 
         <fieldset>
             <div class="col-md-12">
-                <div class="form-group col-md-12">
+                @*<div class="form-group col-md-12">
                     <div class="col-md-3">
                         @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "control-label col-md-2" })
                         @Html.EditorFor(model => model.Id_Orden, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
 
                 <div class="form-group col-md-4">
                     <div class="col-md-10">
                         @Html.LabelFor(model => model.Tipo_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, "- Categoria -", new
-                   {
-                            @id = "Tipo_Producto",
-                       @onchange = "cargarProductos();",
-                       @class = "form-control"
-                   })
+                        @Html.DropDownListFor(model => model.Tipo_Producto, (SelectList)ViewBag.Tipo_Producto, "-- Seleccione --", new { @class = "form-control", @id = "Tipo_Producto" })
+                        @*@Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, "- Categoria -", new{@id = "Tipo_Producto",
+        @onchange = "cargarProductos();",
+        @class = "form-control"
+        })*@
                         @Html.ValidationMessageFor(model => model.Tipo_Producto, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -193,6 +162,7 @@
                 <div class="form-group col-md-4">
                     <div class="col-md-10">
                         @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
+
                         @Html.DropDownListFor(model => model.Id_producto, new SelectList(string.Empty, "Id_producto", "Nombre"), "- Productos -", new { @id = "Id_producto", @disabled = "disabled", @class = "form-control", @onChange = "cargarPrecio();" })
                         @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
                     </div>

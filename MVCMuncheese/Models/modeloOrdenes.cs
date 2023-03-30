@@ -31,6 +31,7 @@ namespace MVCMuncheese.Models
         [Display(Name = "Precio")]
         public Nullable<int> Precio { get; set; }
 
+        public List<Productos> Productos { get; set; }
 
         [Display(Name = "Producto")]
         public Nullable<int> Id_producto { get; set; }
@@ -44,14 +45,7 @@ namespace MVCMuncheese.Models
         [Display(Name = "Categoria")]
         public int Tipo_Producto { get; set; }
 
-        public List<Orden> Ordenes { get; set; }
     }
 
-    public class Orden
-    {
-        public int Tipo_Producto { get; set; }
-        public int Id_producto { get; set; }
-        public int Cantidad { get; set; }
-        public decimal Precio { get; set; }
-    }
+   
 }

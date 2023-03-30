@@ -410,6 +410,7 @@
     <Content Include="Views\DetalleOrden\modificarDetalleOrden_PA.cshtml" />
     <Content Include="Views\DetalleOrden\eliminarDetalleOrden_PA.cshtml" />
     <Content Include="Views\DetalleOrden\detalleDetalleOrden_PA.cshtml" />
+    <Content Include="Views\DetalleOrden\DetalleOrden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

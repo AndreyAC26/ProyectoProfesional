@@ -22,6 +22,34 @@
 
 <script>
     $(function () {
+  $('.link button').click(function () {
+    var mesaId = $(this).data('id');
+    $.ajax({
+      url: '@Url.Action("insertarOrde_ENT", "Ordenes")',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        Id_Orden: 0,
+        Id_Mesa: mesaId,
+        Id_Estado: 1,
+        Estado: "Activo",
+        Fecha: new Date().toISOString()
+      },
+      success: function (result) {
+        if (result.exito) {
+          alert("La orden se ha insertado correctamente.");
+        } else {
+          alert("Ha ocurrido un error al insertar la orden: " + result.errorMessage);
+        }
+      },
+      error: function () {
+        alert("Ha ocurrido un error al insertar la orden.");
+      }
+    });
+  });
+    });
+
+    $(function () {
         $('.link button').click(function () {
             var mesaId = $(this).data('id');
             $('.link[data-id="' + mesaId + '"] .hidden-link')[0].click();
@@ -35,15 +63,23 @@
         <div class="link">
             @if (mesa.EstadoMesa == "Ocupado")
             {
-                <a href="@Url.Action("Ordenes", "Ordenes", new { mesa = mesa.NumeroMesa })" class="btn btn-danger" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;">
+                <a href="@Url.Action("DetalleOrden", "DetalleOrden", new { mesa = mesa.NumeroMesa })" class="btn btn-danger" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;" data-id="@mesa.NumeroMesa">
                     Mesa @mesa.NumeroMesa
                 </a>
+
+                @*<a href="@Url.Action("Ordenes", "Ordenes", new { mesa = mesa.NumeroMesa })" class="btn btn-danger" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;">
+                Mesa @mesa.NumeroMesa
+            </a>*@
             }
             else
             {
-                <a href="@Url.Action("Ordenes", "Ordenes", new { mesa = mesa.NumeroMesa })" class="btn btn-success" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px; ">
-                    Mesa @mesa.NumeroMesa
+                <a href="@Url.Action("DetalleOrden", "DetalleOrden", new { mesa = mesa.NumeroMesa })" class="btn btn-success" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;" data-id="@mesa.NumeroMesa">
+                Mesa @mesa.NumeroMesa
                 </a>
+
+                @*<a href="@Url.Action("Ordenes", "Ordenes", new { mesa = mesa.NumeroMesa })" class="btn btn-success" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px; ">
+                Mesa @mesa.NumeroMesa
+            </a>*@
             }
         </div>
        

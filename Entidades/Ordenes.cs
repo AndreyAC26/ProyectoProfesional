@@ -23,8 +23,11 @@ namespace Entidades
     
         public int Id_Orden { get; set; }
         public Nullable<int> Estado { get; set; }
+        public string Estados { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
-    
+        public Nullable<int> Mesa { get; set; }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleOrden> DetalleOrden { get; set; }
         public virtual Estado Estado1 { get; set; }
