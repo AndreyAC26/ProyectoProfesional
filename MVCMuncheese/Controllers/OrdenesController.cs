@@ -20,34 +20,6 @@ namespace MVCMuncheese.Controllers
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
 
-
-        //public ActionResult Ordenes(int mesa)
-        //{
-        //    // Obtener información de la mesa seleccionada usando el número de mesa recibido como parámetro
-        //    MesaViewModel mesaSeleccionada = null;
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            var resultado = srvWCF_CR.recMesaXId_PA(mesa);
-        //            var estado = resultado.Estado == 1 ? "Activo" : "Ocupado";
-        //            mesaSeleccionada = new MesaViewModel { NumeroMesa = resultado.Id_Mesa, Estado = resultado.Estado, EstadoMesa = estado };
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        throw lEx;
-        //    }
-
-        //    // Crear un nuevo modelo de vista de orden con la información de la mesa seleccionada
-        //    var modeloOrdenes = new modeloOrdenes { Mesa = mesa };
-
-        //    srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
-        //    ViewBag.Tipo_Producto = new SelectList(db.recTipo_Producto_PA().ToList(), "Id_tipo_producto", "Nombre_tipo_pro");
-        //    ViewBag.Producto = new SelectList(db.recProductos_ENT().ToList(), "Id_producto", "Nombre");
-        //    return View();
-        //}
-
         public ActionResult Ordenes(int mesa)
         {
             // Obtener información de la mesa seleccionada usando el número de mesa recibido como parámetro

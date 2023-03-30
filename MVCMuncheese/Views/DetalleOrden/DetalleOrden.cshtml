@@ -1,28 +1,15 @@
 ﻿
-    @{
-        ViewBag.Title = "DetalleOrden";
-    }
+@{
+    ViewBag.Title = "DetalleOrden";
+}
 
-    @model MVCMuncheese.Models.modeloDetalleOrden
-    @{
-        ViewBag.Title = "Orden";
-    }
+@model MVCMuncheese.Models.modeloDetalleOrden
+@{
+    ViewBag.Title = "Orden";
+}
 
-    <div class="jumbotron">
-        @*<div class="form-group col-md-12">
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.Id_Orden, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-        <div>
-            <h3 class="container-fluid" style="text-align:center">Orden</h3>
-        </div>
-        <form class="form-horizontal">
-
-            @section scripts {
-                        <script type="text/javascript">
+@section scripts {
+    <script type="text/javascript">
 
                       function CargarProductos() {
                 var pTipo_Producto = $("#tipoProducto").val();
@@ -65,110 +52,181 @@
                     }
                 });
 
-                        </script>
-            }
+
+        function agregarFila() {
+            // Obtener los valores de los campos de entrada
+            var Id_Orden = document.getElementById("Id_Orden").value;
+            var tipoProducto = document.getElementById("tipoProducto").value;
+            var producto = document.getElementById("productos").value;
+            var precio = document.getElementById("Precio").value;
+            var cantidad = document.getElementById("Cantidad").value;
+            var tipoOrden = document.getElementById("TipoOrden").value;
+            var mesa = document.getElementById("Mesa").value;
+            var descripcion = document.getElementById("Descripcion").value;
+            var subtotal = precio * cantidad;
+
+            // Crear una nueva fila
+            var fila = document.createElement("tr");
+
+            // Agregar las celdas a la fila
+            var celdaId_Orden = document.createElement("td");
+            celdaId_Orden.innerHTML = Id_Orden;
+            fila.appendChild(celdaId_Orden);
+
+            var celdaTipoProducto = document.createElement("td");
+            celdaTipoProducto.innerHTML = tipoProducto;
+            fila.appendChild(celdaTipoProducto);
+
+            var celdaProducto = document.createElement("td");
+            celdaProducto.innerHTML = producto;
+            fila.appendChild(celdaProducto);
+
+            var celdaPrecio = document.createElement("td");
+            celdaPrecio.innerHTML = precio;
+            fila.appendChild(celdaPrecio);
+
+            var celdaCantidad = document.createElement("td");
+            celdaCantidad.innerHTML = cantidad;
+            fila.appendChild(celdaCantidad);
+
+            var celdaTipoOrden = document.createElement("td");
+            celdaTipoOrden.innerHTML = tipoOrden;
+            fila.appendChild(celdaTipoOrden);
+
+            var celdaMesa = document.createElement("td");
+            celdaMesa.innerHTML = mesa;
+            fila.appendChild(celdaMesa);
+
+            var celdaDescripcion = document.createElement("td");
+            celdaDescripcion.innerHTML = descripcion;
+            fila.appendChild(celdaDescripcion);
+
+            var celdaSubtotal = document.createElement("td");
+            celdaSubtotal.innerHTML = subtotal;
+            fila.appendChild(celdaSubtotal);
+
+            // Agregar la fila a la tabla
+            document.getElementById("detalleOrden").appendChild(fila);
+        }
+
+    </script>
+}
 
 
-            <fieldset>
-                <div class="col-md-12">
+<div class="jumbotron">
+   
+    <div>
+        <h3 class="container-fluid" style="text-align:center">Orden</h3>
+    </div>
+    <form class="form-horizontal">
 
-
-                    <div class="form-group col-md-4">
-                        <div class="col-md-10">
-                            @Html.LabelFor(model => model.Tipo_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, "- Categoria -", new { @class = "form-control", id = "tipoProducto", onchange = "CargarProductos();" })
-                            @Html.ValidationMessageFor(model => model.Tipo_Producto, "", new { @class = "text-danger" })
-                        </div>
+        <fieldset>
+            <div class="col-md-12">
+                <div class="form-group col-md-12">
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Id_Orden, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="form-group col-md-4">
-                        <div class="col-md-10">
-                            @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.DropDownListFor(model => model.Id_producto, new SelectList(new List<Entidades.Productos>(), "Id_producto", "Nombre"), "- Productos -", new { @class = "form-control", id = "productos" })
-                            @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
-                        </div>
+                <div class="form-group col-md-4">
+                    <div class="col-md-10">
+                        @Html.LabelFor(model => model.Tipo_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownListFor(model => model.Tipo_Producto, ViewBag.Tipo_Producto as SelectList, "- Categoria -", new { @class = "form-control", id = "tipoProducto", onchange = "CargarProductos();" })
+                        @Html.ValidationMessageFor(model => model.Tipo_Producto, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="form-group col-md-4">
-                        <div class="col-md-10">
-                            @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", id = "Precio" } })
-                            @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
-                        </div>
+                <div class="form-group col-md-4">
+                    <div class="col-md-10">
+                        @Html.LabelFor(model => model.Id_producto, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownListFor(model => model.Id_producto, new SelectList(new List<Entidades.Productos>(), "Id_producto", "Nombre"), "- Productos -", new { @class = "form-control", id = "productos" })
+                        @Html.ValidationMessageFor(model => model.Id_producto, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-4">
-                        <div class="col-md-10">
-                            @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control", min = "0", max = "10" } })
-                            @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
-                        </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="col-md-10">
+                        @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", id = "Precio" } })
+                        @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
                     </div>
-
-
-                    <div class="form-group col-md-4">
-                        <div class="col-lg-10">
-                            <label>Tipo de Orden</label>
-                            <select class="form-control" id="TipoOrden">
-                                <option value="">-- Seleccione uno --</option>
-                                <option value="Para llevar">Para llevar</option>
-                                <option value="Comer aquí">Comer aquí</option>
-                            </select>
-                        </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-md-10">
+                        @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control", min = "0", max = "10" } })
+                        @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="form-group col-md-4">
-                        <div class="col-md-10">
-                            @Html.LabelFor(model => model.Mesa, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.EditorFor(model => model.Mesa, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Mesa, "", new { @class = "text-danger" })
-                        </div>
+
+                <div class="form-group col-md-4">
+                    <div class="col-lg-10">
+                        <label>Tipo de Orden</label>
+                        <select class="form-control" id="TipoOrden">
+                            <option value="">-- Seleccione uno --</option>
+                            <option value="Para llevar">Para llevar</option>
+                            <option value="Comer aquí">Comer aquí</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group col-md-4">
-                        <div class="col-md-10">
-                            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-                        </div>
+                <div class="form-group col-md-4">
+                    <div class="col-md-10">
+                        @Html.LabelFor(model => model.Mesa, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Mesa, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Mesa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="col-md-10">
+                        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group col-md-4">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="reset" class="btn btn-primary">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="agregarFila();">Agregar</button>
                     </div>
 
                 </div>
-                <div class="col-lg-12">
-                    <div class="form-group col-md-4">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            <button type="reset" class="btn btn-primary">Cancelar</button>
-                            <button type="button" class="btn btn-primary" onclick="agregarFila();">Agregar</button>
-                        </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
 
-                    </div>
-                </div>
-            </fieldset>
-        </form>
+
+
+<table class="table" id="tablaOrdenes">
+    <thead>
+        <tr>
+            <th>Num. Orden</th>
+            <th>Tipo de Producto</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Tipo de Orden</th>
+            <th>Mesa</th>
+            <th>Descripcion</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody id="detalleOrden">
+    </tbody>
+</table>
+
+
+<div class="form-group col-md-12" style="text-align:right">
+    <div class="col-lg-10 col-lg-offset-2">
+        <button type="button" class="btn btn-primary" id="finalizar-btn" onclick="enviarDetalleOrden()">Finalizar</button>
+        <div class="btn btn-primary">@Html.ActionLink("Atras", "Mesas", "Mesas", null, new { style = "color:white;" })</div>
     </div>
-
-
-
-    <table class="table" id="tablaOrdenes">
-        <thead>
-            <tr>
-                <th>Tipo de Producto</th>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Tipo de Orden</th>
-                <th>Mesa</th>
-                <th>Descripcion</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody id="detalleOrden">
-        </tbody>
-    </table>
-
-
-    <div class="form-group col-md-12" style="text-align:right">
-        <div class="col-lg-10 col-lg-offset-2">
-            <button type="button" class="btn btn-primary" id="finalizar-btn" onclick="enviarDetalleOrden()">Finalizar</button>
-            <div class="btn btn-primary">@Html.ActionLink("Atras", "Mesas", "Mesas", null, new { style = "color:white;" })</div>
-        </div>
-    </div>
+</div>
