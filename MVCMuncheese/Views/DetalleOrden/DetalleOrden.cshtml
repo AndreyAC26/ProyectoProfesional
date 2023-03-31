@@ -10,7 +10,7 @@
 
 @section scripts {
     <script type="text/javascript">
-
+        //Cargar productos por tipo producto
                       function CargarProductos() {
                 var pTipo_Producto = $("#tipoProducto").val();
                 $.ajax({
@@ -31,7 +31,7 @@
                     }
                 });
             }
-
+        // obtener el precio de cada producto
                 $("#productos").change(function () {
                     var pId_Producto = $(this).val();
                     if (pId_Producto !== "") {
@@ -52,63 +52,112 @@
                     }
                 });
 
+        //agregar filas a la tablaOrdenes
 
-        function agregarFila() {
-            // Obtener los valores de los campos de entrada
-            var Id_Orden = document.getElementById("Id_Orden").value;
-            var tipoProducto = document.getElementById("tipoProducto").value;
-            var producto = document.getElementById("productos").value;
-            var precio = document.getElementById("Precio").value;
-            var cantidad = document.getElementById("Cantidad").value;
-            var tipoOrden = document.getElementById("TipoOrden").value;
-            var mesa = document.getElementById("Mesa").value;
-            var descripcion = document.getElementById("Descripcion").value;
-            var subtotal = precio * cantidad;
+            function agregarFila() {
+                // Obtener los valores de los campos de entrada
+                var Id_Orden = document.getElementById("Id_Orden").value;
+                var producto = document.getElementById("productos").value;
+                var cantidad = document.getElementById("Cantidad").value;
+                var mesa = document.getElementById("Mesa").value;
+                var precio = document.getElementById("Precio").value;
+                var tipoOrden = document.getElementById("TipoOrden").value;
+                var descripcion = document.getElementById("Descripcion").value;
+                //var subtotal = precio * cantidad;
 
-            // Crear una nueva fila
-            var fila = document.createElement("tr");
+                // Crear una nueva fila
+                var fila = document.createElement("tr");
 
-            // Agregar las celdas a la fila
-            var celdaId_Orden = document.createElement("td");
-            celdaId_Orden.innerHTML = Id_Orden;
-            fila.appendChild(celdaId_Orden);
+                // Agregar las celdas a la fila
+                var celdaId_Orden = document.createElement("td");
+                celdaId_Orden.innerHTML = Id_Orden;
+                fila.appendChild(celdaId_Orden);
 
-            var celdaTipoProducto = document.createElement("td");
-            celdaTipoProducto.innerHTML = tipoProducto;
-            fila.appendChild(celdaTipoProducto);
+                //var celdaTipoProducto = document.createElement("td");
+                //celdaTipoProducto.innerHTML = tipoProducto;
+                //fila.appendChild(celdaTipoProducto);
 
-            var celdaProducto = document.createElement("td");
-            celdaProducto.innerHTML = producto;
-            fila.appendChild(celdaProducto);
+                var celdaProducto = document.createElement("td");
+                celdaProducto.innerHTML = producto;
+                fila.appendChild(celdaProducto);
 
-            var celdaPrecio = document.createElement("td");
-            celdaPrecio.innerHTML = precio;
-            fila.appendChild(celdaPrecio);
+                var celdaCantidad = document.createElement("td");
+                celdaCantidad.innerHTML = cantidad;
+                fila.appendChild(celdaCantidad);
 
-            var celdaCantidad = document.createElement("td");
-            celdaCantidad.innerHTML = cantidad;
-            fila.appendChild(celdaCantidad);
+                var celdaMesa = document.createElement("td");
+                celdaMesa.innerHTML = mesa;
+                fila.appendChild(celdaMesa);
 
-            var celdaTipoOrden = document.createElement("td");
-            celdaTipoOrden.innerHTML = tipoOrden;
-            fila.appendChild(celdaTipoOrden);
+                var celdaPrecio = document.createElement("td");
+                celdaPrecio.innerHTML = precio;
+                fila.appendChild(celdaPrecio);
 
-            var celdaMesa = document.createElement("td");
-            celdaMesa.innerHTML = mesa;
-            fila.appendChild(celdaMesa);
+                var celdaTipoOrden = document.createElement("td");
+                celdaTipoOrden.innerHTML = tipoOrden;
+                fila.appendChild(celdaTipoOrden);
 
-            var celdaDescripcion = document.createElement("td");
-            celdaDescripcion.innerHTML = descripcion;
-            fila.appendChild(celdaDescripcion);
 
-            var celdaSubtotal = document.createElement("td");
-            celdaSubtotal.innerHTML = subtotal;
-            fila.appendChild(celdaSubtotal);
+                var celdaDescripcion = document.createElement("td");
+                celdaDescripcion.innerHTML = descripcion;
+                fila.appendChild(celdaDescripcion);
 
-            // Agregar la fila a la tabla
-            document.getElementById("detalleOrden").appendChild(fila);
+                //var celdaSubtotal = document.createElement("td");
+                //celdaSubtotal.innerHTML = subtotal;
+                //fila.appendChild(celdaSubtotal);
+
+                // Agregar la fila a la tabla
+                document.getElementById("detalleOrden").appendChild(fila);
+
+            }
+
+
+
+        // --------- Funcion Javascript para cargar la funcion insertarDetalleOrden ------------// 
+        function enviarDetalleOrden() {
+            var filas = document.getElementById("tablaOrdenes").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+            var datosOrdenes = [];
+
+            for (var i = 0; i < filas.length; i++) {
+                var fila = filas[i];
+                var Id_Orden = fila.getElementsByTagName("td")[0].innerText;
+                var Id_producto = fila.getElementsByTagName("td")[1].innerText;
+                var Cantidad = fila.getElementsByTagName("td")[2].innerText;
+                var Mesa = fila.getElementsByTagName("td")[3].innerText;
+                var Precio = fila.getElementsByTagName("td")[4].innerText;
+                var Tipo_orden = fila.getElementsByTagName("td")[5].innerText;
+                var Descripcion = fila.getElementsByTagName("td")[6].innerText;
+
+                // guardar los datos de la fila en un objeto
+                var datosFila = {
+                    Id_Orden: Id_Orden,
+                    Id_producto: Id_producto,
+                    Cantidad: Cantidad,
+                    Mesa: Mesa,
+                    Precio: Precio,
+                    Tipo_orden: Tipo_orden,
+                    Descripcion: Descripcion
+                };
+
+                // agregar el objeto a un arreglo
+                datosOrdenes.push(datosFila);
+            }
+
+            // enviar los datos a la función insertarDeta_PA en la acción del controlador
+            $.ajax({
+                type: "POST",
+                url: "/DetalleOrden/accionesPAA",
+                data: { enviarAccionPA: "Agregar", datosOrdenes: datosOrdenes },
+                success: function (result) {
+                    // mostrar mensaje de éxito
+                },
+                error: function () {
+                    // mostrar mensaje de error
+                }
+            });
         }
 
+        document.getElementById("finalizar-btn").addEventListener("click", enviarDetalleOrden);
     </script>
 }
 
@@ -207,16 +256,14 @@
 
 <table class="table" id="tablaOrdenes">
     <thead>
-        <tr>
+        <tr data-id="DetalleOrden.Id_Detalle">
             <th>Num. Orden</th>
-            <th>Tipo de Producto</th>
             <th>Producto</th>
-            <th>Precio</th>
             <th>Cantidad</th>
-            <th>Tipo de Orden</th>
             <th>Mesa</th>
+            <th>Precio</th>
+            <th>Tipo de Orden</th>
             <th>Descripcion</th>
-            <th>Subtotal</th>
         </tr>
     </thead>
     <tbody id="detalleOrden">

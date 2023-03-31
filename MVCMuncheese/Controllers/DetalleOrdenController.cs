@@ -240,8 +240,8 @@ namespace MVCMuncheese.Controllers
                     return eliminarDet_ENT(pDetalleOrden);
                 default:
                     return RedirectToAction("listarDetalleOrden_ENT");
+                }
             }
-        }
 
 
         public ActionResult insertarDet_ENT(DetalleOrden pDetalleOrden)
@@ -286,7 +286,7 @@ namespace MVCMuncheese.Controllers
                 gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
                     " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
             }
-            return RedirectToAction("listarDetalleOrden_ENT");
+            return RedirectToAction("Mesas", "Mesas");
         }
 
         public ActionResult modificarDet_ENT(DetalleOrden pDetalleOrden)
@@ -488,8 +488,103 @@ namespace MVCMuncheese.Controllers
             return View(lobjRespuesta);
         }
 
+        /*****Acciones procedimientos almacenados DetalleOrden******/
 
-        /*****Acciones procedimientos almacenados Ingredientes******/
+        public ActionResult accionesPAA(string enviarAccionPA, List<DetalleOrden> datosOrdenes)
+        {
+            try
+            {
+                foreach (DetalleOrden pDetalleOrden in datosOrdenes)
+                {
+                    switch (enviarAccionPA)
+                    {
+                        case "Agregar":
+                            insertarDetal_PA(pDetalleOrden);
+                            break;
+
+                        default:
+                            return RedirectToAction("Mesas", "Mesas");
+                    }
+                }
+
+                // enviar mensaje de éxito
+                TempData["mensaje"] = "La orden se ha agregado correctamente.";
+            }
+            catch (Exception lEx)
+            {
+                // enviar mensaje de error
+                TempData["mensajeError"] = "Error al agregar la orden.";
+            }
+
+            return RedirectToAction("Mesas", "Mesas");
+        }
+
+
+        public ActionResult insertarDetal_PA(DetalleOrden pDetalleOrden)
+        {
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    // buscar el registro en la base de datos
+                    recDetalleOrden_Result detalleExistente = srvWCF_CR.recDetalleOrden_PA()
+                        .FirstOrDefault(d => d.Id_Detalle == pDetalleOrden.Id_Detalle);
+
+                    if (detalleExistente == null)
+                    {
+                        // el registro no existe en la base de datos, agregarlo
+                        if (srvWCF_CR.insDetalleOrden_PA(pDetalleOrden))
+                        {
+                            //enviar mensaje positivo
+                        }
+                        else
+                        {
+                            //enviar mensaje negativo
+                        }
+                    }
+                    else
+                    {
+                        // el registro ya existe en la base de datos, no hacer nada
+                    }
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return RedirectToAction("Mesas", "Mesas");
+        }
+
+
+        //public ActionResult insertarDetal_PA(DetalleOrden pDetalleOrden)
+        //{
+        //    List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
+        //    try
+        //    {
+        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+        //        {
+
+        //            if (srvWCF_CR.insDetalleOrden_PA(pDetalleOrden))
+        //            {
+        //                //enviar mensaje positivo
+        //            }
+        //            else
+        //            {
+        //                //enviar mensaje negativo
+        //            }
+        //            lobjRespuesta = srvWCF_CR.recDetalleOrden_PA();
+        //        }
+        //    }
+        //    catch (Exception lEx)
+        //    {
+        //        throw lEx;
+        //    }
+        //    return RedirectToAction("Mesas", "Mesas");
+        //}
+
+
+
+        /*****Acciones procedimientos almacenados DetalleOrden******/
         public ActionResult accionesPA(string enviarAccionPA, modeloDetalleOrden pModeloDetalleOrden)
         {
             try
@@ -512,6 +607,7 @@ namespace MVCMuncheese.Controllers
                         return modificarDeta_PA(pDetalleOrden);
                     case "Eliminar":
                         return eliminarDeta_PA(pDetalleOrden);
+
                     default:
                         return RedirectToAction("listarDetalleOrden_PA");
                 }
@@ -521,6 +617,33 @@ namespace MVCMuncheese.Controllers
                 throw lEx;
             }
         }
+
+        [HttpGet]
+        public ActionResult insertarDetall_PA(DetalleOrden pDetalleOrden)
+        {
+            List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    if (srvWCF_CR.insDetalleOrden_PA(pDetalleOrden))
+                    {
+                        //enviar mensaje positivo
+                    }
+                    else
+                    {
+                        //enviar mensaje negativo
+                    }
+                    lobjRespuesta = srvWCF_CR.recDetalleOrden_PA();
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return Json(new { success = true });
+        }
+
 
 
         public ActionResult insertarDeta_PA(DetalleOrden pDetalleOrden)
@@ -546,7 +669,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return RedirectToAction("listarDetalleOrden_PA");
+            return RedirectToAction("Mesas", "Mesas");
         }
 
         public ActionResult modificarDeta_PA(DetalleOrden pDetalleOrden)

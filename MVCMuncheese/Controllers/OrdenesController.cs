@@ -218,7 +218,7 @@ namespace MVCMuncheese.Controllers
 
 
         [HttpPost]
-        public JsonResult insertarOrde_ENT(int Id_Orden, int Id_Mesa, int Id_Estado, string Estado, DateTime Fecha)
+        public JsonResult insertarOrde_ENT(int Id_Orden,  int Id_Estado, string Estado, DateTime Fecha)
         {
             try
             {
@@ -227,7 +227,6 @@ namespace MVCMuncheese.Controllers
                     srvWCF_CR.insOrdenes_ENT(new Ordenes
                     {
                         Id_Orden = Id_Orden,
-                        Mesa = Id_Mesa,
                         Estado = Id_Estado,
                         Estados = Estado,
                         Fecha = Fecha
@@ -241,24 +240,7 @@ namespace MVCMuncheese.Controllers
             }
         }
 
-        //[HttpPost]
-        //public JsonResult insertarOrde_ENT(Ordenes pOrden)
-        //{
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            srvWCF_CR.insOrdenes_ENT(pOrden);
-        //        }
-        //        return Json(new { success = true });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new { success = false, errorMessage = ex.Message });
-        //    }
-        //}
-
-
+  
         public ActionResult insertarOrd_ENT(Ordenes pOrdenes)
         {
             List<Ordenes> lobjRespuesta = new List<Ordenes>();
