@@ -490,20 +490,88 @@ namespace MVCMuncheese.Controllers
 
         /*****Acciones procedimientos almacenados DetalleOrden******/
 
+        //public ActionResult accionesPAA(string enviarAccionPA, List<DetalleOrden> datosOrdenes)
+        //{
+        //    try
+        //    {
+        //        foreach (DetalleOrden pDetalleOrden in datosOrdenes)
+        //        {
+        //            switch (enviarAccionPA)
+        //            {
+        //                case "Agregar":
+        //                    insertarDetal_PA(pDetalleOrden);
+        //                    break;
+
+        //                default:
+        //                    return RedirectToAction("Mesas", "Mesas");
+        //            }
+        //        }
+
+        //        // enviar mensaje de éxito
+        //        TempData["mensaje"] = "La orden se ha agregado correctamente.";
+        //    }
+        //    catch (Exception lEx)
+        //    {
+        //        // enviar mensaje de error
+        //        TempData["mensajeError"] = "Error al agregar la orden.";
+        //    }
+
+        //    return RedirectToAction("Mesas", "Mesas");
+        //}
+
+
+        //public ActionResult insertarDetal_PA(DetalleOrden pDetalleOrden)
+        //{
+        //    try
+        //    {
+        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+        //        {
+        //            // buscar el registro en la base de datos
+        //            recDetalleOrden_Result detalleExistente = srvWCF_CR.recDetalleOrden_PA()
+        //                .FirstOrDefault(d => d.Id_Detalle == pDetalleOrden.Id_Detalle);
+
+        //            if (detalleExistente == null)
+        //            {
+        //                // el registro no existe en la base de datos, agregarlo
+        //                if (srvWCF_CR.insDetalleOrden_PA(pDetalleOrden))
+        //                {
+        //                    //enviar mensaje positivo
+        //                }
+        //                else
+        //                {
+        //                    //enviar mensaje negativo
+        //                }
+        //            }
+        //            else
+        //            {
+        //                // el registro ya existe en la base de datos, no hacer nada
+        //            }
+        //        }
+        //    }
+        //    catch (Exception lEx)
+        //    {
+        //        throw lEx;
+        //    }
+        //    return RedirectToAction("Mesas", "Mesas");
+        //}
+
         public ActionResult accionesPAA(string enviarAccionPA, List<DetalleOrden> datosOrdenes)
         {
             try
             {
-                foreach (DetalleOrden pDetalleOrden in datosOrdenes)
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
-                    switch (enviarAccionPA)
+                    foreach (DetalleOrden pDetalleOrden in datosOrdenes)
                     {
-                        case "Agregar":
-                            insertarDetal_PA(pDetalleOrden);
-                            break;
+                        switch (enviarAccionPA)
+                        {
+                            case "Agregar":
+                                insertarDetal_PA(pDetalleOrden);
+                                break;
 
-                        default:
-                            return RedirectToAction("Mesas", "Mesas");
+                            default:
+                                return RedirectToAction("Mesas", "Mesas");
+                        }
                     }
                 }
 
@@ -519,7 +587,6 @@ namespace MVCMuncheese.Controllers
             return RedirectToAction("Mesas", "Mesas");
         }
 
-
         public ActionResult insertarDetal_PA(DetalleOrden pDetalleOrden)
         {
             try
@@ -527,8 +594,8 @@ namespace MVCMuncheese.Controllers
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
                     // buscar el registro en la base de datos
-                    recDetalleOrden_Result detalleExistente = srvWCF_CR.recDetalleOrden_PA()
-                        .FirstOrDefault(d => d.Id_Detalle == pDetalleOrden.Id_Detalle);
+                    var detalleExistente = srvWCF_CR.recDetalleOrden_PA()
+                        .FirstOrDefault(d => d.Id_producto == pDetalleOrden.Id_producto && d.Id_Orden == pDetalleOrden.Id_Orden);
 
                     if (detalleExistente == null)
                     {
