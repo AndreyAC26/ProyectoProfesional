@@ -3,9 +3,14 @@ using MVCMuncheese.Models;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static MVCMuncheese.Models.modeloFacturas;
+using System.Configuration.Provider;
+using System.Xml.Linq;
 
 namespace MVCMuncheese.Controllers
 {
@@ -17,9 +22,26 @@ namespace MVCMuncheese.Controllers
 
         public ActionResult Factura() 
         {
-            return View(); 
+            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+            var ordenes = db.recOrdenes_ENT().ToList();
+            var detallesOrden = db.recDetalleOrden_ENT().ToList();
+
+            // Filtro para obtener las mesas activas
+            var detallesActivos = detallesOrden.Where(d => d.Ordenes.Estado == 1).ToList();
+
+            // Obtenemos la lista de mesas activas sin repetir
+            var mesasActivas = detallesActivos.Select(d => d.Mesa).Distinct().ToList();
+
+            // Creamos un nuevo objeto de tipo modeloFacturas y asignamos las mesas activas
+            var modelo = new modeloFacturas();
+            modelo.MesasActivas = new SelectList(mesasActivas);
+
+            return View(modelo);
         }
 
+       
+
+        
         //*********Procedimientos almacenados*********//
         public ActionResult listarFacturas_PA()
         {

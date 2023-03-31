@@ -15,6 +15,30 @@ namespace MVCMuncheese.srvMuncheese {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="srvMuncheese.IsrvMuncheese")]
     public interface IsrvMuncheese {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
+        System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recInventario_Result>> recInventario_PAAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse")]
+        Entidades.recInventarioxId_Result recInventarioXId_PA(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse")]
+        System.Threading.Tasks.Task<Entidades.recInventarioxId_Result> recInventarioXId_PAAsync(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse")]
+        bool insInventario_PA(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse")]
+        System.Threading.Tasks.Task<bool> insInventario_PAAsync(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse")]
+        bool modInventario_PA(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse")]
+        System.Threading.Tasks.Task<bool> modInventario_PAAsync(Entidades.Inventario pInventario);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delInventario_PAResponse")]
         bool delInventario_PA(Entidades.Inventario pInventario);
         
@@ -357,6 +381,24 @@ namespace MVCMuncheese.srvMuncheese {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delMesas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delMesas_PAResponse")]
         System.Threading.Tasks.Task<bool> delMesas_PAAsync(Entidades.Mesas pMesas);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recOrdenes_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recOrdenes_PAResponse")]
+        System.Collections.Generic.List<Entidades.recOrdenes_Result> recOrdenes_PA();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recOrdenes_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recOrdenes_PAResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recOrdenes_Result>> recOrdenes_PAAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recOrdenesXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recOrdenesXId_PAResponse")]
+        Entidades.recOrdenxId_Result recOrdenesXId_PA(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recOrdenesXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recOrdenesXId_PAResponse")]
+        System.Threading.Tasks.Task<Entidades.recOrdenxId_Result> recOrdenesXId_PAAsync(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insOrdenes_PAa", ReplyAction="http://tempuri.org/IsrvMuncheese/insOrdenes_PAaResponse")]
+        bool insOrdenes_PAa(Entidades.Ordenes pOrdenes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insOrdenes_PAa", ReplyAction="http://tempuri.org/IsrvMuncheese/insOrdenes_PAaResponse")]
+        System.Threading.Tasks.Task<bool> insOrdenes_PAaAsync(Entidades.Ordenes pOrdenes);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PAResp" +
             "onse")]
         Entidades.ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId);
@@ -364,6 +406,12 @@ namespace MVCMuncheese.srvMuncheese {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PAResp" +
             "onse")]
         System.Threading.Tasks.Task<Entidades.ObtenerProductosPorCategoria_Result> recObtenerProductosPorCategoria_ResultXId_PAAsync(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/ObtenerOrdenesDeMesa_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/ObtenerOrdenesDeMesa_PAResponse")]
+        Entidades.ObtenerOrdenesDeMesa_Result ObtenerOrdenesDeMesa_PA(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/ObtenerOrdenesDeMesa_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/ObtenerOrdenesDeMesa_PAResponse")]
+        System.Threading.Tasks.Task<Entidades.ObtenerOrdenesDeMesa_Result> ObtenerOrdenesDeMesa_PAAsync(int pId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recOrdenes_ENT", ReplyAction="http://tempuri.org/IsrvMuncheese/recOrdenes_ENTResponse")]
         System.Collections.Generic.List<Entidades.Ordenes> recOrdenes_ENT();
@@ -544,30 +592,6 @@ namespace MVCMuncheese.srvMuncheese {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
         System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
-        System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recInventario_Result>> recInventario_PAAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse")]
-        Entidades.recInventarioxId_Result recInventarioXId_PA(int pId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse")]
-        System.Threading.Tasks.Task<Entidades.recInventarioxId_Result> recInventarioXId_PAAsync(int pId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse")]
-        bool insInventario_PA(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse")]
-        System.Threading.Tasks.Task<bool> insInventario_PAAsync(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse")]
-        bool modInventario_PA(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse")]
-        System.Threading.Tasks.Task<bool> modInventario_PAAsync(Entidades.Inventario pInventario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -595,6 +619,38 @@ namespace MVCMuncheese.srvMuncheese {
         
         public IsrvMuncheeseClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA() {
+            return base.Channel.recInventario_PA();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recInventario_Result>> recInventario_PAAsync() {
+            return base.Channel.recInventario_PAAsync();
+        }
+        
+        public Entidades.recInventarioxId_Result recInventarioXId_PA(int pId) {
+            return base.Channel.recInventarioXId_PA(pId);
+        }
+        
+        public System.Threading.Tasks.Task<Entidades.recInventarioxId_Result> recInventarioXId_PAAsync(int pId) {
+            return base.Channel.recInventarioXId_PAAsync(pId);
+        }
+        
+        public bool insInventario_PA(Entidades.Inventario pInventario) {
+            return base.Channel.insInventario_PA(pInventario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> insInventario_PAAsync(Entidades.Inventario pInventario) {
+            return base.Channel.insInventario_PAAsync(pInventario);
+        }
+        
+        public bool modInventario_PA(Entidades.Inventario pInventario) {
+            return base.Channel.modInventario_PA(pInventario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> modInventario_PAAsync(Entidades.Inventario pInventario) {
+            return base.Channel.modInventario_PAAsync(pInventario);
         }
         
         public bool delInventario_PA(Entidades.Inventario pInventario) {
@@ -1053,12 +1109,44 @@ namespace MVCMuncheese.srvMuncheese {
             return base.Channel.delMesas_PAAsync(pMesas);
         }
         
+        public System.Collections.Generic.List<Entidades.recOrdenes_Result> recOrdenes_PA() {
+            return base.Channel.recOrdenes_PA();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recOrdenes_Result>> recOrdenes_PAAsync() {
+            return base.Channel.recOrdenes_PAAsync();
+        }
+        
+        public Entidades.recOrdenxId_Result recOrdenesXId_PA(int pId) {
+            return base.Channel.recOrdenesXId_PA(pId);
+        }
+        
+        public System.Threading.Tasks.Task<Entidades.recOrdenxId_Result> recOrdenesXId_PAAsync(int pId) {
+            return base.Channel.recOrdenesXId_PAAsync(pId);
+        }
+        
+        public bool insOrdenes_PAa(Entidades.Ordenes pOrdenes) {
+            return base.Channel.insOrdenes_PAa(pOrdenes);
+        }
+        
+        public System.Threading.Tasks.Task<bool> insOrdenes_PAaAsync(Entidades.Ordenes pOrdenes) {
+            return base.Channel.insOrdenes_PAaAsync(pOrdenes);
+        }
+        
         public Entidades.ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId) {
             return base.Channel.recObtenerProductosPorCategoria_ResultXId_PA(pId);
         }
         
         public System.Threading.Tasks.Task<Entidades.ObtenerProductosPorCategoria_Result> recObtenerProductosPorCategoria_ResultXId_PAAsync(int pId) {
             return base.Channel.recObtenerProductosPorCategoria_ResultXId_PAAsync(pId);
+        }
+        
+        public Entidades.ObtenerOrdenesDeMesa_Result ObtenerOrdenesDeMesa_PA(int pId) {
+            return base.Channel.ObtenerOrdenesDeMesa_PA(pId);
+        }
+        
+        public System.Threading.Tasks.Task<Entidades.ObtenerOrdenesDeMesa_Result> ObtenerOrdenesDeMesa_PAAsync(int pId) {
+            return base.Channel.ObtenerOrdenesDeMesa_PAAsync(pId);
         }
         
         public System.Collections.Generic.List<Entidades.Ordenes> recOrdenes_ENT() {
@@ -1299,38 +1387,6 @@ namespace MVCMuncheese.srvMuncheese {
         
         public System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
             return base.Channel.delPerfilUsuario_PAAsync(pPerfilUsuario);
-        }
-        
-        public System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA() {
-            return base.Channel.recInventario_PA();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recInventario_Result>> recInventario_PAAsync() {
-            return base.Channel.recInventario_PAAsync();
-        }
-        
-        public Entidades.recInventarioxId_Result recInventarioXId_PA(int pId) {
-            return base.Channel.recInventarioXId_PA(pId);
-        }
-        
-        public System.Threading.Tasks.Task<Entidades.recInventarioxId_Result> recInventarioXId_PAAsync(int pId) {
-            return base.Channel.recInventarioXId_PAAsync(pId);
-        }
-        
-        public bool insInventario_PA(Entidades.Inventario pInventario) {
-            return base.Channel.insInventario_PA(pInventario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> insInventario_PAAsync(Entidades.Inventario pInventario) {
-            return base.Channel.insInventario_PAAsync(pInventario);
-        }
-        
-        public bool modInventario_PA(Entidades.Inventario pInventario) {
-            return base.Channel.modInventario_PA(pInventario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> modInventario_PAAsync(Entidades.Inventario pInventario) {
-            return base.Channel.modInventario_PAAsync(pInventario);
         }
     }
 }

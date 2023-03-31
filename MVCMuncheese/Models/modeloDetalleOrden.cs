@@ -43,7 +43,10 @@ namespace MVCMuncheese.Models
                 [Display(Name = "Categoria")]
                 public int Tipo_Producto { get; set; }
 
-                public List<Orden> Ordenes { get; set; }
+                public int UltimoIdOrden { get; set; }
+
+
+                 public List<Orden> Ordenes { get; set; }
 
             }
             public class Orden

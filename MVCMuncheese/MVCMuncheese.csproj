@@ -274,6 +274,12 @@
     <Content Include="Entidades.recUsuarios_Result.datasource" />
     <Content Include="Entidades.recUsuarioxId_Result.datasource" />
     <Content Include="Entidades.Usuarios.datasource" />
+    <Content Include="Entidades.ObtenerProductosPorCategoria_Result.datasource" />
+    <Content Include="Entidades.DetalleOrden.datasource" />
+    <Content Include="Entidades.recDetalleOrdenxId_Result.datasource" />
+    <Content Include="Entidades.recDetalleOrden_Result.datasource" />
+    <Content Include="Entidades.recOrdenes_Result.datasource" />
+    <Content Include="Entidades.recOrdenxId_Result.datasource" />
     <None Include="Connected Services\srvMuncheese\srvMuncheese.wsdl" />
     <None Include="Connected Services\srvMuncheese\srvMuncheese.xsd">
       <SubType>Designer</SubType>
@@ -284,10 +290,7 @@
     <None Include="Connected Services\srvMuncheese\srvMuncheese2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Entidades.ObtenerProductosPorCategoria_Result.datasource" />
-    <Content Include="Entidades.DetalleOrden.datasource" />
-    <Content Include="Entidades.recDetalleOrdenxId_Result.datasource" />
-    <Content Include="Entidades.recDetalleOrden_Result.datasource" />
+    <Content Include="Entidades.ObtenerOrdenesDeMesa_Result.datasource" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -411,6 +414,7 @@
     <Content Include="Views\DetalleOrden\eliminarDetalleOrden_PA.cshtml" />
     <Content Include="Views\DetalleOrden\detalleDetalleOrden_PA.cshtml" />
     <Content Include="Views\DetalleOrden\DetalleOrden.cshtml" />
+    <Content Include="Views\Ordenes\agregarOrdenes_PA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

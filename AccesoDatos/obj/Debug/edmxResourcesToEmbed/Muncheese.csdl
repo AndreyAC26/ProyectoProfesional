@@ -525,15 +525,7 @@
       <Parameter Name="NombreMesa" Mode="In" Type="String" />
       <Parameter Name="Estado" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="insOrden">
-      <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
-      <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
-      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
-      <Parameter Name="Descripcion" Mode="In" Type="String" />
-      <Parameter Name="Mesa" Mode="In" Type="Int32" />
-      <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
-      <Parameter Name="Precio" Mode="In" Type="Int32" />
-    </FunctionImport>
+    <FunctionImport Name="insOrden" />
     <FunctionImport Name="insPerfil">
       <Parameter Name="nombre_perfil" Mode="In" Type="String" />
     </FunctionImport>
@@ -679,6 +671,10 @@
       <Parameter Name="Contraseña" Mode="In" Type="String" />
       <Parameter Name="Estado" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="ObtenerMesasActivas" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="ObtenerOrdenesDeMesa" ReturnType="Collection(MuncheeseModelo.ObtenerOrdenesDeMesa_Result)">
+      <Parameter Name="mesa" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="ObtenerProductosPorCategoria" ReturnType="Collection(MuncheeseModelo.ObtenerProductosPorCategoria_Result)">
       <Parameter Name="Tipo_producto" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -721,8 +717,9 @@
     <FunctionImport Name="recMesaxId" ReturnType="Collection(MuncheeseModelo.recMesaxId_Result)">
       <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="recOrdenes" />
-    <FunctionImport Name="recOrdenxId">
+    <FunctionImport Name="recObtenerMesasActivas" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="recOrdenes" ReturnType="Collection(MuncheeseModelo.recOrdenes_Result)" />
+    <FunctionImport Name="recOrdenxId" ReturnType="Collection(MuncheeseModelo.recOrdenxId_Result)">
       <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="recPerfiles" ReturnType="Collection(MuncheeseModelo.recPerfiles_Result)" />
@@ -788,6 +785,11 @@
   <ComplexType Name="InsertarTipoProducto_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />
     <Property Type="String" Name="Column2" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="ObtenerOrdenesDeMesa_Result">
+    <Property Type="Int32" Name="Id_Orden" Nullable="false" />
+    <Property Type="Int32" Name="Estado" Nullable="true" />
+    <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="ObtenerProductosPorCategoria_Result">
     <Property Type="Int32" Name="Id_producto" Nullable="false" />
@@ -893,6 +895,15 @@
     <Property Type="Int32" Name="Id_Mesa" Nullable="false" />
     <Property Type="String" Name="NombreMesa" Nullable="true" MaxLength="12" />
     <Property Type="Int32" Name="Estado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="recOrdenes_Result">
+    <Property Type="Int32" Name="Id_Orden" Nullable="false" />
+    <Property Type="DateTime" Name="Estado" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="recOrdenxId_Result">
+    <Property Type="Int32" Name="Id_Orden" Nullable="false" />
+    <Property Type="Int32" Name="Estado" Nullable="true" />
+    <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="recPerfiles_Result">
     <Property Type="Int32" Name="Perfil_Id" Nullable="false" />

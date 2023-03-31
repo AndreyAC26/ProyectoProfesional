@@ -28,21 +28,33 @@ namespace MVCMuncheese.Controllers
                     var resultado = srvWCF_CR.recMesaXId_PA(mesa);
                     var estado = resultado.Estado == 1 ? "Activo" : "Ocupado";
                     mesaSeleccionada = new MesaViewModel { NumeroMesa = resultado.Id_Mesa, Estado = resultado.Estado, EstadoMesa = estado };
+
+                    // Crear una nueva orden
+                    var nuevaOrden = new Ordenes();
+               
+
+                    // Agregar la nueva orden a la base de datos
+                    srvWCF_CR.insOrdenes_PAa(nuevaOrden);
+
+                    // Obtener el último Id_Orden agregado
+
+                    var ultimoIdOrden = srvWCF_CR.recOrdenes_PA().OrderByDescending(o => o.Id_Orden).FirstOrDefault().Id_Orden;
+
+                    // Crear un modelo para la vista con el último Id_Orden y otros datos necesarios
+
+                    var modeloDetalleOrden = new modeloDetalleOrden { Mesa = mesa, UltimoIdOrden = ultimoIdOrden };
+                    srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
+                    ViewBag.Tipo_Producto = new SelectList(db.recTipo_Producto_PA().ToList(), "Id_tipo_producto", "Nombre_tipo_pro");
+                    var productos = db.recProductos_ENT().ToList();
+                    modeloDetalleOrden.Productos = productos;
+                    return View(modeloDetalleOrden);
                 }
             }
             catch (Exception lEx)
             {
                 throw lEx;
-            }
-
-            // Crear un nuevo modelo de vista de orden con la información de la mesa seleccionada
-            var modeloDetalleOrden = new modeloDetalleOrden { Mesa = mesa };
-
-            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
-            ViewBag.Tipo_Producto = new SelectList(db.recTipo_Producto_PA().ToList(), "Id_tipo_producto", "Nombre_tipo_pro");
-            var productos = db.recProductos_ENT().ToList();
-            modeloDetalleOrden.Productos = productos;
-            return View(modeloDetalleOrden);
+            }     
+            
         }
 
 
@@ -71,6 +83,33 @@ namespace MVCMuncheese.Controllers
             return Json(0, JsonRequestBehavior.AllowGet);
         }
 
+            public void insOrden_PA(Ordenes pOrdenes)
+            {
+                List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+                try
+                {
+                        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                    {
+                        if (srvWCF_CR.insOrdenes_PAa(pOrdenes))
+                        {
+                            //enviar mensaje positivo
+                        }
+                        else
+                        {
+
+                        }
+                        {
+                            //enviar mensaje negativo
+                        }
+                        lobjRespuesta = srvWCF_CR.recOrdenes_PA();
+                    }
+                }
+                catch (Exception lEx)
+                {
+                    throw lEx;
+                }
+                //return RedirectToAction("listarOrdenes_ENT");
+            }
 
         //*********ENTIDADES*********//
         public ActionResult listarDetalleOrden_ENT()
@@ -488,73 +527,7 @@ namespace MVCMuncheese.Controllers
             return View(lobjRespuesta);
         }
 
-        /*****Acciones procedimientos almacenados DetalleOrden******/
-
-        //public ActionResult accionesPAA(string enviarAccionPA, List<DetalleOrden> datosOrdenes)
-        //{
-        //    try
-        //    {
-        //        foreach (DetalleOrden pDetalleOrden in datosOrdenes)
-        //        {
-        //            switch (enviarAccionPA)
-        //            {
-        //                case "Agregar":
-        //                    insertarDetal_PA(pDetalleOrden);
-        //                    break;
-
-        //                default:
-        //                    return RedirectToAction("Mesas", "Mesas");
-        //            }
-        //        }
-
-        //        // enviar mensaje de éxito
-        //        TempData["mensaje"] = "La orden se ha agregado correctamente.";
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        // enviar mensaje de error
-        //        TempData["mensajeError"] = "Error al agregar la orden.";
-        //    }
-
-        //    return RedirectToAction("Mesas", "Mesas");
-        //}
-
-
-        //public ActionResult insertarDetal_PA(DetalleOrden pDetalleOrden)
-        //{
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            // buscar el registro en la base de datos
-        //            recDetalleOrden_Result detalleExistente = srvWCF_CR.recDetalleOrden_PA()
-        //                .FirstOrDefault(d => d.Id_Detalle == pDetalleOrden.Id_Detalle);
-
-        //            if (detalleExistente == null)
-        //            {
-        //                // el registro no existe en la base de datos, agregarlo
-        //                if (srvWCF_CR.insDetalleOrden_PA(pDetalleOrden))
-        //                {
-        //                    //enviar mensaje positivo
-        //                }
-        //                else
-        //                {
-        //                    //enviar mensaje negativo
-        //                }
-        //            }
-        //            else
-        //            {
-        //                // el registro ya existe en la base de datos, no hacer nada
-        //            }
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        throw lEx;
-        //    }
-        //    return RedirectToAction("Mesas", "Mesas");
-        //}
-
+       
         public ActionResult accionesPAA(string enviarAccionPA, List<DetalleOrden> datosOrdenes)
         {
             try
@@ -580,6 +553,7 @@ namespace MVCMuncheese.Controllers
             }
             catch (Exception lEx)
             {
+                throw lEx;
                 // enviar mensaje de error
                 TempData["mensajeError"] = "Error al agregar la orden.";
             }
@@ -621,33 +595,6 @@ namespace MVCMuncheese.Controllers
             }
             return RedirectToAction("Mesas", "Mesas");
         }
-
-
-        //public ActionResult insertarDetal_PA(DetalleOrden pDetalleOrden)
-        //{
-        //    List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-
-        //            if (srvWCF_CR.insDetalleOrden_PA(pDetalleOrden))
-        //            {
-        //                //enviar mensaje positivo
-        //            }
-        //            else
-        //            {
-        //                //enviar mensaje negativo
-        //            }
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrden_PA();
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        throw lEx;
-        //    }
-        //    return RedirectToAction("Mesas", "Mesas");
-        //}
 
 
 

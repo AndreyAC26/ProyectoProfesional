@@ -430,15 +430,7 @@
           <Parameter Name="NombreMesa" Type="varchar" Mode="In" />
           <Parameter Name="Estado" Type="int" Mode="In" />
         </Function>
-        <Function Name="insOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Id_Orden" Type="int" Mode="In" />
-          <Parameter Name="Id_Producto" Type="int" Mode="In" />
-          <Parameter Name="Cantidad" Type="int" Mode="In" />
-          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="Mesa" Type="int" Mode="In" />
-          <Parameter Name="Id_Factura" Type="int" Mode="In" />
-          <Parameter Name="Precio" Type="int" Mode="In" />
-        </Function>
+        <Function Name="insOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="insPerfil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre_perfil" Type="varchar" Mode="In" />
         </Function>
@@ -584,6 +576,10 @@
           <Parameter Name="Contraseña" Type="varchar" Mode="In" />
           <Parameter Name="Estado" Type="int" Mode="In" />
         </Function>
+        <Function Name="ObtenerMesasActivas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ObtenerOrdenesDeMesa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mesa" Type="int" Mode="In" />
+        </Function>
         <Function Name="ObtenerProductosPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Tipo_producto" Type="int" Mode="In" />
         </Function>
@@ -626,6 +622,7 @@
         <Function Name="recMesaxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Mesa" Type="int" Mode="In" />
         </Function>
+        <Function Name="recObtenerMesasActivas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="recOrdenes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="recOrdenxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Orden" Type="int" Mode="In" />
@@ -1293,15 +1290,7 @@
             <Parameter Name="NombreMesa" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="insOrden">
-            <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
-            <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
-            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Mesa" Mode="In" Type="Int32" />
-            <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
-            <Parameter Name="Precio" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="insOrden" />
           <FunctionImport Name="insPerfil">
             <Parameter Name="nombre_perfil" Mode="In" Type="String" />
           </FunctionImport>
@@ -1447,6 +1436,10 @@
             <Parameter Name="Contraseña" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="ObtenerMesasActivas" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="ObtenerOrdenesDeMesa" ReturnType="Collection(MuncheeseModelo.ObtenerOrdenesDeMesa_Result)">
+            <Parameter Name="mesa" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ObtenerProductosPorCategoria" ReturnType="Collection(MuncheeseModelo.ObtenerProductosPorCategoria_Result)">
             <Parameter Name="Tipo_producto" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1489,8 +1482,9 @@
           <FunctionImport Name="recMesaxId" ReturnType="Collection(MuncheeseModelo.recMesaxId_Result)">
             <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="recOrdenes" />
-          <FunctionImport Name="recOrdenxId">
+          <FunctionImport Name="recObtenerMesasActivas" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="recOrdenes" ReturnType="Collection(MuncheeseModelo.recOrdenes_Result)" />
+          <FunctionImport Name="recOrdenxId" ReturnType="Collection(MuncheeseModelo.recOrdenxId_Result)">
             <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recPerfiles" ReturnType="Collection(MuncheeseModelo.recPerfiles_Result)" />
@@ -1556,6 +1550,11 @@
         <ComplexType Name="InsertarTipoProducto_Result">
           <Property Type="Int32" Name="Column1" Nullable="true" />
           <Property Type="String" Name="Column2" Nullable="true" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="ObtenerOrdenesDeMesa_Result">
+          <Property Type="Int32" Name="Id_Orden" Nullable="false" />
+          <Property Type="Int32" Name="Estado" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="ObtenerProductosPorCategoria_Result">
           <Property Type="Int32" Name="Id_producto" Nullable="false" />
@@ -1661,6 +1660,15 @@
           <Property Type="Int32" Name="Id_Mesa" Nullable="false" />
           <Property Type="String" Name="NombreMesa" Nullable="true" MaxLength="12" />
           <Property Type="Int32" Name="Estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="recOrdenes_Result">
+          <Property Type="Int32" Name="Id_Orden" Nullable="false" />
+          <Property Type="DateTime" Name="Estado" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="recOrdenxId_Result">
+          <Property Type="Int32" Name="Id_Orden" Nullable="false" />
+          <Property Type="Int32" Name="Estado" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="recPerfiles_Result">
           <Property Type="Int32" Name="Perfil_Id" Nullable="false" />
@@ -1959,6 +1967,16 @@
           <FunctionImportMapping FunctionImportName="modTipo_Combo" FunctionName="MuncheeseModelo.Store.modTipo_Combo" />
           <FunctionImportMapping FunctionImportName="modTipo_Producto" FunctionName="MuncheeseModelo.Store.modTipo_Producto" />
           <FunctionImportMapping FunctionImportName="modUsuario" FunctionName="MuncheeseModelo.Store.modUsuario" />
+          <FunctionImportMapping FunctionImportName="ObtenerMesasActivas" FunctionName="MuncheeseModelo.Store.ObtenerMesasActivas" />
+          <FunctionImportMapping FunctionImportName="ObtenerOrdenesDeMesa" FunctionName="MuncheeseModelo.Store.ObtenerOrdenesDeMesa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MuncheeseModelo.ObtenerOrdenesDeMesa_Result">
+                <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ObtenerProductosPorCategoria" FunctionName="MuncheeseModelo.Store.ObtenerProductosPorCategoria">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MuncheeseModelo.ObtenerProductosPorCategoria_Result">
@@ -2138,8 +2156,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="recOrdenes" FunctionName="MuncheeseModelo.Store.recOrdenes" />
-          <FunctionImportMapping FunctionImportName="recOrdenxId" FunctionName="MuncheeseModelo.Store.recOrdenxId" />
+          <FunctionImportMapping FunctionImportName="recObtenerMesasActivas" FunctionName="MuncheeseModelo.Store.recObtenerMesasActivas" />
+          <FunctionImportMapping FunctionImportName="recOrdenes" FunctionName="MuncheeseModelo.Store.recOrdenes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MuncheeseModelo.recOrdenes_Result">
+                <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="recOrdenxId" FunctionName="MuncheeseModelo.Store.recOrdenxId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MuncheeseModelo.recOrdenxId_Result">
+                <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="recPerfiles" FunctionName="MuncheeseModelo.Store.recPerfiles">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MuncheeseModelo.recPerfiles_Result">

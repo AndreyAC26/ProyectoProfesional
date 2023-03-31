@@ -409,37 +409,9 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insMesa", nombreMesaParameter, estadoParameter);
         }
     
-        public virtual int insOrden(Nullable<int> id_Orden, Nullable<int> id_Producto, Nullable<int> cantidad, string descripcion, Nullable<int> mesa, Nullable<int> id_Factura, Nullable<int> precio)
+        public virtual int insOrden()
         {
-            var id_OrdenParameter = id_Orden.HasValue ?
-                new ObjectParameter("Id_Orden", id_Orden) :
-                new ObjectParameter("Id_Orden", typeof(int));
-    
-            var id_ProductoParameter = id_Producto.HasValue ?
-                new ObjectParameter("Id_Producto", id_Producto) :
-                new ObjectParameter("Id_Producto", typeof(int));
-    
-            var cantidadParameter = cantidad.HasValue ?
-                new ObjectParameter("Cantidad", cantidad) :
-                new ObjectParameter("Cantidad", typeof(int));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var mesaParameter = mesa.HasValue ?
-                new ObjectParameter("Mesa", mesa) :
-                new ObjectParameter("Mesa", typeof(int));
-    
-            var id_FacturaParameter = id_Factura.HasValue ?
-                new ObjectParameter("Id_Factura", id_Factura) :
-                new ObjectParameter("Id_Factura", typeof(int));
-    
-            var precioParameter = precio.HasValue ?
-                new ObjectParameter("Precio", precio) :
-                new ObjectParameter("Precio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insOrden", id_OrdenParameter, id_ProductoParameter, cantidadParameter, descripcionParameter, mesaParameter, id_FacturaParameter, precioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insOrden");
         }
     
         public virtual int insPerfil(string nombre_perfil)
@@ -944,6 +916,20 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modUsuario", usuarioParameter, contraseñaParameter, estadoParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> ObtenerMesasActivas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ObtenerMesasActivas");
+        }
+    
+        public virtual ObjectResult<ObtenerOrdenesDeMesa_Result> ObtenerOrdenesDeMesa(Nullable<int> mesa)
+        {
+            var mesaParameter = mesa.HasValue ?
+                new ObjectParameter("mesa", mesa) :
+                new ObjectParameter("mesa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerOrdenesDeMesa_Result>("ObtenerOrdenesDeMesa", mesaParameter);
+        }
+    
         public virtual ObjectResult<ObtenerProductosPorCategoria_Result> ObtenerProductosPorCategoria(Nullable<int> tipo_producto)
         {
             var tipo_productoParameter = tipo_producto.HasValue ?
@@ -1088,18 +1074,23 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recMesaxId_Result>("recMesaxId", id_MesaParameter);
         }
     
-        public virtual int recOrdenes()
+        public virtual ObjectResult<Nullable<int>> recObtenerMesasActivas()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("recOrdenes");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("recObtenerMesasActivas");
         }
     
-        public virtual int recOrdenxId(Nullable<int> id_Orden)
+        public virtual ObjectResult<recOrdenes_Result> recOrdenes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recOrdenes_Result>("recOrdenes");
+        }
+    
+        public virtual ObjectResult<recOrdenxId_Result> recOrdenxId(Nullable<int> id_Orden)
         {
             var id_OrdenParameter = id_Orden.HasValue ?
                 new ObjectParameter("Id_Orden", id_Orden) :
                 new ObjectParameter("Id_Orden", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("recOrdenxId", id_OrdenParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recOrdenxId_Result>("recOrdenxId", id_OrdenParameter);
         }
     
         public virtual ObjectResult<recPerfiles_Result> recPerfiles()

@@ -9,5 +9,6 @@ namespace MVCMuncheese.Models.ViewModels
     {
         public int Id_tipo_Producto { get; set; }
         public string Nombre_tipo_pro { get; set; }
+
     }
 }

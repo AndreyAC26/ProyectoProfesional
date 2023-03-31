@@ -20,7 +20,6 @@ namespace AccesoDatos.Implementacion
         }
 
         //**************PROCEDIMIENTOS ALMACENADOS**************//
-
         public List<recMesas_Result> recMesas_PA()
         {
             List<recMesas_Result> lobjRespuesta = new List<recMesas_Result>();
@@ -34,6 +33,8 @@ namespace AccesoDatos.Implementacion
             }
             return lobjRespuesta;
         }
+
+      
 
         public recMesaxId_Result recMesasXId_PA(int pId)
         {

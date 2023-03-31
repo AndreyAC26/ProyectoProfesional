@@ -48,6 +48,7 @@ namespace AccesoDatos.Implementacion
             }
             return lobjRespuesta;
         }
+
         public bool insEstado_PA(Estado pEstado)
         {
             bool lobjRespuesta = false;

@@ -228,7 +228,6 @@ namespace MVCMuncheese.Controllers
                     {
                         Id_Orden = Id_Orden,
                         Estado = Id_Estado,
-                        Estados = Estado,
                         Fecha = Fecha
                     });
                 }
@@ -360,6 +359,69 @@ namespace MVCMuncheese.Controllers
             return RedirectToAction("listarOrdenes_ENT");
         }
 
+        public ActionResult agregarOrdenes_PA()
+        {
+            return View();
+        }
+
+        /*****Acciones procedimientos almacenados Ordenes******/
+        public ActionResult accionesPA(string enviarAccion, modeloOrdenes pModeloOrdenes)
+        {
+            try
+            {
+                Ordenes pOrdenes = new Ordenes();
+                pOrdenes.Id_Orden = pModeloOrdenes.Id_Orden;
+                pOrdenes.Fecha = pModeloOrdenes.Fecha;
+                pOrdenes.Estado = pModeloOrdenes.Estado;
+
+
+                switch (enviarAccion)
+                {
+                    case "Agregar":
+                        insOrden_PA(pOrdenes);
+                        ViewBag.Mensaje = "La orden ha sido agregada satisfactoriamente";
+                        break;
+                    default:
+                        ViewBag.Mensaje = "Ocurrió un error al realizar la acción solicitada";
+                        break;
+
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return View();
+        }
+
+
+        public /*ActionResult*/ void insOrden_PA(Ordenes pOrdenes)
+        {
+            List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    if (srvWCF_CR.insOrdenes_PAa(pOrdenes))
+                    {
+                        //enviar mensaje positivo
+                    }
+                    else
+                    {
+
+                    }
+                    {
+                        //enviar mensaje negativo
+                    }
+                    lobjRespuesta = srvWCF_CR.recOrdenes_PA();
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            //return RedirectToAction("listarOrdenes_ENT");
+        }
 
     }
 }

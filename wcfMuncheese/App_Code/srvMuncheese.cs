@@ -215,6 +215,7 @@ public class srvMuncheese : IsrvMuncheese
         }
         return lobjRespuesta;
     }
+
     public bool insProveedores_PA(Proveedor pProveedores)
     {
         bool lobjRespuesta = false;
@@ -771,6 +772,50 @@ public class srvMuncheese : IsrvMuncheese
 
     //**************ENTIDADES Ordenes**************//
 
+    public List<recOrdenes_Result> recOrdenes_PA()
+    {
+        List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+        try
+        {
+            lobjRespuesta = gobjOrdenesLN.recOrdenes_PA();
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    public recOrdenxId_Result recOrdenesXId_PA(int pId)
+    {
+        recOrdenxId_Result lobjRespuesta = new recOrdenxId_Result();
+        try
+        {
+            lobjRespuesta = gobjOrdenesLN.recOrdenesXId_PA(pId);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+
+    public bool insOrdenes_PAa(Ordenes pOrdenes)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjOrdenesLN.insOrdenes_PA(pOrdenes);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+
     //Productos por categoria
     public ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId)
     {
@@ -778,6 +823,20 @@ public class srvMuncheese : IsrvMuncheese
         try
         {
             lobjRespuesta = gobjOrdenesLN.recObtenerProductosPorCategoria_ResultXId_PA(pId);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    public ObtenerOrdenesDeMesa_Result ObtenerOrdenesDeMesa_PA(int pId)
+    {
+        ObtenerOrdenesDeMesa_Result lobjRespuesta = new ObtenerOrdenesDeMesa_Result();
+        try
+        {
+            lobjRespuesta = gobjOrdenesLN.recObtenerOrdenesDeMesa_PA(pId);
         }
         catch (Exception lEx)
         {

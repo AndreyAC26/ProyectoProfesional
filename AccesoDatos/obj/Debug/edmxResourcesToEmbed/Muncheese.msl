@@ -221,6 +221,16 @@
     <FunctionImportMapping FunctionImportName="modTipo_Combo" FunctionName="MuncheeseModelo.Store.modTipo_Combo" />
     <FunctionImportMapping FunctionImportName="modTipo_Producto" FunctionName="MuncheeseModelo.Store.modTipo_Producto" />
     <FunctionImportMapping FunctionImportName="modUsuario" FunctionName="MuncheeseModelo.Store.modUsuario" />
+    <FunctionImportMapping FunctionImportName="ObtenerMesasActivas" FunctionName="MuncheeseModelo.Store.ObtenerMesasActivas" />
+    <FunctionImportMapping FunctionImportName="ObtenerOrdenesDeMesa" FunctionName="MuncheeseModelo.Store.ObtenerOrdenesDeMesa">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MuncheeseModelo.ObtenerOrdenesDeMesa_Result">
+          <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ObtenerProductosPorCategoria" FunctionName="MuncheeseModelo.Store.ObtenerProductosPorCategoria">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.ObtenerProductosPorCategoria_Result">
@@ -400,8 +410,24 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="recOrdenes" FunctionName="MuncheeseModelo.Store.recOrdenes" />
-    <FunctionImportMapping FunctionImportName="recOrdenxId" FunctionName="MuncheeseModelo.Store.recOrdenxId" />
+    <FunctionImportMapping FunctionImportName="recObtenerMesasActivas" FunctionName="MuncheeseModelo.Store.recObtenerMesasActivas" />
+    <FunctionImportMapping FunctionImportName="recOrdenes" FunctionName="MuncheeseModelo.Store.recOrdenes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MuncheeseModelo.recOrdenes_Result">
+          <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="recOrdenxId" FunctionName="MuncheeseModelo.Store.recOrdenxId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MuncheeseModelo.recOrdenxId_Result">
+          <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="recPerfiles" FunctionName="MuncheeseModelo.Store.recPerfiles">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.recPerfiles_Result">

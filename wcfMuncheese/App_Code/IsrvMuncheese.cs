@@ -198,7 +198,19 @@ public interface IsrvMuncheese
 
     //**************ENTIDADES Ordenes**************//
     [OperationContract]
+    List<recOrdenes_Result> recOrdenes_PA();
+
+    [OperationContract]
+    recOrdenxId_Result recOrdenesXId_PA(int pId);
+
+    [OperationContract]
+    bool insOrdenes_PAa(Ordenes pOrdenes);
+
+    [OperationContract]
     ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId);
+
+    [OperationContract]
+    ObtenerOrdenesDeMesa_Result ObtenerOrdenesDeMesa_PA(int pId);
 
     [OperationContract]
     List<Ordenes> recOrdenes_ENT();

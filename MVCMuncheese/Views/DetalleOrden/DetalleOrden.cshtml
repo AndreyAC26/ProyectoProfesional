@@ -113,7 +113,7 @@
 
 
 
-        // --------- Funcion Javascript para cargar la funcion insertarDetalleOrden ------------// 
+        // --------- Funcion Javascript para cargar la funcion insertarDetalleOrden ------------//
         function enviarDetalleOrden() {
             var filas = document.getElementById("tablaOrdenes").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
             var datosOrdenes = [];
@@ -157,6 +157,12 @@
             });
         }
 
+        //carga el ultimo Id_Orden al editorfor id_orden
+        $(document).ready(function() {
+        var ultimoIdOrden = @Model.UltimoIdOrden;
+        $('#Id_Orden').val(ultimoIdOrden);
+    });
+
         document.getElementById("finalizar-btn").addEventListener("click", enviarDetalleOrden);
     </script>
 }
@@ -174,7 +180,7 @@
                 <div class="form-group col-md-12">
                     <div class="col-md-2">
                         @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Id_Orden, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Id_Orden, new { htmlAttributes = new { @class = "form-control", id = "Id_Orden" } })
                         @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -273,7 +279,7 @@
 
 <div class="form-group col-md-12" style="text-align:right">
     <div class="col-lg-10 col-lg-offset-2">
-        <button type="button" class="btn btn-primary" id="finalizar-btn" onclick="enviarDetalleOrden()">Finalizar</button>
+        <button type="button" class="btn btn-primary" id="finalizar-btn" onclick="enviarDetalleOrden()">@Html.ActionLink("Finalizar", "Mesas", "Mesas", null, new { style = "color:white;" })</button>
         <div class="btn btn-primary">@Html.ActionLink("Atras", "Mesas", "Mesas", null, new { style = "color:white;" })</div>
     </div>
 </div>

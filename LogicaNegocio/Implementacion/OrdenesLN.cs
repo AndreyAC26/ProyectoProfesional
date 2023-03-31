@@ -20,7 +20,35 @@ namespace LogicaNegocio.Implementacion
         private readonly IOrdenesAD gobjOrdenesAD = new OrdenesAD(_objContextoAW);
 
         //**************PROCEDIMIENTOS ALMACENADOS**************//
-        
+        public List<recOrdenes_Result> recOrdenes_PA()
+        {
+            List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+            try
+            {
+                lobjRespuesta = gobjOrdenesAD.recOrdenes_PA();
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+        public recOrdenxId_Result recOrdenesXId_PA(int pId)
+        {
+            recOrdenxId_Result lobjRespuesta = new recOrdenxId_Result();
+            try
+            {
+                lobjRespuesta = gobjOrdenesAD.recIOrdenesXId_PA(pId);
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+
         public ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId)
         {
             ObtenerProductosPorCategoria_Result lobjRespuesta = new ObtenerProductosPorCategoria_Result();
@@ -35,6 +63,33 @@ namespace LogicaNegocio.Implementacion
             return lobjRespuesta;
         }
 
+        public ObtenerOrdenesDeMesa_Result recObtenerOrdenesDeMesa_PA(int pId)
+        {
+            ObtenerOrdenesDeMesa_Result lobjRespuesta = new ObtenerOrdenesDeMesa_Result();
+            try
+            {
+                lobjRespuesta = gobjOrdenesAD.recObtenerOrdenesDeMesaXId_PA(pId);
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+        public bool insOrdenes_PA(Ordenes pOrdenes)
+        {
+            bool lobjRespuesta = false;
+            try
+            {
+                lobjRespuesta = gobjOrdenesAD.insOrden_PA(pOrdenes);
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
 
         //**************ENTIDADES**************//
 

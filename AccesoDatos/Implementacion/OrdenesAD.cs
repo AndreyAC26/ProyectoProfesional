@@ -39,10 +39,70 @@ namespace AccesoDatos.Implementacion
             return lobjRespuesta;
         }
 
-            //Entidades
+        public ObtenerOrdenesDeMesa_Result recObtenerOrdenesDeMesaXId_PA(int pId)
+        {
+            ObtenerOrdenesDeMesa_Result lobjRespuesta = new ObtenerOrdenesDeMesa_Result();
+            try
+            {
+                lobjRespuesta = gObjConexionAW.ObtenerOrdenesDeMesa(pId).FirstOrDefault();
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
 
-            //Lista de todos los Ordenes
-            public List<Ordenes> recOrdenes_ENT()
+        public List<recOrdenes_Result> recOrdenes_PA()
+        {
+            List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+            try
+            {
+                lobjRespuesta = gObjConexionAW.recOrdenes().ToList();
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+        public recOrdenxId_Result recIOrdenesXId_PA(int pId)
+        {
+            recOrdenxId_Result lobjRespuesta = new recOrdenxId_Result();
+            try
+            {
+                lobjRespuesta = gObjConexionAW.recOrdenxId(pId).FirstOrDefault();
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+        public bool insOrden_PA(Ordenes pOrden)
+        {
+            bool lobjRespuesta = false;
+            try
+            {
+                if (gObjConexionAW.insOrden() == 1)
+                {
+                    lobjRespuesta = true;
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+
+        //**************Entidades**************//
+
+        //Lista de todos los Ordenes
+        public List<Ordenes> recOrdenes_ENT()
         {
             List<Ordenes> lobjRespuesta = new List<Ordenes>();
             try

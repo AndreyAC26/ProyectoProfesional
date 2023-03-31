@@ -425,15 +425,7 @@
     <Parameter Name="NombreMesa" Type="varchar" Mode="In" />
     <Parameter Name="Estado" Type="int" Mode="In" />
   </Function>
-  <Function Name="insOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Id_Orden" Type="int" Mode="In" />
-    <Parameter Name="Id_Producto" Type="int" Mode="In" />
-    <Parameter Name="Cantidad" Type="int" Mode="In" />
-    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
-    <Parameter Name="Mesa" Type="int" Mode="In" />
-    <Parameter Name="Id_Factura" Type="int" Mode="In" />
-    <Parameter Name="Precio" Type="int" Mode="In" />
-  </Function>
+  <Function Name="insOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="insPerfil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="nombre_perfil" Type="varchar" Mode="In" />
   </Function>
@@ -579,6 +571,10 @@
     <Parameter Name="Contraseña" Type="varchar" Mode="In" />
     <Parameter Name="Estado" Type="int" Mode="In" />
   </Function>
+  <Function Name="ObtenerMesasActivas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ObtenerOrdenesDeMesa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mesa" Type="int" Mode="In" />
+  </Function>
   <Function Name="ObtenerProductosPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Tipo_producto" Type="int" Mode="In" />
   </Function>
@@ -621,6 +617,7 @@
   <Function Name="recMesaxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Mesa" Type="int" Mode="In" />
   </Function>
+  <Function Name="recObtenerMesasActivas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="recOrdenes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="recOrdenxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Orden" Type="int" Mode="In" />

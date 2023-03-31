@@ -74,6 +74,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
+    <Compile Include="ObtenerOrdenesDeMesa_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
     <Compile Include="ObtenerProductosPorCategoria_Result.cs">
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
@@ -142,6 +145,12 @@
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
     <Compile Include="recMesaxId_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recOrdenes_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
+    <Compile Include="recOrdenxId_Result.cs">
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
     <Compile Include="recPerfiles_Result.cs">

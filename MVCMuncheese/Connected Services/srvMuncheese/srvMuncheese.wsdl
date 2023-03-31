@@ -7,6 +7,30 @@
       <xsd:import schemaLocation="http://localhost:49538/srvMuncheese.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Entidades" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IsrvMuncheese_recInventario_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recInventario_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recInventario_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recInventario_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recInventarioXId_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recInventarioXId_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recInventarioXId_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recInventarioXId_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insInventario_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:insInventario_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insInventario_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insInventario_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modInventario_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:modInventario_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modInventario_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:modInventario_PAResponse" />
+  </wsdl:message>
   <wsdl:message name="IsrvMuncheese_delInventario_PA_InputMessage">
     <wsdl:part name="parameters" element="tns:delInventario_PA" />
   </wsdl:message>
@@ -349,11 +373,35 @@
   <wsdl:message name="IsrvMuncheese_delMesas_PA_OutputMessage">
     <wsdl:part name="parameters" element="tns:delMesas_PAResponse" />
   </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recOrdenes_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recOrdenes_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recOrdenes_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recOrdenes_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recOrdenesXId_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:recOrdenesXId_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_recOrdenesXId_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:recOrdenesXId_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insOrdenes_PAa_InputMessage">
+    <wsdl:part name="parameters" element="tns:insOrdenes_PAa" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_insOrdenes_PAa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insOrdenes_PAaResponse" />
+  </wsdl:message>
   <wsdl:message name="IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_InputMessage">
     <wsdl:part name="parameters" element="tns:recObtenerProductosPorCategoria_ResultXId_PA" />
   </wsdl:message>
   <wsdl:message name="IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_OutputMessage">
     <wsdl:part name="parameters" element="tns:recObtenerProductosPorCategoria_ResultXId_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_ObtenerOrdenesDeMesa_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerOrdenesDeMesa_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_ObtenerOrdenesDeMesa_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerOrdenesDeMesa_PAResponse" />
   </wsdl:message>
   <wsdl:message name="IsrvMuncheese_recOrdenes_ENT_InputMessage">
     <wsdl:part name="parameters" element="tns:recOrdenes_ENT" />
@@ -535,31 +583,23 @@
   <wsdl:message name="IsrvMuncheese_delPerfilUsuario_PA_OutputMessage">
     <wsdl:part name="parameters" element="tns:delPerfilUsuario_PAResponse" />
   </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recInventario_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:recInventario_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recInventario_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:recInventario_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recInventarioXId_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:recInventarioXId_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_recInventarioXId_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:recInventarioXId_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_insInventario_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:insInventario_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_insInventario_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:insInventario_PAResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_modInventario_PA_InputMessage">
-    <wsdl:part name="parameters" element="tns:modInventario_PA" />
-  </wsdl:message>
-  <wsdl:message name="IsrvMuncheese_modInventario_PA_OutputMessage">
-    <wsdl:part name="parameters" element="tns:modInventario_PAResponse" />
-  </wsdl:message>
   <wsdl:portType name="IsrvMuncheese">
+    <wsdl:operation name="recInventario_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recInventario_PA" message="tns:IsrvMuncheese_recInventario_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse" message="tns:IsrvMuncheese_recInventario_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recInventarioXId_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA" message="tns:IsrvMuncheese_recInventarioXId_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse" message="tns:IsrvMuncheese_recInventarioXId_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insInventario_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/insInventario_PA" message="tns:IsrvMuncheese_insInventario_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse" message="tns:IsrvMuncheese_insInventario_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="modInventario_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/modInventario_PA" message="tns:IsrvMuncheese_modInventario_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse" message="tns:IsrvMuncheese_modInventario_PA_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="delInventario_PA">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delInventario_PA" message="tns:IsrvMuncheese_delInventario_PA_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delInventario_PAResponse" message="tns:IsrvMuncheese_delInventario_PA_OutputMessage" />
@@ -788,9 +828,25 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delMesas_PA" message="tns:IsrvMuncheese_delMesas_PA_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delMesas_PAResponse" message="tns:IsrvMuncheese_delMesas_PA_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="recOrdenes_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recOrdenes_PA" message="tns:IsrvMuncheese_recOrdenes_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recOrdenes_PAResponse" message="tns:IsrvMuncheese_recOrdenes_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="recOrdenesXId_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recOrdenesXId_PA" message="tns:IsrvMuncheese_recOrdenesXId_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recOrdenesXId_PAResponse" message="tns:IsrvMuncheese_recOrdenesXId_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insOrdenes_PAa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/insOrdenes_PAa" message="tns:IsrvMuncheese_insOrdenes_PAa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/insOrdenes_PAaResponse" message="tns:IsrvMuncheese_insOrdenes_PAa_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="recObtenerProductosPorCategoria_ResultXId_PA">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA" message="tns:IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PAResponse" message="tns:IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerOrdenesDeMesa_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/ObtenerOrdenesDeMesa_PA" message="tns:IsrvMuncheese_ObtenerOrdenesDeMesa_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/ObtenerOrdenesDeMesa_PAResponse" message="tns:IsrvMuncheese_ObtenerOrdenesDeMesa_PA_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="recOrdenes_ENT">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recOrdenes_ENT" message="tns:IsrvMuncheese_recOrdenes_ENT_InputMessage" />
@@ -912,25 +968,45 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA" message="tns:IsrvMuncheese_delPerfilUsuario_PA_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse" message="tns:IsrvMuncheese_delPerfilUsuario_PA_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="recInventario_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recInventario_PA" message="tns:IsrvMuncheese_recInventario_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse" message="tns:IsrvMuncheese_recInventario_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="recInventarioXId_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA" message="tns:IsrvMuncheese_recInventarioXId_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse" message="tns:IsrvMuncheese_recInventarioXId_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="insInventario_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/insInventario_PA" message="tns:IsrvMuncheese_insInventario_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse" message="tns:IsrvMuncheese_insInventario_PA_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="modInventario_PA">
-      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/modInventario_PA" message="tns:IsrvMuncheese_modInventario_PA_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse" message="tns:IsrvMuncheese_modInventario_PA_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IsrvMuncheese" type="tns:IsrvMuncheese">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="recInventario_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recInventario_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recInventarioXId_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insInventario_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/insInventario_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modInventario_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/modInventario_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="delInventario_PA">
       <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delInventario_PA" style="document" />
       <wsdl:input>
@@ -1444,8 +1520,44 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="recOrdenes_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recOrdenes_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recOrdenesXId_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recOrdenesXId_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insOrdenes_PAa">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/insOrdenes_PAa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="recObtenerProductosPorCategoria_ResultXId_PA">
       <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerOrdenesDeMesa_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/ObtenerOrdenesDeMesa_PA" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1716,42 +1828,6 @@
     </wsdl:operation>
     <wsdl:operation name="delPerfilUsuario_PA">
       <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="recInventario_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recInventario_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="recInventarioXId_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="insInventario_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/insInventario_PA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="modInventario_PA">
-      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/modInventario_PA" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

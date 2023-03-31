@@ -19,8 +19,12 @@ C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\Microsoft.Di
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\Microsoft.Managed.Core.targets
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Buffers.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Collections.Immutable.dll
+C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Memory.dll
+C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Numerics.Vectors.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Reflection.Metadata.dll
+C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Text.Encoding.CodePages.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Threading.Tasks.Extensions.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\vbc.exe
@@ -50,6 +54,7 @@ C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\AccesoDatos.dll.con
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\Entidades.pdb
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\EntityFramework.xml
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\EntityFramework.SqlServer.xml
+C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\NLog.xml
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\System.Web.Helpers.xml
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\System.Web.Mvc.xml
@@ -60,7 +65,6 @@ C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\System.Web.WebPages
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\System.Web.WebPages.Razor.xml
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\Newtonsoft.Json.xml
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\Antlr3.Runtime.pdb
-C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\es\System.Web.Helpers.resources.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\es\System.Web.Mvc.resources.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\es\System.Web.Optimization.resources.dll
@@ -73,7 +77,3 @@ C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.csproj.CopyComplete
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.pdb
-C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Buffers.dll
-C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Memory.dll
-C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Numerics.Vectors.dll
-C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
