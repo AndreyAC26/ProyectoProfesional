@@ -781,6 +781,7 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="recMesasActivasDO" ReturnType="Collection(Int32)" />
   </EntityContainer>
   <ComplexType Name="InsertarTipoProducto_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />

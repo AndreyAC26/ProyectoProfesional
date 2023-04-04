@@ -15,6 +15,12 @@ namespace MVCMuncheese.srvMuncheese {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="srvMuncheese.IsrvMuncheese")]
     public interface IsrvMuncheese {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
+        bool delPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
+        System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
         System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA();
         
@@ -351,6 +357,12 @@ namespace MVCMuncheese.srvMuncheese {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delEstado_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delEstado_PAResponse")]
         System.Threading.Tasks.Task<bool> delEstado_PAAsync(Entidades.Estado pEstado);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recMesasActivas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recMesasActivas_PAResponse")]
+        System.Collections.Generic.List<Entidades.recMesas_Result> recMesasActivas_PA();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recMesasActivas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recMesasActivas_PAResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recMesas_Result>> recMesasActivas_PAAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recMesas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recMesas_PAResponse")]
         System.Collections.Generic.List<Entidades.recMesas_Result> recMesas_PA();
         
@@ -586,12 +598,6 @@ namespace MVCMuncheese.srvMuncheese {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PAResponse")]
         System.Threading.Tasks.Task<bool> modPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
-        bool delPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
-        System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -619,6 +625,14 @@ namespace MVCMuncheese.srvMuncheese {
         
         public IsrvMuncheeseClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public bool delPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario) {
+            return base.Channel.delPerfilUsuario_PA(pPerfilUsuario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
+            return base.Channel.delPerfilUsuario_PAAsync(pPerfilUsuario);
         }
         
         public System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA() {
@@ -1069,6 +1083,14 @@ namespace MVCMuncheese.srvMuncheese {
             return base.Channel.delEstado_PAAsync(pEstado);
         }
         
+        public System.Collections.Generic.List<Entidades.recMesas_Result> recMesasActivas_PA() {
+            return base.Channel.recMesasActivas_PA();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recMesas_Result>> recMesasActivas_PAAsync() {
+            return base.Channel.recMesasActivas_PAAsync();
+        }
+        
         public System.Collections.Generic.List<Entidades.recMesas_Result> recMesas_PA() {
             return base.Channel.recMesas_PA();
         }
@@ -1379,14 +1401,6 @@ namespace MVCMuncheese.srvMuncheese {
         
         public System.Threading.Tasks.Task<bool> modPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
             return base.Channel.modPerfilUsuario_PAAsync(pPerfilUsuario);
-        }
-        
-        public bool delPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario) {
-            return base.Channel.delPerfilUsuario_PA(pPerfilUsuario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
-            return base.Channel.delPerfilUsuario_PAAsync(pPerfilUsuario);
         }
     }
 }

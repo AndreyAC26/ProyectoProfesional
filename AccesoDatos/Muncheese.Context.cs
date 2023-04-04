@@ -15,6 +15,7 @@ namespace AccesoDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     using Entidades;
+
     public partial class MuncheeseEntidades : DbContext
     {
         public MuncheeseEntidades()
@@ -1297,6 +1298,11 @@ namespace AccesoDatos
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> recMesasActivasDO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("recMesasActivasDO");
         }
     }
 }

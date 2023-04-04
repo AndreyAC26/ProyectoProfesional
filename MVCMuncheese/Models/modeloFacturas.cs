@@ -22,12 +22,15 @@ namespace MVCMuncheese.Models
             [Display(Name = "Telefono")]
             public string Tel_Cliente { get; set; }
 
+            [Display(Name = "Cliente")]
+            public string Cliente { get; set; }
+
             [Display(Name = "Mesa")]
             public int mesa { get; set; }
             
             public SelectList MesasActivas { get; set; }
-
-
-
+            public SelectList OrdenesActivas { get; set; }
+            public List<SelectListItem> Clientes { get; set; }
     }
+
 }

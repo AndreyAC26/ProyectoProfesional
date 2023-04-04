@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MuncheeseModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MuncheeseModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="Telefono" />
@@ -619,10 +619,10 @@
           <Parameter Name="Perfil_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="recMesas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="recMesasActivasDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="recMesaxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Mesa" Type="int" Mode="In" />
         </Function>
-        <Function Name="recObtenerMesasActivas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="recOrdenes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="recOrdenxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Orden" Type="int" Mode="In" />
@@ -760,8 +760,7 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MuncheeseModelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1178,58 +1177,58 @@
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
           <FunctionImport Name="DELCliente">
-            <Parameter Name="Telefono" Mode="In" Type="String" />
+          <Parameter Name="Telefono" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="delCombo">
-            <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+          <Parameter Name="Id_combo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delDetalleOrden">
-            <Parameter Name="Id_Detalle" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Detalle" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delEstado">
-            <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delFactura">
-            <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delIngrediente">
-            <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delIngredienteXproducto">
-            <Parameter Name="Id_IngredienteXproducto" Mode="In" Type="Int32" />
+          <Parameter Name="Id_IngredienteXproducto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delInventario">
-            <Parameter Name="Id_inventario" Mode="In" Type="Int32" />
+          <Parameter Name="Id_inventario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delMesa">
-            <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delOrden">
-            <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delPerfil">
-            <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
+          <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delPerfilUsuario">
-            <Parameter Name="Id_PerfilUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="Id_PerfilUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delproducto">
-            <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+          <Parameter Name="Id_producto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delProductosXcombo">
-            <Parameter Name="Id_ProducXcombo" Mode="In" Type="Int32" />
+          <Parameter Name="Id_ProducXcombo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DELProveedor">
-            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delTipo_Combo">
-            <Parameter Name="Id_tipo_combo" Mode="In" Type="Int32" />
+          <Parameter Name="Id_tipo_combo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delTipo_Producto">
-            <Parameter Name="Id_tipo_Producto" Mode="In" Type="Int32" />
+          <Parameter Name="Id_tipo_Producto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delUsuario">
-            <Parameter Name="Usuario" Mode="In" Type="String" />
+          <Parameter Name="Usuario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insCliente">
             <Parameter Name="Telefono" Mode="In" Type="String" />
@@ -1255,7 +1254,7 @@
             <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertarTipoProducto" ReturnType="Collection(MuncheeseModelo.InsertarTipoProducto_Result)">
-            <Parameter Name="Nombre_tipo_pro" Mode="In" Type="String" />
+          <Parameter Name="Nombre_tipo_pro" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insertProducto">
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -1264,7 +1263,7 @@
             <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insEstado">
-            <Parameter Name="Estado" Mode="In" Type="String" />
+          <Parameter Name="Estado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insFactura">
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
@@ -1292,7 +1291,7 @@
           </FunctionImport>
           <FunctionImport Name="insOrden" />
           <FunctionImport Name="insPerfil">
-            <Parameter Name="nombre_perfil" Mode="In" Type="String" />
+          <Parameter Name="nombre_perfil" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insPerfilUsuario">
             <Parameter Name="Perfil_id" Mode="In" Type="Int32" />
@@ -1438,83 +1437,83 @@
           </FunctionImport>
           <FunctionImport Name="ObtenerMesasActivas" ReturnType="Collection(Int32)" />
           <FunctionImport Name="ObtenerOrdenesDeMesa" ReturnType="Collection(MuncheeseModelo.ObtenerOrdenesDeMesa_Result)">
-            <Parameter Name="mesa" Mode="In" Type="Int32" />
+          <Parameter Name="mesa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ObtenerProductosPorCategoria" ReturnType="Collection(MuncheeseModelo.ObtenerProductosPorCategoria_Result)">
-            <Parameter Name="Tipo_producto" Mode="In" Type="Int32" />
+          <Parameter Name="Tipo_producto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recCliente" ReturnType="Collection(MuncheeseModelo.recCliente_Result)" />
           <FunctionImport Name="recClientexId" ReturnType="Collection(MuncheeseModelo.recClientexId_Result)">
-            <Parameter Name="Telefono" Mode="In" Type="String" />
+          <Parameter Name="Telefono" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="recCombos" />
           <FunctionImport Name="recCombosxId">
-            <Parameter Name="Id_combo" Mode="In" Type="Int32" />
+          <Parameter Name="Id_combo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recDetalleOrden" ReturnType="Collection(MuncheeseModelo.recDetalleOrden_Result)" />
           <FunctionImport Name="recDetalleOrdenxId" ReturnType="Collection(MuncheeseModelo.recDetalleOrdenxId_Result)">
-            <Parameter Name="Id_Detalle" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Detalle" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recEstados" ReturnType="Collection(MuncheeseModelo.recEstados_Result)" />
           <FunctionImport Name="recEstadoxId" ReturnType="Collection(MuncheeseModelo.recEstadoxId_Result)">
-            <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Estado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recFacturas" ReturnType="Collection(MuncheeseModelo.recFacturas_Result)" />
           <FunctionImport Name="recFacturaxId" ReturnType="Collection(MuncheeseModelo.recFacturaxId_Result)">
-            <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recIngredientes" ReturnType="Collection(MuncheeseModelo.recIngredientes_Result)" />
           <FunctionImport Name="recIngredientesXProducto" ReturnType="Collection(MuncheeseModelo.recIngredientesXProducto_Result)" />
           <FunctionImport Name="recIngredientexId" ReturnType="Collection(MuncheeseModelo.recIngredientexId_Result)">
-            <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recIngredienteXProductoxId" ReturnType="Collection(MuncheeseModelo.recIngredienteXProductoxId_Result)">
-            <Parameter Name="Id_ingredienteXproducto" Mode="In" Type="Int32" />
+          <Parameter Name="Id_ingredienteXproducto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recInventario" ReturnType="Collection(MuncheeseModelo.recInventario_Result)" />
           <FunctionImport Name="recInventarioxId" ReturnType="Collection(MuncheeseModelo.recInventarioxId_Result)">
-            <Parameter Name="Id_inventario" Mode="In" Type="Int32" />
+          <Parameter Name="Id_inventario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recMesaPerfilxId" ReturnType="Collection(MuncheeseModelo.recMesaPerfilxId_Result)">
-            <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
+          <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recMesas" ReturnType="Collection(MuncheeseModelo.recMesas_Result)" />
           <FunctionImport Name="recMesaxId" ReturnType="Collection(MuncheeseModelo.recMesaxId_Result)">
-            <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recObtenerMesasActivas" ReturnType="Collection(Int32)" />
           <FunctionImport Name="recOrdenes" ReturnType="Collection(MuncheeseModelo.recOrdenes_Result)" />
           <FunctionImport Name="recOrdenxId" ReturnType="Collection(MuncheeseModelo.recOrdenxId_Result)">
-            <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recPerfiles" ReturnType="Collection(MuncheeseModelo.recPerfiles_Result)" />
           <FunctionImport Name="recPerfilUsuario" ReturnType="Collection(MuncheeseModelo.recPerfilUsuario_Result)" />
           <FunctionImport Name="recPerfilUsuarioxId" ReturnType="Collection(MuncheeseModelo.recPerfilUsuarioxId_Result)">
-            <Parameter Name="Id_PerfilUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="Id_PerfilUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recProductos" ReturnType="Collection(MuncheeseModelo.recProductos_Result)" />
           <FunctionImport Name="recProductosXcombo" />
           <FunctionImport Name="recProductosXcomboxId">
-            <Parameter Name="Id_ProducXcombo" Mode="In" Type="Int32" />
+          <Parameter Name="Id_ProducXcombo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recProductosxId" ReturnType="Collection(MuncheeseModelo.recProductosxId_Result)">
-            <Parameter Name="Id_producto" Mode="In" Type="Int32" />
+          <Parameter Name="Id_producto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recProveedor" ReturnType="Collection(MuncheeseModelo.recProveedor_Result)" />
           <FunctionImport Name="recProveedorxId" ReturnType="Collection(MuncheeseModelo.recProveedorxId_Result)">
-            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recTipo_Combo" />
           <FunctionImport Name="recTipo_ComboxId">
-            <Parameter Name="Id_tipo_combo" Mode="In" Type="Int32" />
+          <Parameter Name="Id_tipo_combo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recTipo_Producto" ReturnType="Collection(MuncheeseModelo.recTipo_Producto_Result)" />
           <FunctionImport Name="recTipo_ProductoxId" ReturnType="Collection(MuncheeseModelo.recTipo_ProductoxId_Result)">
-            <Parameter Name="Id_tipo_Producto" Mode="In" Type="Int32" />
+          <Parameter Name="Id_tipo_Producto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="recUsuarios" ReturnType="Collection(MuncheeseModelo.recUsuarios_Result)" />
           <FunctionImport Name="recUsuarioxId" ReturnType="Collection(MuncheeseModelo.recUsuarioxId_Result)">
-            <Parameter Name="Usuario" Mode="In" Type="String" />
+          <Parameter Name="Usuario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1546,6 +1545,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="recMesasActivasDO" ReturnType="Collection(Int32)" />
         </EntityContainer>
         <ComplexType Name="InsertarTipoProducto_Result">
           <Property Type="Int32" Name="Column1" Nullable="true" />
@@ -2156,7 +2156,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="recObtenerMesasActivas" FunctionName="MuncheeseModelo.Store.recObtenerMesasActivas" />
           <FunctionImportMapping FunctionImportName="recOrdenes" FunctionName="MuncheeseModelo.Store.recOrdenes">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MuncheeseModelo.recOrdenes_Result">
@@ -2306,6 +2305,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MuncheeseModelo.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MuncheeseModelo.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="recMesasActivasDO" FunctionName="MuncheeseModelo.Store.recMesasActivasDO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

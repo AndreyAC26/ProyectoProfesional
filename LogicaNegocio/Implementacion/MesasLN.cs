@@ -20,6 +20,23 @@ namespace LogicaNegocio.Implementacion
 
         private readonly IMesasAD gobjMesasAD = new MesasAD(_objContextoAW);
 
+
+
+        public List<recMesas_Result> recMesasActivas_PA()
+        {
+            List<recMesas_Result> lobjRespuesta = new List<recMesas_Result>();
+            try
+            {
+                lobjRespuesta = gobjMesasAD.recMesasActivas();
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+
         //**************PROCEDIMIENTOS ALMACENADOS**************//
         public List<recMesas_Result> recMesas_PA()
         {

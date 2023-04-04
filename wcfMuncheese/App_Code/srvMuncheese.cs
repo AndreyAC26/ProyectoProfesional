@@ -699,6 +699,22 @@ public class srvMuncheese : IsrvMuncheese
     }
 
     //**************PROCEDIMIENTOS ALMACENADOS Mesas**************//
+
+    public List<recMesas_Result> recMesasActivas_PA()
+    {
+        List<recMesas_Result> lobjRespuesta = new List<recMesas_Result>();
+        try
+        {
+            lobjRespuesta = gobjMesasLN.recMesasActivas_PA();
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+
     public List<recMesas_Result> recMesas_PA()
     {
         List<recMesas_Result> lobjRespuesta = new List<recMesas_Result>();

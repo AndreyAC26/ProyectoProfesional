@@ -22,26 +22,49 @@ namespace MVCMuncheese.Controllers
 
         public ActionResult Factura() 
         {
-            srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient();
-            var ordenes = db.recOrdenes_ENT().ToList();
-            var detallesOrden = db.recDetalleOrden_ENT().ToList();
+            srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
+            // Obtener las mesas activas 
+            var mesasActivas = srvWCF_CR.recMesasActivas_PA().Select(m => m.Id_Mesa).ToList();
 
-            // Filtro para obtener las mesas activas
-            var detallesActivos = detallesOrden.Where(d => d.Ordenes.Estado == 1).ToList();
+            // Obtener las órdenes activas
+            var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1).Select(o => new SelectListItem { Value = o.Id_Orden.ToString(), Text = $"{o.Id_Orden}" });
 
-            // Obtenemos la lista de mesas activas sin repetir
-            var mesasActivas = detallesActivos.Select(d => d.Mesa).Distinct().ToList();
+            // Obtener la lista de clientes y sus teléfonos
+            var listaClientes = srvWCF_CR.recClientes_ENT();
+            var clientes = listaClientes.Select(c => new SelectListItem { Value = c.Nombre, Text = $"{c.Nombre}" });
 
-            // Creamos un nuevo objeto de tipo modeloFacturas y asignamos las mesas activas
-            var modelo = new modeloFacturas();
-            modelo.MesasActivas = new SelectList(mesasActivas);
+            // Inicializar el modelo con los datos necesarios
+            var modelo = new modeloFacturas
+            {
+                MesasActivas = new SelectList(mesasActivas, "Value"),
+                OrdenesActivas = new SelectList(ordenesActivas, "Value", "Text"),
+                Clientes = clientes.ToList(), // Agregar la lista de clientes al modelo
+            };
 
             return View(modelo);
         }
 
-       
+        public ActionResult GetOrdenesPorMesa(int mesaId)
+        {
+            srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
+            var ordenesActivas = srvWCF_CR.recDetalleOrden_ENT().Where(d => d.Mesa == mesaId && d.Ordenes.Estado == 1)
+                                 .Select(d => new SelectListItem { Value = d.Id_Orden.ToString(), Text = $"Orden {d.Id_Orden}" });
+            return Json(ordenesActivas, JsonRequestBehavior.AllowGet);
+        }
 
-        
+        // Adquirir numero de telefono cliente
+        public string ObtenerTelefonoCliente(string cliente)
+        {
+            // Obtener el número de teléfono del cliente desde tu servicio WCF
+            srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
+
+            var listaClientes = srvWCF_CR.recClientes_ENT(); // Obtener la lista de clientes
+            var telefono = listaClientes.Where(c => c.Nombre == cliente).Select(c => c.Telefono).FirstOrDefault(); // Buscar el cliente seleccionado en la lista y obtener su número de teléfono
+
+            return telefono; // Devolver el número de teléfono del cliente
+        }
+
+
         //*********Procedimientos almacenados*********//
         public ActionResult listarFacturas_PA()
         {

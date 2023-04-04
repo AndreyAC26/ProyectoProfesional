@@ -3,6 +3,7 @@ using Entidades;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,24 @@ namespace AccesoDatos.Implementacion
         public MesasAD(MuncheeseEntidades lObjConexionAW)
         {
             gObjConexionAW = lObjConexionAW;
+        }
+
+        public List<recMesas_Result> recMesasActivas()
+        {
+            List<recMesas_Result> lobjRespuesta = new List<recMesas_Result>();
+            try
+            {
+                using (var db = new MuncheeseEntidades()) // Reemplaza DbContext con el nombre de tu contexto de base de datos
+                {
+                    var result = db.Database.SqlQuery<int?>("recMesasActivasDO").ToList();
+                    lobjRespuesta = result.Select(x => new recMesas_Result { Id_Mesa = (int)x }).ToList();
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
         }
 
         //**************PROCEDIMIENTOS ALMACENADOS**************//
@@ -49,6 +68,7 @@ namespace AccesoDatos.Implementacion
             }
             return lobjRespuesta;
         }
+
         public bool insMesas_PA(Mesas pMesas)
         {
             bool lobjRespuesta = false;
