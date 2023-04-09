@@ -1,15 +1,27 @@
 ﻿
 @{
     ViewBag.Title = "DetalleOrden";
+
 }
 
 @model MVCMuncheese.Models.modeloDetalleOrden
 @{
     ViewBag.Title = "Orden";
+    <style>
+        table#tablaOrdenes th.id-producto,
+        table#tablaOrdenes td.id-producto {
+            display: none;
+        }
+
+        table#tablaOrdenes td.nombre-producto {
+            display: table-cell;
+        }
+    </style>
 }
 
 @section scripts {
     <script type="text/javascript">
+
         //Cargar productos por tipo producto
                       function CargarProductos() {
                 var pTipo_Producto = $("#tipoProducto").val();
@@ -53,7 +65,6 @@
                 });
 
         //agregar filas a la tablaOrdenes
-
             function agregarFila() {
                 // Obtener los valores de los campos de entrada
                 var Id_Orden = document.getElementById("Id_Orden").value;
@@ -64,6 +75,18 @@
                 var tipoOrden = document.getElementById("TipoOrden").value;
                 var descripcion = document.getElementById("Descripcion").value;
                 //var subtotal = precio * cantidad;
+
+                // Buscar el nombre del producto en la lista de productos disponibles
+                var productoId = document.getElementById("productos").value;
+                var producto = document.querySelector("#productos option[value='" + productoId + "']").textContent;
+
+                var productosDisponibles = @Html.Raw(Json.Encode(Model.Productos));
+                for (var i = 0; i < productosDisponibles.length; i++) {
+                    if (productosDisponibles[i].Id_producto == productoId) {
+                        producto = productosDisponibles[i].Nombre;
+                        break;
+                    }
+                }
 
                 // Crear una nueva fila
                 var fila = document.createElement("tr");
@@ -77,8 +100,14 @@
                 //celdaTipoProducto.innerHTML = tipoProducto;
                 //fila.appendChild(celdaTipoProducto);
 
+                //var celdaProducto = document.createElement("td");
+                //celdaProducto.innerHTML = producto;
+                //fila.appendChild(celdaProducto);
+
                 var celdaProducto = document.createElement("td");
-                celdaProducto.innerHTML = producto;
+                celdaProducto.textContent = producto;
+                celdaProducto.classList.add("nombre-producto");
+                celdaProducto.classList.add("id-producto-" + productoId); // Agregar clase con ID del producto
                 fila.appendChild(celdaProducto);
 
                 var celdaCantidad = document.createElement("td");
@@ -124,7 +153,7 @@
                 var Id_producto = fila.getElementsByTagName("td")[1].innerText;
                 var Cantidad = fila.getElementsByTagName("td")[2].innerText;
                 var Mesa = fila.getElementsByTagName("td")[3].innerText;
-                var Precio = fila.getElementsByTagName("td")[4].innerText;
+                var Precio = fila.getElementsByTagName("td")[4].innerText;74
                 var Tipo_orden = fila.getElementsByTagName("td")[5].innerText;
                 var Descripcion = fila.getElementsByTagName("td")[6].innerText;
 
@@ -143,6 +172,7 @@
                 datosOrdenes.push(datosFila);
             }
 
+
             // enviar los datos a la función insertarDeta_PA en la acción del controlador
             $.ajax({
                 type: "POST",
@@ -157,6 +187,7 @@
             });
         }
 
+
         //carga el ultimo Id_Orden al editorfor id_orden
         $(document).ready(function() {
         var ultimoIdOrden = @Model.UltimoIdOrden;
@@ -169,7 +200,7 @@
 
 
 <div class="jumbotron">
-   
+
     <div>
         <h3 class="container-fluid" style="text-align:center">Orden</h3>
     </div>

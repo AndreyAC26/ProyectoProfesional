@@ -554,8 +554,8 @@ namespace MVCMuncheese.Controllers
             catch (Exception lEx)
             {
                 throw lEx;
-                // enviar mensaje de error
-                TempData["mensajeError"] = "Error al agregar la orden.";
+                //// enviar mensaje de error
+                //TempData["mensajeError"] = "Error al agregar la orden.";
             }
 
             return RedirectToAction("Mesas", "Mesas");
