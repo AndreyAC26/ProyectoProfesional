@@ -119,6 +119,9 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="App.config" />
     <EntityDeploy Include="Muncheese.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

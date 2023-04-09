@@ -16,6 +16,10 @@ namespace MVCMuncheese.Models
         [Display(Name = "Estado")]
         public Nullable<int> Estado { get; set; }
 
+        // Nueva propiedad
+        [Display(Name = "Estado")]
+        public string Nombre_estado { get; set; }
+
         [Display(Name = "Fecha")]
         public DateTime Fecha { get; set; }
 

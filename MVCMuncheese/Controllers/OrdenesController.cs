@@ -87,11 +87,16 @@ namespace MVCMuncheese.Controllers
         {
             List<Ordenes> lobjRespuesta = new List<Ordenes>();
             List<modeloOrdenes> lobjRespuestaModelo = new List<modeloOrdenes>();
+            List<modeloEstado> lobjEstados = new List<modeloEstado>();  // Nueva lista de estados
             try
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
                     lobjRespuesta = srvWCF_CR.recOrdenes_ENT();
+                    
+                    // Cargamos la lista de estados
+                    lobjEstados = srvWCF_CR.recEstado_PA().Select(x => new modeloEstado() { Id_Estado = x.Id_Estado, Estado = x.Estado }).ToList();
+                    
                     if (lobjRespuesta.Count > 0)
                     {
                         modeloOrdenes objModeloOrdenes;
@@ -101,6 +106,10 @@ namespace MVCMuncheese.Controllers
                             objModeloOrdenes.Id_Orden = lcr.Id_Orden;
                             objModeloOrdenes.Estado = lcr.Estado;
                             objModeloOrdenes.Fecha = (DateTime)lcr.Fecha;
+
+                            // Cargamos el nombre del estado
+                            var estado = lobjEstados.FirstOrDefault(x => x.Id_Estado == lcr.Estado);
+                            objModeloOrdenes.Nombre_estado = estado != null ? estado.Estado : "";
 
                             lobjRespuestaModelo.Add(objModeloOrdenes);
                         }
