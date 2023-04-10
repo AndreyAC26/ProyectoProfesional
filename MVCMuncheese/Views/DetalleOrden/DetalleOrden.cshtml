@@ -42,7 +42,8 @@
                         alert("Error al cargar los productos.");
                     }
                 });
-            }
+        }
+
         // obtener el precio de cada producto
                 $("#productos").change(function () {
                     var pId_Producto = $(this).val();
@@ -96,14 +97,6 @@
                 celdaId_Orden.innerHTML = Id_Orden;
                 fila.appendChild(celdaId_Orden);
 
-                //var celdaTipoProducto = document.createElement("td");
-                //celdaTipoProducto.innerHTML = tipoProducto;
-                //fila.appendChild(celdaTipoProducto);
-
-                //var celdaProducto = document.createElement("td");
-                //celdaProducto.innerHTML = producto;
-                //fila.appendChild(celdaProducto);
-
                 var celdaProducto = document.createElement("td");
                 celdaProducto.textContent = producto;
                 celdaProducto.classList.add("nombre-producto");
@@ -131,15 +124,10 @@
                 celdaDescripcion.innerHTML = descripcion;
                 fila.appendChild(celdaDescripcion);
 
-                //var celdaSubtotal = document.createElement("td");
-                //celdaSubtotal.innerHTML = subtotal;
-                //fila.appendChild(celdaSubtotal);
-
                 // Agregar la fila a la tabla
                 document.getElementById("detalleOrden").appendChild(fila);
 
             }
-
 
 
         // --------- Funcion Javascript para cargar la funcion insertarDetalleOrden ------------//
@@ -239,6 +227,7 @@
                         @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
                 <div class="form-group col-md-4">
                     <div class="col-md-10">
                         @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })

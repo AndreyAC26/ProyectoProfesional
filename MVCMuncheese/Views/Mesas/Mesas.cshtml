@@ -47,34 +47,6 @@
 });
 
 
-    @*$(function () {
-  $('.link button').click(function () {
-    var mesaId = $(this).data('id');
-    $.ajax({
-      url: '@Url.Action("insOrden_PA", "Mesas")',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        Id_Orden: 0,
-        Id_Mesa: mesaId,
-        Id_Estado: 1,
-        Estado: "Activo",
-        Fecha: new Date().toISOString()
-      },
-      success: function (result) {
-        if (result.exito) {
-          alert("La orden se ha insertado correctamente.");
-        } else {
-          alert("Ha ocurrido un error al insertar la orden: " + result.errorMessage);
-        }
-      },
-      error: function () {
-        alert("Ha ocurrido un error al insertar la orden.");
-      }
-    });
-  });
-    });*@
-
     $(function () {
         $('.link button').click(function () {
             var mesaId = $(this).data('id');
@@ -113,6 +85,6 @@
 
 }
 
-<div class="btn btn-primary" style="float: right;">
-    @Html.ActionLink("Atras", "listarMesas_PA", null, new { style = "color:white;" })
+<div style="float: right;">
+    @Html.ActionLink("Atras", "listarMesas_PA", null, new { @class="btn btn-default", style = "color:white;" })
 </div>

@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using MVCMuncheese.Models.ViewModels;
 using MVCMuncheese.Models;
+using MVCMuncheese.Controllers;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace MVCMuncheese.Controllers
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
 
-        
+
         public ActionResult DetalleOrden(int mesa)
         {
             // Obtener información de la mesa seleccionada usando el número de mesa recibido como parámetro
@@ -24,14 +25,20 @@ namespace MVCMuncheese.Controllers
             try
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-                {
+                {         
+
                     var resultado = srvWCF_CR.recMesaXId_PA(mesa);
                     var estado = resultado.Estado == 1 ? "Activo" : "Ocupado";
                     mesaSeleccionada = new MesaViewModel { NumeroMesa = resultado.Id_Mesa, Estado = resultado.Estado, EstadoMesa = estado };
 
+                    // Modificar el estado de la mesa a "Ocupado"
+                    MesasController mesasController = new MesasController();
+                    mesasController.modificarMesa_PA(new Mesas { Id_Mesa = mesaSeleccionada.NumeroMesa, NombreMesa = mesaSeleccionada.EstadoMesa, Estado = 2 });
+
+
                     // Crear una nueva orden
                     var nuevaOrden = new Ordenes();
-               
+
 
                     // Agregar la nueva orden a la base de datos
                     srvWCF_CR.insOrdenes_PAa(nuevaOrden);
@@ -53,9 +60,11 @@ namespace MVCMuncheese.Controllers
             catch (Exception lEx)
             {
                 throw lEx;
-            }     
-            
+            }
+
         }
+
+
 
 
         public JsonResult ObtenerProductosPorTipo(int pTipo_Producto)
@@ -111,325 +120,10 @@ namespace MVCMuncheese.Controllers
                 //return RedirectToAction("listarOrdenes_ENT");
             }
 
-        //*********ENTIDADES*********//
-        //public ActionResult listarDetalleOrden_ENT()
-        //{
-        //    List<DetalleOrden> lobjRespuesta = new List<DetalleOrden>();
-        //    List<modeloDetalleOrden> lobjRespuestaModelo = new List<modeloDetalleOrden>();
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrden_ENT();
-        //            if (lobjRespuesta.Count > 0)
-        //            {
-        //                modeloDetalleOrden objModeloDetalleOrden;
-        //                foreach (var lcr in lobjRespuesta)
-        //                {
-        //                    objModeloDetalleOrden = new modeloDetalleOrden();
-        //                    objModeloDetalleOrden.Id_Detalle = lcr.Id_Detalle;
-        //                    objModeloDetalleOrden.Id_Orden = lcr.Id_Orden;
-        //                    objModeloDetalleOrden.Id_producto = lcr.Id_producto;
-        //                    objModeloDetalleOrden.Cantidad = lcr.Cantidad;
-        //                    objModeloDetalleOrden.Mesa = lcr.Mesa;
-        //                    objModeloDetalleOrden.Precio = lcr.Precio;
-        //                    objModeloDetalleOrden.Tipo_orden = lcr.Tipo_orden;
-        //                    objModeloDetalleOrden.Descripcion = lcr.Descripcion;
-
-        //                    // Obtener el nombre del producto
-        //                    using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR2 = new srvMuncheese.IsrvMuncheeseClient())
-        //                    {
-        //                        Productos producto = srvWCF_CR2.recProductos_ENT().Where(x => x.Id_producto == lcr.Id_producto).FirstOrDefault();
-        //                        if (producto != null)
-        //                        {
-        //                            objModeloDetalleOrden.Nombre_producto = producto.Nombre;
-        //                        }
-        //                    }
-
-        //                    lobjRespuestaModelo.Add(objModeloDetalleOrden);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
-        //            " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
-        //    }
-        //    return View(lobjRespuestaModelo);
-        //}
-
-        //public ActionResult agregarDetalleOrden_ENT()
-        //{
-        //    return View();
-        //}
-
-        //public ActionResult modificarDetalleOrden_ENT(int pId)
-        //{
-        //    DetalleOrden lobjRespuesta = new DetalleOrden();
-        //    modeloDetalleOrden lobjModeloDetalleOrden;
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrdenXId_ENT(pId);
-        //            lobjModeloDetalleOrden = new modeloDetalleOrden();
-        //            lobjModeloDetalleOrden.Id_Detalle = lobjRespuesta.Id_Detalle;
-        //            lobjModeloDetalleOrden.Id_Orden = lobjRespuesta.Id_Orden;
-        //            lobjModeloDetalleOrden.Id_producto = lobjRespuesta.Id_producto;
-        //            lobjModeloDetalleOrden.Cantidad = lobjRespuesta.Cantidad;
-        //            lobjModeloDetalleOrden.Mesa = lobjRespuesta.Mesa;
-        //            lobjModeloDetalleOrden.Precio = lobjRespuesta.Precio;
-        //            lobjModeloDetalleOrden.Tipo_orden = lobjRespuesta.Tipo_orden;
-        //            lobjModeloDetalleOrden.Descripcion = lobjRespuesta.Descripcion;
-
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-
-        //        throw lEx;
-        //    }
-        //    return View(lobjModeloDetalleOrden);
-        //}
-
-        //public ActionResult eliminarDetalleOrden_ENT(int pId)
-        //{
-        //    DetalleOrden lobjRespuesta = new DetalleOrden();
-        //    modeloDetalleOrden lobjModeloDetalleOrden;
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrdenXId_ENT(pId);
-        //            lobjModeloDetalleOrden = new modeloDetalleOrden();
-        //            lobjModeloDetalleOrden.Id_Detalle = lobjRespuesta.Id_Detalle;
-        //            lobjModeloDetalleOrden.Id_Orden = lobjRespuesta.Id_Orden;
-        //            lobjModeloDetalleOrden.Id_producto = lobjRespuesta.Id_producto;
-        //            lobjModeloDetalleOrden.Cantidad = lobjRespuesta.Cantidad;
-        //            lobjModeloDetalleOrden.Mesa = lobjRespuesta.Mesa;
-        //            lobjModeloDetalleOrden.Precio = lobjRespuesta.Precio;
-        //            lobjModeloDetalleOrden.Tipo_orden = lobjRespuesta.Tipo_orden;
-        //            lobjModeloDetalleOrden.Descripcion = lobjRespuesta.Descripcion;
-
-
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-
-        //        throw lEx;
-        //    }
-        //    return View(lobjModeloDetalleOrden);
-        //}
-
-        //public ActionResult detalleDetalleOrden_ENT(int pId)
-        //{
-        //    DetalleOrden lobjRespuesta = new DetalleOrden();
-        //    modeloDetalleOrden lobjModeloDetalleOrden;
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrdenXId_ENT(pId);
-        //            lobjModeloDetalleOrden = new modeloDetalleOrden();
-        //            lobjModeloDetalleOrden.Id_Detalle = lobjRespuesta.Id_Detalle;
-        //            lobjModeloDetalleOrden.Id_Orden = lobjRespuesta.Id_Orden;
-        //            lobjModeloDetalleOrden.Id_producto = lobjRespuesta.Id_producto;
-        //            lobjModeloDetalleOrden.Cantidad = lobjRespuesta.Cantidad;
-        //            lobjModeloDetalleOrden.Mesa = lobjRespuesta.Mesa;
-        //            lobjModeloDetalleOrden.Precio = lobjRespuesta.Precio;
-        //            lobjModeloDetalleOrden.Tipo_orden = lobjRespuesta.Tipo_orden;
-        //            lobjModeloDetalleOrden.Descripcion = lobjRespuesta.Descripcion;
-
-
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-
-        //        throw lEx;
-        //    }
-        //    return View(lobjModeloDetalleOrden);
-        //}
-
-
-        ///*****Acciones entidades DetalleOrden******/
-        //public ActionResult accionesEntidades(string enviarAccion, modeloDetalleOrden pModeloDetalleOrden)
-        //{
-        //    DetalleOrden pDetalleOrden = new DetalleOrden();
-        //    pDetalleOrden.Id_Detalle = pModeloDetalleOrden.Id_Detalle;
-        //    pDetalleOrden.Id_Orden = pModeloDetalleOrden.Id_Orden;
-        //    pDetalleOrden.Id_producto = pModeloDetalleOrden.Id_producto;
-        //    pDetalleOrden.Cantidad = pModeloDetalleOrden.Cantidad;
-        //    pDetalleOrden.Mesa = pModeloDetalleOrden.Mesa;
-        //    pDetalleOrden.Precio = pModeloDetalleOrden.Precio;
-        //    pDetalleOrden.Tipo_orden = pModeloDetalleOrden.Tipo_orden;
-        //    pDetalleOrden.Descripcion = pModeloDetalleOrden.Descripcion;
-
-
-
-        //    switch (enviarAccion)
-        //    {
-        //        case "Agregar":
-        //            return insertarDet_ENT(pDetalleOrden);
-        //        case "Modificar":
-        //            return modificarDet_ENT(pDetalleOrden);
-        //        case "Eliminar":
-        //            return eliminarDet_ENT(pDetalleOrden);
-        //        default:
-        //            return RedirectToAction("listarDetalleOrden_ENT");
-        //        }
-        //    }
-
-
-        //public ActionResult insertarDet_ENT(DetalleOrden pDetalleOrden)
-        //{
-        //    List<DetalleOrden> lobjRespuesta = new List<DetalleOrden>();
-        //    List<modeloDetalleOrden> lobjRespuestaModelo = new List<modeloDetalleOrden>();
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-
-        //            if (srvWCF_CR.insDetalleOrden_ENT(pDetalleOrden))
-        //            {
-        //                //enviar mensaje positivo
-        //            }
-        //            else
-        //            {
-        //                //enviar mensaje negativo
-        //            }
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrden_ENT();
-        //            if (lobjRespuesta.Count > 0)
-        //            {
-        //                modeloDetalleOrden objModeloDetalleOrden;
-        //                foreach (var lcr in lobjRespuesta)
-        //                {
-        //                    objModeloDetalleOrden = new modeloDetalleOrden();
-        //                    objModeloDetalleOrden.Id_Detalle = lcr.Id_Detalle;
-        //                    objModeloDetalleOrden.Id_Orden = lcr.Id_Orden;
-        //                    objModeloDetalleOrden.Id_producto = lcr.Id_producto;
-        //                    objModeloDetalleOrden.Cantidad = lcr.Cantidad;
-        //                    objModeloDetalleOrden.Mesa = lcr.Mesa;
-        //                    objModeloDetalleOrden.Precio = lcr.Precio;
-        //                    objModeloDetalleOrden.Tipo_orden = lcr.Tipo_orden;
-        //                    objModeloDetalleOrden.Descripcion = lcr.Descripcion;
-        //                    lobjRespuestaModelo.Add(objModeloDetalleOrden);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
-        //            " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
-        //    }
-        //    return RedirectToAction("Mesas", "Mesas");
-        //}
-
-        //public ActionResult modificarDet_ENT(DetalleOrden pDetalleOrden)
-        //{
-        //    List<DetalleOrden> lobjRespuesta = new List<DetalleOrden>();
-        //    List<modeloDetalleOrden> lobjRespuestaModelo = new List<modeloDetalleOrden>();
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            if (srvWCF_CR.modDetalleOrden_ENT(pDetalleOrden))
-        //            {
-        //                //enviar mensaje positivo
-        //            }
-        //            else
-        //            {
-        //                //enviar mensaje negativo
-        //            }
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrden_ENT();
-        //            if (lobjRespuesta.Count > 0)
-        //            {
-        //                modeloDetalleOrden objModeloDetalleOrden;
-        //                foreach (var lcr in lobjRespuesta)
-        //                {
-        //                    objModeloDetalleOrden = new modeloDetalleOrden();
-        //                    objModeloDetalleOrden.Id_Detalle = lcr.Id_Detalle;
-        //                    objModeloDetalleOrden.Id_Orden = lcr.Id_Orden;
-        //                    objModeloDetalleOrden.Id_producto = lcr.Id_producto;
-        //                    objModeloDetalleOrden.Cantidad = lcr.Cantidad;
-        //                    objModeloDetalleOrden.Mesa = lcr.Mesa;
-        //                    objModeloDetalleOrden.Precio = lcr.Precio;
-        //                    objModeloDetalleOrden.Tipo_orden = lcr.Tipo_orden;
-        //                    objModeloDetalleOrden.Descripcion = lcr.Descripcion;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
-        //            " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
-        //    }
-        //    return RedirectToAction("listarDetalleOrden_ENT");
-        //}
-
-        //public ActionResult eliminarDet_ENT(DetalleOrden pDetalleOrden)
-        //{
-        //    List<DetalleOrden> lobjRespuesta = new List<DetalleOrden>();
-        //    List<modeloDetalleOrden> lobjRespuestaModelo = new List<modeloDetalleOrden>();
-        //    try
-        //    {
-        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-        //        {
-        //            if (srvWCF_CR.delDetalleOrden_ENT(pDetalleOrden))
-        //            {
-        //                //enviar mensaje positivo
-        //            }
-        //            else
-        //            {
-        //                //enviar mensaje negativo
-        //            }
-        //            lobjRespuesta = srvWCF_CR.recDetalleOrden_ENT();
-        //            if (lobjRespuesta.Count > 0)
-        //            {
-        //                modeloDetalleOrden objModeloDetalleOrden;
-        //                foreach (var lcr in lobjRespuesta)
-        //                {
-        //                    objModeloDetalleOrden = new modeloDetalleOrden();
-        //                    objModeloDetalleOrden.Id_Detalle = lcr.Id_Detalle;
-        //                    objModeloDetalleOrden.Id_Orden = lcr.Id_Orden;
-        //                    objModeloDetalleOrden.Id_producto = lcr.Id_producto;
-        //                    objModeloDetalleOrden.Cantidad = lcr.Cantidad;
-        //                    objModeloDetalleOrden.Mesa = lcr.Mesa;
-        //                    objModeloDetalleOrden.Precio = lcr.Precio;
-        //                    objModeloDetalleOrden.Tipo_orden = lcr.Tipo_orden;
-        //                    objModeloDetalleOrden.Descripcion = lcr.Descripcion;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception lEx)
-        //    {
-        //        gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
-        //            " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
-        //    }
-        //    return RedirectToAction("listarDetalleOrden_ENT");
-        //}
 
         //*********Procedimientos almacenados*********//
         public ActionResult listarDetalleOrden_PA()
         {
-            //List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
-            //try
-            //{
-            //    using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
-            //    {
-            //        lobjRespuesta = srvWCF_CR.recDetalleOrden_PA();
-            //    }
-            //}
-            //catch (Exception lEx)
-            //{
-            //    throw lEx;
-            //}
-            //return View(lobjRespuesta);
             List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
             List<modeloDetalleOrden> lobjDetalles = new List<modeloDetalleOrden>();  // Nuevo modelo
 

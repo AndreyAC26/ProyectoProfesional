@@ -52,9 +52,6 @@ namespace MVCMuncheese.Controllers
         }
         
 
-        
-
-
         //*********Procedimientos almacenados*********//
         public ActionResult listarMesas_PA()
         {
@@ -85,17 +82,6 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-
-            //// Unimos las dos listas mediante un join y seleccionamos los campos que nos interesan
-            //var listaMesas = from mesa in lobjRespuesta
-            //                 join estado in lobjEstados
-            //                 on mesa.Estado equals estado.Id_Estado
-            //                 select new modeloMesas
-            //                 {
-            //                     Id_Mesa = mesa.Id_Mesa,
-            //                     NombreMesa = mesa.NombreMesa,
-            //                     Estados = estado.Estado
-            //                 };
 
             // Convertir cada objeto recMesas_Result a modeloMesas
             var listaMesas = new List<modeloMesas>();
@@ -194,19 +180,19 @@ namespace MVCMuncheese.Controllers
             return View(lobjRespuesta);
         }
 
-        /*****Acciones procedimientos almacenados Mesas******/
-        public ActionResult accionesPA(string enviarAccion, modeloMesas pModeloMesas)
-        {
-            try
+            /*****Acciones procedimientos almacenados Mesas******/
+            public ActionResult accionesPA(string enviarAccion, modeloMesas pModeloMesas)
             {
-                Mesas pMesas = new Mesas();
-                pMesas.Id_Mesa = pModeloMesas.Id_Mesa;
-                pMesas.NombreMesa = pModeloMesas.NombreMesa;
-                pMesas.Estado = pModeloMesas.Estado;
-
-
-                switch (enviarAccion)
+                try
                 {
+                    Mesas pMesas = new Mesas();
+                    pMesas.Id_Mesa = pModeloMesas.Id_Mesa;
+                    pMesas.NombreMesa = pModeloMesas.NombreMesa;
+                    pMesas.Estado = pModeloMesas.Estado;
+
+
+                    switch (enviarAccion)
+                    {
                     case "Agregar":
                         return insertarMesa_PA(pMesas);
                     case "Modificar":
