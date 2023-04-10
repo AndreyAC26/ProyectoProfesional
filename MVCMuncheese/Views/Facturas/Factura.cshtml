@@ -5,61 +5,6 @@
 
 }
 
-<script>
-
-    ddlClientes.change(function () {
-        var clienteId = $(this).val(); // Obtener el valor del cliente seleccionado
-        if (clienteId !== '') { // Verificar si se seleccionó un cliente
-            $.ajax({
-                url: '/Factura/GetTelefonoCliente',
-                type: 'GET',
-                data: { clienteId: clienteId },
-                success: function (response) {
-                    txtTelefono.val(response); // Asignar el número de teléfono al campo correspondiente
-                },
-                error: function () {
-                    console.log('Error al obtener el número de teléfono del cliente.');
-                }
-            });
-        } else {
-            txtTelefono.val(''); // Limpiar el campo si no hay cliente seleccionado
-        }
-    });
-
-    $(document).ready(function() {
-        $("#Cliente").change(function() {
-            var clienteSeleccionado = $(this).val();
-            $.ajax({
-                url: "@Url.Action("ObtenerTelefonoCliente", "Factura")",
-                data: { nombreCliente: clienteSeleccionado },
-                type: "POST",
-                success: function(respuesta) {
-                    $("#Tel_Cliente").val(respuesta);
-                },
-                error: function() {
-                    console.log("Error al obtener el número de teléfono del cliente.");
-                }
-            });
-        });
-    });
-
-    $.ajax({
-    url: '@Url.Action("ObtenerTelefonoCliente", "Facturas")',
-    type: 'GET',
-    dataType: 'json',
-    data: { cliente: selectedCliente }, // Enviar el nombre del cliente seleccionado como parámetro
-    success: function (telefono) {
-        // Asignar el número de teléfono al campo correspondiente
-        $("#txtTelefono").val(telefono);
-        $("#txtTelefono").show(); // Mostrar el campo de texto
-    },
-    error: function () {
-        console.log('Error al obtener el número de teléfono del cliente.');
-    }
-});
-
-    
-</script>
 
 <div>
     <h3 style="text-align:center;">
@@ -103,7 +48,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                     <div class="col-sm-7">
-                        @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control form-control-lg", style = "height: 30px;", type = "date" } })
+                        @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control form-control-lg", style = "height: 30px;", type = "date", @id = "fecha-entrada", value = "fechaActual" } })
                         @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -294,6 +239,22 @@
             });
         });
 
+
+        //Cargar fecha actual
+        $(document).ready(function () {
+            var fechaActual = new Date();
+            var dia = fechaActual.getDate();
+            var mes = fechaActual.getMonth() + 1;
+            var anio = fechaActual.getFullYear();
+            if (dia < 10) {
+                dia = "0" + dia;
+            }
+            if (mes < 10) {
+                mes = "0" + mes;
+            }
+            var fechaActualTexto = anio + "-" + mes + "-" + dia;
+            $("#fecha-entrada").val(fechaActualTexto);
+        });
 
     </script>
 }
