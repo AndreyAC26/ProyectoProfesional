@@ -27,9 +27,9 @@ namespace MVCMuncheese.Models
 
             [Display(Name = "Mesa")]
             public int mesa { get; set; }
-            
-            public SelectList MesasActivas { get; set; }
-            public SelectList OrdenesActivas { get; set; }
+
+        public SelectList MesasOcupadas { get; set; }
+        public SelectList OrdenesActivas { get; set; }
             public List<SelectListItem> Clientes { get; set; }
     }
 

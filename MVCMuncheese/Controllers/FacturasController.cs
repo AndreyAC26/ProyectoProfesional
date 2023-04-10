@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using MVCMuncheese.Models;
+using MVCMuncheese.Controllers;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,9 @@ namespace MVCMuncheese.Controllers
         public ActionResult Factura() 
         {
             srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
-            // Obtener las mesas activas 
-            var mesasActivas = srvWCF_CR.recMesasActivas_PA().Select(m => m.Id_Mesa).ToList();
+            // Obtener las mesas ocupadas 
+            var mesasOcupadas = srvWCF_CR.recMesas_PA().Where(m => m.Estado == 2)
+            .Select(m => new SelectListItem { Value = m.Id_Mesa.ToString(), Text = $"Mesa {m.Id_Mesa}" });
 
             // Obtener las órdenes activas
             var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1).Select(o => new SelectListItem { Value = o.Id_Orden.ToString(), Text = $"{o.Id_Orden}" });
@@ -36,7 +38,7 @@ namespace MVCMuncheese.Controllers
             // Inicializar el modelo con los datos necesarios
             var modelo = new modeloFacturas
             {
-                MesasActivas = new SelectList(mesasActivas, "Value"),
+                MesasOcupadas = new SelectList(mesasOcupadas, "Value", "Text"),
                 OrdenesActivas = new SelectList(ordenesActivas, "Value", "Text"),
                 Clientes = clientes.ToList(), // Agregar la lista de clientes al modelo
             };
