@@ -12,6 +12,8 @@ using System.Web.Mvc;
 using static MVCMuncheese.Models.modeloFacturas;
 using System.Configuration.Provider;
 using System.Xml.Linq;
+using AccesoDatos.Implementacion;
+using Newtonsoft.Json;
 
 namespace MVCMuncheese.Controllers
 {
@@ -29,29 +31,46 @@ namespace MVCMuncheese.Controllers
             .Select(m => new SelectListItem { Value = m.Id_Mesa.ToString(), Text = $"Mesa {m.Id_Mesa}" });
 
             // Obtener las órdenes activas
-            var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1).Select(o => new SelectListItem { Value = o.Id_Orden.ToString(), Text = $"{o.Id_Orden}" });
-
+            //var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1).Select(o => new SelectListItem { Value = o.Id_Orden.ToString(), Text = $"{o.Id_Orden}" });
+            var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1)
+                        .Join(srvWCF_CR.recDetalleOrden_PA(),
+                              orden => orden.Id_Orden,
+                              detalle => detalle.Id_Orden,
+                              (orden, detalle) => new { orden, detalle })
+                        .GroupBy(od => od.detalle.Mesa)
+                        .ToDictionary(g => g.Key.Value, g => g.Select(od => new SelectListItem { Value = od.orden.Id_Orden.ToString(), Text = $"{od.orden.Id_Orden}" }).Distinct(new SelectListItemComparer()).ToList());
+            
             // Obtener la lista de clientes y sus teléfonos
             var listaClientes = srvWCF_CR.recClientes_ENT();
-            var clientes = listaClientes.Select(c => new SelectListItem { Value = c.Nombre, Text = $"{c.Nombre}" });
+            var clientes = listaClientes.Select(c => new SelectListItem { Value = c.Nombre, Text = $"{c.Nombre}" });       
 
             // Inicializar el modelo con los datos necesarios
             var modelo = new modeloFacturas
             {
+
                 MesasOcupadas = new SelectList(mesasOcupadas, "Value", "Text"),
-                OrdenesActivas = new SelectList(ordenesActivas, "Value", "Text"),
+                //OrdenesActivas = new SelectList(ordenesActivas, "Value", "Text"),
+                OrdenesPorMesaJson = JsonConvert.SerializeObject(ordenesActivas),
                 Clientes = clientes.ToList(), // Agregar la lista de clientes al modelo
             };
 
             return View(modelo);
         }
 
-        public ActionResult GetOrdenesPorMesa(int mesaId)
+        //Comparador 
+        public class SelectListItemComparer : IEqualityComparer<SelectListItem>
         {
-            srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
-            var ordenesActivas = srvWCF_CR.recDetalleOrden_ENT().Where(d => d.Mesa == mesaId && d.Ordenes.Estado == 1)
-                                 .Select(d => new SelectListItem { Value = d.Id_Orden.ToString(), Text = $"Orden {d.Id_Orden}" });
-            return Json(ordenesActivas, JsonRequestBehavior.AllowGet);
+            public bool Equals(SelectListItem x, SelectListItem y)
+            {
+                return x.Value == y.Value && x.Text == y.Text;
+            }
+
+            public int GetHashCode(SelectListItem obj)
+            {
+                int valueHash = obj.Value != null ? obj.Value.GetHashCode() : 0;
+                int textHash = obj.Text != null ? obj.Text.GetHashCode() : 0;
+                return valueHash ^ textHash;
+            }
         }
 
         // Adquirir numero de telefono cliente
@@ -65,6 +84,27 @@ namespace MVCMuncheese.Controllers
 
             return telefono; // Devolver el número de teléfono del cliente
         }
+
+        // Adquirir Id_Orden de las ordenes activas por la mesa seleccionada
+        [HttpPost]
+        public ActionResult ObtenerOrdenPorMesa(int mesaId)
+        {
+            srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
+            int idOrden = srvWCF_CR.recOrdenes_ENT()
+                                    .Join(srvWCF_CR.recDetalleOrden_PA(),
+                                          Ordenes => Ordenes.Id_Orden,
+                                  DetalleOrden => DetalleOrden.Id_Orden,
+                                  (Ordenes, DetalleOrden) => new { Ordenes, DetalleOrden })
+                            .Where(od => od.DetalleOrden.Mesa == mesaId && od.Ordenes.Estado == 1)
+                            .Select(od => od.Ordenes.Id_Orden)
+                            .FirstOrDefault();
+
+            return Json(new
+            {
+                Id_Orden = idOrden
+            });
+        }
+
 
 
         //*********Procedimientos almacenados*********//

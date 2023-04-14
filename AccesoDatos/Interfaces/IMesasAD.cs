@@ -9,7 +9,7 @@ namespace AccesoDatos.Interfaces
 {
     public interface IMesasAD
     {
-        List<recMesas_Result> recMesasActivas();
+        List<recDetalleOrden_Result> recOrdenActivaXMesa(int pId);
         List<recMesas_Result> recMesas_PA();
         recMesaxId_Result recMesasXId_PA(int pId);
         bool insMesas_PA(Mesas pMesas);

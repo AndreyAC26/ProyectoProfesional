@@ -714,10 +714,13 @@
       <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="recMesas" ReturnType="Collection(MuncheeseModelo.recMesas_Result)" />
+    <FunctionImport Name="recMesasActivasDO" ReturnType="Collection(Int32)" />
     <FunctionImport Name="recMesaxId" ReturnType="Collection(MuncheeseModelo.recMesaxId_Result)">
       <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="recObtenerMesasActivas" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="recOrdenActivaXMesa" ReturnType="Collection(Int32)">
+      <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="recOrdenes" ReturnType="Collection(MuncheeseModelo.recOrdenes_Result)" />
     <FunctionImport Name="recOrdenxId" ReturnType="Collection(MuncheeseModelo.recOrdenxId_Result)">
       <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
@@ -781,7 +784,6 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <FunctionImport Name="recMesasActivasDO" ReturnType="Collection(Int32)" />
   </EntityContainer>
   <ComplexType Name="InsertarTipoProducto_Result">
     <Property Type="Int32" Name="Column1" Nullable="true" />

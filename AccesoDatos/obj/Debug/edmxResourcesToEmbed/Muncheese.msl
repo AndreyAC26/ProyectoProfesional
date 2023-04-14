@@ -401,6 +401,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="recMesasActivasDO" FunctionName="MuncheeseModelo.Store.recMesasActivasDO" />
     <FunctionImportMapping FunctionImportName="recMesaxId" FunctionName="MuncheeseModelo.Store.recMesaxId">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.recMesaxId_Result">
@@ -410,6 +411,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="recOrdenActivaXMesa" FunctionName="MuncheeseModelo.Store.recOrdenActivaXMesa" />
     <FunctionImportMapping FunctionImportName="recOrdenes" FunctionName="MuncheeseModelo.Store.recOrdenes">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.recOrdenes_Result">
@@ -559,6 +561,5 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MuncheeseModelo.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MuncheeseModelo.Store.sp_upgraddiagrams" />
-    <FunctionImportMapping FunctionImportName="recMesasActivasDO" FunctionName="MuncheeseModelo.Store.recMesasActivasDO" />
   </EntityContainerMapping>
 </Mapping>

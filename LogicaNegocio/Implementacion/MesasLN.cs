@@ -21,13 +21,12 @@ namespace LogicaNegocio.Implementacion
         private readonly IMesasAD gobjMesasAD = new MesasAD(_objContextoAW);
 
 
-
-        public List<recMesas_Result> recMesasActivas_PA()
+        public List<recDetalleOrden_Result> recOrdenActivaXMesa_PA(int pId)
         {
-            List<recMesas_Result> lobjRespuesta = new List<recMesas_Result>();
+            List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
             try
             {
-                lobjRespuesta = gobjMesasAD.recMesasActivas();
+                lobjRespuesta = gobjMesasAD.recOrdenActivaXMesa(pId);
             }
             catch (Exception lEx)
             {

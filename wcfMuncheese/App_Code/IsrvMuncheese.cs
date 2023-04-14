@@ -180,7 +180,7 @@ public interface IsrvMuncheese
 
     //**************PROCEDIMIENTOS ALMACENADOS Mesas**************//
     [OperationContract]
-    List<recMesas_Result> recMesasActivas_PA();
+    List<recDetalleOrden_Result> recOrdenActivaXMesa_PA(int pId);
 
     [OperationContract]
     List<recMesas_Result> recMesas_PA();

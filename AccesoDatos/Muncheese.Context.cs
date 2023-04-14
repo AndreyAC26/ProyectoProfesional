@@ -15,7 +15,7 @@ namespace AccesoDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     using Entidades;
-
+    
     public partial class MuncheeseEntidades : DbContext
     {
         public MuncheeseEntidades()
@@ -1066,6 +1066,11 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recMesas_Result>("recMesas");
         }
     
+        public virtual ObjectResult<Nullable<int>> recMesasActivasDO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("recMesasActivasDO");
+        }
+    
         public virtual ObjectResult<recMesaxId_Result> recMesaxId(Nullable<int> id_Mesa)
         {
             var id_MesaParameter = id_Mesa.HasValue ?
@@ -1075,9 +1080,13 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recMesaxId_Result>("recMesaxId", id_MesaParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> recObtenerMesasActivas()
+        public virtual ObjectResult<Nullable<int>> recOrdenActivaXMesa(Nullable<int> id_Mesa)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("recObtenerMesasActivas");
+            var id_MesaParameter = id_Mesa.HasValue ?
+                new ObjectParameter("Id_Mesa", id_Mesa) :
+                new ObjectParameter("Id_Mesa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("recOrdenActivaXMesa", id_MesaParameter);
         }
     
         public virtual ObjectResult<recOrdenes_Result> recOrdenes()
@@ -1298,11 +1307,6 @@ namespace AccesoDatos
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<Nullable<int>> recMesasActivasDO()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("recMesasActivasDO");
         }
     }
 }

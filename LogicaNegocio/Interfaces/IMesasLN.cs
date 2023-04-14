@@ -9,7 +9,7 @@ namespace LogicaNegocio.Interfaces
 {
     public interface IMesasLN
     {
-        List<recMesas_Result> recMesasActivas_PA();
+        List<recDetalleOrden_Result> recOrdenActivaXMesa_PA(int pId);
         List<recMesas_Result> recMesas_PA();
         recMesaxId_Result recMesasXId_PA(int pId);
         bool insMesas_PA(Mesas pMesas);

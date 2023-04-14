@@ -1,9 +1,10 @@
-﻿using AccesoDatos.Interfaces;
+﻿    using AccesoDatos.Interfaces;
 using Entidades;
 using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +21,15 @@ namespace AccesoDatos.Implementacion
             gObjConexionAW = lObjConexionAW;
         }
 
-        public List<recMesas_Result> recMesasActivas()
+        public List<recDetalleOrden_Result> recOrdenActivaXMesa(int pId)
         {
-            List<recMesas_Result> lobjRespuesta = new List<recMesas_Result>();
+            List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();
             try
             {
-                using (var db = new MuncheeseEntidades()) // Reemplaza DbContext con el nombre de tu contexto de base de datos
+                using (var db = new MuncheeseEntidades())
                 {
-                    var result = db.Database.SqlQuery<int?>("recMesasActivasDO").ToList();
-                    lobjRespuesta = result.Select(x => new recMesas_Result { Id_Mesa = (int)x }).ToList();
+                    var result = db.Database.SqlQuery<int?>("recOrdenActivaXMesa @Id_Mesa", new SqlParameter("@Id_Mesa", pId)).ToList();
+                    lobjRespuesta = result.Select(x => new recDetalleOrden_Result { Mesa = (int)x }).ToList();
                 }
             }
             catch (Exception lEx)
@@ -37,6 +38,7 @@ namespace AccesoDatos.Implementacion
             }
             return lobjRespuesta;
         }
+
 
         //**************PROCEDIMIENTOS ALMACENADOS**************//
         public List<recMesas_Result> recMesas_PA()

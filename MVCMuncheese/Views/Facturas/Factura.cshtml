@@ -34,21 +34,31 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="form-group row">
-                    @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                    <div class="col-sm-6">
-                        @Html.DropDownListFor(model => model.Id_Orden, Enumerable.Empty<SelectListItem>(), "-- Orden --", new { @class = "form-control", id = "orden-dropdown" })
-                        @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
-                    </div>
+            @*<div class="col-md-3">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.Id_Orden, new { htmlAttributes = new { @class = "form-control", @id = "Id_Orden" } })
+                    @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
                 </div>
             </div>
+        </div>*@
+        <div class="col-md-3">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                <div class="col-sm-6">
+                    @Html.DropDownListFor(model => model.Id_Orden, Enumerable.Empty<SelectListItem>(), "- Ordenes -", new { @class = "form-control", id = "orden-dropdown" })
+                    @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
 
             <div class="col-md-3 text-right">
                 <div class="form-group row">
                     @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                     <div class="col-sm-7">
-                        @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control form-control-lg", style = "height: 30px;", type = "date", @id = "fecha-entrada", value = "fechaActual" } })
+                        @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control form-control-lg", style = "height: 37px;", type = "date", @id = "fecha-entrada", value = "fechaActual" } })
                         @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -255,6 +265,44 @@
             var fechaActualTexto = anio + "-" + mes + "-" + dia;
             $("#fecha-entrada").val(fechaActualTexto);
         });
+
+
+        //Evento clic para cargar las ordenes
+       @*$(document).ready(function () {
+        $('#mesa-dropdown').change(function () {
+            var mesaId = $(this).val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ObtenerOrdenPorMesa", "Facturas")",
+                data: { mesaId: mesaId },
+                success: function (data) {
+                    $('#Id_Orden').val(data.Id_Orden);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error al obtener la orden por mesa.');
+                }
+            });
+        });
+    });*@
+        $(document).ready(function () {
+    $('#mesa-dropdown').change(function () {
+        var mesaId = parseInt($(this).val());
+
+        if (mesaId) {
+            var ordenesPorMesa = JSON.parse('@Html.Raw(Model.OrdenesPorMesaJson)');
+            var ordenesDeMesa = ordenesPorMesa[mesaId] || [];
+
+            var $ordenDropdown = $('#orden-dropdown');
+            $ordenDropdown.empty();
+            $ordenDropdown.append($('<option>', { value: "", text: "-- Ordenes --" }));
+
+            $.each(ordenesDeMesa, function (index, item) {
+                $ordenDropdown.append($('<option>', { value: item.Value, text: item.Text }));
+            });
+        }
+    });
+});
 
     </script>
 }
