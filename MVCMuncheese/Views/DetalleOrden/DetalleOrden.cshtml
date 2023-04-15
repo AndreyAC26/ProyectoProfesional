@@ -138,7 +138,8 @@
             for (var i = 0; i < filas.length; i++) {
                 var fila = filas[i];
                 var Id_Orden = fila.getElementsByTagName("td")[0].innerText;
-                var Id_producto = fila.getElementsByTagName("td")[1].innerText;
+                var productoElement = fila.getElementsByClassName("nombre-producto")[0];
+                var Id_producto = parseInt(productoElement.classList[1].split("-")[2]);
                 var Cantidad = fila.getElementsByTagName("td")[2].innerText;
                 var Mesa = fila.getElementsByTagName("td")[3].innerText;
                 var Precio = fila.getElementsByTagName("td")[4].innerText;74

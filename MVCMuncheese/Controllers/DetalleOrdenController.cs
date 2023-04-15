@@ -65,8 +65,6 @@ namespace MVCMuncheese.Controllers
         }
 
 
-
-
         public JsonResult ObtenerProductosPorTipo(int pTipo_Producto)
         {
             using (srvMuncheese.IsrvMuncheeseClient db = new srvMuncheese.IsrvMuncheeseClient())
@@ -92,6 +90,7 @@ namespace MVCMuncheese.Controllers
             return Json(0, JsonRequestBehavior.AllowGet);
         }
 
+        //agrega una nueva orden
             public void insOrden_PA(Ordenes pOrdenes)
             {
                 List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();

@@ -34,7 +34,6 @@ namespace MVCMuncheese.Models
             public Dictionary<int, List<SelectListItem>> OrdenesPorMesa { get; set; }
             public List<SelectListItem> Clientes { get; set; }
             public string OrdenesPorMesaJson { get; set; }
-
     }
 
 }

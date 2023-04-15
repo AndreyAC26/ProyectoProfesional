@@ -34,24 +34,15 @@
                 </div>
             </div>
 
-            @*<div class="col-md-3">
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                <div class="col-sm-6">
-                    @Html.EditorFor(model => model.Id_Orden, new { htmlAttributes = new { @class = "form-control", @id = "Id_Orden" } })
-                    @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
+            <div class="col-md-3">
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(model => model.Id_Orden, Enumerable.Empty<SelectListItem>(), "- Ordenes -", new { @class = "form-control", id = "ddlOrdenes" })
+                        @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>*@
-        <div class="col-md-3">
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                <div class="col-sm-6">
-                    @Html.DropDownListFor(model => model.Id_Orden, Enumerable.Empty<SelectListItem>(), "- Ordenes -", new { @class = "form-control", id = "orden-dropdown" })
-                    @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
 
             <div class="col-md-3 text-right">
@@ -89,136 +80,33 @@
 
 
 <div class="col-md-12" style="text-align:center;">
-
-
-    <table class="table table-striped table-hover ">
+    <table class="table table-striped table-hover" id="tablaDetalleOrdenes">
         <thead>
+            <tr>
+                <th></th>
+                <th>Num. Orden</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Mesa</th>
+                <th>Precio</th>
+                <th>Tipo de Orden</th>
+                <th>Descripcion</th>
+                <th>Sub Total</th>
+            </tr>
         </thead>
-        <tr>
-            <th></th>
-            <th>Cantidad</th>
-            <th>Descripción</th>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Orden</th>
-            <th>Estado</th>
-            <th>Sub Total</th>
-
-        </tr>
-        <tbody>
-            <tr class="active">
-                <th>
-
-                </th>
-                <th>
-                    @*1*@
-                </th>
-                <th>
-                    @*Sin mostaza*@
-                </th>
-                <th>
-                    @*1*@
-                </th>
-                <th>
-                    @*4500*@
-                </th>
-                <th>
-                    @*2*@
-                </th>
-                <th>
-                    @*Comer aqui*@
-                </th>
-                <th>
-                    @*4500*@
-                </th>
-            </tr>
-            <tr class="active">
-                <th>
-
-                </th>
-                <th>
-                    @*3*@
-                </th>
-                <th>
-                    @*N/A*@
-                </th>
-                <th>
-                    @*3*@
-                </th>
-                <th>
-                    @*5000*@
-                </th>
-                <th>
-                    @*2*@
-                </th>
-                <th>
-                    @*Comer aqui*@
-                </th>
-                <th>
-                    @*15000*@
-                </th>
-            </tr>
-            <tr class="active">
-                <th>
-
-                </th>
-                <th>
-                    @*1*@
-                </th>
-                <th>
-                    @*Con muchas salsas*@
-                </th>
-                <th>
-                    @*1*@
-                </th>
-                <th>
-                    @*6500*@
-                </th>
-                <th>
-                    @*2*@
-                </th>
-                <th>
-                    @*Comer aqui*@
-                </th>
-                <th>
-                    @*6500*@
-                </th>
-            </tr>
-            <tr class="active">
-                <th>
-
-                </th>
-                <th>
-
-                </th>
-                <th>
-
-                </th>
-                <th>
-
-                </th>
-                <th>
-
-                </th>
-                <th>
-
-                </th>
-                <th style="text-align:right;">
-                    @*Total:*@
-                </th>
-                <th>
-                    @*26000*@
-                </th>
-            </tr>
+        <tbody id="detalleOrden">
         </tbody>
     </table>
+
     <div class="form-group col-md-12" style="text-align:right">
         <div class="col-lg-10 col-lg-offset-2">
             <button type="submit" class="btn btn-primary">Facturar</button>
         </div>
     </div>
-
 </div>
+
+
+        @*// ************************************************ //*@
 
 @section Scripts {
     <script type="text/javascript">
@@ -249,6 +137,34 @@
             });
         });
 
+        /* ************************************************ */
+        $(function () {
+    // Manejar el evento de selección del dropdownlist "Id_Orden"
+    $("#ddlOrdenes").change(function () {
+        var selectedOrden = $(this).val(); // Obtener la orden seleccionada
+        if (selectedOrden !== "") {
+            // Obtener los detalles de la orden seleccionada mediante una petición AJAX
+            $.ajax({
+                url: '@Url.Action("CargarDetalleOrdenes", "Facturas")',
+                type: 'GET',
+                dataType: 'html',
+                data: { idOrden: selectedOrden }, // Enviar el Id_Orden seleccionado como parámetro
+                success: function (html) {
+                    // Actualizar el contenido del contenedor "detalleOrden" con los detalles de la orden
+                    $("#detalleOrden").html(html);
+                },
+                error: function () {
+                    console.log('Error al obtener los detalles de la orden.');
+                }
+            });
+        } else {
+            // Limpiar el contenido del contenedor si no hay orden seleccionada
+            $("#detalleOrden").html("");
+        }
+    });
+});
+
+        /* ************************************************ */
 
         //Cargar fecha actual
         $(document).ready(function () {
@@ -267,24 +183,8 @@
         });
 
 
-        //Evento clic para cargar las ordenes
-       @*$(document).ready(function () {
-        $('#mesa-dropdown').change(function () {
-            var mesaId = $(this).val();
-
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("ObtenerOrdenPorMesa", "Facturas")",
-                data: { mesaId: mesaId },
-                success: function (data) {
-                    $('#Id_Orden').val(data.Id_Orden);
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.log('Error al obtener la orden por mesa.');
-                }
-            });
-        });
-    });*@
+        /* ************************************************ */
+        // carga las ordenes
         $(document).ready(function () {
     $('#mesa-dropdown').change(function () {
         var mesaId = parseInt($(this).val());
@@ -293,7 +193,7 @@
             var ordenesPorMesa = JSON.parse('@Html.Raw(Model.OrdenesPorMesaJson)');
             var ordenesDeMesa = ordenesPorMesa[mesaId] || [];
 
-            var $ordenDropdown = $('#orden-dropdown');
+            var $ordenDropdown = $('#ddlOrdenes');
             $ordenDropdown.empty();
             $ordenDropdown.append($('<option>', { value: "", text: "-- Ordenes --" }));
 
@@ -302,7 +202,96 @@
             });
         }
     });
-});
+        });
+
+
+        @*//Cargar los detalles de orden
+ 
+        @*$("#orden-dropdown").change(function () {
+    var selectedOrden = $(this).val(); // Obtener la orden seleccionada
+    if (selectedOrden !== "") {
+        // Obtener los detalles de la orden seleccionada mediante una petición AJAX
+        $.ajax({
+            url: '@Url.Action("CargarDetalleOrdenes", "Facturas")',
+            type: 'GET',
+            dataType: 'json',
+            data: { idOrden: selectedOrden }, // Enviar el Id_Orden seleccionado como parámetro
+            success: function (data) {
+                // Vaciar el tbody de la tabla antes de llenarla
+                $("#detalleOrden").empty();
+                // Iterar sobre los detalles de la orden y agregarlos a la tabla
+                $.each(data, function (index, item) {
+                    $("#detalleOrden").append(
+                        $('<tr>').append(
+                            $('<td>').text(index + 1),
+                            $('<td>').text(item.NumOrden),
+                            $('<td>').text(item.Producto),
+                            $('<td>').text(item.Cantidad),
+                            $('<td>').text(item.Mesa),
+                            $('<td>').text(item.Precio),
+                            $('<td>').text(item.TipoOrden),
+                            $('<td>').text(item.Descripcion),
+                            $('<td>').text(item.SubTotal)
+                        )
+                    );
+                });
+            },
+            error: function () {
+                console.log('Error al obtener los detalles de la orden.');
+            }
+        });
+    } else {
+        // Limpiar el contenido del contenedor si no hay orden seleccionada
+        $("#detalleOrden").empty();
+    }
+});*@
+
+        $(document).ready(function () {
+            $("#ddlOrdenes").on("change", function () {
+                var idOrden = $(this).val();
+
+                if (idOrden != "") {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Facturas/CargarDetalleOrdenes", 
+                        data: { idOrden: idOrden },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                            var detallesOrden = data;
+                            var html = "";
+
+                            for (var i = 0; i < detallesOrden.length; i++) {
+                                var detalle = detallesOrden[i];
+                                html += "<tr>";
+                                html += "<td></td>";
+                                html += "<td>" + detalle.Id_Orden + "</td>";
+                                //html += "<td>" + detalle.Id_producto + "</td>";
+                                html += "<td>" + detalle.Nombre + "</td>";
+                                html += "<td>" + detalle.Cantidad + "</td>";
+                                html += "<td>" + detalle.Mesa + "</td>";
+                                html += "<td>" + detalle.Precio + "</td>";
+                                html += "<td>" + detalle.Tipo_orden + "</td>";
+                                html += "<td>" + detalle.Descripcion + "</td>";
+                                html += "<td>" + (detalle.Precio * detalle.Cantidad) + "</td>";
+                                html += "</tr>";
+                            }
+
+                            // Actualizar el contenido del contenedor "detalleOrden" con los detalles de la orden
+                            $("#detalleOrden").html(html);
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                } else {
+                    $("#detalleOrden").html("");
+                }
+            });
+        });
+
 
     </script>
 }
+

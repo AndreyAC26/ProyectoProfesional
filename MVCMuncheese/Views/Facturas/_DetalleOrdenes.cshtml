@@ -1,0 +1,20 @@
+﻿@model List<MVCMuncheese.Models.modeloDetalleOrden>
+
+@{
+    ViewBag.Title = "_DetalleOrdenes";
+}
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td></td>
+        <td>@item.Id_Orden</td>
+        <td>@item.Id_producto</td>
+        <td>@item.Cantidad</td>
+        <td>@item.Mesa</td>
+        <td>@item.Precio</td>
+        <td>@item.Tipo_Producto</td>
+        <td>@item.Descripcion</td>
+    </tr>
+}

@@ -25,13 +25,13 @@ namespace MVCMuncheese.Controllers
 
         public ActionResult Factura() 
         {
+
             srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
             // Obtener las mesas ocupadas 
             var mesasOcupadas = srvWCF_CR.recMesas_PA().Where(m => m.Estado == 2)
             .Select(m => new SelectListItem { Value = m.Id_Mesa.ToString(), Text = $"Mesa {m.Id_Mesa}" });
 
-            // Obtener las órdenes activas
-            //var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1).Select(o => new SelectListItem { Value = o.Id_Orden.ToString(), Text = $"{o.Id_Orden}" });
+            //Obtener las ordenes activas
             var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1)
                         .Join(srvWCF_CR.recDetalleOrden_PA(),
                               orden => orden.Id_Orden,
@@ -39,7 +39,7 @@ namespace MVCMuncheese.Controllers
                               (orden, detalle) => new { orden, detalle })
                         .GroupBy(od => od.detalle.Mesa)
                         .ToDictionary(g => g.Key.Value, g => g.Select(od => new SelectListItem { Value = od.orden.Id_Orden.ToString(), Text = $"{od.orden.Id_Orden}" }).Distinct(new SelectListItemComparer()).ToList());
-            
+
             // Obtener la lista de clientes y sus teléfonos
             var listaClientes = srvWCF_CR.recClientes_ENT();
             var clientes = listaClientes.Select(c => new SelectListItem { Value = c.Nombre, Text = $"{c.Nombre}" });       
@@ -105,6 +105,36 @@ namespace MVCMuncheese.Controllers
             });
         }
 
+        //public JsonResult CargarDetalleOrdenes(int idOrden)
+        //{
+        //    srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
+
+        //    var detallesOrden = srvWCF_CR.recDetalleOrden_PA().Where(d => d.Id_Orden == idOrden).ToList();
+
+        //    return Json(detallesOrden, JsonRequestBehavior.AllowGet);
+        //}
+
+        public JsonResult CargarDetalleOrdenes(int idOrden)
+        {
+            srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
+
+            var detallesOrden = (from d in srvWCF_CR.recDetalleOrden_PA().Where(d => d.Id_Orden == idOrden)
+                                 join p in srvWCF_CR.recProductos_ENT() on d.Id_producto equals p.Id_producto
+                                 select new
+                                 {
+                                     d.Id_Detalle,
+                                     d.Id_Orden,
+                                     d.Id_producto,
+                                     p.Nombre,
+                                     d.Cantidad,
+                                     d.Mesa,
+                                     d.Precio,
+                                     d.Tipo_orden,
+                                     d.Descripcion
+                                 }).ToList();
+
+            return Json(detallesOrden, JsonRequestBehavior.AllowGet);
+        }
 
 
         //*********Procedimientos almacenados*********//
