@@ -15,6 +15,7 @@ using System.Xml.Linq;
 using AccesoDatos.Implementacion;
 using Newtonsoft.Json;
 
+
 namespace MVCMuncheese.Controllers
 {
     public class FacturasController : Controller
@@ -49,7 +50,6 @@ namespace MVCMuncheese.Controllers
             {
 
                 MesasOcupadas = new SelectList(mesasOcupadas, "Value", "Text"),
-                //OrdenesActivas = new SelectList(ordenesActivas, "Value", "Text"),
                 OrdenesPorMesaJson = JsonConvert.SerializeObject(ordenesActivas),
                 Clientes = clientes.ToList(), // Agregar la lista de clientes al modelo
             };
@@ -104,15 +104,6 @@ namespace MVCMuncheese.Controllers
                 Id_Orden = idOrden
             });
         }
-
-        //public JsonResult CargarDetalleOrdenes(int idOrden)
-        //{
-        //    srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
-
-        //    var detallesOrden = srvWCF_CR.recDetalleOrden_PA().Where(d => d.Id_Orden == idOrden).ToList();
-
-        //    return Json(detallesOrden, JsonRequestBehavior.AllowGet);
-        //}
 
         public JsonResult CargarDetalleOrdenes(int idOrden)
         {
@@ -255,6 +246,7 @@ namespace MVCMuncheese.Controllers
                 {
                     case "Agregar":
                         return insertarFac_PA(pFacturas);
+
                     case "Modificar":
                         return modificarFac_PA(pFacturas);
                     case "Eliminar":
@@ -262,6 +254,7 @@ namespace MVCMuncheese.Controllers
                     default:
                         return RedirectToAction("listarFacturas_PA");
                 }
+
             }
             catch (Exception lEx)
             {
@@ -285,6 +278,7 @@ namespace MVCMuncheese.Controllers
                         //enviar mensaje negativo
                     }
                     lobjRespuesta = srvWCF_CR.recFacturas_PA();
+
                 }
             }
             catch (Exception lEx)

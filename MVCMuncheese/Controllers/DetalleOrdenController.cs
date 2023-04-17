@@ -16,8 +16,6 @@ namespace MVCMuncheese.Controllers
         // GET: DetalleOrden
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
-
-
         public ActionResult DetalleOrden(int mesa)
         {
             // Obtener información de la mesa seleccionada usando el número de mesa recibido como parámetro
@@ -29,11 +27,11 @@ namespace MVCMuncheese.Controllers
 
                     var resultado = srvWCF_CR.recMesaXId_PA(mesa);
                     var estado = resultado.Estado == 1 ? "Activo" : "Ocupado";
-                    mesaSeleccionada = new MesaViewModel { NumeroMesa = resultado.Id_Mesa, Estado = resultado.Estado, EstadoMesa = estado };
+                    mesaSeleccionada = new MesaViewModel { NumeroMesa = resultado.Id_Mesa, nombreMesa = resultado.NombreMesa, Estado = resultado.Estado/*, EstadoMesa = estado */};
 
                     // Modificar el estado de la mesa a "Ocupado"
                     MesasController mesasController = new MesasController();
-                    mesasController.modificarMesa_PA(new Mesas { Id_Mesa = mesaSeleccionada.NumeroMesa, NombreMesa = mesaSeleccionada.EstadoMesa, Estado = 2 });
+                    mesasController.modificarMesa_PA(new Mesas { Id_Mesa = mesaSeleccionada.NumeroMesa, NombreMesa = mesaSeleccionada.nombreMesa, Estado = 2 });
 
 
                     // Crear una nueva orden
