@@ -15,10 +15,13 @@ namespace MVCMuncheese.Controllers
 
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
+
+
         //*********Procedimientos almacenados*********//
         public ActionResult listarInventario_PA()
         {
             List<recInventario_Result> lobjRespuesta = new List<recInventario_Result>();
+            List<modeloInventario> inventarioList = new List<modeloInventario>();
             try
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
@@ -30,11 +33,45 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View(lobjRespuesta);
+            foreach (var item in lobjRespuesta)
+            {
+                inventarioList.Add(new modeloInventario
+                {
+                    Id_inventario = item.Id_inventario,
+                    Nombre_Producto = item.Nombre_Producto,
+                    Cantidad = item.Cantidad,
+                    Id_Producto = item.Id_Producto
+                });
+            }
+
+            return View(inventarioList);
         }
 
         public ActionResult agregarInventarioPA()
         {
+            List<Entidades.Productos> productos;
+            List<MVCMuncheese.Models.modeloProductos> productosViewModel;
+
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    productos = srvWCF_CR.recProductos_ENT();
+                }
+
+                productosViewModel = productos.Select(p => new MVCMuncheese.Models.modeloProductos
+                {
+                    Id_producto = p.Id_producto,
+                    Nombre = p.Nombre,
+                           }).ToList();
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+
+            ViewBag.Productos = productosViewModel;
+
             return View();
         }
 
@@ -54,7 +91,6 @@ namespace MVCMuncheese.Controllers
                     lobjRespuesta.Nombre_Producto = lobjRespuesta_PA.Nombre_Producto;
                     lobjRespuesta.Cantidad = lobjRespuesta_PA.Cantidad;
                     lobjRespuesta.Id_Producto = lobjRespuesta_PA.Id_Producto;
-                    lobjRespuesta.Id_Ingrediente = lobjRespuesta_PA.Id_Ingrediente;
                 }
             }
             catch (Exception lEx)
@@ -81,7 +117,6 @@ namespace MVCMuncheese.Controllers
                     lobjRespuesta.Nombre_Producto = lobjRespuesta_PA.Nombre_Producto;
                     lobjRespuesta.Cantidad = lobjRespuesta_PA.Cantidad;
                     lobjRespuesta.Id_Producto = lobjRespuesta_PA.Id_Producto;
-                    lobjRespuesta.Id_Ingrediente = lobjRespuesta_PA.Id_Ingrediente;
                 }
             }
             catch (Exception lEx)
@@ -108,7 +143,6 @@ namespace MVCMuncheese.Controllers
                     lobjRespuesta.Nombre_Producto = lobjRespuesta_PA.Nombre_Producto;
                     lobjRespuesta.Cantidad = lobjRespuesta_PA.Cantidad;
                     lobjRespuesta.Id_Producto = lobjRespuesta_PA.Id_Producto;
-                    lobjRespuesta.Id_Ingrediente = lobjRespuesta_PA.Id_Ingrediente;
                 }
             }
             catch (Exception lEx)
@@ -129,7 +163,6 @@ namespace MVCMuncheese.Controllers
                 pInventario.Nombre_Producto = pModeloInventario.Nombre_Producto;
                 pInventario.Cantidad = pModeloInventario.Cantidad;
                 pInventario.Id_Producto = pModeloInventario.Id_Producto;
-                pInventario.Id_Ingrediente = pModeloInventario.Id_Ingrediente;
 
 
                 switch (enviarAccion)
@@ -172,7 +205,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarInventario_PA", lobjRespuesta);
+            return RedirectToAction("listarInventario_PA");
         }
 
         public ActionResult modificarInv_PA(Inventario pInventario)
@@ -197,7 +230,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarInventario_PA", lobjRespuesta);
+            return RedirectToAction("listarInventario_PA");
         }
 
         public ActionResult eliminarInv_PA(Inventario pInventario)
@@ -222,7 +255,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarInventario_PA", lobjRespuesta);
+            return RedirectToAction("listarInventario_PA");
         }
     }
 }

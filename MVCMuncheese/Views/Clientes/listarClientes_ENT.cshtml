@@ -48,8 +48,8 @@
         </td>
         <td>
             @Html.ActionLink("Editar", "modificarClientes_ENT", new { pId=item.Telefono }) |
-            @Html.ActionLink("Detalle", "detalleClientes_ENT", new { pId = item.Telefono }) |
-            @Html.ActionLink("Borrar", "eliminarClientes_ENT", new { pId = item.Telefono })
+            @Html.ActionLink("Detalle", "detalleClientes_ENT", new { pId = item.Telefono }) @*|
+            @Html.ActionLink("Borrar", "eliminarClientes_ENT", new { pId = item.Telefono })*@
         </td>
     </tr>
 }

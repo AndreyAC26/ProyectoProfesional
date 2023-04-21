@@ -64,7 +64,6 @@
     <Property Name="Nombre_Producto" Type="varchar" MaxLength="15" />
     <Property Name="Cantidad" Type="int" />
     <Property Name="Id_Producto" Type="int" />
-    <Property Name="Id_Ingrediente" Type="int" />
   </EntityType>
   <EntityType Name="Mesas">
     <Key>
@@ -102,7 +101,7 @@
       <PropertyRef Name="Id_producto" />
     </Key>
     <Property Name="Id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="15" />
+    <Property Name="Nombre" Type="varchar" MaxLength="25" />
     <Property Name="Tipo_producto" Type="int" />
     <Property Name="Precio" Type="int" />
     <Property Name="Descripcion" Type="varchar" MaxLength="200" />
@@ -212,18 +211,6 @@
       </Principal>
       <Dependent Role="Ingredientes_X_Producto">
         <PropertyRef Name="Id_producto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inventario_Ingredientes">
-    <End Role="Ingredientes" Type="Self.Ingredientes" Multiplicity="0..1" />
-    <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ingredientes">
-        <PropertyRef Name="Id_Ingrediente" />
-      </Principal>
-      <Dependent Role="Inventario">
-        <PropertyRef Name="Id_Ingrediente" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -419,7 +406,6 @@
     <Parameter Name="Nombre_Producto" Type="varchar" Mode="In" />
     <Parameter Name="Cantidad" Type="int" Mode="In" />
     <Parameter Name="Id_Producto" Type="int" Mode="In" />
-    <Parameter Name="Id_Ingrediente" Type="int" Mode="In" />
   </Function>
   <Function Name="insMesa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NombreMesa" Type="varchar" Mode="In" />
@@ -513,7 +499,6 @@
     <Parameter Name="Nombre_Producto" Type="varchar" Mode="In" />
     <Parameter Name="Cantidad" Type="int" Mode="In" />
     <Parameter Name="Id_Producto" Type="int" Mode="In" />
-    <Parameter Name="Id_Ingrediente" Type="int" Mode="In" />
   </Function>
   <Function Name="modMesa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Mesa" Type="int" Mode="In" />
@@ -724,10 +709,6 @@
     <AssociationSet Name="FK_Ingredientes_X_Producto_Productos" Association="Self.FK_Ingredientes_X_Producto_Productos">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="Ingredientes_X_Producto" EntitySet="Ingredientes_X_Producto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inventario_Ingredientes" Association="Self.FK_Inventario_Ingredientes">
-      <End Role="Ingredientes" EntitySet="Ingredientes" />
-      <End Role="Inventario" EntitySet="Inventario" />
     </AssociationSet>
     <AssociationSet Name="FK_Inventario_Productos" Association="Self.FK_Inventario_Productos">
       <End Role="Productos" EntitySet="Productos" />

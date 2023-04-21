@@ -55,8 +55,8 @@
         </td>
         <td>
             @Html.ActionLink("Editar", "modificarProductos_ENT", new { pId = item.Id_producto }) |
-            @Html.ActionLink("Detalle", "detalleProductos_ENT", new { pId = item.Id_producto }) |
-            @Html.ActionLink("Borrar", "eliminarProductos_ENT", new { pId = item.Id_producto })
+            @Html.ActionLink("Detalle", "detalleProductos_ENT", new { pId = item.Id_producto }) @*|
+            @Html.ActionLink("Borrar", "eliminarProductos_ENT", new { pId = item.Id_producto })*@
         </td>
     </tr>
 }

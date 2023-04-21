@@ -17,6 +17,5 @@ namespace Entidades
         public string Nombre_Producto { get; set; }
         public Nullable<int> Cantidad { get; set; }
         public Nullable<int> Id_Producto { get; set; }
-        public Nullable<int> Id_Ingrediente { get; set; }
     }
 }

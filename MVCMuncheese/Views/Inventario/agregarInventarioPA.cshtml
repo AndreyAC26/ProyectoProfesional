@@ -5,66 +5,68 @@
 
 <h2>Nuevo</h2>
 <br />
-@using (Html.BeginForm("accionesPA", "Inventario", FormMethod.Post)) 
+@using (Html.BeginForm("accionesPA", "Inventario", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Producto</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Id_inventario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_inventario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_inventario, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre_Producto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre_Producto, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="form-horizontal">
+    <h4>Producto</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_Producto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Producto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Ingrediente, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_Ingrediente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Ingrediente, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" name="enviarAccion" value="Agregar"
-                        class="btn btn-primary" title="Agregar nuevo registro"
-                        data-toggle="tooltip" data-container="body" data-placement="right">
-                    Agregar
-                </button>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Partial("_ProductosPartial", ViewBag.Productos as IEnumerable<MVCMuncheese.Models.modeloProductos>)
+            @Html.HiddenFor(model => model.Nombre_Producto, new { @id = "nombre_producto" })
+            <span id="nombre_producto_display"></span>
+            @Html.ValidationMessageFor(model => model.Nombre_Producto, "", new { @class = "text-danger" })
         </div>
     </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Id_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Id_Producto, new { htmlAttributes = new { @class = "form-control", @id = "id_producto" } })
+            @Html.ValidationMessageFor(model => model.Id_Producto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" name="enviarAccion" value="Agregar"
+                    class="btn btn-primary" title="Agregar nuevo registro"
+                    data-toggle="tooltip" data-container="body" data-placement="right">
+                Agregar
+            </button>
+            @Html.ActionLink("Atras", "listarInventario_PA", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
 }
 
-<div>
-    @Html.ActionLink("Atras", "listarInventario_PA")
-</div>
+@section Scripts {
+    <script>
+        document.getElementById("productos").addEventListener("change", function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const idProductoInput = document.getElementById("id_producto");
+            const nombreProductoInput = document.getElementById("nombre_producto");
+            const nombreProductoDisplay = document.getElementById("nombre_producto_display");
+
+            idProductoInput.value = selectedOption.value;
+            nombreProductoInput.value = selectedOption.getAttribute("data-nombre");
+            nombreProductoDisplay.textContent = selectedOption.getAttribute("data-nombre");
+        });
+    </script>
+}

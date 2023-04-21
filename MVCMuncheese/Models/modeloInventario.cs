@@ -20,8 +20,5 @@ namespace MVCMuncheese.Models
 
         [Display(Name = "Codigo Producto")]
         public Nullable<int> Id_Producto { get; set; }
-
-        [Display(Name = "Codigo Ingrediente")]
-        public Nullable<int> Id_Ingrediente { get; set; }
     }
 }

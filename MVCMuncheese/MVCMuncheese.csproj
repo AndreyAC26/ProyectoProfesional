@@ -416,6 +416,7 @@
     <Content Include="Views\DetalleOrden\DetalleOrden.cshtml" />
     <Content Include="Views\Ordenes\agregarOrdenes_PA.cshtml" />
     <Content Include="Views\Facturas\_DetalleOrdenes.cshtml" />
+    <Content Include="Views\Shared\_ProductosPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

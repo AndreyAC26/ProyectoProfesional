@@ -21,6 +21,14 @@ namespace MVCMuncheese.Controllers
     public class FacturasController : Controller
     {
         // GET: Facturas
+        private MesasController _mesasController;
+        private OrdenesController _ordenesController;
+
+        public FacturasController()
+        {
+            _mesasController = new MesasController();
+            _ordenesController = new OrdenesController();
+        }
 
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
@@ -56,6 +64,7 @@ namespace MVCMuncheese.Controllers
 
             return View(modelo);
         }
+
 
         //Comparador 
         public class SelectListItemComparer : IEqualityComparer<SelectListItem>
@@ -127,6 +136,18 @@ namespace MVCMuncheese.Controllers
             return Json(detallesOrden, JsonRequestBehavior.AllowGet);
         }
 
+        //Facturar
+        public ActionResult Facturar(int idMesa, int idOrden)
+        {
+            Mesas mesa = new Mesas { Id_Mesa = idMesa, Estado = 1 };
+            _mesasController.modificarMesa_PA(mesa);
+
+            Ordenes orden = new Ordenes { Id_Orden = idOrden, Estado = 2 };
+            _ordenesController.modificarOrd_ENT(orden);
+
+            // Redirige a la acción que prefieras al finalizar el proceso de facturación
+            return RedirectToAction("Index", "Home");
+        }
 
         //*********Procedimientos almacenados*********//
         public ActionResult listarFacturas_PA()

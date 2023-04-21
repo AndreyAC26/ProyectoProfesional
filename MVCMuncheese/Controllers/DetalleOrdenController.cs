@@ -151,14 +151,14 @@ namespace MVCMuncheese.Controllers
                     }
                 }
             }
-            catch (Exception lEx)
-            {
-                throw lEx;
+                catch (Exception lEx)
+                {
+                    throw lEx;
+                }
+
+                return View(lobjDetalles);  // Devolvemos la lista de detalles con el nuevo modelo
+
             }
-
-            return View(lobjDetalles);  // Devolvemos la lista de detalles con el nuevo modelo
-
-        }
 
         public ActionResult agregarDetalleOrden_PA()
         {

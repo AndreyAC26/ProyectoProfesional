@@ -1,0 +1,8 @@
+﻿@model IEnumerable<MVCMuncheese.Models.modeloProductos>
+<select id="productos" class="form-control">
+    <option value="">Seleccione un producto</option>
+    @foreach (var producto in Model)
+    {
+        <option value="@producto.Id_producto" data-nombre="@producto.Nombre">@producto.Nombre</option>
+    }
+</select>

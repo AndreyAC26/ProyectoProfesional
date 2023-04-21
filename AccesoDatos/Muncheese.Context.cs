@@ -15,7 +15,6 @@ namespace AccesoDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     using Entidades;
-    
     public partial class MuncheeseEntidades : DbContext
     {
         public MuncheeseEntidades()
@@ -376,7 +375,7 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insIngredienteXProducto", id_IngredienteXproductoParameter, id_productoParameter, id_IngredienteParameter);
         }
     
-        public virtual int insInventario(string nombre_Producto, Nullable<int> cantidad, Nullable<int> id_Producto, Nullable<int> id_Ingrediente)
+        public virtual int insInventario(string nombre_Producto, Nullable<int> cantidad, Nullable<int> id_Producto)
         {
             var nombre_ProductoParameter = nombre_Producto != null ?
                 new ObjectParameter("Nombre_Producto", nombre_Producto) :
@@ -390,11 +389,7 @@ namespace AccesoDatos
                 new ObjectParameter("Id_Producto", id_Producto) :
                 new ObjectParameter("Id_Producto", typeof(int));
     
-            var id_IngredienteParameter = id_Ingrediente.HasValue ?
-                new ObjectParameter("Id_Ingrediente", id_Ingrediente) :
-                new ObjectParameter("Id_Ingrediente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insInventario", nombre_ProductoParameter, cantidadParameter, id_ProductoParameter, id_IngredienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insInventario", nombre_ProductoParameter, cantidadParameter, id_ProductoParameter);
         }
     
         public virtual int insMesa(string nombreMesa, Nullable<int> estado)
@@ -698,7 +693,7 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modIngredientesXProducto", id_IngredienteXproductoParameter, id_productoParameter, id_IngredienteParameter);
         }
     
-        public virtual int modInventario(Nullable<int> id_inventario, string nombre_Producto, Nullable<int> cantidad, Nullable<int> id_Producto, Nullable<int> id_Ingrediente)
+        public virtual int modInventario(Nullable<int> id_inventario, string nombre_Producto, Nullable<int> cantidad, Nullable<int> id_Producto)
         {
             var id_inventarioParameter = id_inventario.HasValue ?
                 new ObjectParameter("Id_inventario", id_inventario) :
@@ -716,11 +711,7 @@ namespace AccesoDatos
                 new ObjectParameter("Id_Producto", id_Producto) :
                 new ObjectParameter("Id_Producto", typeof(int));
     
-            var id_IngredienteParameter = id_Ingrediente.HasValue ?
-                new ObjectParameter("Id_Ingrediente", id_Ingrediente) :
-                new ObjectParameter("Id_Ingrediente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modInventario", id_inventarioParameter, nombre_ProductoParameter, cantidadParameter, id_ProductoParameter, id_IngredienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modInventario", id_inventarioParameter, nombre_ProductoParameter, cantidadParameter, id_ProductoParameter);
         }
     
         public virtual int modMesa(Nullable<int> id_Mesa, string nombreMesa, Nullable<int> estado)

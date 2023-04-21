@@ -18,7 +18,6 @@ namespace Entidades
         public Ingredientes()
         {
             this.Ingredientes_X_Producto = new HashSet<Ingredientes_X_Producto>();
-            this.Inventario = new HashSet<Inventario>();
         }
     
         public int Id_Ingrediente { get; set; }
@@ -26,7 +25,5 @@ namespace Entidades
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ingredientes_X_Producto> Ingredientes_X_Producto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventario> Inventario { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Entidades.recInventario_Result>
-
+﻿@model IEnumerable<MVCMuncheese.Models.modeloInventario>
 @{
     ViewBag.Title = "listarInventario_PA";
 }
@@ -9,49 +8,47 @@
 <p>
     @Html.ActionLink("Nuevo", "agregarInventarioPA")
 </p>
+
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Id_inventario)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Nombre_Producto)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Cantidad)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Id_Producto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Ingrediente)
-        </th>
+        </th>*@
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_inventario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre_Producto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Producto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Ingrediente)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "modificarInventario_PA", new { pId=item.Id_inventario }) |
-            @Html.ActionLink("Detalle", "detalleInventario_PA", new { pId = item.Id_inventario }) |
-            @Html.ActionLink("Borrar", "eliminarInventario_PA", new { pId = item.Id_inventario  })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Id_inventario)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_Producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Id_Producto)
+            </td>*@
+
+            <td>
+                @Html.ActionLink("Editar", "modificarInventario_PA", new { pId = item.Id_inventario }) |
+                @Html.ActionLink("Detalle", "detalleInventario_PA", new { pId = item.Id_inventario }) @*|
+                    @Html.ActionLink("Borrar", "eliminarInventario_PA", new { pId = item.Id_inventario  })*@
+            </td>
+        </tr>
+    }
 
 </table>

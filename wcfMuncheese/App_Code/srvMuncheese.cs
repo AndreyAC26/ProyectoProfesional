@@ -4,6 +4,7 @@ using LogicaNegocio.Implementacion;
 using LogicaNegocio.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -378,6 +379,20 @@ public class srvMuncheese : IsrvMuncheese
     }
 
     //Modificar Productos
+    //public bool modProductos_ENT(Productos pProductos)
+    //{
+    //    //bool lobjRespuesta = false;
+    //    //try
+    //    //{
+    //    //    lobjRespuesta = gobjProductosLN.modProductos_ENT(pProductos);
+    //    //}
+    //    //catch (Exception lEx)
+    //    //{
+    //    //    throw lEx;
+    //    //}
+    //    //return lobjRespuesta;
+
+    //}
     public bool modProductos_ENT(Productos pProductos)
     {
         bool lobjRespuesta = false;
@@ -385,12 +400,27 @@ public class srvMuncheese : IsrvMuncheese
         {
             lobjRespuesta = gobjProductosLN.modProductos_ENT(pProductos);
         }
+        catch (DbEntityValidationException dbEx)
+        {
+            // Añadir el siguiente bloque para obtener información detallada de las validaciones fallidas
+            StringBuilder sb = new StringBuilder();
+            foreach (var validationErrors in dbEx.EntityValidationErrors)
+            {
+                foreach (var validationError in validationErrors.ValidationErrors)
+                {
+                    sb.AppendFormat("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    sb.AppendLine();
+                }
+            }
+            throw new Exception("Error de validación en la entidad: " + sb.ToString(), dbEx);
+        }
         catch (Exception lEx)
         {
             throw lEx;
         }
         return lobjRespuesta;
     }
+
 
     //Borrar Productos
     public bool delProductos_ENT(Productos pProductos)

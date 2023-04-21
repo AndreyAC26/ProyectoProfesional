@@ -30,8 +30,8 @@
         </td>
         <td>
             @Html.ActionLink("Editar", "modificarEstado_PA", new { pId=item.Id_Estado }) |
-            @Html.ActionLink("Detalle", "detalleEstado_PA", new { pId = item.Id_Estado }) |
-            @Html.ActionLink("Borrar", "eliminarEstado_PA", new { pId = item.Id_Estado })
+            @Html.ActionLink("Detalle", "detalleEstado_PA", new { pId = item.Id_Estado }) @*|
+            @Html.ActionLink("Borrar", "eliminarEstado_PA", new { pId = item.Id_Estado })*@
         </td>
     </tr>
 }

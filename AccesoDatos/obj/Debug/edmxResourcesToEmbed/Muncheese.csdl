@@ -55,7 +55,6 @@
     <Property Name="Id_Ingrediente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre_Ingrediente" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Ingredientes_X_Producto" Relationship="Self.FK_Ingredientes_X_Producto_Ingredientes" FromRole="Ingredientes" ToRole="Ingredientes_X_Producto" />
-    <NavigationProperty Name="Inventario" Relationship="Self.FK_Inventario_Ingredientes" FromRole="Ingredientes" ToRole="Inventario" />
   </EntityType>
   <EntityType Name="Ingredientes_X_Producto">
     <Key>
@@ -76,8 +75,6 @@
     <Property Name="Nombre_Producto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="Cantidad" Type="Int32" />
     <Property Name="Id_Producto" Type="Int32" />
-    <Property Name="Id_Ingrediente" Type="Int32" />
-    <NavigationProperty Name="Ingredientes" Relationship="Self.FK_Inventario_Ingredientes" FromRole="Inventario" ToRole="Ingredientes" />
     <NavigationProperty Name="Productos" Relationship="Self.FK_Inventario_Productos" FromRole="Inventario" ToRole="Productos" />
   </EntityType>
   <EntityType Name="Mesas">
@@ -123,7 +120,7 @@
       <PropertyRef Name="Id_producto" />
     </Key>
     <Property Name="Id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="Tipo_producto" Type="Int32" />
     <Property Name="Precio" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -267,18 +264,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inventario_Ingredientes">
-    <End Role="Ingredientes" Type="Self.Ingredientes" Multiplicity="0..1" />
-    <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ingredientes">
-        <PropertyRef Name="Id_Ingrediente" />
-      </Principal>
-      <Dependent Role="Inventario">
-        <PropertyRef Name="Id_Ingrediente" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Ingredientes_X_Producto_Productos">
     <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="Ingredientes_X_Producto" Type="Self.Ingredientes_X_Producto" Multiplicity="*" />
@@ -387,10 +372,6 @@
     <AssociationSet Name="FK_Ingredientes_X_Producto_Ingredientes" Association="Self.FK_Ingredientes_X_Producto_Ingredientes">
       <End Role="Ingredientes" EntitySet="Ingredientes" />
       <End Role="Ingredientes_X_Producto" EntitySet="Ingredientes_X_Producto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inventario_Ingredientes" Association="Self.FK_Inventario_Ingredientes">
-      <End Role="Ingredientes" EntitySet="Ingredientes" />
-      <End Role="Inventario" EntitySet="Inventario" />
     </AssociationSet>
     <AssociationSet Name="FK_Ingredientes_X_Producto_Productos" Association="Self.FK_Ingredientes_X_Producto_Productos">
       <End Role="Productos" EntitySet="Productos" />
@@ -519,7 +500,6 @@
       <Parameter Name="Nombre_Producto" Mode="In" Type="String" />
       <Parameter Name="Cantidad" Mode="In" Type="Int32" />
       <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
-      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="insMesa">
       <Parameter Name="NombreMesa" Mode="In" Type="String" />
@@ -613,7 +593,6 @@
       <Parameter Name="Nombre_Producto" Mode="In" Type="String" />
       <Parameter Name="Cantidad" Mode="In" Type="Int32" />
       <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
-      <Parameter Name="Id_Ingrediente" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="modMesa">
       <Parameter Name="Id_Mesa" Mode="In" Type="Int32" />
@@ -796,7 +775,7 @@
   </ComplexType>
   <ComplexType Name="ObtenerProductosPorCategoria_Result">
     <Property Type="Int32" Name="Id_producto" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
     <Property Type="Int32" Name="Precio" Nullable="true" />
   </ComplexType>
   <ComplexType Name="recCliente_Result">
@@ -876,14 +855,12 @@
     <Property Type="String" Name="Nombre_Producto" Nullable="true" MaxLength="15" />
     <Property Type="Int32" Name="Cantidad" Nullable="true" />
     <Property Type="Int32" Name="Id_Producto" Nullable="true" />
-    <Property Type="Int32" Name="Id_Ingrediente" Nullable="true" />
   </ComplexType>
   <ComplexType Name="recInventarioxId_Result">
     <Property Type="Int32" Name="Id_inventario" Nullable="false" />
     <Property Type="String" Name="Nombre_Producto" Nullable="true" MaxLength="15" />
     <Property Type="Int32" Name="Cantidad" Nullable="true" />
     <Property Type="Int32" Name="Id_Producto" Nullable="true" />
-    <Property Type="Int32" Name="Id_Ingrediente" Nullable="true" />
   </ComplexType>
   <ComplexType Name="recMesaPerfilxId_Result">
     <Property Type="Int32" Name="Perfil_Id" Nullable="false" />
@@ -924,13 +901,13 @@
   </ComplexType>
   <ComplexType Name="recProductos_Result">
     <Property Type="Int32" Name="Id_producto" Nullable="false" />
-    <Property Type="String" Name="Tipo_producto" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Tipo_producto" Nullable="true" MaxLength="20" />
     <Property Type="Int32" Name="Precio" Nullable="true" />
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
   </ComplexType>
   <ComplexType Name="recProductosxId_Result">
     <Property Type="Int32" Name="Id_producto" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
     <Property Type="Int32" Name="Precio" Nullable="true" />
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
   </ComplexType>

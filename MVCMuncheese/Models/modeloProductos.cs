@@ -26,6 +26,4 @@ namespace MVCMuncheese.Models
         public string Descripcion { get; set; }
 
     }
-
-  
 }

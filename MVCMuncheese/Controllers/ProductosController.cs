@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AccesoDatos;
-
+using System.Text;
 
 namespace MVCMuncheese.Controllers
 {
@@ -146,6 +146,8 @@ namespace MVCMuncheese.Controllers
 
                 throw lEx;
             }
+
+
             // Obtener la lista de tipos de producto y crear una lista de elementos SelectListItem
             List<Entidades.Tipo_Producto> tiposProducto = new List<Entidades.Tipo_Producto>();
             List<SelectListItem> items = new List<SelectListItem>();
@@ -173,7 +175,15 @@ namespace MVCMuncheese.Controllers
             // Agregar la lista de elementos SelectListItem al ViewBag
             ViewBag.items = items;
 
-            return View(lobjModeloProductos);
+            if (lobjModeloProductos != null) // <-- agregado
+            {
+                return View(lobjModeloProductos);
+            }
+            else
+            {
+                return RedirectToAction("listarProductos_ENT");
+            }
+
         }
 
         public ActionResult eliminarProductos_ENT(int pId)
@@ -330,8 +340,11 @@ namespace MVCMuncheese.Controllers
             }
             catch (Exception lEx)
             {
-                gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
-                    " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
+                string innerExceptionMessage = lEx.InnerException != null ? lEx.InnerException.Message : "No hay excepción interna";
+
+                gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + innerExceptionMessage +
+                                " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
+
             }
             return RedirectToAction("listarProductos_ENT");
         }

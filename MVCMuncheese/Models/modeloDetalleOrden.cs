@@ -48,6 +48,14 @@ namespace MVCMuncheese.Models
 
                  public List<Orden> Ordenes { get; set; }
 
+                [Display(Name = "Local")]
+                public int VentasLocal { get; set; }
+
+                [Display(Name = "Para LLevar")]
+                public int VentasLlevar { get;set; }
+
+                [Display(Name = "Total del Dia")]
+                public int TotalVentas = 0;
             }
             public class Orden
             {

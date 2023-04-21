@@ -68,7 +68,6 @@
           <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
           <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
           <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
-          <ScalarProperty Name="Id_Ingrediente" ColumnName="Id_Ingrediente" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -369,7 +368,6 @@
           <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
           <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
           <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
-          <ScalarProperty Name="Id_Ingrediente" ColumnName="Id_Ingrediente" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -380,7 +378,6 @@
           <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
           <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
           <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
-          <ScalarProperty Name="Id_Ingrediente" ColumnName="Id_Ingrediente" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

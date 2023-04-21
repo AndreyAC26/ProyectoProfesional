@@ -101,7 +101,7 @@
 
         <div class="form-group col-md-12" style="text-align:right">
             <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-primary" id="facturar-btn">Finalizar</button>
+                <button type="submit" class="btn btn-primary" id="facturar-btn" data-url='@Url.Action("Facturar", "Facturas")'>Finalizar</button>
             </div>
         </div>
     </div>
@@ -213,7 +213,7 @@
         });
 
 
-
+        //carga los detalles de las ordenes
             $(document).ready(function () {
                 $("#ddlOrdenes").on("change", function () {
                     var idOrden = $(this).val();
@@ -267,71 +267,8 @@
                 });
             });
 
-
-        //Insertar Factura
-        @*$(document).ready(function() {
-            $("#facturar-btn").click(function(e) {
-                e.preventDefault();
-
-                var fecha = $("#fecha-entrada").val();
-                var orden = $("#ddlOrdenes").val();
-                var telefono = $("#txtTelefono").val();
-
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("accionesPA", "Facturas")',
-                    data: {
-                        enviarAccion: "Agregar",
-                        pModeloFacturas: {
-                            fecha: fecha,
-                            Id_Orden: orden,
-                            Tel_Cliente: telefono
-                        }
-                    },
-                    success: function(response) {
-                        // Manejar la respuesta exitosa (actualizar la vista, mostrar un mensaje, etc.)
-                    },
-                    error: function(response) {
-                        // Manejar errores (mostrar un mensaje, etc.)
-                    }
-                });
-            });
-        });*@
-
-            @*$(document).ready(function() {
-    $("#facturar-btn").click(function(e) {
-        e.preventDefault();
-
-        var fecha = $("#fecha-entrada").val();
-        var orden = $("#ddlOrdenes").val();
-        var telefono = $("#txtTelefono").val();
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("accionesPA", "Facturas")',
-            data: {
-                enviarAccion: "Agregar",
-                pModeloFacturas: {
-                    fecha: fecha,
-                    Id_Orden: orden,
-                    Tel_Cliente: telefono
-                }
-            },
-            success: function(response) {
-                if (response.success) {
-                    // Redireccionar a la página principal
-                    window.location.href = $("#home-link").attr("href");
-                } else {
-                    // Manejar errores (mostrar un mensaje, etc.)
-                }
-            },
-            error: function(response) {
-                // Manejar errores (mostrar un mensaje, etc.)
-            }
-        });
-    });
-});*@
-            $(document).ready(function () {
+        //Facturar
+            @*$(document).ready(function () {
                 $("#facturar-btn").click(function (e) {
                     e.preventDefault();
 
@@ -339,6 +276,9 @@
                     var orden = $("#ddlOrdenes").val();
                     var telefono = $("#txtTelefono").val();
                     var url = $(this).data("url");
+
+                    var idMesa = $("#ddlOrdenes").val();
+                    var idOrden = $("#mesa-dropdown").val();
 
                     $.ajax({
                         type: "POST",
@@ -360,7 +300,58 @@
                         }
                     });
                 });
-            });
+            });*@
+        $(document).ready(function () {
+    $("#facturar-btn").click(function (e) {
+        e.preventDefault();
+
+        var fecha = $("#fecha-entrada").val();
+        var orden = $("#ddlOrdenes").val();
+        var telefono = $("#txtTelefono").val();
+        var facturarUrl = $(this).data("url");
+
+        // Obtenemos los valores de idMesa e idOrden para pasar a la acción Facturar
+        var idMesa = $("#ddlOrdenes").val();
+        var idOrden = $("#mesa-dropdown").val();
+        // Obtener el nombre de la mesa seleccionada
+        var nombreMesa = $("#mesa-dropdown option:selected").text();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("accionesPA", "Facturas")',
+            data: {
+                enviarAccion: "Agregar",
+                pModeloFacturas: {
+                    fecha: fecha,
+                    Id_Orden: orden,
+                    Tel_Cliente: telefono
+                }
+            },
+            success: function (response) {
+                // Realizar la segunda llamada AJAX para invocar la acción Facturar
+                $.ajax({
+                    type: "POST",
+                    url: facturarUrl,
+                    data: {
+                        idMesa: idMesa,
+                        idOrden: idOrden
+                    },
+                    success: function (response) {
+                        // Redireccionar a la página principal sin verificar la respuesta
+                        window.location.href = $("#home-link").attr("href");
+                    },
+                    error: function (response) {
+                        // Manejar errores (mostrar un mensaje, etc.)
+                    }
+                });
+            },
+            error: function (response) {
+                // Manejar errores (mostrar un mensaje, etc.)
+            }
+        });
+    });
+});
+
 
 
             //Validaciones del formulario

@@ -54,7 +54,7 @@ namespace AccesoDatos.Implementacion
             bool lobjRespuesta = false;
             try
             {
-                if (gObjConexionAW.insInventario(pInventario.Nombre_Producto, pInventario.Cantidad, pInventario.Id_Producto, pInventario.Id_Ingrediente) == 1)
+                if (gObjConexionAW.insInventario(pInventario.Nombre_Producto, pInventario.Cantidad, pInventario.Id_Producto) == 1)
                 {
                     lobjRespuesta = true;
                 }
@@ -71,7 +71,7 @@ namespace AccesoDatos.Implementacion
             bool lobjRespuesta = false;
             try
             {
-                if (gObjConexionAW.modInventario(pInventario.Id_inventario, pInventario.Nombre_Producto, pInventario.Cantidad, pInventario.Id_Producto, pInventario.Id_Ingrediente) == 1)
+                if (gObjConexionAW.modInventario(pInventario.Id_inventario, pInventario.Nombre_Producto, pInventario.Cantidad, pInventario.Id_Producto) == 1)
                 {
                     lobjRespuesta = true;
                 }
