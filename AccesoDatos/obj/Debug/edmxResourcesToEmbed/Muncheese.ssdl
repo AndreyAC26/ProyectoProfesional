@@ -61,7 +61,7 @@
       <PropertyRef Name="Id_inventario" />
     </Key>
     <Property Name="Id_inventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre_Producto" Type="varchar" MaxLength="15" />
+    <Property Name="Nombre_Producto" Type="varchar" MaxLength="25" />
     <Property Name="Cantidad" Type="int" />
     <Property Name="Id_Producto" Type="int" />
   </EntityType>

@@ -20,5 +20,8 @@ namespace MVCMuncheese.Models
 
         [Display(Name = "Codigo Producto")]
         public Nullable<int> Id_Producto { get; set; }
+
+        [Display(Name = "Agregar a la cantidad")]
+        public Nullable<int> CantidadExtra { get; set; }
     }
 }

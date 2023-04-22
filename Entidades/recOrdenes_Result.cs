@@ -14,6 +14,7 @@ namespace Entidades
     public partial class recOrdenes_Result
     {
         public int Id_Orden { get; set; }
-        public Nullable<System.DateTime> Estado { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public Nullable<int> Estado { get; set; }
     }
 }

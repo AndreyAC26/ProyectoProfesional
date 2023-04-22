@@ -72,7 +72,7 @@
       <PropertyRef Name="Id_inventario" />
     </Key>
     <Property Name="Id_inventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre_Producto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre_Producto" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="Cantidad" Type="Int32" />
     <Property Name="Id_Producto" Type="Int32" />
     <NavigationProperty Name="Productos" Relationship="Self.FK_Inventario_Productos" FromRole="Inventario" ToRole="Productos" />
@@ -775,7 +775,7 @@
   </ComplexType>
   <ComplexType Name="ObtenerProductosPorCategoria_Result">
     <Property Type="Int32" Name="Id_producto" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="25" />
     <Property Type="Int32" Name="Precio" Nullable="true" />
   </ComplexType>
   <ComplexType Name="recCliente_Result">
@@ -852,13 +852,13 @@
   </ComplexType>
   <ComplexType Name="recInventario_Result">
     <Property Type="Int32" Name="Id_inventario" Nullable="false" />
-    <Property Type="String" Name="Nombre_Producto" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Nombre_Producto" Nullable="true" MaxLength="25" />
     <Property Type="Int32" Name="Cantidad" Nullable="true" />
     <Property Type="Int32" Name="Id_Producto" Nullable="true" />
   </ComplexType>
   <ComplexType Name="recInventarioxId_Result">
     <Property Type="Int32" Name="Id_inventario" Nullable="false" />
-    <Property Type="String" Name="Nombre_Producto" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Nombre_Producto" Nullable="true" MaxLength="25" />
     <Property Type="Int32" Name="Cantidad" Nullable="true" />
     <Property Type="Int32" Name="Id_Producto" Nullable="true" />
   </ComplexType>
@@ -878,7 +878,8 @@
   </ComplexType>
   <ComplexType Name="recOrdenes_Result">
     <Property Type="Int32" Name="Id_Orden" Nullable="false" />
-    <Property Type="DateTime" Name="Estado" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Estado" Nullable="true" />
   </ComplexType>
   <ComplexType Name="recOrdenxId_Result">
     <Property Type="Int32" Name="Id_Orden" Nullable="false" />
@@ -901,13 +902,13 @@
   </ComplexType>
   <ComplexType Name="recProductos_Result">
     <Property Type="Int32" Name="Id_producto" Nullable="false" />
-    <Property Type="String" Name="Tipo_producto" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Tipo_producto" Nullable="true" MaxLength="25" />
     <Property Type="Int32" Name="Precio" Nullable="true" />
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
   </ComplexType>
   <ComplexType Name="recProductosxId_Result">
     <Property Type="Int32" Name="Id_producto" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="25" />
     <Property Type="Int32" Name="Precio" Nullable="true" />
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
   </ComplexType>

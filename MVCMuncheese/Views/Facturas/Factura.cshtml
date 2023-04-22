@@ -14,108 +14,109 @@
 
 @using (Html.BeginForm("accionesPA", "Facturas", FormMethod.Post, new { onsubmit = "return validarFormulario();" }))
 {
-    <nav class="navbar navbar-default" style="padding-top:10px; display: flex; justify-content: space-between;">
-        <div class="row">
-            <div class="col-md-12" id="contenedor1">
-                <h4 class="info" style="font-size:12px; text-align:center;"> Muncheese Comida callejera </h4>
-                <h4 class="info" style="font-size:10px; text-align:center;"> Sarchí Centro Comercial Valverde Vega </h4>
-                <h4 class="info" style="font-size:10px; text-align:center;"> Local #19 o donde nos invitan con el FoodTruck, Alajuela, Costa Rica </h4>
+    <div class="container" id="factura-contenedor">
+        <nav class="navbar navbar-default" style="padding-top:10px; display: flex; justify-content: space-between;">
+            <div class="row">
+                <div class="col-md-12" id="contenedor1">
+                    <h4 class="info" style="font-size:12px; text-align:center;"> Muncheese Comida callejera </h4>
+                    <h4 class="info" style="font-size:10px; text-align:center;"> Sarchí Centro Comercial Valverde Vega </h4>
+                    <h4 class="info" style="font-size:10px; text-align:center;"> Local #19 o donde nos invitan con el FoodTruck, Alajuela, Costa Rica </h4>
+                </div>
+
+
+                <div class="col-md-12 text-right" id="contenedor2">
+
+                    <div class="col-md-3 text-right">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.mesa, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(model => model.mesa, Model.MesasOcupadas, "-- Mesas --", new { @class = "form-control", id = "mesa-dropdown" })
+                                @Html.ValidationMessageFor(model => model.mesa, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(model => model.Id_Orden, Enumerable.Empty<SelectListItem>(), "- Ordenes -", new { @class = "form-control", id = "ddlOrdenes" })
+                                @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 text-right">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-7">
+                                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control form-control-lg", style = "height: 37px;", type = "date", @id = "fecha-entrada", value = "fechaActual" } })
+                                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(model => model.Cliente, Model.Clientes, "Cliente", new { @class = "form-control", id = "ddlClientes" })
+                                @Html.ValidationMessageFor(model => model.Cliente, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 text-lef">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Tel_Cliente, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                            <div class="col-sm-6 text-right">
+                                @Html.EditorFor(model => model.Tel_Cliente, new { htmlAttributes = new { @class = "form-control", @id = "txtTelefono", @style = "display:none;" } })
+                                @Html.ValidationMessageFor(model => model.Tel_Cliente, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </nav>
 
 
-            <div class="col-md-12 text-right" id="contenedor2">
+        <div class="col-md-12" style="text-align:center;">
+            <table class="table table-striped table-hover" id="tablaDetalleOrdenes">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Num. Orden</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Mesa</th>
+                        <th>Precio</th>
+                        <th>Tipo de Orden</th>
+                        <th>Descripcion</th>
+                        <th>Sub Total</th>
+                    </tr>
+                </thead>
+                <tbody id="detalleOrden">
+                </tbody>
+            </table>
 
-                <div class="col-md-3 text-right">
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.mesa, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                        <div class="col-sm-6">
-                            @Html.DropDownListFor(model => model.mesa, Model.MesasOcupadas, "-- Mesas --", new { @class = "form-control", id = "mesa-dropdown" })
-                            @Html.ValidationMessageFor(model => model.mesa, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.Id_Orden, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                        <div class="col-sm-6">
-                            @Html.DropDownListFor(model => model.Id_Orden, Enumerable.Empty<SelectListItem>(), "- Ordenes -", new { @class = "form-control", id = "ddlOrdenes" })
-                            @Html.ValidationMessageFor(model => model.Id_Orden, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-3 text-right">
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                        <div class="col-sm-7">
-                            @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control form-control-lg", style = "height: 37px;", type = "date", @id = "fecha-entrada", value = "fechaActual" } })
-                            @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                        <div class="col-sm-6">
-                            @Html.DropDownListFor(model => model.Cliente, Model.Clientes, "Cliente", new { @class = "form-control", id = "ddlClientes" })
-                            @Html.ValidationMessageFor(model => model.Cliente, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 text-lef">
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.Tel_Cliente, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
-                        <div class="col-sm-6 text-right">
-                            @Html.EditorFor(model => model.Tel_Cliente, new { htmlAttributes = new { @class = "form-control", @id = "txtTelefono", @style = "display:none;" } })
-                            @Html.ValidationMessageFor(model => model.Tel_Cliente, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            <div class="form-group col-md-12" style="text-align:right">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary" id="facturar-btn" data-url='@Url.Action("Factura", "Facturas")'>Finalizar</button>
                 </div>
             </div>
         </div>
-    </nav>
-
-
-    <div class="col-md-12" style="text-align:center;">
-        <table class="table table-striped table-hover" id="tablaDetalleOrdenes">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Num. Orden</th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Mesa</th>
-                    <th>Precio</th>
-                    <th>Tipo de Orden</th>
-                    <th>Descripcion</th>
-                    <th>Sub Total</th>
-                </tr>
-            </thead>
-            <tbody id="detalleOrden">
-            </tbody>
-        </table>
-
-        <div class="form-group col-md-12" style="text-align:right">
-            <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-primary" id="facturar-btn" data-url='@Url.Action("Facturar", "Facturas")'>Finalizar</button>
-            </div>
-        </div>
+        @Html.ActionLink(" ", "Index", "Home", null, new { id = "home-link" })
     </div>
-    @Html.ActionLink(" ", "Index", "Home", null, new { id = "home-link" })
-
-}
+        }
 
 
-@Html.ActionLink(" ", "Index", "Home", null, new { id = "home-link" })
+        @Html.ActionLink(" ", "Index", "Home", null, new { id = "home-link" })
 
-@*// ************************************************ //*@
+        @*// ************************************************ //*@
 
-@section Scripts {
-    <script type="text/javascript">
+        @section Scripts {
+            <script type="text/javascript">
 
         $(function () {
             // Manejar el evento de selección del dropdownlist "Clientes"
@@ -267,41 +268,10 @@
                 });
             });
 
-        //Facturar
-            @*$(document).ready(function () {
-                $("#facturar-btn").click(function (e) {
-                    e.preventDefault();
 
-                    var fecha = $("#fecha-entrada").val();
-                    var orden = $("#ddlOrdenes").val();
-                    var telefono = $("#txtTelefono").val();
-                    var url = $(this).data("url");
-
-                    var idMesa = $("#ddlOrdenes").val();
-                    var idOrden = $("#mesa-dropdown").val();
-
-                    $.ajax({
-                        type: "POST",
-                        url: '@Url.Action("accionesPA", "Facturas")',
-                        data: {
-                            enviarAccion: "Agregar",
-                            pModeloFacturas: {
-                                fecha: fecha,
-                                Id_Orden: orden,
-                                Tel_Cliente: telefono
-                            }
-                        },
-                        success: function (response) {
-                            // Redireccionar a la página principal sin verificar la respuesta
-                            window.location.href = $("#home-link").attr("href");
-                        },
-                        error: function (response) {
-                            // Manejar errores (mostrar un mensaje, etc.)
-                        }
-                    });
-                });
-            });*@
-        $(document).ready(function () {
+        @*//Facturar
+        // Evento click del botón "facturar-btn"
+$(document).ready(function () {
     $("#facturar-btn").click(function (e) {
         e.preventDefault();
 
@@ -339,6 +309,61 @@
                     success: function (response) {
                         // Redireccionar a la página principal sin verificar la respuesta
                         window.location.href = $("#home-link").attr("href");
+
+                        // Llamar a la función refrescarVista() después de completar la llamada AJAX
+                        refrescarVista();
+                    },
+                    error: function (response) {
+                        // Manejar errores (mostrar un mensaje, etc.)
+                    }
+                });
+            },
+            error: function (response) {
+                // Manejar errores (mostrar un mensaje, etc.)
+            }
+        });
+    });
+});*@
+// Facturar
+// Evento click del botón "facturar-btn"
+$(document).ready(function () {
+    $("#facturar-btn").click(function (e) {
+        e.preventDefault();
+
+        var fecha = $("#fecha-entrada").val();
+        var orden = $("#ddlOrdenes").val();
+        var telefono = $("#txtTelefono").val();
+        var facturarUrl = $(this).data("url");
+
+        // Obtenemos los valores de idMesa e idOrden para pasar a la acción Facturar
+        var idMesa = $("#ddlOrdenes").val();
+        var idOrden = $("#mesa-dropdown").val();
+        // Obtener el nombre de la mesa seleccionada
+        var nombreMesa = $("#mesa-dropdown option:selected").text();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("accionesPA", "Facturas")',
+            data: {
+                enviarAccion: "Agregar",
+                pModeloFacturas: {
+                    fecha: fecha,
+                    Id_Orden: orden,
+                    Tel_Cliente: telefono
+                }
+            },
+            success: function (response) {
+                // Realizar la segunda llamada AJAX para invocar la acción Facturar
+                $.ajax({
+                    type: "POST",
+                    url: facturarUrl,
+                    data: {
+                        idMesa: idMesa,
+                        idOrden: idOrden
+                    },
+                    success: function (response) {
+                        // En lugar de redireccionar, llama a la función refrescarVista()
+                        refrescarVista();
                     },
                     error: function (response) {
                         // Manejar errores (mostrar un mensaje, etc.)
@@ -354,7 +379,7 @@
 
 
 
-            //Validaciones del formulario
+           //Validaciones del formulario
             function validarFormulario() {
                 var fecha = document.getElementById("fecha-entrada").value;
                 var orden = document.getElementById("ddlOrdenes").value;
@@ -390,7 +415,21 @@
                 // Esta es una expresión regular simple para validar números de teléfono, puedes adaptarla según tus necesidades
                 var phoneRegex = /^\d{10}$/;
                 return phoneRegex.test(phoneNumber);
-            }
-    </script>
+        }
+
+       function refrescarVista() {
+    $.ajax({
+        url: '@Url.Action("Factura", "Facturas")',
+        type: 'GET',
+        success: function (response) {
+            // Actualiza la vista parcialmente
+            $('#factura-contenedor').html(response);
+        },
+        error: function () {
+            console.log('Error al actualizar la vista.');
+        }
+    });
 }
+            </script>
+        }
 

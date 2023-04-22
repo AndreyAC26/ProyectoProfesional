@@ -19,7 +19,7 @@ namespace LogicaNegocio.Implementacion
 
         private readonly IOrdenesAD gobjOrdenesAD = new OrdenesAD(_objContextoAW);
 
-        //**************PROCEDIMIENTOS ALMACENADOS**************//
+        ////**************PROCEDIMIENTOS ALMACENADOS**************//
         public List<recOrdenes_Result> recOrdenes_PA()
         {
             List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();

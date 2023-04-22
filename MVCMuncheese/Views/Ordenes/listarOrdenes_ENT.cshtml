@@ -20,30 +20,85 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Fecha)
-        </th>        
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Orden)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Orden)
+            </td>
 
-        <td>
-            @*@Html.DisplayFor(modelItem => item.Estado)*@
-            @Html.DisplayFor(modelItem => item.Nombre_estado)
-        </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Estado)*@
+                @Html.DisplayFor(modelItem => item.Nombre_estado)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "modificarOrdenes_ENT", new { pId = item.Id_Orden }) |
-            @Html.ActionLink("Detalle", "detalleOrdenes_ENT", new { pId = item.Id_Orden }) @*|
-            @Html.ActionLink("Borrar", "eliminarOrdenes_ENT", new { pId = item.Id_Orden })*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "modificarOrdenes_ENT", new { pId = item.Id_Orden }) |
+                @Html.ActionLink("Detalle", "detalleOrdenes_ENT", new { pId = item.Id_Orden })@*|
+                    @Html.ActionLink("Borrar", "eliminarOrdenes_ENT", new { pId = item.Id_Orden })*@
 
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+
+    }
 
 </table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+        cargarOrdenes();
+    
+        // Agregar un intervalo de actualización automática, por ejemplo, cada 5 segundos (5000 ms)
+        setInterval(cargarOrdenes, 5000);
+    });
+
+    function formatDate(jsonDate) {
+        var date = new Date(parseInt(jsonDate.substr(6)));
+        var year = date.getFullYear();
+        var month = (1 + date.getMonth()).toString().padStart(2, '0');
+        var day = date.getDate().toString().padStart(2, '0');
+        var hours = date.getHours().toString().padStart(2, '0');
+        var minutes = date.getMinutes().toString().padStart(2, '0');
+        var seconds = date.getSeconds().toString().padStart(2, '0');
+        var milliseconds = date.getMilliseconds().toString().padStart(3, '0');
+
+        return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds + '.' + milliseconds;
+    }
+
+    function cargarOrdenes() {
+        $.ajax({
+            url: '@Url.Action("listarOrdenesJson", "Ordenes")',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var tablaOrdenes = '';
+                $.each(data, function (i, item) {
+                    tablaOrdenes += '<tr>' +
+                        '<td>' + item.Id_Orden + '</td>' +
+                        '<td>' + item.Nombre_estado + '</td>' +
+                        '<td>' + formatDate(item.Fecha) + '</td>' + // Llamada a la función formatDate()
+                        '<td>' +
+                        '<a href="@Url.Action("modificarOrdenes_ENT", "Ordenes")?pId=' + item.Id_Orden + '">Editar</a> | ' +
+                        '<a href="@Url.Action("detalleOrdenes_ENT", "Ordenes")?pId=' + item.Id_Orden + '">Detalle</a>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('table tbody').html(tablaOrdenes);
+            },
+            error: function (error) {
+                console.log('Error al cargar los datos: ', error);
+            }
+        });
+    }
+</script>
+

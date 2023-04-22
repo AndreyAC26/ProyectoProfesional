@@ -137,17 +137,17 @@ namespace MVCMuncheese.Controllers
         }
 
         //Facturar
-        public ActionResult Facturar(int idMesa, int idOrden)
-        {
-            Mesas mesa = new Mesas { Id_Mesa = idMesa, Estado = 1 };
-            _mesasController.modificarMesa_PA(mesa);
+        //public ActionResult Facturar(int idMesa, int idOrden)
+        //{
+        //    Mesas mesa = new Mesas { Id_Mesa = idMesa, Estado = 1 };
+        //    _mesasController.modificarMesa_PA(mesa);
 
-            Ordenes orden = new Ordenes { Id_Orden = idOrden, Estado = 2 };
-            _ordenesController.modificarOrd_ENT(orden);
+        //    Ordenes orden = new Ordenes { Id_Orden = idOrden, Estado = 2 };
+        //    _ordenesController.modificarOrd_ENT(orden);
 
-            // Redirige a la acción que prefieras al finalizar el proceso de facturación
-            return RedirectToAction("Index", "Home");
-        }
+        //    // Redirige a la acción que prefieras al finalizar el proceso de facturación
+        //    return RedirectToAction("Index", "Home");
+        //}
 
         //*********Procedimientos almacenados*********//
         public ActionResult listarFacturas_PA()

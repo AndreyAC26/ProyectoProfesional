@@ -158,10 +158,14 @@ namespace MVCMuncheese.Controllers
         {
             try
             {
+                int cantidadExtra = pModeloInventario.CantidadExtra ?? 0;
+                int nuevaCantidad = (int)pModeloInventario.Cantidad + cantidadExtra;
+
                 Inventario pInventario = new Inventario();
                 pInventario.Id_inventario = pModeloInventario.Id_inventario;
                 pInventario.Nombre_Producto = pModeloInventario.Nombre_Producto;
                 pInventario.Cantidad = pModeloInventario.Cantidad;
+                pInventario.Cantidad = nuevaCantidad; // Asignar la nueva cantidad
                 pInventario.Id_Producto = pModeloInventario.Id_Producto;
 
 

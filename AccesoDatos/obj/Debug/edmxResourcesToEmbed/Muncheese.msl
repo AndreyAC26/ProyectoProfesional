@@ -413,6 +413,7 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.recOrdenes_Result">
           <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
         </ComplexTypeMapping>
       </ResultMapping>

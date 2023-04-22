@@ -21,20 +21,20 @@ namespace AccesoDatos.Implementacion
             gObjConexionAW = lObjConexionAW;
         }
 
-      
-        //**************PROCEDIMIENTOS ALMACENADOS**************//
 
-     
+        ////**************PROCEDIMIENTOS ALMACENADOS**************//
+
+
         public ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultsXId_PA(int pId)
         {
-          ObtenerProductosPorCategoria_Result lobjRespuesta = new ObtenerProductosPorCategoria_Result();
+            ObtenerProductosPorCategoria_Result lobjRespuesta = new ObtenerProductosPorCategoria_Result();
             try
             {
-               lobjRespuesta = gObjConexionAW.ObtenerProductosPorCategoria(pId).FirstOrDefault();
+                lobjRespuesta = gObjConexionAW.ObtenerProductosPorCategoria(pId).FirstOrDefault();
             }
             catch (Exception lEx)
             {
-               throw lEx;
+                throw lEx;
             }
             return lobjRespuesta;
         }

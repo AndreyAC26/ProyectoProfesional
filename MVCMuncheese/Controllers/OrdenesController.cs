@@ -83,17 +83,65 @@ namespace MVCMuncheese.Controllers
 
 
         //*********ENTIDADES*********//
-        public ActionResult listarOrdenes_ENT()
+        public JsonResult listarOrdenesJson()
         {
             List<Ordenes> lobjRespuesta = new List<Ordenes>();
+            List<modeloOrdenes> lobjRespuestaModelo = new List<modeloOrdenes>();
+            List<modeloEstado> lobjEstados = new List<modeloEstado>();
+
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    lobjRespuesta = srvWCF_CR.recOrdenes_ENT();
+                    lobjEstados = srvWCF_CR.recEstado_PA().Select(x => new modeloEstado() { Id_Estado = x.Id_Estado, Estado = x.Estado }).ToList();
+
+                    if (lobjRespuesta.Count > 0)
+                    {
+                        modeloOrdenes objModeloOrdenes;
+                        foreach (var lcr in lobjRespuesta)
+                        {
+                            objModeloOrdenes = new modeloOrdenes();
+                            objModeloOrdenes.Id_Orden = lcr.Id_Orden;
+                            objModeloOrdenes.Estado = lcr.Estado;
+                            objModeloOrdenes.Fecha = (DateTime)lcr.Fecha;
+
+                            var estado = lobjEstados.FirstOrDefault(x => x.Id_Estado == lcr.Estado);
+                            objModeloOrdenes.Nombre_estado = estado != null ? estado.Estado : "";
+
+                            lobjRespuestaModelo.Add(objModeloOrdenes);
+                        }
+                    }
+                }
+            }
+            catch (Exception lEx)
+            {
+
+                gObjError.Error("Se produjo un error. Detalle: " + lEx.Message + " " + lEx.InnerException.Message +
+                    " . Ubicación: " + System.Reflection.MethodInfo.GetCurrentMethod().ToString());
+            }
+
+            return Json(lobjRespuestaModelo, JsonRequestBehavior.AllowGet);
+        }
+
+        [OutputCache(Duration = 0, VaryByParam = "none")]
+
+        public ActionResult listarOrdenes_ENT()
+        {
+            List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
             List<modeloOrdenes> lobjRespuestaModelo = new List<modeloOrdenes>();
             List<modeloEstado> lobjEstados = new List<modeloEstado>();  // Nueva lista de estados
             try
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
-                    lobjRespuesta = srvWCF_CR.recOrdenes_ENT();
-                    
+                    lobjRespuesta = srvWCF_CR.recOrdenes_PA();
+                    // Encuentra el estado más reciente
+                    int estadoReciente = (int)lobjRespuesta.Max(x => x.Estado);
+
+                    // Filtra las órdenes para obtener solo aquellas con el estado más reciente
+                    lobjRespuesta = lobjRespuesta.Where(x => x.Estado == estadoReciente).ToList();
+
                     // Cargamos la lista de estados
                     lobjEstados = srvWCF_CR.recEstado_PA().Select(x => new modeloEstado() { Id_Estado = x.Id_Estado, Estado = x.Estado }).ToList();
                     
@@ -227,7 +275,7 @@ namespace MVCMuncheese.Controllers
 
 
         [HttpPost]
-        public JsonResult insertarOrde_ENT(int Id_Orden,  int Id_Estado, string Estado, DateTime Fecha)
+        public JsonResult insertarOrde_ENT(int Id_Orden,  int Id_Estado, DateTime Fecha)
         {
             try
             {
@@ -372,6 +420,8 @@ namespace MVCMuncheese.Controllers
         {
             return View();
         }
+
+
 
         /*****Acciones procedimientos almacenados Ordenes******/
         public ActionResult accionesPA(string enviarAccion, modeloOrdenes pModeloOrdenes)
