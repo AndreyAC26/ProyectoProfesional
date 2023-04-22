@@ -339,6 +339,18 @@ namespace MVCMuncheese.srvMuncheese {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insOrdenes_PAa", ReplyAction="http://tempuri.org/IsrvMuncheese/insOrdenes_PAaResponse")]
         System.Threading.Tasks.Task<bool> insOrdenes_PAaAsync(Entidades.Ordenes pOrdenes);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modOrdenes_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modOrdenes_PAResponse")]
+        bool modOrdenes_PA(Entidades.Ordenes pOrdenes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modOrdenes_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modOrdenes_PAResponse")]
+        System.Threading.Tasks.Task<bool> modOrdenes_PAAsync(Entidades.Ordenes pOrdenes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delOrdenes_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delOrdenes_PAResponse")]
+        bool delOrdenes_PA(Entidades.Ordenes pOrdenes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delOrdenes_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delOrdenes_PAResponse")]
+        System.Threading.Tasks.Task<bool> delOrdenes_PAAsync(Entidades.Ordenes pOrdenes);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PAResp" +
             "onse")]
         Entidades.ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId);
@@ -1057,6 +1069,22 @@ namespace MVCMuncheese.srvMuncheese {
         
         public System.Threading.Tasks.Task<bool> insOrdenes_PAaAsync(Entidades.Ordenes pOrdenes) {
             return base.Channel.insOrdenes_PAaAsync(pOrdenes);
+        }
+        
+        public bool modOrdenes_PA(Entidades.Ordenes pOrdenes) {
+            return base.Channel.modOrdenes_PA(pOrdenes);
+        }
+        
+        public System.Threading.Tasks.Task<bool> modOrdenes_PAAsync(Entidades.Ordenes pOrdenes) {
+            return base.Channel.modOrdenes_PAAsync(pOrdenes);
+        }
+        
+        public bool delOrdenes_PA(Entidades.Ordenes pOrdenes) {
+            return base.Channel.delOrdenes_PA(pOrdenes);
+        }
+        
+        public System.Threading.Tasks.Task<bool> delOrdenes_PAAsync(Entidades.Ordenes pOrdenes) {
+            return base.Channel.delOrdenes_PAAsync(pOrdenes);
         }
         
         public Entidades.ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId) {

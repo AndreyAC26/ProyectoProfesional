@@ -91,6 +91,36 @@ namespace LogicaNegocio.Implementacion
             return lobjRespuesta;
         }
 
+
+        public bool modOrdenes_PA(Ordenes pOrdenes)
+        {
+            bool lobjRespuesta = false;
+            try
+            {
+                lobjRespuesta = gobjOrdenesAD.modOrdenes_PA(pOrdenes);
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+        public bool delOrdenes_PA(Ordenes pOrdenes)
+        {
+            bool lobjRespuesta = false;
+            try
+            {
+                lobjRespuesta = gobjOrdenesAD.delOrdenes_PA(pOrdenes);
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+
         //**************ENTIDADES**************//
 
         //Lista de Ordenes

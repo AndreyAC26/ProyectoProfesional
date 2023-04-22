@@ -331,6 +331,18 @@
   <wsdl:message name="IsrvMuncheese_insOrdenes_PAa_OutputMessage">
     <wsdl:part name="parameters" element="tns:insOrdenes_PAaResponse" />
   </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modOrdenes_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:modOrdenes_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_modOrdenes_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:modOrdenes_PAResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delOrdenes_PA_InputMessage">
+    <wsdl:part name="parameters" element="tns:delOrdenes_PA" />
+  </wsdl:message>
+  <wsdl:message name="IsrvMuncheese_delOrdenes_PA_OutputMessage">
+    <wsdl:part name="parameters" element="tns:delOrdenes_PAResponse" />
+  </wsdl:message>
   <wsdl:message name="IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_InputMessage">
     <wsdl:part name="parameters" element="tns:recObtenerProductosPorCategoria_ResultXId_PA" />
   </wsdl:message>
@@ -805,6 +817,14 @@
     <wsdl:operation name="insOrdenes_PAa">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/insOrdenes_PAa" message="tns:IsrvMuncheese_insOrdenes_PAa_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/insOrdenes_PAaResponse" message="tns:IsrvMuncheese_insOrdenes_PAa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="modOrdenes_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/modOrdenes_PA" message="tns:IsrvMuncheese_modOrdenes_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/modOrdenes_PAResponse" message="tns:IsrvMuncheese_modOrdenes_PA_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="delOrdenes_PA">
+      <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/delOrdenes_PA" message="tns:IsrvMuncheese_delOrdenes_PA_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IsrvMuncheese/delOrdenes_PAResponse" message="tns:IsrvMuncheese_delOrdenes_PA_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="recObtenerProductosPorCategoria_ResultXId_PA">
       <wsdl:input wsaw:Action="http://tempuri.org/IsrvMuncheese/recObtenerProductosPorCategoria_ResultXId_PA" message="tns:IsrvMuncheese_recObtenerProductosPorCategoria_ResultXId_PA_InputMessage" />
@@ -1460,6 +1480,24 @@
     </wsdl:operation>
     <wsdl:operation name="insOrdenes_PAa">
       <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/insOrdenes_PAa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modOrdenes_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/modOrdenes_PA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delOrdenes_PA">
+      <soap:operation soapAction="http://tempuri.org/IsrvMuncheese/delOrdenes_PA" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

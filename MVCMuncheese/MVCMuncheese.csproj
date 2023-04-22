@@ -291,6 +291,42 @@
     <None Include="Connected Services\srvMuncheese\srvMuncheese2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Entidades.Clientes1.datasource" />
+    <Content Include="Entidades.DetalleOrden1.datasource" />
+    <Content Include="Entidades.ObtenerOrdenesDeMesa_Result1.datasource" />
+    <Content Include="Entidades.ObtenerProductosPorCategoria_Result1.datasource" />
+    <Content Include="Entidades.Ordenes1.datasource" />
+    <Content Include="Entidades.Productos1.datasource" />
+    <Content Include="Entidades.recClientexId_Result1.datasource" />
+    <Content Include="Entidades.recCliente_Result1.datasource" />
+    <Content Include="Entidades.recDetalleOrdenxId_Result1.datasource" />
+    <Content Include="Entidades.recDetalleOrden_Result1.datasource" />
+    <Content Include="Entidades.recEstados_Result1.datasource" />
+    <Content Include="Entidades.recEstadoxId_Result1.datasource" />
+    <Content Include="Entidades.recFacturas_Result1.datasource" />
+    <Content Include="Entidades.recFacturaxId_Result1.datasource" />
+    <Content Include="Entidades.recIngredientesXProducto_Result1.datasource" />
+    <Content Include="Entidades.recIngredientes_Result1.datasource" />
+    <Content Include="Entidades.recIngredientexId_Result1.datasource" />
+    <Content Include="Entidades.recIngredienteXProductoxId_Result1.datasource" />
+    <Content Include="Entidades.recInventarioxId_Result1.datasource" />
+    <Content Include="Entidades.recInventario_Result1.datasource" />
+    <Content Include="Entidades.recMesaPerfilxId_Result1.datasource" />
+    <Content Include="Entidades.recMesas_Result1.datasource" />
+    <Content Include="Entidades.recMesaxId_Result1.datasource" />
+    <Content Include="Entidades.recOrdenes_Result1.datasource" />
+    <Content Include="Entidades.recOrdenxId_Result1.datasource" />
+    <Content Include="Entidades.recPerfiles_Result1.datasource" />
+    <Content Include="Entidades.recPerfilUsuarioxId_Result1.datasource" />
+    <Content Include="Entidades.recPerfilUsuario_Result1.datasource" />
+    <Content Include="Entidades.recProveedorxId_Result1.datasource" />
+    <Content Include="Entidades.recProveedor_Result1.datasource" />
+    <Content Include="Entidades.recTipo_ProductoxId_Result1.datasource" />
+    <Content Include="Entidades.recTipo_Producto_Result1.datasource" />
+    <Content Include="Entidades.recUsuarios_Result1.datasource" />
+    <Content Include="Entidades.recUsuarioxId_Result1.datasource" />
+    <Content Include="Entidades.Tipo_Producto1.datasource" />
+    <Content Include="Entidades.Usuarios1.datasource" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -417,6 +453,10 @@
     <Content Include="Views\Ordenes\agregarOrdenes_PA.cshtml" />
     <Content Include="Views\Facturas\_DetalleOrdenes.cshtml" />
     <Content Include="Views\Shared\_ProductosPartial.cshtml" />
+    <Content Include="Views\Ordenes\listarOrdenes_PA.cshtml" />
+    <Content Include="Views\Ordenes\modificarOrdenes_PA.cshtml" />
+    <Content Include="Views\Ordenes\eliminarOrdenes_PA.cshtml" />
+    <Content Include="Views\Ordenes\detalleOrdenes_PA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

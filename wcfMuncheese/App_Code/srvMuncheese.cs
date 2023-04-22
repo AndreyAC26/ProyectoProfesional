@@ -862,6 +862,34 @@ public class srvMuncheese : IsrvMuncheese
     }
 
 
+    public bool modOrdenes_PA(Ordenes pOrdenes)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjOrdenesLN.modOrdenes_PA(pOrdenes);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
+    public bool delOrdenes_PA(Ordenes pOrdenes)
+    {
+        bool lobjRespuesta = false;
+        try
+        {
+            lobjRespuesta = gobjOrdenesLN.delOrdenes_PA(pOrdenes);
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
     //Productos por categoria
     public ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId)
     {

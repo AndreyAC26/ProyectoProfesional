@@ -209,6 +209,12 @@ public interface IsrvMuncheese
     bool insOrdenes_PAa(Ordenes pOrdenes);
 
     [OperationContract]
+    bool modOrdenes_PA(Ordenes pOrdenes);
+
+    [OperationContract]
+    bool delOrdenes_PA(Ordenes pOrdenes);
+
+    [OperationContract]
     ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId);
 
     [OperationContract]

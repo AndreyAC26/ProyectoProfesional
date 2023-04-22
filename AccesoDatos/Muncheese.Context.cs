@@ -731,37 +731,21 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modMesa", id_MesaParameter, nombreMesaParameter, estadoParameter);
         }
     
-        public virtual int modOrdenes(Nullable<int> id_Orden, Nullable<int> id_Producto, Nullable<int> cantidad, string descripcion, Nullable<int> mesa, Nullable<int> id_Factura, Nullable<int> precio)
+        public virtual int modOrdenes(Nullable<int> id_Orden, Nullable<System.DateTime> fecha, Nullable<int> estado)
         {
             var id_OrdenParameter = id_Orden.HasValue ?
                 new ObjectParameter("Id_Orden", id_Orden) :
                 new ObjectParameter("Id_Orden", typeof(int));
     
-            var id_ProductoParameter = id_Producto.HasValue ?
-                new ObjectParameter("Id_Producto", id_Producto) :
-                new ObjectParameter("Id_Producto", typeof(int));
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
     
-            var cantidadParameter = cantidad.HasValue ?
-                new ObjectParameter("Cantidad", cantidad) :
-                new ObjectParameter("Cantidad", typeof(int));
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(int));
     
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var mesaParameter = mesa.HasValue ?
-                new ObjectParameter("Mesa", mesa) :
-                new ObjectParameter("Mesa", typeof(int));
-    
-            var id_FacturaParameter = id_Factura.HasValue ?
-                new ObjectParameter("Id_Factura", id_Factura) :
-                new ObjectParameter("Id_Factura", typeof(int));
-    
-            var precioParameter = precio.HasValue ?
-                new ObjectParameter("Precio", precio) :
-                new ObjectParameter("Precio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modOrdenes", id_OrdenParameter, id_ProductoParameter, cantidadParameter, descripcionParameter, mesaParameter, id_FacturaParameter, precioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modOrdenes", id_OrdenParameter, fechaParameter, estadoParameter);
         }
     
         public virtual int modPerfil(Nullable<int> perfil_Id, string nombre_perfil)

@@ -416,11 +416,107 @@ namespace MVCMuncheese.Controllers
             return RedirectToAction("listarOrdenes_ENT");
         }
 
+        
+
+
+        /*****Acciones procedimientos almacenados Ordenes******/
+ 
+        public ActionResult listarOrdenes_PA()
+        {
+            List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    lobjRespuesta = srvWCF_CR.recOrdenes_PA();
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return View(lobjRespuesta);
+        }
+
         public ActionResult agregarOrdenes_PA()
         {
             return View();
         }
 
+        public ActionResult modificarOrdenes_PA(int pId)
+        {
+            recOrdenxId_Result lobjRespuesta_PA = new recOrdenxId_Result();
+            modeloOrdenes lobjRespuesta = new modeloOrdenes();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    lobjRespuesta_PA = srvWCF_CR.recOrdenesXId_PA(pId);
+                }
+                if (lobjRespuesta_PA != null)
+                {
+                    lobjRespuesta.Id_Orden = lobjRespuesta_PA.Id_Orden;
+                    lobjRespuesta.Estado = lobjRespuesta_PA.Estado;
+                    lobjRespuesta.Fecha = (DateTime)lobjRespuesta_PA.Fecha;
+                }
+            }
+            catch (Exception lEx)
+            {
+
+                throw lEx;
+            }
+            return View(lobjRespuesta);
+        }
+
+        public ActionResult eliminarOrdenes_PA(int pId)
+        {
+            recOrdenxId_Result lobjRespuesta_PA = new recOrdenxId_Result();
+            modeloOrdenes lobjRespuesta = new modeloOrdenes();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    lobjRespuesta_PA = srvWCF_CR.recOrdenesXId_PA(pId);
+                }
+                if (lobjRespuesta_PA != null)
+                {
+                    lobjRespuesta.Id_Orden = lobjRespuesta_PA.Id_Orden;
+                    lobjRespuesta.Estado = lobjRespuesta_PA.Estado;
+                    lobjRespuesta.Fecha = (DateTime)lobjRespuesta_PA.Fecha;
+                }
+            }
+            catch (Exception lEx)
+            {
+
+                throw lEx;
+            }
+            return View(lobjRespuesta);
+        }
+
+        public ActionResult detalleOrdenes_PA(int pId)
+        {
+            recOrdenxId_Result lobjRespuesta_PA = new recOrdenxId_Result();
+            modeloOrdenes lobjRespuesta = new modeloOrdenes();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    lobjRespuesta_PA = srvWCF_CR.recOrdenesXId_PA(pId);
+                }
+                if (lobjRespuesta_PA != null)
+                {
+                    lobjRespuesta.Id_Orden = lobjRespuesta_PA.Id_Orden;
+                    lobjRespuesta.Estado = lobjRespuesta_PA.Estado;
+                    lobjRespuesta.Fecha = (DateTime)lobjRespuesta_PA.Fecha;
+                }
+            }
+            catch (Exception lEx)
+            {
+
+                throw lEx;
+            }
+            return View(lobjRespuesta);
+        }
 
 
         /*****Acciones procedimientos almacenados Ordenes******/
@@ -480,6 +576,113 @@ namespace MVCMuncheese.Controllers
                 throw lEx;
             }
             //return RedirectToAction("listarOrdenes_ENT");
+        }
+
+
+        public ActionResult accionesPAa(string enviarAccion, modeloOrdenes pModeloOrdenes)
+        {
+            try
+            {
+                Ordenes pOrdenes = new Ordenes();
+                pOrdenes.Id_Orden = pModeloOrdenes.Id_Orden;
+                pOrdenes.Estado = pModeloOrdenes.Estado;
+                pOrdenes.Fecha = pModeloOrdenes.Fecha;
+
+
+                switch (enviarAccion)
+                {
+                    case "Agregar":
+                        return insertarOrden_PA(pOrdenes);
+
+                    case "Modificar":
+                        return modificarOrden_PA(pOrdenes);
+                    case "Eliminar":
+                        return eliminarOrden_PA(pOrdenes);
+                    default:
+                        return RedirectToAction("listarOrdenes_PA");
+                }
+
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+        }
+
+        public ActionResult insertarOrden_PA(Ordenes pOrdenes)
+        {
+            List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    if (srvWCF_CR.insOrdenes_PAa(pOrdenes))
+                    {
+                        //enviar mensaje positivo
+                    }
+                    else
+                    {
+                        //enviar mensaje negativo
+                    }
+                    lobjRespuesta = srvWCF_CR.recOrdenes_PA();
+
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return View("listarOrdenes_PA", lobjRespuesta);
+        }
+
+        public ActionResult modificarOrden_PA(Ordenes pOrdenes)
+        {
+            List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    if (srvWCF_CR.modOrdenes_PA(pOrdenes))
+                    {
+                        //enviar mensaje positivo
+                    }
+                    else
+                    {
+                        //enviar mensaje negativo
+                    }
+                    lobjRespuesta = srvWCF_CR.recOrdenes_PA();
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return View("listarOrdenes_PA", lobjRespuesta);
+        }
+
+        public ActionResult eliminarOrden_PA(Ordenes pOrdenes)
+        {
+            List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    if (srvWCF_CR.modOrdenes_PA(pOrdenes))
+                    {
+                        //enviar mensaje positivo
+                    }
+                    else
+                    {
+                        //enviar mensaje negativo
+                    }
+                    lobjRespuesta = srvWCF_CR.recOrdenes_PA();
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return View("listarOrdenes_PA", lobjRespuesta);
         }
 
     }

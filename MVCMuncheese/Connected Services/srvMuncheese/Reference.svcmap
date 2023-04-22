@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="9e847383-e9d0-4d37-ab72-185a2fabafd1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="e03320b0-807c-48bc-8009-c2e6c5cf1111" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -24,11 +24,11 @@
     <MetadataSource Address="http://localhost:49538/srvMuncheese.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="srvMuncheese.disco" MetadataType="Disco" ID="70a63393-33f3-45b9-96cb-367346a75442" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?disco" />
-    <MetadataFile FileName="srvMuncheese.xsd" MetadataType="Schema" ID="2dd792ce-de4c-4e5f-b5c6-5048e6ff4230" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?xsd=xsd2" />
-    <MetadataFile FileName="srvMuncheese.wsdl" MetadataType="Wsdl" ID="85ef1795-6ea7-4e8a-8eb0-26ece99f79bb" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?wsdl" />
-    <MetadataFile FileName="srvMuncheese1.xsd" MetadataType="Schema" ID="7a5698d6-0e98-4879-8567-cda42523446a" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?xsd=xsd0" />
-    <MetadataFile FileName="srvMuncheese2.xsd" MetadataType="Schema" ID="dd567db9-4d8c-4ebc-b4bf-1b72202e3f5f" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?xsd=xsd1" />
+    <MetadataFile FileName="srvMuncheese.disco" MetadataType="Disco" ID="8ea03891-958b-446c-874b-322d490bcf80" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?disco" />
+    <MetadataFile FileName="srvMuncheese.xsd" MetadataType="Schema" ID="2ea06c91-2303-4672-aece-49c85649a4ee" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?xsd=xsd2" />
+    <MetadataFile FileName="srvMuncheese.wsdl" MetadataType="Wsdl" ID="ea1de8a0-d292-4685-9c4e-d99962099810" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?wsdl" />
+    <MetadataFile FileName="srvMuncheese1.xsd" MetadataType="Schema" ID="f05bfded-9f6f-44a4-80a1-6546ac7e268a" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?xsd=xsd0" />
+    <MetadataFile FileName="srvMuncheese2.xsd" MetadataType="Schema" ID="7628777a-e81c-4a48-a15f-4893749ed0a9" SourceId="1" SourceUrl="http://localhost:49538/srvMuncheese.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

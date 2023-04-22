@@ -601,12 +601,8 @@
     </FunctionImport>
     <FunctionImport Name="modOrdenes">
       <Parameter Name="Id_Orden" Mode="In" Type="Int32" />
-      <Parameter Name="Id_Producto" Mode="In" Type="Int32" />
-      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
-      <Parameter Name="Descripcion" Mode="In" Type="String" />
-      <Parameter Name="Mesa" Mode="In" Type="Int32" />
-      <Parameter Name="Id_Factura" Mode="In" Type="Int32" />
-      <Parameter Name="Precio" Mode="In" Type="Int32" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="modPerfil">
       <Parameter Name="Perfil_Id" Mode="In" Type="Int32" />

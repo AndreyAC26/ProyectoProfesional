@@ -12,6 +12,8 @@ namespace AccesoDatos.Interfaces
         List<recOrdenes_Result> recOrdenes_PA();
         recOrdenxId_Result recIOrdenesXId_PA(int pId);
         bool insOrden_PA(Ordenes pOrden);
+        bool modOrdenes_PA(Ordenes pOrdenes);
+        bool delOrdenes_PA(Ordenes pOrdenes);
         ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultsXId_PA(int pId);
         ObtenerOrdenesDeMesa_Result recObtenerOrdenesDeMesaXId_PA(int pId);
         List<Ordenes> recOrdenes_ENT();

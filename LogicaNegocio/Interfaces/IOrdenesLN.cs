@@ -12,6 +12,8 @@ namespace LogicaNegocio.Interfaces
         List<recOrdenes_Result> recOrdenes_PA();
         recOrdenxId_Result recOrdenesXId_PA(int pId);
         bool insOrdenes_PA(Ordenes pOrdenes);
+        bool modOrdenes_PA(Ordenes pOrdenes);
+        bool delOrdenes_PA(Ordenes pOrdenes);
         ObtenerProductosPorCategoria_Result recObtenerProductosPorCategoria_ResultXId_PA(int pId);
         ObtenerOrdenesDeMesa_Result recObtenerOrdenesDeMesa_PA(int pId);
         List<Ordenes> recOrdenes_ENT();

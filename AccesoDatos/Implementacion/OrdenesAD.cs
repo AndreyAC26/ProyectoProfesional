@@ -98,6 +98,41 @@ namespace AccesoDatos.Implementacion
             return lobjRespuesta;
         }
 
+        public bool modOrdenes_PA(Ordenes pOrdenes)
+        {
+            bool lobjRespuesta = false;
+            try
+            {
+                if (gObjConexionAW.modOrdenes(pOrdenes.Id_Orden, pOrdenes.Fecha, pOrdenes.Estado) == 1)
+                {
+                    lobjRespuesta = true;
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+        public bool delOrdenes_PA(Ordenes pOrdenes)
+        {
+            bool lobjRespuesta = false;
+            try
+            {
+                if (gObjConexionAW.delOrden(pOrdenes.Id_Orden) == 1)
+                {
+                    lobjRespuesta = true;
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
+
 
         //**************Entidades**************//
 
