@@ -62,6 +62,10 @@ namespace MVCMuncheese.Controllers
 
         }
 
+        public ActionResult DetalleOrdenCocina()
+        {
+            return View();
+        }
 
         public JsonResult ObtenerProductosPorTipo(int pTipo_Producto)
         {

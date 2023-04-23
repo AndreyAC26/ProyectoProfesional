@@ -102,7 +102,7 @@
 
             <div class="form-group col-md-12" style="text-align:right">
                 <div class="col-lg-10 col-lg-offset-2">
-                    <button type="submit" class="btn btn-primary" id="facturar-btn" data-url='@Url.Action("Factura", "Facturas")'>Finalizar</button>
+                    <button type="submit" class="btn btn-primary" id="facturar-btn" data-url='@Url.Action("Index", "Home")'>Finalizar</button>
                 </div>
             </div>
         </div>
@@ -325,7 +325,10 @@ $(document).ready(function () {
     });
 });*@
 // Facturar
+
 // Evento click del botón "facturar-btn"
+
+
 $(document).ready(function () {
     $("#facturar-btn").click(function (e) {
         e.preventDefault();
@@ -419,7 +422,7 @@ $(document).ready(function () {
 
        function refrescarVista() {
     $.ajax({
-        url: '@Url.Action("Factura", "Facturas")',
+        url: '@Url.Action("Index", "Home")',
         type: 'GET',
         success: function (response) {
             // Actualiza la vista parcialmente

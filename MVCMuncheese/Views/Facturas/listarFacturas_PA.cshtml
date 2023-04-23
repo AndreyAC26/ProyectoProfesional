@@ -6,13 +6,13 @@
 
 <h2>Facturas</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Nuevo", "agregarFacturas_PA")
 </p>
 
 <p>
     @Html.ActionLink("Factura", "Factura")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -45,11 +45,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Tel_Cliente)
             </td>
-            <td>
+            @*<td>
                 @Html.ActionLink("Editar", "modificarFacturas_PA", new { pId = item.Id_Factura }) |
                 @Html.ActionLink("Detalle", "detalleFacturas_PA", new { pId = item.Id_Factura }) |
                 @Html.ActionLink("Borrar", "eliminarFacturas_PA", new { pId = item.Id_Factura })
-            </td>
+            </td>*@
         </tr>
     }
 </table>

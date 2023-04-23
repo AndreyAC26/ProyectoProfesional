@@ -4,9 +4,9 @@
     ViewBag.Title = "listarDetalleOrden_PA";
 }
 
-<h2>Detalles</h2>
+<h2>Detalles de las Ordenes</h2>
 <p>
-    @Html.ActionLink("Nuevo", "agregarDetalleOrden_PA")
+    @*@Html.ActionLink("Nuevo", "agregarDetalleOrden_PA")*@
 </p>
 <br />
 
@@ -69,8 +69,8 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.ActionLink("Editar", "modificarDetalleOrden_PA", new { pId = item.Id_Detalle }) |
-                @Html.ActionLink("Detalle", "detalleDetalleOrden_PA", new { pId = item.Id_Detalle }) @*|
+                @*@Html.ActionLink("Editar", "modificarDetalleOrden_PA", new { pId = item.Id_Detalle }) |
+                @Html.ActionLink("Detalle", "detalleDetalleOrden_PA", new { pId = item.Id_Detalle })*@ @*|
                 @Html.ActionLink("Borrar", "eliminarDetalleOrden_PA", new { pId = item.Id_Detalle })*@
             </td>
         </tr>

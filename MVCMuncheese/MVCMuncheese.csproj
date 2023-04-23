@@ -142,8 +142,6 @@
     <Compile Include="Controllers\EstadoController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IngredientesController.cs" />
-    <Compile Include="Controllers\IngredienteXProductoController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MesasController.cs" />
@@ -176,8 +174,6 @@
     <Compile Include="Models\modeloDetalleOrden.cs" />
     <Compile Include="Models\modeloEstado.cs" />
     <Compile Include="Models\modeloFacturas.cs" />
-    <Compile Include="Models\modeloIngredientes.cs" />
-    <Compile Include="Models\modeloIngredienteXProducto.cs" />
     <Compile Include="Models\modeloInventario.cs" />
     <Compile Include="Models\modeloLogin.cs" />
     <Compile Include="Models\modeloMesas.cs" />
@@ -355,11 +351,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Ingredientes\listarIngredientes_PA.cshtml" />
-    <Content Include="Views\Ingredientes\agregarIngrediente_PA.cshtml" />
-    <Content Include="Views\Ingredientes\eliminarIngredientes_PA.cshtml" />
-    <Content Include="Views\Ingredientes\detalleIngrediente_PA.cshtml" />
-    <Content Include="Views\Ingredientes\modificarIngredientes_PA.cshtml" />
     <Content Include="Views\Tipo_Producto\listarTipo_Producto_PA.cshtml" />
     <Content Include="Views\Tipo_Producto\agregarTipo_Producto_PA.cshtml" />
     <Content Include="Views\Tipo_Producto\modificarTipo_Producto_PA.cshtml" />
@@ -375,11 +366,6 @@
     <Content Include="Views\Productos\modificarProductos_ENT.cshtml" />
     <Content Include="Views\Productos\eliminarProductos_ENT.cshtml" />
     <Content Include="Views\Productos\detalleProductos_ENT.cshtml" />
-    <Content Include="Views\IngredienteXProducto\listarIngredienteXProducto_PA.cshtml" />
-    <Content Include="Views\IngredienteXProducto\agregarIngredienteXProducto_PA.cshtml" />
-    <Content Include="Views\IngredienteXProducto\modificarIngredienteXProducto_PA.cshtml" />
-    <Content Include="Views\IngredienteXProducto\eliminarIngredienteXProducto_PA.cshtml" />
-    <Content Include="Views\IngredienteXProducto\detalleIngredienteXProducto_PA.cshtml" />
     <Content Include="Views\Estado\listarEstado_PA.cshtml" />
     <Content Include="Views\Estado\agregarEstado_PA.cshtml" />
     <Content Include="Views\Estado\modificarEstado_PA.cshtml" />
@@ -457,6 +443,7 @@
     <Content Include="Views\Ordenes\modificarOrdenes_PA.cshtml" />
     <Content Include="Views\Ordenes\eliminarOrdenes_PA.cshtml" />
     <Content Include="Views\Ordenes\detalleOrdenes_PA.cshtml" />
+    <Content Include="Views\DetalleOrden\DetalleOrdenCocina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,9 +6,9 @@
 
 <h2>listarOrdenes_PA</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Nuevo", "agregarOrdenes_PA")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -34,11 +34,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Fecha)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Editar", "modificarOrdenes_PA", new { pId=item.Id_Orden  }) |
             @Html.ActionLink("Detalle", "detalleOrdenes_PA", new { pId = item.Id_Orden }) |
             @Html.ActionLink("Borrar", "eliminarOrdenes_PA", new { pId = item.Id_Orden })
-        </td>
+        </td>*@
     </tr>
 }
 
