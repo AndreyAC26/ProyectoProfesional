@@ -3,6 +3,7 @@ using MVCMuncheese.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
@@ -89,7 +90,49 @@ namespace MVCMuncheese.Controllers
             Session["blnRegionesEnt"] = false;
             Session["blnRegionesPA"] = false;
             Session["Logueado"] = false;
+            Session["LogueadoAdmin"] = false;
+            Session["LogueadoMesero"] = false;
+            Session["LogueadoCocina"] = false;
             return RedirectToAction("../Login/Index");
         }
+
+        private int ObtenerPerfilUsuarioLogueado()
+        {
+            // Recupera el nombre de usuario logueado desde la sesión
+            string nombreUsuarioLogueado = Convert.ToString(Session["NombreUsuario"]);
+
+            // Obtiene el diccionario de perfiles de usuario
+            var perfilesUsuario = CargarPerfilesUsuario();
+
+            // Busca el perfil del usuario logueado en el diccionario
+            int perfilUsuario = perfilesUsuario.ContainsKey(nombreUsuarioLogueado) ? perfilesUsuario[nombreUsuarioLogueado] : 0;
+
+            return perfilUsuario;
+        }
+
+
+        private Dictionary<string, int> CargarPerfilesUsuario()
+        {
+            List<recPerfiles_Result> perfiles;
+            List<recPerfilUsuario_Result> perfilUsuario;
+
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    perfiles = srvWCF_CR.recPerfiles_PA();
+                    perfilUsuario = srvWCF_CR.recPerfilUsuario_PA();
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+
+            var perfilesUsuario = perfilUsuario.Join(perfiles, pu => pu.Perfil_Id, p => p.Perfil_Id, (pu, p) => new { pu.Usuario, p.Perfil_Id }).ToDictionary(x => x.Usuario, x => x.Perfil_Id);
+
+            return perfilesUsuario;
+        }
+
     }
 }

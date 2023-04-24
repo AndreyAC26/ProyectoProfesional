@@ -46,18 +46,18 @@
                         <img style="border-radius: 50%;" src="@Url.Content("~/Img/Muncheese.png")" alt="MuncheeseLogo" height="63" width="75" />
                     </a>
                 }
-
-                @*<a href="https://localhost:44354/Home/Index">
-            <img style="border-radius: 50%;" src="~/Img/Muncheese.png" alt="MuncheeseLogo" height="63" width="75" />
-        </a>*@
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
+                    @{
+                        int perfilId = Session["Perfil_Id"] != null ? (int)Session["Perfil_Id"] : 0;
+                    }
 
                     @if (Convert.ToBoolean(Session["Logueado"]))
                     {
-                        @*<li>@Html.ActionLink(" ", "Index", "Home")</li>*@
+                        <li>@Html.ActionLink(" ", "Index", "Home")</li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -66,11 +66,49 @@
                         </li>
                         <li>@Html.ActionLink("Factura", "Factura", "Facturas")</li>
                         <li>@Html.ActionLink("Caja", "TotalDia", "Home")</li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mantenimiento <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Categorias", "listarTipo_Producto_ENT", "Tipo_Producto")</li>
+                                <li>@Html.ActionLink("Productos", "listarProductos_ENT", "Productos")</li>
+                                <li>@Html.ActionLink("Estados", "listarEstado_PA", "Estado")</li>
+                                <li>@Html.ActionLink("Mesas", "listarMesas_PA", "Mesas")</li>
+                                <li>@Html.ActionLink("Inventario", "listarInventario_PA", "Inventario")</li>
+                                <li>@Html.ActionLink("DetalleOrden", "listarDetalleOrden_PA", "DetalleOrden")</li>
+                                <li>@Html.ActionLink("Ordenes", "listarOrdenes_PA", "Ordenes")</li>
+                                <li>@Html.ActionLink("Clientes", "listarClientes_ENT", "Clientes")</li>
+                                <li>@Html.ActionLink("Proveedores", "listarProveedores_PA", "Proveedores")</li>
+                                <li>@Html.ActionLink("Perfiles", "listarPerfiles_PA", "Perfiles")</li>
+                                <li>@Html.ActionLink("Usuarios", "listarUsuarios_PA", "Usuarios")</li>
+                                <li>@Html.ActionLink("Perfil de Usuario", "listarPerfilUsuario_PA", "PerfilUsuario")</li>
+                                <li>@Html.ActionLink("Facturas", "listarFacturas_PA", "Facturas")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Ordenes", "listarOrdenes_PA", "Ordenes")</li>
+                                <li>@Html.ActionLink("DetalleOrden", "listarDetalleOrden_PA", "DetalleOrden")</li>
+                                <li>@Html.ActionLink("Facturas", "listarFacturas_PA", "Facturas")</li>
+                            </ul>
+                        </li>
+
+
                         if (Convert.ToBoolean(Session["blnMantenimiento"]))
                         {
                             if (Convert.ToBoolean(Session["Logueado"]))
                             {
-
+                                @*<li>@Html.ActionLink("DetalleOrden", "listarDetalleOrden_PA", "DetalleOrden")</li>
+                                <li>@Html.ActionLink(" ", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Mesas", "Mesas", "Mesas")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Factura", "Factura", "Facturas")</li>
+                    <li>@Html.ActionLink("Caja", "TotalDia", "Home")</li>*@
 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mantenimiento <span class="caret"></span></a>
@@ -80,14 +118,14 @@
                                         <li>@Html.ActionLink("Estados", "listarEstado_PA", "Estado")</li>
                                         <li>@Html.ActionLink("Mesas", "listarMesas_PA", "Mesas")</li>
                                         <li>@Html.ActionLink("Inventario", "listarInventario_PA", "Inventario")</li>
-                                        @*<li>@Html.ActionLink("DetalleOrden", "listarDetalleOrden_PA", "DetalleOrden")</li>*@
-                                        @*<li>@Html.ActionLink("Ordenes", "listarOrdenes_PA", "Ordenes")</li>*@
+                                        <li>@Html.ActionLink("DetalleOrden", "listarDetalleOrden_PA", "DetalleOrden")</li>
+                                        <li>@Html.ActionLink("Ordenes", "listarOrdenes_PA", "Ordenes")</li>
                                         <li>@Html.ActionLink("Clientes", "listarClientes_ENT", "Clientes")</li>
                                         <li>@Html.ActionLink("Proveedores", "listarProveedores_PA", "Proveedores")</li>
                                         <li>@Html.ActionLink("Perfiles", "listarPerfiles_PA", "Perfiles")</li>
                                         <li>@Html.ActionLink("Usuarios", "listarUsuarios_PA", "Usuarios")</li>
                                         <li>@Html.ActionLink("Perfil de Usuario", "listarPerfilUsuario_PA", "PerfilUsuario")</li>
-                                        @*<li>@Html.ActionLink("Facturas", "listarFacturas_PA", "Facturas")</li>*@
+                                        <li>@Html.ActionLink("Facturas", "listarFacturas_PA", "Facturas")</li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -98,15 +136,76 @@
                                         <li>@Html.ActionLink("Facturas", "listarFacturas_PA", "Facturas")</li>
                                     </ul>
                                 </li>
+
+                                if (perfilId == 1)
+                                {
+
+                                    <li>@Html.ActionLink(" ", "Index", "Home")</li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>@Html.ActionLink("Mesas", "Mesas", "Mesas")</li>
+                                        </ul>
+                                    </li>
+                                    <li>@Html.ActionLink("Factura", "Factura", "Facturas")</li>
+                                    <li>@Html.ActionLink("Caja", "TotalDia", "Home")</li>
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mantenimiento <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>@Html.ActionLink("Categorias", "listarTipo_Producto_ENT", "Tipo_Producto")</li>
+                                            <li>@Html.ActionLink("Productos", "listarProductos_ENT", "Productos")</li>
+                                            <li>@Html.ActionLink("Estados", "listarEstado_PA", "Estado")</li>
+                                            <li>@Html.ActionLink("Mesas", "listarMesas_PA", "Mesas")</li>
+                                            <li>@Html.ActionLink("Inventario", "listarInventario_PA", "Inventario")</li>
+                                            <li>@Html.ActionLink("DetalleOrden", "listarDetalleOrden_PA", "DetalleOrden")</li>
+                                            <li>@Html.ActionLink("Ordenes", "listarOrdenes_PA", "Ordenes")</li>
+                                            <li>@Html.ActionLink("Clientes", "listarClientes_ENT", "Clientes")</li>
+                                            <li>@Html.ActionLink("Proveedores", "listarProveedores_PA", "Proveedores")</li>
+                                            <li>@Html.ActionLink("Perfiles", "listarPerfiles_PA", "Perfiles")</li>
+                                            <li>@Html.ActionLink("Usuarios", "listarUsuarios_PA", "Usuarios")</li>
+                                            <li>@Html.ActionLink("Perfil de Usuario", "listarPerfilUsuario_PA", "PerfilUsuario")</li>
+                                            <li>@Html.ActionLink("Facturas", "listarFacturas_PA", "Facturas")</li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>@Html.ActionLink("Ordenes", "listarOrdenes_PA", "Ordenes")</li>
+                                            <li>@Html.ActionLink("DetalleOrden", "listarDetalleOrden_PA", "DetalleOrden")</li>
+                                            <li>@Html.ActionLink("Facturas", "listarFacturas_PA", "Facturas")</li>
+                                        </ul>
+                                    </li>
+                                }
+                                else if (perfilId == 2)
+                                {
+
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>@Html.ActionLink("Mesas", "Mesas", "Mesas")</li>
+                                        </ul>
+                                    </li>
+                                    <li>@Html.ActionLink("Factura", "Factura", "Facturas")</li>
+                                }
+                                else if (perfilId == 3)
+                                {
+                                    <li>@Html.ActionLink("DetalleOrden", "listarDetalleOrden_PA", "DetalleOrden")</li>
+
+                                }
+
+
                             }
                         }
+
 
                     }
                     else
                     {
-                        @*<li>@Html.ActionLink(" ", "Index", "Home")</li>*@
+                        <li>@Html.ActionLink(" ", "Index", "Home")</li>
                         <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                        @*<li>@Html.ActionLink("Contacto", "Contact", "Home")</li>*@
 
                     }
                 </ul>
@@ -121,20 +220,21 @@
                     }
                 </ul>
             </div>
+
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer class="form-group col-md-12">
-            <p>Creado por Andrey Arias &copy;  @DateTime.Now.Year - Muncheese Food Truck</p>
-        </footer>
-    </div>
+                    <div class="container body-content">
+                        @RenderBody()
+                        <hr />
+                        <footer class="form-group col-md-12">
+                            <p>Creado por Andrey Arias &copy;  @DateTime.Now.Year - Muncheese Food Truck</p>
+                        </footer>
+                    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+                    @RenderSection("scripts", required: false)
+                </body>
+                </html>
 
 
