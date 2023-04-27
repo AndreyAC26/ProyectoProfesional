@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entidades.recUsuarios_Result>
+﻿@model IEnumerable<MVCMuncheese.Models.modeloUsuarios>
 
 @{
     ViewBag.Title = "listarUsuarios_PA";
@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.Contraseña)
         </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.Estado)
+            @Html.DisplayFor(modelItem => item.NombreEstado)
         </td>
         <td class="col-md-3">
             @Html.ActionLink("Editar", "modificarUsuarios_PA", new { pId=item.Usuario }) |

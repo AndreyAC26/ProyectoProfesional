@@ -16,6 +16,23 @@ namespace MVCMuncheese.Controllers
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
         //*********Procedimientos almacenados*********//
+        //public ActionResult listarProveedores_PA()
+        //{
+        //    List<recProveedor_Result> lobjRespuesta = new List<recProveedor_Result>();
+        //    try
+        //    {
+        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+        //        {
+        //            lobjRespuesta = srvWCF_CR.recProveedores_PA();
+        //        }
+        //    }
+        //    catch (Exception lEx)
+        //    {
+        //        throw lEx;
+        //    }
+        //    return View(lobjRespuesta);
+        //}
+
         public ActionResult listarProveedores_PA()
         {
             List<recProveedor_Result> lobjRespuesta = new List<recProveedor_Result>();
@@ -30,8 +47,26 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View(lobjRespuesta);
+
+            List<modeloProveedores> lobjModeloProveedores = new List<modeloProveedores>();
+
+            foreach (var proveedor in lobjRespuesta)
+            {
+                modeloProveedores proveedorModelo = new modeloProveedores();
+                proveedorModelo.Id_Proveedor = proveedor.Id_Proveedor;
+                proveedorModelo.Nombre = proveedor.Nombre;
+                proveedorModelo.Apellido_1 = proveedor.Apellido_1;
+                proveedorModelo.Apellido_2 = proveedor.Apellido_2;
+                proveedorModelo.Telefono = proveedor.Telefono;
+                proveedorModelo.Producto = proveedor.Producto;
+
+                lobjModeloProveedores.Add(proveedorModelo);
+            }
+
+            return View(lobjModeloProveedores);
         }
+
+
 
         public ActionResult agregarProveedores_PA()
         {

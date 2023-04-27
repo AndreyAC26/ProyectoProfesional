@@ -16,22 +16,58 @@ namespace MVCMuncheese.Controllers
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
         //*********Procedimientos almacenados*********//
+        //public ActionResult listarPerfilUsuario_PA()
+        //{
+        //    List<recPerfilUsuario_Result> lobjRespuesta = new List<recPerfilUsuario_Result>();
+        //    try
+        //    {
+        //        using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+        //        {
+        //            lobjRespuesta = srvWCF_CR.recPerfilUsuario_PA();
+        //        }
+        //    }
+        //    catch (Exception lEx)
+        //    {
+        //        throw lEx;
+        //    }
+        //    return View(lobjRespuesta);
+        //}
+
         public ActionResult listarPerfilUsuario_PA()
         {
             List<recPerfilUsuario_Result> lobjRespuesta = new List<recPerfilUsuario_Result>();
+            List<modeloPerfilUsuario> lobjModeloPerfilUsuario = new List<modeloPerfilUsuario>();
+
             try
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
                     lobjRespuesta = srvWCF_CR.recPerfilUsuario_PA();
+
+                    foreach (var item in lobjRespuesta)
+                    {
+                        var perfil = srvWCF_CR.recPerfilesXId_PA(item.Perfil_Id.Value);
+                        string nombrePerfil = perfil.nombre_perfil;
+
+                        lobjModeloPerfilUsuario.Add(new modeloPerfilUsuario
+                        {
+                            Perfil_Id = item.Perfil_Id,
+                            Usuario = item.Usuario,
+                            Id_PerfilUsuario = item.Id_PerfilUsuario,
+                            NombrePerfil = nombrePerfil
+                        });
+                    }
                 }
             }
             catch (Exception lEx)
             {
                 throw lEx;
             }
-            return View(lobjRespuesta);
+
+            return View(lobjModeloPerfilUsuario);
         }
+
+
 
         public ActionResult agregarPerfilUsuario_PA()
         {

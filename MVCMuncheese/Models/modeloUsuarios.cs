@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MVCMuncheese.Models
-{
-    public class modeloUsuarios
+    namespace MVCMuncheese.Models
     {
-        public string Usuario { get; set; }
-        public string Contraseña { get; set; }
-        public Nullable<int> Estado { get; set; }
-
+        public class modeloUsuarios
+        {
+            public string Usuario { get; set; }
+            public string Contraseña { get; set; }
+            public Nullable<int> Estado { get; set; }
+            public string NombreEstado { get; set; }
+        }
     }
-}

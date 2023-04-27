@@ -31,8 +31,21 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View(lobjRespuesta);
+
+            List<modeloPerfiles> lobjModeloPerfiles = new List<modeloPerfiles>();
+
+            foreach (var perfil in lobjRespuesta)
+            {
+                modeloPerfiles perfilModelo = new modeloPerfiles();
+                perfilModelo.Perfil_Id = perfil.Perfil_Id;
+                perfilModelo.nombre_perfil = perfil.nombre_perfil;
+
+                lobjModeloPerfiles.Add(perfilModelo);
+            }
+
+            return View(lobjModeloPerfiles);
         }
+
 
         public ActionResult agregarPerfiles_PA()
         {
@@ -161,7 +174,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarPerfiles_PA", lobjRespuesta);
+            return RedirectToAction("listarPerfiles_PA");
         }
 
         public ActionResult modificarPer_PA(Perfiles pPerfiles)
@@ -186,7 +199,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarPerfiles_PA", lobjRespuesta);
+            return RedirectToAction("listarPerfiles_PA");
         }
 
         public ActionResult eliminarPer_PA(Perfiles pPerfiles)
@@ -211,7 +224,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarPerfiles_PA", lobjRespuesta);
+            return RedirectToAction("listarPerfiles_PA");
         }
 
     }

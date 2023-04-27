@@ -15,6 +15,7 @@ namespace MVCMuncheese.Controllers
         
           private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
+
         //*********Procedimientos almacenados*********//
         public ActionResult listarEstado_PA()
         {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entidades.recPerfilUsuario_Result>
+﻿@model IEnumerable<MVCMuncheese.Models.modeloPerfilUsuario>
 
 @{
     ViewBag.Title = "listarPerfilUsuario_PA";
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Perfil_Id)
+            @Html.DisplayNameFor(model => model.NombrePerfil)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Usuario)
@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Perfil_Id)
+            @Html.DisplayFor(modelItem => item.NombrePerfil)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Usuario)
