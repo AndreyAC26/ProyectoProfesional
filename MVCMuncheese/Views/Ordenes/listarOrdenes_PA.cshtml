@@ -4,11 +4,15 @@
     ViewBag.Title = "listarOrdenes_PA";
 }
 
-<h2>Ordenes</h2>
+<div class="col-md-12" style="text-align:center">
+    <h3>Muncheese Street Food</h3>
+    <h3>SFMFT</h3>
+    <h3>Ordenes</h3>
+</div>
 
 @*<p>
-    @Html.ActionLink("Nuevo", "agregarOrdenes_PA")
-</p>*@
+        @Html.ActionLink("Nuevo", "agregarOrdenes_PA")
+    </p>*@
 <table class="table">
     <tr>
         <th>
@@ -23,23 +27,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Orden)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre_estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        @*<td>
-            @Html.ActionLink("Editar", "modificarOrdenes_PA", new { pId=item.Id_Orden  }) |
-            @Html.ActionLink("Detalle", "detalleOrdenes_PA", new { pId = item.Id_Orden }) |
-            @Html.ActionLink("Borrar", "eliminarOrdenes_PA", new { pId = item.Id_Orden })
-        </td>*@
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Orden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Editar", "modificarOrdenes_PA", new { pId=item.Id_Orden  }) |
+                    @Html.ActionLink("Detalle", "detalleOrdenes_PA", new { pId = item.Id_Orden }) |
+                    @Html.ActionLink("Borrar", "eliminarOrdenes_PA", new { pId = item.Id_Orden })
+                </td>*@
+        </tr>
+    }
 
 </table>

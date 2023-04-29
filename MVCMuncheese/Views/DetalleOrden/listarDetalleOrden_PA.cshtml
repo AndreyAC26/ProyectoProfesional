@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<MVCMuncheese.Models.modeloDetalleOrden>
-    @*Entidades.recDetalleOrden_Result*@
+@*Entidades.recDetalleOrden_Result*@
 @{
     ViewBag.Title = "listarDetalleOrden_PA";
 }
-
-<h2>Detalles de las Ordenes</h2>
+<div class="col-md-12" style="text-align:center">
+<h3>Muncheese Street Food</h3>
+<h3>SFMFT</h3>
+<h3>Detalles de las Ordenes</h3>
+</div>
 <p>
     @*@Html.ActionLink("Nuevo", "agregarDetalleOrden_PA")*@
 </p>
@@ -70,10 +73,10 @@
             </td>
             <td>
                 @*@Html.ActionLink("Editar", "modificarDetalleOrden_PA", new { pId = item.Id_Detalle }) |
-                @Html.ActionLink("Detalle", "detalleDetalleOrden_PA", new { pId = item.Id_Detalle })*@ @*|
-                @Html.ActionLink("Borrar", "eliminarDetalleOrden_PA", new { pId = item.Id_Detalle })*@
-            </td>
-        </tr>
-    }
+                    @Html.ActionLink("Detalle", "detalleDetalleOrden_PA", new { pId = item.Id_Detalle })*@ @*|
+                    @Html.ActionLink("Borrar", "eliminarDetalleOrden_PA", new { pId = item.Id_Detalle })*@
+                </td>
+            </tr>
+        }
 
 </table>

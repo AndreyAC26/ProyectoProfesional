@@ -32,38 +32,7 @@ namespace MVCMuncheese.Controllers
 
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
-        //public ActionResult Factura() 
-        //{
-
-        //    srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
-        //    // Obtener las mesas ocupadas 
-        //    var mesasOcupadas = srvWCF_CR.recMesas_PA().Where(m => m.Estado == 2)
-        //    .Select(m => new SelectListItem { Value = m.Id_Mesa.ToString(), Text = $"Mesa {m.Id_Mesa}" });
-
-        //    //Obtener las ordenes activas
-        //    var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1)
-        //                .Join(srvWCF_CR.recDetalleOrden_PA(),
-        //                      orden => orden.Id_Orden,
-        //                      detalle => detalle.Id_Orden,
-        //                      (orden, detalle) => new { orden, detalle })
-        //                .GroupBy(od => od.detalle.Mesa)
-        //                .ToDictionary(g => g.Key.Value, g => g.Select(od => new SelectListItem { Value = od.orden.Id_Orden.ToString(), Text = $"{od.orden.Id_Orden}" }).Distinct(new SelectListItemComparer()).ToList());
-
-        //    // Obtener la lista de clientes y sus teléfonos
-        //    var listaClientes = srvWCF_CR.recClientes_ENT();
-        //    var clientes = listaClientes.Select(c => new SelectListItem { Value = c.Nombre, Text = $"{c.Nombre}" });       
-
-        //    // Inicializar el modelo con los datos necesarios
-        //    var modelo = new modeloFacturas
-        //    {
-
-        //        MesasOcupadas = new SelectList(mesasOcupadas, "Value", "Text"),
-        //        OrdenesPorMesaJson = JsonConvert.SerializeObject(ordenesActivas),
-        //        Clientes = clientes.ToList(), // Agregar la lista de clientes al modelo
-        //    };
-
-        //    return View(modelo);
-        //}
+       
 
         public ActionResult Factura()
         {

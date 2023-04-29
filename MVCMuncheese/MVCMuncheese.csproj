@@ -212,6 +212,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\manualUsuario.png" />
     <Content Include="Img\Menu1.jpg" />
     <Content Include="Img\Menu2.jpg" />
     <Content Include="Img\Menu3.jpg" />
@@ -329,6 +330,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Entidades.recDetalleOrdenConOrdenEstado1_Result.datasource" />
+    <Content Include="Img\MANUAL DE USUARIO SFMFT.pdf" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

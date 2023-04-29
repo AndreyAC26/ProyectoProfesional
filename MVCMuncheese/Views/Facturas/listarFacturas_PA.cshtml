@@ -4,8 +4,11 @@
     ViewBag.Title = "listarFacturas_PA";
 }
 
-<h2>Facturas</h2>
-
+<div class="col-md-12" style="text-align:center">
+    <h3>Muncheese Street Food</h3>
+    <h3>SFMFT</h3>
+    <h3>Facturas</h3>
+</div>
 @*<p>
     @Html.ActionLink("Nuevo", "agregarFacturas_PA")
 </p>
@@ -18,15 +21,14 @@
         <th>
             @Html.DisplayNameFor(model => model.Id_Factura)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Id_Orden)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tel_Cliente)
+            @Html.DisplayNameFor(model => model.fecha)
         </th>
+
         <th></th>
     </tr>
 
@@ -36,20 +38,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Id_Factura)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Id_Orden)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tel_Cliente)
+                @Html.DisplayFor(modelItem => item.fecha)
             </td>
+
             @*<td>
-                @Html.ActionLink("Editar", "modificarFacturas_PA", new { pId = item.Id_Factura }) |
-                @Html.ActionLink("Detalle", "detalleFacturas_PA", new { pId = item.Id_Factura }) |
-                @Html.ActionLink("Borrar", "eliminarFacturas_PA", new { pId = item.Id_Factura })
-            </td>*@
+            @Html.ActionLink("Editar", "modificarFacturas_PA", new { pId = item.Id_Factura }) |
+            @Html.ActionLink("Detalle", "detalleFacturas_PA", new { pId = item.Id_Factura }) |
+            @Html.ActionLink("Borrar", "eliminarFacturas_PA", new { pId = item.Id_Factura })
+        </td>*@
         </tr>
     }
 </table>

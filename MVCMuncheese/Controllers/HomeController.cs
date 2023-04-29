@@ -80,8 +80,8 @@ namespace MVCMuncheese.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.PdfPath = Url.Content("~/Img/MANUAL DE USUARIO SFMFT.pdf");
+            ViewBag.IconPath = Url.Content("~/Img/manualUsuario.png");
             return View();
         }
 

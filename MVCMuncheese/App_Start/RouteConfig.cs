@@ -14,6 +14,12 @@ namespace MVCMuncheese
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "VerificarCantidadInventario",
+                url: "DetalleOrden/VerificarCantidadInventario",
+                defaults: new { controller = "DetalleOrden", action = "VerificarCantidadInventario" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }

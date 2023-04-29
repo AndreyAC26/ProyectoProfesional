@@ -275,7 +275,7 @@
 // Evento click del botón "facturar-btn"
 
 
-$(document).ready(function () {
+@*$(document).ready(function () {
     $("#facturar-btn").click(function (e) {
         e.preventDefault();
 
@@ -324,7 +324,68 @@ $(document).ready(function () {
             }
         });
     });
+});*@
+
+            $(document).ready(function () {
+    $("#facturar-btn").click(function (e) {
+        e.preventDefault();
+
+        var fecha = $("#fecha-entrada").val();
+        var orden = $("#ddlOrdenes").val();
+        var telefono = $("#txtTelefono").val();
+        var facturarUrl = $(this).data("url");
+
+        // Obtenemos los valores de idMesa e idOrden para pasar a la acción Facturar
+        var idMesa = $("#ddlOrdenes").val();
+        var idOrden = $("#mesa-dropdown").val();
+        // Obtener el nombre de la mesa seleccionada
+        var nombreMesa = $("#mesa-dropdown option:selected").text();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("accionesPA", "Facturas")',
+            data: {
+                enviarAccion: "Agregar",
+                pModeloFacturas: {
+                    fecha: fecha,
+                    Id_Orden: orden,
+                    Tel_Cliente: telefono
+                }
+            },
+            success: function (response) {
+                // Realizar la segunda llamada AJAX para invocar la acción Facturar
+                $.ajax({
+                    type: "POST",
+                    url: facturarUrl,
+                    data: {
+                        idMesa: idMesa,
+                        idOrden: idOrden
+                    },
+                    success: function (response) {
+                        // En lugar de redireccionar, llama a la función refrescarVista()
+                        refrescarVista();
+                        limpiarCamposFormulario(); // Llama a la función para limpiar los campos del formulario
+                    },
+                    error: function (response) {
+                        // Manejar errores (mostrar un mensaje, etc.)
+                    }
+                });
+            },
+            error: function (response) {
+                // Manejar errores (mostrar un mensaje, etc.)
+            }
+        });
+    });
 });
+
+            function limpiarCamposFormulario() {
+                $("#fecha-entrada").val("");
+                $("#ddlOrdenes").val("");
+                $("#txtTelefono").val("");
+                $("#ddlClientes").val("");
+                $("#mesa-dropdown").val("");
+                $("#detalleOrden").html("");
+            }
 
 
 
@@ -368,7 +429,7 @@ $(document).ready(function () {
 
        function refrescarVista() {
     $.ajax({
-        url: '@Url.Action("Index", "Home")',
+        url: '@Url.Action("Factura", "Facturas")',
         type: 'GET',
         success: function (response) {
             // Actualiza la vista parcialmente

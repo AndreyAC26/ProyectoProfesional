@@ -15,7 +15,7 @@ namespace MVCMuncheese.Models
         [Display(Name = "Producto")]
         public string Nombre_Producto { get; set; }
 
-        [Display(Name = "Cantidad")]
+        [Display(Name = "Stock")]
         public Nullable<int> Cantidad { get; set; }
 
         [Display(Name = "Codigo Producto")]

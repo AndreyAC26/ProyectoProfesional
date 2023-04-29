@@ -127,40 +127,56 @@
                 // Agregar la fila a la tabla
                 document.getElementById("detalleOrden").appendChild(fila);
 
-            }
+        }
 
+        // validar la cantidad insertada en la base de datos
+        async function validarCantidadInventario(idProducto, cantidadSolicitada) {
+            try {
+                let response = await fetch("/DetalleOrden/VerificarCantidadInventario?idProducto=" + idProducto);
+                let cantidadInventario = await response.json();
+
+                if (cantidadInventario >= cantidadSolicitada) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error en la validación de la cantidad de productos en inventario:', error);
+            }
+        }
 
         // --------- Funcion Javascript para cargar la funcion insertarDetalleOrden ------------//
-        function enviarDetalleOrden() {
-            var filas = document.getElementById("tablaOrdenes").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-            var datosOrdenes = [];
+            function enviarDetalleOrden() {
+                var filas = document.getElementById("tablaOrdenes").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+                var datosOrdenes = [];
 
-            for (var i = 0; i < filas.length; i++) {
-                var fila = filas[i];
-                var Id_Orden = fila.getElementsByTagName("td")[0].innerText;
-                var productoElement = fila.getElementsByClassName("nombre-producto")[0];
-                var Id_producto = parseInt(productoElement.classList[1].split("-")[2]);
-                var Cantidad = fila.getElementsByTagName("td")[2].innerText;
-                var Mesa = fila.getElementsByTagName("td")[3].innerText;
-                var Precio = fila.getElementsByTagName("td")[4].innerText;74
-                var Tipo_orden = fila.getElementsByTagName("td")[5].innerText;
-                var Descripcion = fila.getElementsByTagName("td")[6].innerText;
 
-                // guardar los datos de la fila en un objeto
-                var datosFila = {
-                    Id_Orden: Id_Orden,
-                    Id_producto: Id_producto,
-                    Cantidad: Cantidad,
-                    Mesa: Mesa,
-                    Precio: Precio,
-                    Tipo_orden: Tipo_orden,
-                    Descripcion: Descripcion
-                };
+                for (var i = 0; i < filas.length; i++) {
+                    var fila = filas[i];
+                    var Id_Orden = fila.getElementsByTagName("td")[0].innerText;
+                    var productoElement = fila.getElementsByClassName("nombre-producto")[0];
+                    var Id_producto = parseInt(productoElement.classList[1].split("-")[2]);
+                    var Cantidad = fila.getElementsByTagName("td")[2].innerText;
+                    var Mesa = fila.getElementsByTagName("td")[3].innerText;
+                    var Precio = fila.getElementsByTagName("td")[4].innerText;74
+                    var Tipo_orden = fila.getElementsByTagName("td")[5].innerText;
+                    var Descripcion = fila.getElementsByTagName("td")[6].innerText;
 
-                // agregar el objeto a un arreglo
-                datosOrdenes.push(datosFila);
-            }
+                    // guardar los datos de la fila en un objeto
+                    var datosFila = {
+                        Id_Orden: Id_Orden,
+                        Id_producto: Id_producto,
+                        Cantidad: Cantidad,
+                        Mesa: Mesa,
+                        Precio: Precio,
+                        Tipo_orden: Tipo_orden,
+                        Descripcion: Descripcion
+                    };
 
+                    // agregar el objeto a un arreglo
+                    datosOrdenes.push(datosFila);
+                }
+ 
 
             // enviar los datos a la función insertarDeta_PA en la acción del controlador
             $.ajax({
@@ -237,17 +253,6 @@
                     </div>
                 </div>
 
-
-                @*<div class="form-group col-md-4">
-            <div class="col-lg-10">
-                <label>Tipo de Orden</label>
-                <select class="form-control" id="TipoOrden">
-                    <option value="">-- Seleccione uno --</option>
-                    <option value="Para llevar">Para llevar</option>
-                    <option value="Comer aquí">Comer aquí</option>
-                </select>
-            </div>
-        </div>*@
 
                 <div class="form-group col-md-4">
                     <div class="col-lg-10">
