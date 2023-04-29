@@ -32,16 +32,52 @@ namespace MVCMuncheese.Controllers
 
         private readonly Logger gObjError = LogManager.GetCurrentClassLogger();
 
-        public ActionResult Factura() 
-        {
+        //public ActionResult Factura() 
+        //{
 
+        //    srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
+        //    // Obtener las mesas ocupadas 
+        //    var mesasOcupadas = srvWCF_CR.recMesas_PA().Where(m => m.Estado == 2)
+        //    .Select(m => new SelectListItem { Value = m.Id_Mesa.ToString(), Text = $"Mesa {m.Id_Mesa}" });
+
+        //    //Obtener las ordenes activas
+        //    var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1)
+        //                .Join(srvWCF_CR.recDetalleOrden_PA(),
+        //                      orden => orden.Id_Orden,
+        //                      detalle => detalle.Id_Orden,
+        //                      (orden, detalle) => new { orden, detalle })
+        //                .GroupBy(od => od.detalle.Mesa)
+        //                .ToDictionary(g => g.Key.Value, g => g.Select(od => new SelectListItem { Value = od.orden.Id_Orden.ToString(), Text = $"{od.orden.Id_Orden}" }).Distinct(new SelectListItemComparer()).ToList());
+
+        //    // Obtener la lista de clientes y sus teléfonos
+        //    var listaClientes = srvWCF_CR.recClientes_ENT();
+        //    var clientes = listaClientes.Select(c => new SelectListItem { Value = c.Nombre, Text = $"{c.Nombre}" });       
+
+        //    // Inicializar el modelo con los datos necesarios
+        //    var modelo = new modeloFacturas
+        //    {
+
+        //        MesasOcupadas = new SelectList(mesasOcupadas, "Value", "Text"),
+        //        OrdenesPorMesaJson = JsonConvert.SerializeObject(ordenesActivas),
+        //        Clientes = clientes.ToList(), // Agregar la lista de clientes al modelo
+        //    };
+
+        //    return View(modelo);
+        //}
+
+        public ActionResult Factura()
+        {
             srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient();
-            // Obtener las mesas ocupadas 
+
+            // Obtener las órdenes con Estado = 2
+            var ordenesConEstado2 = srvWCF_CR.recOrdenes_PA().Where(o => o.Estado == 2).Select(o => o.Id_Orden).ToList();
+
+            // Obtener las mesas ocupadas
             var mesasOcupadas = srvWCF_CR.recMesas_PA().Where(m => m.Estado == 2)
             .Select(m => new SelectListItem { Value = m.Id_Mesa.ToString(), Text = $"Mesa {m.Id_Mesa}" });
 
-            //Obtener las ordenes activas
-            var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1)
+            // Obtener las órdenes activas excluyendo aquellas con Estado = 2
+            var ordenesActivas = srvWCF_CR.recOrdenes_ENT().Where(o => o.Estado == 1 && !ordenesConEstado2.Contains(o.Id_Orden))
                         .Join(srvWCF_CR.recDetalleOrden_PA(),
                               orden => orden.Id_Orden,
                               detalle => detalle.Id_Orden,
@@ -51,7 +87,7 @@ namespace MVCMuncheese.Controllers
 
             // Obtener la lista de clientes y sus teléfonos
             var listaClientes = srvWCF_CR.recClientes_ENT();
-            var clientes = listaClientes.Select(c => new SelectListItem { Value = c.Nombre, Text = $"{c.Nombre}" });       
+            var clientes = listaClientes.Select(c => new SelectListItem { Value = c.Nombre, Text = $"{c.Nombre}" });
 
             // Inicializar el modelo con los datos necesarios
             var modelo = new modeloFacturas
@@ -137,34 +173,37 @@ namespace MVCMuncheese.Controllers
         }
 
         //Facturar
-        //public ActionResult Facturar(int idMesa, int idOrden)
-        //{
-        //    Mesas mesa = new Mesas { Id_Mesa = idMesa, Estado = 1 };
-        //    _mesasController.modificarMesa_PA(mesa);
-
-        //    Ordenes orden = new Ordenes { Id_Orden = idOrden, Estado = 2 };
-        //    _ordenesController.modificarOrd_ENT(orden);
-
-        //    // Redirige a la acción que prefieras al finalizar el proceso de facturación
-        //    return RedirectToAction("Index", "Home");
-        //}
+       
 
         //*********Procedimientos almacenados*********//
         public ActionResult listarFacturas_PA()
         {
             List<recFacturas_Result> lobjRespuesta = new List<recFacturas_Result>();
+            List<modeloFacturas> lobjModelos = new List<modeloFacturas>(); // Agregado
             try
             {
                 using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                 {
                     lobjRespuesta = srvWCF_CR.recFacturas_PA();
+
+                    // Convertir cada elemento de la lista a un modelo modeloFacturas
+                    foreach (var item in lobjRespuesta)
+                    {
+                        modeloFacturas modelo = new modeloFacturas();
+                        modelo.Id_Factura = item.Id_Factura;
+                        modelo.fecha = item.fecha;
+                        modelo.Id_Orden = item.Id_Orden;
+                        modelo.Tel_Cliente = item.Tel_Cliente;
+
+                        lobjModelos.Add(modelo);
+                    }
                 }
             }
             catch (Exception lEx)
             {
                 throw lEx;
             }
-            return View(lobjRespuesta);
+            return View(lobjModelos); // Modificado
         }
 
         public ActionResult agregarFacturas_PA()

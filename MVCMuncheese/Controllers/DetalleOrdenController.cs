@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AccesoDatos;
 
 namespace MVCMuncheese.Controllers
 {
@@ -62,10 +63,48 @@ namespace MVCMuncheese.Controllers
 
         }
 
+
         public ActionResult DetalleOrdenCocina()
         {
-            return View();
+            List<recDetalleOrdenConOrdenEstado1_Result> lobjRespuesta = new List<recDetalleOrdenConOrdenEstado1_Result>();
+            List<modeloDetalleOrden> lobjDetalles = new List<modeloDetalleOrden>();  // Nuevo modelo
+
+            try
+            {
+                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                {
+                    lobjRespuesta = srvWCF_CR.recDetalleOrdenEstado1_PA();
+
+                    // Recorremos los detalles y cargamos el nombre del producto
+                    foreach (var detalle in lobjRespuesta)
+                    {
+                        modeloDetalleOrden detalleNuevo = new modeloDetalleOrden();
+                        detalleNuevo.Id_Orden = detalle.Id_Orden;
+                        detalleNuevo.Id_producto = detalle.Id_producto;
+                        detalleNuevo.Cantidad = detalle.Cantidad;
+                        detalleNuevo.Tipo_orden = detalle.Tipo_orden;
+                        detalleNuevo.Descripcion = detalle.Descripcion;
+
+
+                        // Cargamos el nombre del producto
+                        detalleNuevo.Nombre_producto = srvWCF_CR.recProductos_ENT().FirstOrDefault(x => x.Id_producto == detalle.Id_producto)?.Nombre;
+
+                        lobjDetalles.Add(detalleNuevo);
+                    }
+                }
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+
+            return View(lobjDetalles);  // Devolvemos la lista de detalles con el nuevo modelo
         }
+
+
+
+
+
 
         public JsonResult ObtenerProductosPorTipo(int pTipo_Producto)
         {

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Entidades.recOrdenes_Result>
+﻿@model IEnumerable<MVCMuncheese.Models.modeloOrdenes>
 
 @{
     ViewBag.Title = "listarOrdenes_PA";
 }
 
-<h2>listarOrdenes_PA</h2>
+<h2>Ordenes</h2>
 
 @*<p>
     @Html.ActionLink("Nuevo", "agregarOrdenes_PA")
@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Id_Orden)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayNameFor(model => model.Nombre_estado)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Fecha)
@@ -29,7 +29,7 @@
             @Html.DisplayFor(modelItem => item.Id_Orden)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Estado)
+            @Html.DisplayFor(modelItem => item.Nombre_estado)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Fecha)

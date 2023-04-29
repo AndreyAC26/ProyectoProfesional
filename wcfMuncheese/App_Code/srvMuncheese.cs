@@ -379,20 +379,7 @@ public class srvMuncheese : IsrvMuncheese
     }
 
     //Modificar Productos
-    //public bool modProductos_ENT(Productos pProductos)
-    //{
-    //    //bool lobjRespuesta = false;
-    //    //try
-    //    //{
-    //    //    lobjRespuesta = gobjProductosLN.modProductos_ENT(pProductos);
-    //    //}
-    //    //catch (Exception lEx)
-    //    //{
-    //    //    throw lEx;
-    //    //}
-    //    //return lobjRespuesta;
-
-    //}
+   
     public bool modProductos_ENT(Productos pProductos)
     {
         bool lobjRespuesta = false;
@@ -818,6 +805,7 @@ public class srvMuncheese : IsrvMuncheese
 
     //**************ENTIDADES Ordenes**************//
 
+
     public List<recOrdenes_Result> recOrdenes_PA()
     {
         List<recOrdenes_Result> lobjRespuesta = new List<recOrdenes_Result>();
@@ -996,6 +984,20 @@ public class srvMuncheese : IsrvMuncheese
 
 
     //**************PROCEDIMIENTOS ALMACENADOS DetalleOrden**************//
+    public List<recDetalleOrdenConOrdenEstado1_Result> recDetalleOrdenEstado1_PA()
+    {
+        List<recDetalleOrdenConOrdenEstado1_Result> lobjRespuesta = new List<recDetalleOrdenConOrdenEstado1_Result>();
+        try
+        {
+            lobjRespuesta = gobjDetalleOrdenLN.recDetalleOrdenEstado1_PA();
+        }
+        catch (Exception lEx)
+        {
+            throw lEx;
+        }
+        return lobjRespuesta;
+    }
+
     public List<recDetalleOrden_Result> recDetalleOrden_PA()
     {
         List<recDetalleOrden_Result> lobjRespuesta = new List<recDetalleOrden_Result>();

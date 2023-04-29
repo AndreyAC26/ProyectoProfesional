@@ -19,6 +19,21 @@ namespace LogicaNegocio.Implementacion
 
         private readonly IDetalleOrdenAD gobjDetalleOrdenAD = new DetalleOrdenAD(_objContextoAW);
 
+
+        public List<recDetalleOrdenConOrdenEstado1_Result> recDetalleOrdenEstado1_PA()
+        {
+            List<recDetalleOrdenConOrdenEstado1_Result> lobjRespuesta = new List<recDetalleOrdenConOrdenEstado1_Result>();
+            try
+            {
+                lobjRespuesta = gobjDetalleOrdenAD.recDetalleOrdenEstado1_PA();
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
+
         //**************PROCEDIMIENTOS ALMACENADOS**************//
         public List<recDetalleOrden_Result> recDetalleOrden_PA()
         {

@@ -16,7 +16,7 @@ namespace MVCMuncheese.Models
             [Display(Name = "Fecha")]
             public Nullable<System.DateTime> fecha { get; set; }
 
-            [Display(Name = "Orden")]
+            [Display(Name = "Num. Orden")]
             public Nullable<int> Id_Orden { get; set; }
 
             [Display(Name = "Telefono")]

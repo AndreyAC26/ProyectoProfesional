@@ -34,7 +34,7 @@ namespace MVCMuncheese.Models
                 [Display(Name = "Precio")]
                 public Nullable<int> Precio { get; set; }
 
-                [Display(Name = "Orden")]
+                [Display(Name = "Tipo de Orden")]
                 public string Tipo_orden { get; set; }
 
                 [Display(Name = "Observaciones")]
@@ -57,6 +57,7 @@ namespace MVCMuncheese.Models
                 [Display(Name = "Total del Dia")]
                 public int TotalVentas = 0;
             }
+
             public class Orden
             {
                 public int Tipo_Producto { get; set; }

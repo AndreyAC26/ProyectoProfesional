@@ -277,6 +277,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="recDetalleOrdenConOrdenEstado1" FunctionName="MuncheeseModelo.Store.recDetalleOrdenConOrdenEstado1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MuncheeseModelo.recDetalleOrdenConOrdenEstado1_Result">
+          <ScalarProperty Name="Id_Orden" ColumnName="Id_Orden" />
+          <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Tipo_orden" ColumnName="Tipo_orden" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="recDetalleOrdenxId" FunctionName="MuncheeseModelo.Store.recDetalleOrdenxId">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MuncheeseModelo.recDetalleOrdenxId_Result">

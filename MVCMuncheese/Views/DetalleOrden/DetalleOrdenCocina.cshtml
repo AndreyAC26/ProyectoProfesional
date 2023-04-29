@@ -1,7 +1,64 @@
-﻿@model MVCMuncheese.Models.modeloDetalleOrden
+﻿@model IEnumerable<MVCMuncheese.Models.modeloDetalleOrden>
+
 @{
     ViewBag.Title = "DetalleOrdenCocina";
 }
+<div class="container-fluid">
+    <div style="text-align:center;">
+        <h2>Cocina</h2>
+        <hr>
+    </div>
 
-<h2>DetalleOrdenCocina</h2>
+    <style>
+        .card {
+            margin: 1px;
+            padding: 10px;
+            border-right: 1px solid #ccc; /* Agrega una línea vertical en el borde derecho */
+        }
 
+            /* Elimina la línea vertical en el último elemento */
+            .card:last-child {
+                border-right: none;
+            }
+    </style>
+
+    @foreach (var group in Model.GroupBy(d => d.Id_Orden))
+    {
+        string tipoOrdenAnterior = "";
+
+        <div class="col-md-3 btn">
+            <div class="card">
+                <h5>Num: @group.Key</h5>
+                <ul>
+                    @foreach (var item in group)
+                    {
+                        <li>
+                            @if (item.Id_producto == 0)
+                            {
+                                <span>No disponible</span>
+                            }
+                            else
+                            {
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Cantidad)
+                                    @Html.DisplayFor(modelItem => item.Nombre_producto)
+                                </p>
+                            }
+                            @if (item.Tipo_orden != tipoOrdenAnterior)
+                            {
+                                <p> @Html.DisplayFor(modelItem => item.Tipo_orden)</p>
+                                {
+                                    tipoOrdenAnterior = item.Tipo_orden;
+                                }
+                            }
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+</div>
+
+<br />

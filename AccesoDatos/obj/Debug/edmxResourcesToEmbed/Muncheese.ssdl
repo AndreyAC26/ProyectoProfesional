@@ -568,6 +568,7 @@
     <Parameter Name="Id_combo" Type="int" Mode="In" />
   </Function>
   <Function Name="recDetalleOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="recDetalleOrdenConOrdenEstado1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="recDetalleOrdenxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Detalle" Type="int" Mode="In" />
   </Function>

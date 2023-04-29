@@ -21,6 +21,19 @@ namespace AccesoDatos.Implementacion
             gObjConexionAW = lObjConexionAW;
         }
 
+        public List<recDetalleOrdenConOrdenEstado1_Result> recDetalleOrdenEstado1_PA()
+        {
+            List<recDetalleOrdenConOrdenEstado1_Result> lobjRespuesta = new List<recDetalleOrdenConOrdenEstado1_Result>();
+            try
+            {
+                lobjRespuesta = gObjConexionAW.recDetalleOrdenConOrdenEstado1().ToList();
+            }
+            catch (Exception lEx)
+            {
+                throw lEx;
+            }
+            return lobjRespuesta;
+        }
 
         //**************PROCEDIMIENTOS ALMACENADOS**************//
 

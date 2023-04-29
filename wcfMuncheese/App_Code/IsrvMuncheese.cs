@@ -236,6 +236,8 @@ public interface IsrvMuncheese
     bool delOrdenes_ENT(Ordenes pOrdenes);
 
     //**************PROCEDIMIENTOS ALMACENADOS DetalleOrden**************//
+    [OperationContract]
+    List<recDetalleOrdenConOrdenEstado1_Result> recDetalleOrdenEstado1_PA();
 
     [OperationContract]
     List<recDetalleOrden_Result> recDetalleOrden_PA();

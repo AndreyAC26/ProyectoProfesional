@@ -15,6 +15,96 @@ namespace MVCMuncheese.srvMuncheese {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="srvMuncheese.IsrvMuncheese")]
     public interface IsrvMuncheese {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recPerfilUsuarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recPerfilUsuarioXId_PAResponse")]
+        Entidades.recPerfilUsuarioxId_Result recPerfilUsuarioXId_PA(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recPerfilUsuarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recPerfilUsuarioXId_PAResponse")]
+        System.Threading.Tasks.Task<Entidades.recPerfilUsuarioxId_Result> recPerfilUsuarioXId_PAAsync(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insPerfilUsuario_PAResponse")]
+        bool insPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insPerfilUsuario_PAResponse")]
+        System.Threading.Tasks.Task<bool> insPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PAResponse")]
+        bool modPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PAResponse")]
+        System.Threading.Tasks.Task<bool> modPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
+        bool delPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
+        System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
+        System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recInventario_Result>> recInventario_PAAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse")]
+        Entidades.recInventarioxId_Result recInventarioXId_PA(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse")]
+        System.Threading.Tasks.Task<Entidades.recInventarioxId_Result> recInventarioXId_PAAsync(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse")]
+        bool insInventario_PA(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse")]
+        System.Threading.Tasks.Task<bool> insInventario_PAAsync(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse")]
+        bool modInventario_PA(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse")]
+        System.Threading.Tasks.Task<bool> modInventario_PAAsync(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delInventario_PAResponse")]
+        bool delInventario_PA(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delInventario_PAResponse")]
+        System.Threading.Tasks.Task<bool> delInventario_PAAsync(Entidades.Inventario pInventario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recFacturas_PAResponse")]
+        System.Collections.Generic.List<Entidades.recFacturas_Result> recFacturas_PA();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recFacturas_PAResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recFacturas_Result>> recFacturas_PAAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recFacturasXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recFacturasXId_PAResponse")]
+        Entidades.recFacturaxId_Result recFacturasXId_PA(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recFacturasXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recFacturasXId_PAResponse")]
+        System.Threading.Tasks.Task<Entidades.recFacturaxId_Result> recFacturasXId_PAAsync(int pId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insFacturas_PAResponse")]
+        bool insFacturas_PA(Entidades.Facturas pFacturas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insFacturas_PAResponse")]
+        System.Threading.Tasks.Task<bool> insFacturas_PAAsync(Entidades.Facturas pFacturas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modFacturas_PAResponse")]
+        bool modFacturas_PA(Entidades.Facturas pFacturas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modFacturas_PAResponse")]
+        System.Threading.Tasks.Task<bool> modFacturas_PAAsync(Entidades.Facturas pFacturas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delFacturas_PAResponse")]
+        bool delFacturas_PA(Entidades.Facturas pFacturas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delFacturas_PAResponse")]
+        System.Threading.Tasks.Task<bool> delFacturas_PAAsync(Entidades.Facturas pFacturas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recUsuario", ReplyAction="http://tempuri.org/IsrvMuncheese/recUsuarioResponse")]
+        Entidades.Usuarios recUsuario(string pUsrLogin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recUsuario", ReplyAction="http://tempuri.org/IsrvMuncheese/recUsuarioResponse")]
+        System.Threading.Tasks.Task<Entidades.Usuarios> recUsuarioAsync(string pUsrLogin);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recClientes_ENT", ReplyAction="http://tempuri.org/IsrvMuncheese/recClientes_ENTResponse")]
         System.Collections.Generic.List<Entidades.Clientes> recClientes_ENT();
         
@@ -395,6 +485,12 @@ namespace MVCMuncheese.srvMuncheese {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delOrdenes_ENT", ReplyAction="http://tempuri.org/IsrvMuncheese/delOrdenes_ENTResponse")]
         System.Threading.Tasks.Task<bool> delOrdenes_ENTAsync(Entidades.Ordenes pOrdenes);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recDetalleOrdenEstado1_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recDetalleOrdenEstado1_PAResponse")]
+        System.Collections.Generic.List<Entidades.recDetalleOrdenConOrdenEstado1_Result> recDetalleOrdenEstado1_PA();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recDetalleOrdenEstado1_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recDetalleOrdenEstado1_PAResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recDetalleOrdenConOrdenEstado1_Result>> recDetalleOrdenEstado1_PAAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recDetalleOrden_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recDetalleOrden_PAResponse")]
         System.Collections.Generic.List<Entidades.recDetalleOrden_Result> recDetalleOrden_PA();
         
@@ -520,96 +616,6 @@ namespace MVCMuncheese.srvMuncheese {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recPerfilUsuario_PAResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recPerfilUsuario_Result>> recPerfilUsuario_PAAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recPerfilUsuarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recPerfilUsuarioXId_PAResponse")]
-        Entidades.recPerfilUsuarioxId_Result recPerfilUsuarioXId_PA(int pId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recPerfilUsuarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recPerfilUsuarioXId_PAResponse")]
-        System.Threading.Tasks.Task<Entidades.recPerfilUsuarioxId_Result> recPerfilUsuarioXId_PAAsync(int pId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insPerfilUsuario_PAResponse")]
-        bool insPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insPerfilUsuario_PAResponse")]
-        System.Threading.Tasks.Task<bool> insPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PAResponse")]
-        bool modPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modPerfilUsuario_PAResponse")]
-        System.Threading.Tasks.Task<bool> modPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
-        bool delPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delPerfilUsuario_PAResponse")]
-        System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
-        System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventario_PAResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recInventario_Result>> recInventario_PAAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse")]
-        Entidades.recInventarioxId_Result recInventarioXId_PA(int pId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recInventarioXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recInventarioXId_PAResponse")]
-        System.Threading.Tasks.Task<Entidades.recInventarioxId_Result> recInventarioXId_PAAsync(int pId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse")]
-        bool insInventario_PA(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insInventario_PAResponse")]
-        System.Threading.Tasks.Task<bool> insInventario_PAAsync(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse")]
-        bool modInventario_PA(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modInventario_PAResponse")]
-        System.Threading.Tasks.Task<bool> modInventario_PAAsync(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delInventario_PAResponse")]
-        bool delInventario_PA(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delInventario_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delInventario_PAResponse")]
-        System.Threading.Tasks.Task<bool> delInventario_PAAsync(Entidades.Inventario pInventario);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recFacturas_PAResponse")]
-        System.Collections.Generic.List<Entidades.recFacturas_Result> recFacturas_PA();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recFacturas_PAResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recFacturas_Result>> recFacturas_PAAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recFacturasXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recFacturasXId_PAResponse")]
-        Entidades.recFacturaxId_Result recFacturasXId_PA(int pId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recFacturasXId_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/recFacturasXId_PAResponse")]
-        System.Threading.Tasks.Task<Entidades.recFacturaxId_Result> recFacturasXId_PAAsync(int pId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insFacturas_PAResponse")]
-        bool insFacturas_PA(Entidades.Facturas pFacturas);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/insFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/insFacturas_PAResponse")]
-        System.Threading.Tasks.Task<bool> insFacturas_PAAsync(Entidades.Facturas pFacturas);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modFacturas_PAResponse")]
-        bool modFacturas_PA(Entidades.Facturas pFacturas);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/modFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/modFacturas_PAResponse")]
-        System.Threading.Tasks.Task<bool> modFacturas_PAAsync(Entidades.Facturas pFacturas);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delFacturas_PAResponse")]
-        bool delFacturas_PA(Entidades.Facturas pFacturas);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/delFacturas_PA", ReplyAction="http://tempuri.org/IsrvMuncheese/delFacturas_PAResponse")]
-        System.Threading.Tasks.Task<bool> delFacturas_PAAsync(Entidades.Facturas pFacturas);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recUsuario", ReplyAction="http://tempuri.org/IsrvMuncheese/recUsuarioResponse")]
-        Entidades.Usuarios recUsuario(string pUsrLogin);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsrvMuncheese/recUsuario", ReplyAction="http://tempuri.org/IsrvMuncheese/recUsuarioResponse")]
-        System.Threading.Tasks.Task<Entidades.Usuarios> recUsuarioAsync(string pUsrLogin);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -637,6 +643,126 @@ namespace MVCMuncheese.srvMuncheese {
         
         public IsrvMuncheeseClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public Entidades.recPerfilUsuarioxId_Result recPerfilUsuarioXId_PA(int pId) {
+            return base.Channel.recPerfilUsuarioXId_PA(pId);
+        }
+        
+        public System.Threading.Tasks.Task<Entidades.recPerfilUsuarioxId_Result> recPerfilUsuarioXId_PAAsync(int pId) {
+            return base.Channel.recPerfilUsuarioXId_PAAsync(pId);
+        }
+        
+        public bool insPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario) {
+            return base.Channel.insPerfilUsuario_PA(pPerfilUsuario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> insPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
+            return base.Channel.insPerfilUsuario_PAAsync(pPerfilUsuario);
+        }
+        
+        public bool modPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario) {
+            return base.Channel.modPerfilUsuario_PA(pPerfilUsuario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> modPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
+            return base.Channel.modPerfilUsuario_PAAsync(pPerfilUsuario);
+        }
+        
+        public bool delPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario) {
+            return base.Channel.delPerfilUsuario_PA(pPerfilUsuario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
+            return base.Channel.delPerfilUsuario_PAAsync(pPerfilUsuario);
+        }
+        
+        public System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA() {
+            return base.Channel.recInventario_PA();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recInventario_Result>> recInventario_PAAsync() {
+            return base.Channel.recInventario_PAAsync();
+        }
+        
+        public Entidades.recInventarioxId_Result recInventarioXId_PA(int pId) {
+            return base.Channel.recInventarioXId_PA(pId);
+        }
+        
+        public System.Threading.Tasks.Task<Entidades.recInventarioxId_Result> recInventarioXId_PAAsync(int pId) {
+            return base.Channel.recInventarioXId_PAAsync(pId);
+        }
+        
+        public bool insInventario_PA(Entidades.Inventario pInventario) {
+            return base.Channel.insInventario_PA(pInventario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> insInventario_PAAsync(Entidades.Inventario pInventario) {
+            return base.Channel.insInventario_PAAsync(pInventario);
+        }
+        
+        public bool modInventario_PA(Entidades.Inventario pInventario) {
+            return base.Channel.modInventario_PA(pInventario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> modInventario_PAAsync(Entidades.Inventario pInventario) {
+            return base.Channel.modInventario_PAAsync(pInventario);
+        }
+        
+        public bool delInventario_PA(Entidades.Inventario pInventario) {
+            return base.Channel.delInventario_PA(pInventario);
+        }
+        
+        public System.Threading.Tasks.Task<bool> delInventario_PAAsync(Entidades.Inventario pInventario) {
+            return base.Channel.delInventario_PAAsync(pInventario);
+        }
+        
+        public System.Collections.Generic.List<Entidades.recFacturas_Result> recFacturas_PA() {
+            return base.Channel.recFacturas_PA();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recFacturas_Result>> recFacturas_PAAsync() {
+            return base.Channel.recFacturas_PAAsync();
+        }
+        
+        public Entidades.recFacturaxId_Result recFacturasXId_PA(int pId) {
+            return base.Channel.recFacturasXId_PA(pId);
+        }
+        
+        public System.Threading.Tasks.Task<Entidades.recFacturaxId_Result> recFacturasXId_PAAsync(int pId) {
+            return base.Channel.recFacturasXId_PAAsync(pId);
+        }
+        
+        public bool insFacturas_PA(Entidades.Facturas pFacturas) {
+            return base.Channel.insFacturas_PA(pFacturas);
+        }
+        
+        public System.Threading.Tasks.Task<bool> insFacturas_PAAsync(Entidades.Facturas pFacturas) {
+            return base.Channel.insFacturas_PAAsync(pFacturas);
+        }
+        
+        public bool modFacturas_PA(Entidades.Facturas pFacturas) {
+            return base.Channel.modFacturas_PA(pFacturas);
+        }
+        
+        public System.Threading.Tasks.Task<bool> modFacturas_PAAsync(Entidades.Facturas pFacturas) {
+            return base.Channel.modFacturas_PAAsync(pFacturas);
+        }
+        
+        public bool delFacturas_PA(Entidades.Facturas pFacturas) {
+            return base.Channel.delFacturas_PA(pFacturas);
+        }
+        
+        public System.Threading.Tasks.Task<bool> delFacturas_PAAsync(Entidades.Facturas pFacturas) {
+            return base.Channel.delFacturas_PAAsync(pFacturas);
+        }
+        
+        public Entidades.Usuarios recUsuario(string pUsrLogin) {
+            return base.Channel.recUsuario(pUsrLogin);
+        }
+        
+        public System.Threading.Tasks.Task<Entidades.Usuarios> recUsuarioAsync(string pUsrLogin) {
+            return base.Channel.recUsuarioAsync(pUsrLogin);
         }
         
         public System.Collections.Generic.List<Entidades.Clientes> recClientes_ENT() {
@@ -1143,6 +1269,14 @@ namespace MVCMuncheese.srvMuncheese {
             return base.Channel.delOrdenes_ENTAsync(pOrdenes);
         }
         
+        public System.Collections.Generic.List<Entidades.recDetalleOrdenConOrdenEstado1_Result> recDetalleOrdenEstado1_PA() {
+            return base.Channel.recDetalleOrdenEstado1_PA();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recDetalleOrdenConOrdenEstado1_Result>> recDetalleOrdenEstado1_PAAsync() {
+            return base.Channel.recDetalleOrdenEstado1_PAAsync();
+        }
+        
         public System.Collections.Generic.List<Entidades.recDetalleOrden_Result> recDetalleOrden_PA() {
             return base.Channel.recDetalleOrden_PA();
         }
@@ -1309,126 +1443,6 @@ namespace MVCMuncheese.srvMuncheese {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recPerfilUsuario_Result>> recPerfilUsuario_PAAsync() {
             return base.Channel.recPerfilUsuario_PAAsync();
-        }
-        
-        public Entidades.recPerfilUsuarioxId_Result recPerfilUsuarioXId_PA(int pId) {
-            return base.Channel.recPerfilUsuarioXId_PA(pId);
-        }
-        
-        public System.Threading.Tasks.Task<Entidades.recPerfilUsuarioxId_Result> recPerfilUsuarioXId_PAAsync(int pId) {
-            return base.Channel.recPerfilUsuarioXId_PAAsync(pId);
-        }
-        
-        public bool insPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario) {
-            return base.Channel.insPerfilUsuario_PA(pPerfilUsuario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> insPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
-            return base.Channel.insPerfilUsuario_PAAsync(pPerfilUsuario);
-        }
-        
-        public bool modPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario) {
-            return base.Channel.modPerfilUsuario_PA(pPerfilUsuario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> modPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
-            return base.Channel.modPerfilUsuario_PAAsync(pPerfilUsuario);
-        }
-        
-        public bool delPerfilUsuario_PA(Entidades.PerfilUsuario pPerfilUsuario) {
-            return base.Channel.delPerfilUsuario_PA(pPerfilUsuario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> delPerfilUsuario_PAAsync(Entidades.PerfilUsuario pPerfilUsuario) {
-            return base.Channel.delPerfilUsuario_PAAsync(pPerfilUsuario);
-        }
-        
-        public System.Collections.Generic.List<Entidades.recInventario_Result> recInventario_PA() {
-            return base.Channel.recInventario_PA();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recInventario_Result>> recInventario_PAAsync() {
-            return base.Channel.recInventario_PAAsync();
-        }
-        
-        public Entidades.recInventarioxId_Result recInventarioXId_PA(int pId) {
-            return base.Channel.recInventarioXId_PA(pId);
-        }
-        
-        public System.Threading.Tasks.Task<Entidades.recInventarioxId_Result> recInventarioXId_PAAsync(int pId) {
-            return base.Channel.recInventarioXId_PAAsync(pId);
-        }
-        
-        public bool insInventario_PA(Entidades.Inventario pInventario) {
-            return base.Channel.insInventario_PA(pInventario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> insInventario_PAAsync(Entidades.Inventario pInventario) {
-            return base.Channel.insInventario_PAAsync(pInventario);
-        }
-        
-        public bool modInventario_PA(Entidades.Inventario pInventario) {
-            return base.Channel.modInventario_PA(pInventario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> modInventario_PAAsync(Entidades.Inventario pInventario) {
-            return base.Channel.modInventario_PAAsync(pInventario);
-        }
-        
-        public bool delInventario_PA(Entidades.Inventario pInventario) {
-            return base.Channel.delInventario_PA(pInventario);
-        }
-        
-        public System.Threading.Tasks.Task<bool> delInventario_PAAsync(Entidades.Inventario pInventario) {
-            return base.Channel.delInventario_PAAsync(pInventario);
-        }
-        
-        public System.Collections.Generic.List<Entidades.recFacturas_Result> recFacturas_PA() {
-            return base.Channel.recFacturas_PA();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Entidades.recFacturas_Result>> recFacturas_PAAsync() {
-            return base.Channel.recFacturas_PAAsync();
-        }
-        
-        public Entidades.recFacturaxId_Result recFacturasXId_PA(int pId) {
-            return base.Channel.recFacturasXId_PA(pId);
-        }
-        
-        public System.Threading.Tasks.Task<Entidades.recFacturaxId_Result> recFacturasXId_PAAsync(int pId) {
-            return base.Channel.recFacturasXId_PAAsync(pId);
-        }
-        
-        public bool insFacturas_PA(Entidades.Facturas pFacturas) {
-            return base.Channel.insFacturas_PA(pFacturas);
-        }
-        
-        public System.Threading.Tasks.Task<bool> insFacturas_PAAsync(Entidades.Facturas pFacturas) {
-            return base.Channel.insFacturas_PAAsync(pFacturas);
-        }
-        
-        public bool modFacturas_PA(Entidades.Facturas pFacturas) {
-            return base.Channel.modFacturas_PA(pFacturas);
-        }
-        
-        public System.Threading.Tasks.Task<bool> modFacturas_PAAsync(Entidades.Facturas pFacturas) {
-            return base.Channel.modFacturas_PAAsync(pFacturas);
-        }
-        
-        public bool delFacturas_PA(Entidades.Facturas pFacturas) {
-            return base.Channel.delFacturas_PA(pFacturas);
-        }
-        
-        public System.Threading.Tasks.Task<bool> delFacturas_PAAsync(Entidades.Facturas pFacturas) {
-            return base.Channel.delFacturas_PAAsync(pFacturas);
-        }
-        
-        public Entidades.Usuarios recUsuario(string pUsrLogin) {
-            return base.Channel.recUsuario(pUsrLogin);
-        }
-        
-        public System.Threading.Tasks.Task<Entidades.Usuarios> recUsuarioAsync(string pUsrLogin) {
-            return base.Channel.recUsuarioAsync(pUsrLogin);
         }
     }
 }

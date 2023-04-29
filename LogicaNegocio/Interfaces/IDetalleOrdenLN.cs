@@ -15,6 +15,7 @@ namespace LogicaNegocio.Interfaces
         bool insDetalleOrden_PA(DetalleOrden pDetalleOrden);
         bool modDetalleOrden_PA(DetalleOrden pDetalleOrden);
         bool delDetalleOrden_PA(DetalleOrden pDetalleOrden);
+        List<recDetalleOrdenConOrdenEstado1_Result> recDetalleOrdenEstado1_PA();
 
         //**************ENTIDADES**************//
 

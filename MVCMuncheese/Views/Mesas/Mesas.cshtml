@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Mesas";
-
+    
 }
 <div class="container-fluid">
     <div style="text-align:center;">
@@ -55,7 +55,15 @@
     });
 </script>
 
-@foreach (var mesa in Model)
+<div class="col-md-3">
+    <div class="link">
+        <a href="@Url.Action("DetalleOrden", "DetalleOrden", new { mesa = 13 })" class="btn btn-info" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;" data-id="13">
+            Mesa Llevar
+        </a>
+    </div>
+</div>
+
+@foreach (var mesa in Model.GetRange(0, Math.Min(12, Model.Count)))
 {
     <div class="col-md-3">
         <div class="link">
@@ -66,25 +74,25 @@
                 </a>
 
                 @*<a href="@Url.Action("Ordenes", "Ordenes", new { mesa = mesa.NumeroMesa })" class="btn btn-danger" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;">
-                Mesa @mesa.NumeroMesa
-            </a>*@
+                        Mesa @mesa.NumeroMesa
+                    </a>*@
             }
             else
             {
                 <a href="@Url.Action("DetalleOrden", "DetalleOrden", new { mesa = mesa.NumeroMesa })" class="btn btn-success" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px;" data-id="@mesa.NumeroMesa">
-                Mesa @mesa.NumeroMesa
+                    Mesa @mesa.NumeroMesa
                 </a>
 
                 @*<a href="@Url.Action("Ordenes", "Ordenes", new { mesa = mesa.NumeroMesa })" class="btn btn-success" style="height: 150px; width: 285px; border-radius: 5%; margin-top: 2px; margin-bottom: 2px; margin-left: 2px; margin-right: 2px; ">
-                Mesa @mesa.NumeroMesa
-            </a>*@
+                        Mesa @mesa.NumeroMesa
+                    </a>*@
             }
         </div>
-       
+
     </div>
 
 }
 
 <div style="float: right;">
-    @Html.ActionLink("Atras", "listarMesas_PA", null, new { @class="btn btn-default", style = "color:white;" })
+    @Html.ActionLink("Atras", "listarMesas_PA", null, new { @class = "btn btn-default", style = "color:white;" })
 </div>

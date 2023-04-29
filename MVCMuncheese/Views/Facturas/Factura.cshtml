@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 text-lef">
+                    <div class="col-md-3">
                         <div class="form-group row">
                             @Html.LabelFor(model => model.Tel_Cliente, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
                             <div class="col-sm-6 text-right">
@@ -269,61 +269,7 @@
             });
 
 
-        @*//Facturar
-        // Evento click del botón "facturar-btn"
-$(document).ready(function () {
-    $("#facturar-btn").click(function (e) {
-        e.preventDefault();
 
-        var fecha = $("#fecha-entrada").val();
-        var orden = $("#ddlOrdenes").val();
-        var telefono = $("#txtTelefono").val();
-        var facturarUrl = $(this).data("url");
-
-        // Obtenemos los valores de idMesa e idOrden para pasar a la acción Facturar
-        var idMesa = $("#ddlOrdenes").val();
-        var idOrden = $("#mesa-dropdown").val();
-        // Obtener el nombre de la mesa seleccionada
-        var nombreMesa = $("#mesa-dropdown option:selected").text();
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("accionesPA", "Facturas")',
-            data: {
-                enviarAccion: "Agregar",
-                pModeloFacturas: {
-                    fecha: fecha,
-                    Id_Orden: orden,
-                    Tel_Cliente: telefono
-                }
-            },
-            success: function (response) {
-                // Realizar la segunda llamada AJAX para invocar la acción Facturar
-                $.ajax({
-                    type: "POST",
-                    url: facturarUrl,
-                    data: {
-                        idMesa: idMesa,
-                        idOrden: idOrden
-                    },
-                    success: function (response) {
-                        // Redireccionar a la página principal sin verificar la respuesta
-                        window.location.href = $("#home-link").attr("href");
-
-                        // Llamar a la función refrescarVista() después de completar la llamada AJAX
-                        refrescarVista();
-                    },
-                    error: function (response) {
-                        // Manejar errores (mostrar un mensaje, etc.)
-                    }
-                });
-            },
-            error: function (response) {
-                // Manejar errores (mostrar un mensaje, etc.)
-            }
-        });
-    });
-});*@
 // Facturar
 
 // Evento click del botón "facturar-btn"

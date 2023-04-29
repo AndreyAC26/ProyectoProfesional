@@ -1,5 +1,3 @@
-C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.csproj.AssemblyReference.cache
-C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.csproj.CoreCompileInputs.cache
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\NLog.config
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\MVCMuncheese.dll.config
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\MVCMuncheese.dll
@@ -74,6 +72,8 @@ C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\es\System.Web.Razor
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\es\System.Web.WebPages.resources.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.csproj.AssemblyReference.cache
+C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.csproj.CoreCompileInputs.cache
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.csproj.CopyComplete
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.dll
 C:\Proyecto Profesional Muncheese\Muncheese\MVCMuncheese\obj\Debug\MVCMuncheese.pdb

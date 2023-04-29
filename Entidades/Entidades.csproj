@@ -102,6 +102,9 @@
     <Compile Include="recCliente_Result.cs">
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>
+    <Compile Include="recDetalleOrdenConOrdenEstado1_Result.cs">
+      <DependentUpon>Muncheese.tt</DependentUpon>
+    </Compile>
     <Compile Include="recDetalleOrdenxId_Result.cs">
       <DependentUpon>Muncheese.tt</DependentUpon>
     </Compile>

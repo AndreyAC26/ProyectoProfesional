@@ -948,6 +948,11 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recDetalleOrden_Result>("recDetalleOrden");
         }
     
+        public virtual ObjectResult<recDetalleOrdenConOrdenEstado1_Result> recDetalleOrdenConOrdenEstado1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<recDetalleOrdenConOrdenEstado1_Result>("recDetalleOrdenConOrdenEstado1");
+        }
+    
         public virtual ObjectResult<recDetalleOrdenxId_Result> recDetalleOrdenxId(Nullable<int> id_Detalle)
         {
             var id_DetalleParameter = id_Detalle.HasValue ?

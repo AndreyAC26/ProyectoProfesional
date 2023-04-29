@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Xml.Linq;
 
 namespace MVCMuncheese.Models
@@ -20,5 +21,11 @@ namespace MVCMuncheese.Models
 
         [Display(Name = "Perfil")]
         public string NombrePerfil { get; set; }
+
+        public List<SelectListItem> Perfiles { get; set; }
+        public List<SelectListItem> Usuarios { get; set; }
+        public List<SelectListItem> ListaUsuarios { get; set; }
+
+
     }
 }
