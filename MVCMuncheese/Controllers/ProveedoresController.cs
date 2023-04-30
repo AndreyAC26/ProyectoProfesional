@@ -213,7 +213,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarProveedores_PA", lobjRespuesta);
+            return RedirectToAction("listarProveedores_PA");
         }
 
         public ActionResult modificarProv_PA(Proveedor pProveedores)
@@ -238,7 +238,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarProveedores_PA", lobjRespuesta);
+            return RedirectToAction("listarProveedores_PA");
         }
 
         public ActionResult eliminarProv_PA(Proveedor pProveedores)
@@ -263,7 +263,7 @@ namespace MVCMuncheese.Controllers
             {
                 throw lEx;
             }
-            return View("listarProveedores_PA", lobjRespuesta);
+            return RedirectToAction("listarProveedores_PA");
         }
 
 

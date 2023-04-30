@@ -302,73 +302,73 @@ namespace MVCMuncheese.Controllers
         }
 
        
-        public ActionResult accionesPAA(string enviarAccionPA, List<DetalleOrden> datosOrdenes)
-        {
-            try
+            public ActionResult accionesPAA(string enviarAccionPA, List<DetalleOrden> datosOrdenes)
             {
-                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                try
                 {
-                    foreach (DetalleOrden pDetalleOrden in datosOrdenes)
+                    using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                     {
-                        switch (enviarAccionPA)
+                        foreach (DetalleOrden pDetalleOrden in datosOrdenes)
                         {
-                            case "Agregar":
-                                insertarDetal_PA(pDetalleOrden);
-                                break;
+                            switch (enviarAccionPA)
+                            {
+                                case "Agregar":
+                                    insertarDetal_PA(pDetalleOrden);
+                                    break;
 
-                            default:
-                                return RedirectToAction("Mesas", "Mesas");
+                                default:
+                                    return RedirectToAction("Mesas", "Mesas");
+                            }
                         }
                     }
+
+                    // enviar mensaje de éxito
+                    TempData["mensaje"] = "La orden se ha agregado correctamente.";
+                }
+                catch (Exception lEx)
+                {
+                    throw lEx;
+                    //// enviar mensaje de error
+                    //TempData["mensajeError"] = "Error al agregar la orden.";
                 }
 
-                // enviar mensaje de éxito
-                TempData["mensaje"] = "La orden se ha agregado correctamente.";
-            }
-            catch (Exception lEx)
-            {
-                throw lEx;
-                //// enviar mensaje de error
-                //TempData["mensajeError"] = "Error al agregar la orden.";
+                return RedirectToAction("Mesas", "Mesas");
             }
 
-            return RedirectToAction("Mesas", "Mesas");
-        }
-
-        public ActionResult insertarDetal_PA(DetalleOrden pDetalleOrden)
-        {
-            try
+            public ActionResult insertarDetal_PA(DetalleOrden pDetalleOrden)
             {
-                using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
+                try
                 {
-                    // buscar el registro en la base de datos
-                    var detalleExistente = srvWCF_CR.recDetalleOrden_PA()
-                        .FirstOrDefault(d => d.Id_producto == pDetalleOrden.Id_producto && d.Id_Orden == pDetalleOrden.Id_Orden);
-
-                    if (detalleExistente == null)
+                    using (srvMuncheese.IsrvMuncheeseClient srvWCF_CR = new srvMuncheese.IsrvMuncheeseClient())
                     {
-                        // el registro no existe en la base de datos, agregarlo
-                        if (srvWCF_CR.insDetalleOrden_PA(pDetalleOrden))
+                        // buscar el registro en la base de datos
+                        var detalleExistente = srvWCF_CR.recDetalleOrden_PA()
+                            .FirstOrDefault(d => d.Id_producto == pDetalleOrden.Id_producto && d.Id_Orden == pDetalleOrden.Id_Orden);
+
+                        if (detalleExistente == null)
                         {
-                            //enviar mensaje positivo
+                            // el registro no existe en la base de datos, agregarlo
+                            if (srvWCF_CR.insDetalleOrden_PA(pDetalleOrden))
+                            {
+                                //enviar mensaje positivo
+                            }
+                            else
+                            {
+                                //enviar mensaje negativo
+                            }
                         }
                         else
                         {
-                            //enviar mensaje negativo
+                            // el registro ya existe en la base de datos, no hacer nada
                         }
                     }
-                    else
-                    {
-                        // el registro ya existe en la base de datos, no hacer nada
-                    }
                 }
+                catch (Exception lEx)
+                {
+                    throw lEx;
+                }
+                return RedirectToAction("Mesas", "Mesas");
             }
-            catch (Exception lEx)
-            {
-                throw lEx;
-            }
-            return RedirectToAction("Mesas", "Mesas");
-        }
 
 
 
